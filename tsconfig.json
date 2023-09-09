@@ -1,12 +1,25 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
+    "module": "esnext",
+    "strict": false,
+    "allowJs": true,
+    "noEmitOnError": false,
+    "downlevelIteration": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "context/themeContext.js",
+    "app/index.jsx",
+    "components/jobs/common/cards/popular/PopularJobCard.jsx",
+    "components/jobs/home/popular/Popularjobs.jsx"
   ]
 }
