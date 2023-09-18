@@ -118,7 +118,12 @@ const StyledWeatherView = () => {
               {/* <StyledText bold style={{ fontSize: 25 }}>
                 {date.format("hh:mm")}
               </StyledText> */}
-              <StyledText style={{ fontSize: 10 }} bold>
+              <StyledText
+                style={{ fontSize: 10 }}
+                // ellipsizeMode="tail"
+                // numberOfLines={1}
+                bold
+              >
                 {current?.condition?.text}
               </StyledText>
             </Animated.View>

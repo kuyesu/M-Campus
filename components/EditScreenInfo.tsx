@@ -38,13 +38,9 @@ export default function EditScreenInfo({ path }: { path: string }) {
       </View>
 
       <View style={styles.helpContainer}>
-        <ExternalLink
-          style={styles.helpLink}
-          href="https://ku-yesu.com"
-        >
+        <ExternalLink style={styles.helpLink} href="https://ku-yesu.com">
           <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
-            Tap here if your app doesn't automatically update after making
-            changes
+            https://ku-yesu.com
           </Text>
         </ExternalLink>
       </View>

@@ -42,7 +42,7 @@ export default function Login() {
     // loginUser(email, password)(dispatch);
     if (Platform.OS === "android") {
       ToastAndroid.show("Login successful!", ToastAndroid.LONG);
-      router.push("/")
+      router.push("/home");
     } else {
       Alert.alert("Login successful!");
       router.push("/home");

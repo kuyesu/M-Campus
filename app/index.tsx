@@ -21,6 +21,7 @@ import StyledText from "@/components/Text/StyledText";
 import { useSelector } from "react-redux";
 import Store from "@/redux/Store";
 import { loadUser } from "@/redux/actions/userAction";
+import { StyledLoading } from "@/components/loading/StyledLoading";
 
 export default function Welcome() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -35,38 +36,35 @@ export default function Welcome() {
   }, []);
   //   if (loading) return null;
 
-  if (loading)
-    return (
-      <View
-        style={{
-          flex: 1,
-          height: "100%",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: activeColors.primary,
-        }}
-      >
-        <StatusBar
-          // backgroundColor={activeColors.primary}
-          style={theme.mode === "dark" ? "light" : "dark"}
-        />
-        <View
-          style={{
-            flex: 1,
-            height: "100%",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ActivityIndicator
-            size="large"
-            color={theme.mode === "dark" ? "#374151" : "#e5e7eb"}
-          />
-        </View>
-      </View>
-    );
+  // if (loading)
+  //   return (
+  //     <View
+  //       style={{
+  //         flex: 1,
+  //         height: "100%",
+  //         width: "100%",
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //         backgroundColor: activeColors.primary,
+  //       }}
+  //     >
+  //       <StatusBar
+  //         // backgroundColor={activeColors.primary}
+  //         style={theme.mode === "dark" ? "light" : "dark"}
+  //       />
+  //       <View
+  //         style={{
+  //           flex: 1,
+  //           height: "100%",
+  //           width: "100%",
+  //           justifyContent: "center",
+  //           alignItems: "center",
+  //         }}
+  //       >
+  //         <StyledLoading />
+  //       </View>
+  //     </View>
+  //   );
 
   // if (isAuthenticated) router.push("/home");
 

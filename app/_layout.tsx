@@ -1,4 +1,4 @@
-// @ts-nocheck
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeContext } from "@/context/themeContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
@@ -112,83 +112,85 @@ const RootLayoutNav = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, updateTheme }}>
-      <Stack screenOptions={{}}>
-        <Stack.Screen
-          name="index"
-          options={{ headerShown: false, gestureEnabled: false }}
-        />
-        <Stack.Screen
-          name="auth/index"
-          options={{
-            headerShown: false,
-            // headerShadowVisible: false,
-            // headerStyle: {
-            //   backgroundColor: "#F04D4E",
-            // },
-            headerTintColor: "#F04D4E",
-          }}
-        />
-        <Stack.Screen
-          name="auth/login"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="auth/register"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="auth/phone"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="auth/email"
-          options={{
-            headerShown: false,
-          }}
-        />
+      <BottomSheetModalProvider>
+        <Stack screenOptions={{}}>
+          <Stack.Screen
+            name="index"
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="auth/index"
+            options={{
+              headerShown: false,
+              // headerShadowVisible: false,
+              // headerStyle: {
+              //   backgroundColor: "#F04D4E",
+              // },
+              headerTintColor: "#F04D4E",
+            }}
+          />
+          <Stack.Screen
+            name="auth/login"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/register"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/phone"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/email"
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen
-          name="auth/verify-email"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="auth/profile"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="auth/finish"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="auth/verify-phone"
-          options={{
-            headerShown: false,
-          }}
-        />
+          <Stack.Screen
+            name="auth/verify-email"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/profile"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/finish"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/verify-phone"
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen
-          name="(drawer)"
-          options={{ headerShown: false, gestureEnabled: false }}
-        />
-        <Stack.Screen
-          name="post/index"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
+          <Stack.Screen
+            name="(drawer)"
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="post/index"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </BottomSheetModalProvider>
     </ThemeContext.Provider>
   );
 };

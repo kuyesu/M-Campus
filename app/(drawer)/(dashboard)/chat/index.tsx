@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import React, { useState, useCallback, useEffect, useContext } from "react";
 import {
   Bubble,
@@ -14,23 +14,26 @@ import StyledText from "@/components/Text/StyledText";
 
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
-import ChatApi from "@/api/ChatApi";
+import StyledView from "@/components/View/StyledView";
+import { RadixIcon } from "radix-ui-react-native-icons";
+import axios from "axios";
+import fetch from "isomorphic-fetch";
+
 
 export default function TabOneScreen() {
-
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-
 
   const [messages, setMessages] = useState([]);
   const [chatFaceColor, setChatFaceColor] = useState();
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
-
-
+  const CHAT_BOT_FACE =
+    "https://res.cloudinary.com/dknvsbuyy/image/upload/v1685678135/chat_1_c7eda483e3.png";
   useEffect(() => {
     checkFaceId();
   }, []);
@@ -42,53 +45,91 @@ export default function TabOneScreen() {
     setMessages([
       {
         _id: 1,
-        text: "Hello, I am "  + ", How Can I help you?",
+        text: "Hello, I am Mi" + ", How can I help you?",
         createdAt: new Date(),
         user: {
           _id: 2,
-          // name: "React Native",
-          // avatar: CHAT_BOT_FACE,
+          name: "Mi assistant",
+          avatar: CHAT_BOT_FACE,
         },
       },
     ]);
   };
 
+  const onSend = useCallback((messages = []) => {
+    setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, messages)
+    );
+    if (messages[0].text) {
+      getBardResp(messages[0].text);
+    }
+  }, []);
 
+  // Simulate user typing (you can replace this with actual typing logic)
+  const startTyping = () => {
+    setIsTyping(true);
+  };
 
+  // Simulate user stopping typing
+  const stopTyping = () => {
+    setIsTyping(false);
+  };
 
-
-  const getBardResp = async (msg) => {
+  function TypingIndicator() {
+    return (
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <StyledText style={{ color: activeColors.tint }}>Mi is typing</StyledText>
+        <StyledView
+          style={{
+            backgroundColor: activeColors.accent,
+            borderRadius: 10,
+            padding: 5,
+            marginLeft: 5,
+          }}
+        >
+          <RadixIcon name="pencil" size={16} color={activeColors.tint} />
+        </StyledView>
+      </View>
+    )
+  }
+  const getBardResp = async (user_prompt) => {
     setLoading(true);
 
-      if (!msg) return;
-      setResult("");
-      setLoading(true);
-      try {
-        const result = await fetch("http://192.168.137.114:3000/api/read", {
-          method: "POST",
-          body: JSON.stringify(msg),
-        });
-        const json = await result.json();
-        console.log("Got Thsi: ", json);
-        const data = json.data;
-        setResult(data);
-        console.log("result: ", data);
-        if (json.data) {
-           setLoading(false);
-           const chatAIResp: any = {
-             _id: Math.random() * (9999999 - 1),
+    if (!user_prompt) return;
+    setResult("");
+    setLoading(true);
 
-             text: data,
-             createdAt: new Date(),
-             user: {
-               _id: 2,
-              //  name: "Mi Campus",
-              //  avatar: "https://placeimg.com/140/140/any",
-             },
-           };
-           setMessages((previousMessages) =>
-             GiftedChat.append(previousMessages, chatAIResp)
-           );
+    var formdata = new FormData();
+    formdata.append("user_prompt", user_prompt);
+
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+    };
+
+    await fetch("http://127.0.0.1:5110/api/prompt_route", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("++======================: ", result);
+        const { Answer } = result;
+        setResult(Answer);
+        console.log("result: ", Answer);
+        if (result) {
+          setLoading(false);
+          const chatAIResp: any = {
+            _id: Math.random() * (9999999 - 1),
+
+            text: Answer,
+            createdAt: new Date(),
+            user: {
+              _id: 2,
+              name: "Mi assistant",
+              avatar: CHAT_BOT_FACE,
+            },
+          };
+          setMessages((previousMessages) =>
+            GiftedChat.append(previousMessages, chatAIResp)
+          );
         } else {
           setLoading(false);
           const chatAIResp: any = {
@@ -97,8 +138,8 @@ export default function TabOneScreen() {
             createdAt: new Date(),
             user: {
               _id: 2,
-              // name: "Mi Campus",
-              // avatar: CHAT_BOT_FACE,
+              name: "Mi assistant",
+              avatar: CHAT_BOT_FACE,
             },
           };
           setMessages((previousMessages) =>
@@ -107,23 +148,9 @@ export default function TabOneScreen() {
         }
 
         setLoading(false);
-      } catch (err) {
-        console.log("err:", err);
-        setLoading(false);
-      }
-
+      })
+      .catch((error) => console.log("error", error));
   };
-
-
-    const onSend = useCallback((messages = []) => {
-      setMessages((previousMessages) =>
-        GiftedChat.append(previousMessages, messages)
-      );
-      if (messages[0].text) {
-        getBardResp(messages[0].text);
-      }
-    }, []);
-
 
   const renderBubble = (props) => {
     return (
@@ -131,19 +158,29 @@ export default function TabOneScreen() {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
             borderRadius: 0,
             marginLeft: 0,
+            paddingLeft: 0,
+            width: "100%",
+            // borderBottomColor: activeColors.grayAccent,
+            // borderBottomWidth: 1,
           },
           left: {
             backgroundColor: activeColors.secondary,
-            borderRadius: 0,
-            marginLeft: 0,
+            borderRadius: 5,
+            // marginLeft: -5,
+            width: "97%",
+            borderBottomColor: activeColors.grayAccent,
+            borderBottomWidth: 1,
+            // marginTop: 10,
           },
         }}
         textStyle={{
           right: {
             // fontSize:20,
+            textAlign: "justify",
+            color: activeColors.gray,
             padding: 2,
           },
           left: {
@@ -152,7 +189,18 @@ export default function TabOneScreen() {
             padding: 2,
           },
         }}
-
+        renderUsernameOnMessage={true}
+        // avatarStyle={{ display: "none" }}
+        inverted={true}
+        optionTitles={{
+          copy: "copy",
+          delete: "Delete",
+          forward: "Forward",
+          share: "Share",
+          edit: "Edit",
+          reply: "Reply",
+        }}
+        // optionTintColor={activeColors.tint}
       />
     );
   };
@@ -207,14 +255,65 @@ export default function TabOneScreen() {
         <GiftedChat
           messages={messages}
           isTyping={loading}
-          // multiline={true}
-          onSend={(messages) => onSend(messages)}
-          user={{
-            _id: 1,
+          showUserAvatar
+          showAvatarForEveryMessage
+          renderAvatar={(props) => {
+            const { currentMessage } = props;
+            if (currentMessage.user._id === 2) {
+              // This is the current user's message
+
+              return (
+                <StyledView
+                  style={{
+                    backgroundColor: activeColors.secondary,
+                    borderRadius: 5,
+                    padding: 5,
+                    marginRight: 5,
+                    width: 40,
+                    height: 40,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderColor: activeColors.gray2,
+                    borderWidth: 1,
+                  }}
+                >
+                  <Image
+                    source={require("@/assets/chats/bot.png")}
+                    className="h-10 w-10 "
+                  />
+                </StyledView>
+              );
+            } else {
+              return (
+                <StyledView
+                  style={{
+                    backgroundColor: activeColors.secondary,
+                    borderRadius: 5,
+                    padding: 5,
+                    marginRight: 5,
+                    width: 40,
+                    height: 40,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderColor: activeColors.gray2,
+                    borderWidth: 1,
+                  }}
+                >
+                  <RadixIcon
+                    name="person"
+                    size={16}
+                    color={activeColors.tint}
+                  />
+                </StyledView>
+              );
+            }
           }}
+          onSend={(messages) => onSend(messages)}
           renderBubble={renderBubble}
           renderInputToolbar={renderInputToolbar}
           renderSend={renderSend}
+          placeholder="Ask anything..."
+          renderAvatarOnTop
 
         />
       </View>

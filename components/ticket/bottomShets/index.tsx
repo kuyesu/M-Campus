@@ -16,6 +16,7 @@ import {
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
 import { ScrollView } from "react-native-gesture-handler";
+import StyledBottomSheet from "@/components/BottomSheet/StyledBottomSheet";
 
 export const WithdrawTicket = ({ bottomSheetModalRef, setIsOpen, zIndex }) => {
   const snapPoints = ["35%", "70%", "100%"];
@@ -25,20 +26,13 @@ export const WithdrawTicket = ({ bottomSheetModalRef, setIsOpen, zIndex }) => {
   const [year, setYear] = useState("1");
 
   return (
-    <BottomSheetModalProvider>
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={1}
-        snapPoints={snapPoints}
-        backgroundStyle={{ borderRadius: 5, backgroundColor: "white" }}
-        onDismiss={() => setIsOpen(false)}
-        style={{
-          zIndex: zIndex,
-        }}
-        backdropComponent={({ style }) => (
-          <View style={[style, { backgroundColor: "rgba(0, 0, 0, 0.5)" }]} />
-        )}
-      >
+    <StyledBottomSheet
+      bottomSheetModalRef={bottomSheetModalRef}
+      snapPoints={snapPoints}
+      setIsOpen={setIsOpen(false)}
+      index={1}
+    >
+
         <View
           className="flex-1 px-4 pt-4 z-50"
           style={{
@@ -145,8 +139,7 @@ export const WithdrawTicket = ({ bottomSheetModalRef, setIsOpen, zIndex }) => {
             </View>
           </ScrollView>
         </View>
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+    </StyledBottomSheet>
   );
 };
 

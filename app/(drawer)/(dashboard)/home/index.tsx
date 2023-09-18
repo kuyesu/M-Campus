@@ -49,6 +49,10 @@ import BottomSheet, {
 } from "@gorhom/bottom-sheet";
 import Barcode from "@kichiyaki/react-native-barcode-generator";
 import { useSelector } from "react-redux";
+import MoreApps from "@/components/home/apps";
+import StyledBottomSheet from "@/components/BottomSheet/StyledBottomSheet";
+import UpdateCarousal from "@/components/home/update";
+import ClassLocation from "@/components/home/class";
 
 export default function TabOneScreen() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -130,15 +134,6 @@ export default function TabOneScreen() {
   });
 
   const [isOpen, setIsOpen] = useState(false);
-  const bottomSheetModalRefAccount = useRef(null);
-  function handlePresentModal() {
-    bottomSheetModalRefAccount.current?.present();
-    setTimeout(() => {
-      setIsOpen(true);
-    }, 100);
-  }
-
-  const snapPoints = ["95%", "100%"];
 
   const [activeId, setActiveId] = useState("");
 
@@ -165,31 +160,32 @@ export default function TabOneScreen() {
     }
   };
 
+  const bottomSheetModalRef = useRef(null);
+
+  const snapPoints = ["48%", "75%", "90%"];
+
+  function handlePresentModal() {
+    bottomSheetModalRef.current?.present();
+    setTimeout(() => {
+      setIsOpen(true);
+    }, 100);
+  }
+
   return (
     <MainContainer
       style={[styles.container]}
       contentContainerStyle={{ flexGrow: 1, gap: 40 }}
     >
-      <View style={{ paddingTop: 0, height: 90 }}>
-        <View
-          className=" p-2 shadow-md bg-[#287ed0] py-4 flex-row  w-full items-center  justify-between"
-          style={{ height: "100%" }}
-        >
-          <View className="flex  ">
-            <ShieldCheckIcon size={20} color="#cfe5f1" />
-          </View>
-          <View className="flex  flex-col">
-            <Text className="text-md text-left items-center font-bold truncate text-[#cfe5f1]">
-              Asurance for your safety 54
-            </Text>
-            <Text className="text-xs text-left items-center font-light truncate text-[#cfe5f1]">
-              Up to 54% of students are assured of their safety
-            </Text>
-          </View>
-          <View className="flex  ">
-            <ChevronRightIcon size={18} color="#cfe5f1" />
-          </View>
-        </View>
+      <View
+        style={{
+          paddingTop: 0,
+          height: 90,
+          width: "110%",
+          position: "relative",
+          left: -20,
+        }}
+      >
+        <UpdateCarousal />
       </View>
       <View style={{}} className="h-full space-y-8">
         {/* top landing */}
@@ -202,10 +198,10 @@ export default function TabOneScreen() {
         >
           <View
             style={{
-              height: "60%",
+              height: "40%",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "flex-end",
+              justifyContent: "center",
             }}
           >
             <StyledWeatherView />
@@ -214,14 +210,14 @@ export default function TabOneScreen() {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "flex-end",
+                alignItems: "baseline",
+                justifyContent: "center",
                 gap: 20,
               }}
             >
               <StyledMenuItem icon="timetable" />
-              <StyledMenuItem icon="line-scan" />
-              <StyledMenuItem icon="briefcase-outline" />
+              <StyledMenuItem icon="update" />
+              <StyledMenuItem icon="database-search" />
               <View
                 style={{
                   borderRadius: 50,
@@ -229,233 +225,14 @@ export default function TabOneScreen() {
                   padding: 10,
                 }}
               >
-                <Modal
-                  style={{
-                    flex: 1,
-                    backgroundColor: "rgba(0,0,0,0.9)",
-                    height: Dimensions.get("window").height,
-                  }}
-                  animationType="fade"
-                  transparent={true}
-                  visible={modalVisible}
-                  onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                  }}
+                {/* here is the modal bottomsheet */}
+                <StyledBottomSheet
+                  bottomSheetModalRef={bottomSheetModalRef}
+                  snapPoints={snapPoints}
                 >
-                  <View
-                    style={[
-                      styles.centeredView,
-                      {
-                        height: Dimensions.get("window").height,
-                        flex: 1,
-                        backgroundColor: "rgba(0,0,0,0.9)",
-                      },
-                    ]}
-                  >
-                    <View
-                      style={[
-                        styles.modalView,
-                        {
-                          backgroundColor: activeColors.secondary,
-                        },
-                      ]}
-                    >
-                      <Pressable
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          right: 0,
-                          padding: 10,
-                        }}
-                        onPress={() => setModalVisible(!modalVisible)}
-                      >
-                        <MaterialCommunityIcons
-                          name={"close"}
-                          // name="view-dashboard-outline"
-                          size={25}
-                          color={activeColors.tint}
-                        />
-                      </Pressable>
-                      <View
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: 40,
-                        }}
-                      >
-                        <View
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            justifyContent: "center",
-                            gap: 20,
-                            width: "100%",
-                          }}
-                        >
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Lineup"
-                            icon="timetable"
-                          />
-                          <TouchableOpacity
-                            style={[
-                              {
-                                alignItems: "center",
-                                width: "15%",
-                                gap: 10,
-                              },
-                            ]}
-                            onPress={() => {
-                              setModalVisible(!modalVisible);
-                              router.push("/hostels");
-                            }}
-                          >
-                            <MaterialCommunityIcons
-                              name={"home-outline"}
-                              // name="view-dashboard-outline"
-                              size={30}
-                              color={activeColors.accent}
-                            />
-                            <StyledText style={{ fontSize: 12 }}>
-                              Hostel
-                            </StyledText>
-                          </TouchableOpacity>
-
-                          <TouchableOpacity
-                            style={[
-                              {
-                                alignItems: "center",
-                                width: "15%",
-                                gap: 10,
-                              },
-                            ]}
-                            onPress={() => {
-                              setModalVisible(!modalVisible);
-                              router.push("/jobs");
-                            }}
-                          >
-                            <MaterialCommunityIcons
-                              name={"briefcase-outline"}
-                              // name="view-dashboard-outline"
-                              size={30}
-                              color={activeColors.accent}
-                            />
-                            <StyledText style={{ fontSize: 12 }}>
-                              Jobs
-                            </StyledText>
-                          </TouchableOpacity>
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Update"
-                            icon="alarm-multiple"
-                          />
-                        </View>
-                        <View
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            justifyContent: "center",
-                            gap: 20,
-                            width: "100%",
-                          }}
-                        >
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Health"
-                            icon="medical-bag"
-                          />
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="VR"
-                            icon="line-scan"
-                          />
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Eco"
-                            icon="recycle-variant"
-                          />
-                          <TouchableOpacity
-                            style={[
-                              {
-                                alignItems: "center",
-                                width: "15%",
-                                gap: 10,
-                              },
-                            ]}
-                            onPress={() => {
-                              setModalVisible(!modalVisible);
-                              router.push("/feed");
-                            }}
-                          >
-                            <MaterialCommunityIcons
-                              name={"alarm-bell"}
-                              // name="view-dashboard-outline"
-                              size={30}
-                              color={activeColors.accent}
-                            />
-                            <StyledText style={{ fontSize: 12 }}>
-                              Tweets
-                            </StyledText>
-                          </TouchableOpacity>
-                        </View>
-                        <View
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            justifyContent: "center",
-                            gap: 20,
-                            width: "100%",
-                          }}
-                        >
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Lineup"
-                            icon="timetable"
-                          />
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Hostel"
-                            icon="home-outline"
-                          />
-                          <TouchableOpacity
-                            style={[
-                              {
-                                alignItems: "center",
-                                width: "15%",
-                                gap: 10,
-                              },
-                            ]}
-                            onPress={() => {
-                              setModalVisible(!modalVisible);
-                              router.push("/jobs");
-                            }}
-                          >
-                            <MaterialCommunityIcons
-                              name={"briefcase-outline"}
-                              // name="view-dashboard-outline"
-                              size={30}
-                              color={activeColors.accent}
-                            />
-                            <StyledText style={{ fontSize: 12 }}>
-                              Jobs
-                            </StyledText>
-                          </TouchableOpacity>
-                          <StyledMenuItem
-                            style={{ width: "20%" }}
-                            name="Update"
-                            icon="alarm-multiple"
-                          />
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                </Modal>
-                <TouchableOpacity onPress={() => setModalVisible(true)}>
+                  <MoreApps />
+                </StyledBottomSheet>
+                <TouchableOpacity onPress={handlePresentModal}>
                   <MaterialCommunityIcons
                     name={"apps"}
                     // name="view-dashboard-outline"
@@ -472,110 +249,11 @@ export default function TabOneScreen() {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              gap: 20,
+              paddingVertical: 20,
             }}
           >
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <StyledText
-                style={{
-                  color: activeColors.accent,
-                  fontSize: 30,
-                  alignItems: "flex-end",
-                  fontFamily: "H",
-                  padding: 5,
-                  borderRadius: 50,
-                  backgroundColor: activeColors.secondary,
-                }}
-                bold
-              >
-                {answered.length < 10 ? `0${answered.length}` : answered.length}
-              </StyledText>
-              <StyledText
-                style={{
-                  color: activeColors.tint,
-                  fontSize: 20,
-                  paddingLeft: 20,
-                  fontFamily: "H",
-                }}
-                bold
-              >
-                Resolved
-              </StyledText>
-            </View>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <StyledText
-                style={{
-                  color: activeColors.accent,
-                  fontSize: 30,
-                  alignItems: "flex-end",
-                  fontFamily: "H",
-                  padding: 5,
-                  borderRadius: 50,
-                  backgroundColor: activeColors.secondary,
-                }}
-                bold
-              >
-                {pending.length < 10 ? `0${pending.length}` : pending.length}
-              </StyledText>
-              <StyledText
-                style={{
-                  color: activeColors.tint,
-                  fontSize: 20,
-                  padding: 10,
-                  fontFamily: "H",
-                }}
-                bold
-              >
-                P
-              </StyledText>
-            </View>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <StyledText
-                style={{
-                  color: activeColors.accent,
-                  fontSize: 30,
-                  alignItems: "flex-end",
-                  fontFamily: "H",
-                  padding: 5,
-                  borderRadius: 50,
-                  backgroundColor: activeColors.secondary,
-                }}
-                bold
-              >
-                {withdrawn.length < 10
-                  ? `0${withdrawn.length}`
-                  : withdrawn.length}
-              </StyledText>
-              <StyledText
-                style={{
-                  color: activeColors.tint,
-                  fontSize: 20,
-                  padding: 10,
-                  fontFamily: "H",
-                }}
-                bold
-              >
-                W
-              </StyledText>
-            </View>
+            <ClassLocation />
+
           </View>
         </View>
 

@@ -27,7 +27,7 @@ export const colors = {
     tertiary: "#4b5563",
     accent: "#0891b2",
     grayAccent: "#e5e7eb",
-    // accent: "#86e63b",
+    border: "#e5e7eb",
     tint: "#111827",
     gray: "#717680",
     backgroundColorOpacity: `rgba(255, 255, 255, 0.1)`,
@@ -36,7 +36,7 @@ export const colors = {
     primary: "#1f2937",
     secondary: "#111827",
     tertiary: "#d1d5db",
-    // accent: "#0891b2",
+    border: "#e5e7eb",
     accent: "#86e63b",
     grayAccent: "#374151",
     tint: "#f9fafb",
@@ -50,4 +50,5 @@ export const colors = {
   tint: "#111827",
   gray: "#717680",
   grayAccent: "#e5e7eb",
+  border: "#0891b2",
 };

@@ -113,12 +113,45 @@ export default function TabLayout() {
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={activeColors.tint}
+                  <View
+                    className={`items-center  justify-center flex-row `}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
+                  >
+                    <MaterialCommunityIcons
+                      size={35}
+                      name="notification-clear-all"
+                      color={activeColors.tint}
+                      fill="#86e63b"
+                      stroke="#041633"
+                      strokeWidth={2}
+                    />
+                    <View
+                      style={{
+                        position: "absolute",
+                        right: -2,
+                        top: 4,
+                      }}
+                    >
+                      <View
+                        style={{
+                          borderColor: activeColors.secondary,
+                          backgroundColor: activeColors.accent,
+                          borderWidth: 2,
+                          borderRadius: 50,
+                          padding: 2,
+                          display: "flex",
+                          height: 18,
+                          width: 18,
+                          alignItems: "center",
+                          // justifyContent: "center",
+                        }}
+                      >
+                        <StyledText style={{ fontSize: 8, color: "black" }} bold>
+                          3
+                        </StyledText>
+                      </View>
+                    </View>
+                  </View>
                 )}
               </Pressable>
             </Link>
