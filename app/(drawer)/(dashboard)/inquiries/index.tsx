@@ -240,7 +240,7 @@ export default function index() {
         {renderTabs()}
       </View>
       <Pressable
-        onPress={() => router.push("/chat")}
+        onPress={() => router.push("/assistant")}
         style={[
           style.footer,
           {

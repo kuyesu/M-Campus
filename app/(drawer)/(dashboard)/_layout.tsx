@@ -54,7 +54,7 @@ export default function TabLayout() {
             iconName = "account-multiple-outline";
           } else if (route.name === "inquiries/index") {
             iconName = "apple-keyboard-command";
-          } else if (route.name === "chat/index") {
+          } else if (route.name === "assistant/index") {
             iconName = "robot-happy-outline";
           }
 
@@ -146,7 +146,10 @@ export default function TabLayout() {
                           // justifyContent: "center",
                         }}
                       >
-                        <StyledText style={{ fontSize: 8, color: "black" }} bold>
+                        <StyledText
+                          style={{ fontSize: 8, color: "black" }}
+                          bold
+                        >
                           3
                         </StyledText>
                       </View>
@@ -334,7 +337,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="chat/index"
+        name="assistant/index"
         options={{
           tabBarLabel: "Notification",
           title: "Ask Assistant",

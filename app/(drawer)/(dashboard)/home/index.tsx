@@ -36,23 +36,14 @@ import StyledWeatherView from "@/components/weather/StyledWeatherView";
 
 import TimelineComponent from "@/components/chat/itmeline";
 
-import { Link, router } from "expo-router";
-import TicketListingScreen from "@/components/ticket";
-import InsightUser from "@/components/insights";
-import { ScrollView } from "react-native-gesture-handler";
 import data from "@/data/inquiries";
-import BottomSheet, {
-  BottomSheetModal,
-  BottomSheetScrollView,
-  BottomSheetView,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
-import Barcode from "@kichiyaki/react-native-barcode-generator";
+
 import { useSelector } from "react-redux";
 import MoreApps from "@/components/home/apps";
 import StyledBottomSheet from "@/components/BottomSheet/StyledBottomSheet";
 import UpdateCarousal from "@/components/home/update";
 import ClassLocation from "@/components/home/class";
+import { router } from "expo-router";
 
 export default function TabOneScreen() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -171,6 +162,15 @@ export default function TabOneScreen() {
     }, 100);
   }
 
+  const handleAppOnPress = (route: any) => {
+    setIsOpen(false);
+    router.push(route);
+    setIsOpen(false);
+    bottomSheetModalRef.current?.close();
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 100);
+  }
   return (
     <MainContainer
       style={[styles.container]}
@@ -230,7 +230,7 @@ export default function TabOneScreen() {
                   bottomSheetModalRef={bottomSheetModalRef}
                   snapPoints={snapPoints}
                 >
-                  <MoreApps />
+                  <MoreApps handleOnPress={handleAppOnPress}  />
                 </StyledBottomSheet>
                 <TouchableOpacity onPress={handlePresentModal}>
                   <MaterialCommunityIcons
@@ -253,7 +253,6 @@ export default function TabOneScreen() {
             }}
           >
             <ClassLocation />
-
           </View>
         </View>
 

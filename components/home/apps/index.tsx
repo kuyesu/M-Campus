@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
 import { LinearGradient } from "expo-linear-gradient";
@@ -15,10 +15,13 @@ import StyledMenuItem from "@/components/Menu/StyledMenuItem";
 import StyledText from "@/components/Text/StyledText";
 import { router } from "expo-router";
 
-const MoreApps = () => {
+const MoreApps = ({ handleOnPress }) => {
+  const [open, setOpen] = useState<boolean>();
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
+
+
   return (
     <View
       style={[
@@ -57,9 +60,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/timetable")}
         >
           <LinearGradient
             colors={["#3f87a6", "#00B2EE"]}
@@ -86,9 +87,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/post")}
         >
           <LinearGradient
             colors={["#C6E2FF", "#C6E2FF"]}
@@ -106,7 +105,7 @@ const MoreApps = () => {
             />
           </LinearGradient>
 
-          <StyledText style={{ fontSize: 16 }}>Mi-Update </StyledText>
+          <StyledText style={{ fontSize: 16 }}>Mi-Campus </StyledText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -116,9 +115,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/jobs")}
         >
           <LinearGradient
             colors={["#8fd3f4", "#e2ebf0", "#f68084"]}
@@ -163,9 +160,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/health")}
         >
           <LinearGradient
             colors={["#009ACD", "#44107A"]}
@@ -201,9 +196,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/map")}
         >
           <LinearGradient
             colors={["#f68084", "#8fd3f4"]}
@@ -240,9 +233,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/green")}
         >
           <LinearGradient
             colors={["#E0EEEE", "#E0EEEE"]}
@@ -287,9 +278,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/hostels")}
         >
           <LinearGradient
             colors={["#ADEAEA", "#D1EEEE"]}
@@ -325,9 +314,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/inquiries")}
         >
           <LinearGradient
             colors={["#C1F0F6", "#C1F0F6"]}
@@ -364,9 +351,7 @@ const MoreApps = () => {
               gap: 10,
             },
           ]}
-          onPress={() => {
-            router.push("/hostels");
-          }}
+          onPress={() => handleOnPress("/assistant")}
         >
           <LinearGradient
             colors={["#BBFFFF", "#3f87a6"]}
@@ -392,7 +377,6 @@ const MoreApps = () => {
               }}
             />
           </LinearGradient>
-
           <StyledText style={{ fontSize: 16 }}>Assistant</StyledText>
         </TouchableOpacity>
       </View>

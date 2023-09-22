@@ -110,7 +110,7 @@ export default function InquiryId() {
             <View className="flex relative w-full flex-col space-y-3  ">
               <View>
                 <TouchableOpacity
-                  onPress={() => router.push("/chat")}
+                  onPress={() => router.push("/assistant")}
                   className={` flex  right-0.5 items-center  w-full justify-center  p-2.5 font-bold rounded-full  `}
                   style={{
                     shadowColor: "#000",
