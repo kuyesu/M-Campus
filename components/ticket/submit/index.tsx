@@ -15,6 +15,8 @@ import { XMarkIcon } from "react-native-heroicons/outline";
 import { Link, router } from "expo-router";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
+import MainContainer from "@/components/container/MainContainer";
+import StyledText from "@/components/Text/StyledText";
 
 const SubmitTicket = ({ slides = [], onDone }) => {
   const { theme } = useContext(ThemeContext);
@@ -50,7 +52,7 @@ const SubmitTicket = ({ slides = [], onDone }) => {
   const { width, height } = Dimensions.get("window");
 
   return (
-    <View
+    <MainContainer
       style={{
         display: "flex",
         flexDirection: "column",
@@ -66,7 +68,12 @@ const SubmitTicket = ({ slides = [], onDone }) => {
         renderItem={({ item, index }) => (
           <View
             style={{
-              flex: 1,
+              width: width - 20,
+              height: height - 70,
+              // paddingHorizontal: 20,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
             }}
             className="py-4"
           >
@@ -92,16 +99,24 @@ const SubmitTicket = ({ slides = [], onDone }) => {
       </View>
       <View
         style={[styles.leftButton]}
-        className="flex flex-row  items-center w-full gap-4 justify-between "
+        className="flex flex-row  items-center w-full gap-2.5 justify-between "
       >
         {currentSlideIndex > 0 && currentSlideIndex && (
           <>
             {currentSlideIndex < slides.length && -1 && (
               <TouchableOpacity
                 onPress={handlePrevious}
-                className="p-2 relative top-2  flex-1 items-center justify-center font-bold border border-[#041633] "
+                style={{
+                  borderColor: activeColors.accent,
+                  paddingVertical: 10,
+                  borderRadius: 10,
+                  borderWidth: 1,
+                }}
+                className=" relative top-1.5  w-1/2 items-center justify-center font-bold  "
               >
-                <Text className="font-semibold">Previous</Text>
+                <StyledText className="font-semibold  text-lg">
+                  Previous
+                </StyledText>
               </TouchableOpacity>
             )}
           </>
@@ -110,20 +125,34 @@ const SubmitTicket = ({ slides = [], onDone }) => {
         {currentSlideIndex < slides.length - 1 ? (
           <TouchableOpacity
             onPress={handleNext}
-            className="p-2  items-center flex-1 justify-center bg-[#86e63b] font-bold border border-[#041633] "
+            style={{
+              backgroundColor: activeColors.accent,
+              paddingVertical: 10,
+              borderRadius: 10,
+            }}
+            className="  items-center flex-1 justify-center  font-bold  "
           >
-            <Text className="font-semibold">Next</Text>
+            <StyledText className="font-semibold text-black text-lg">
+              Next
+            </StyledText>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             onPress={onDone}
-            className="p-2 flex-1 items-center justify-center bg-[#86e63b] font-bold border border-[#041633] "
+            style={{
+              backgroundColor: activeColors.accent,
+              paddingVertical: 10,
+              borderRadius: 10,
+            }}
+            className="  items-center flex-1 justify-center  font-bold  "
           >
-            <Text className="font-semibold">Finish</Text>
+            <StyledText className="font-semibold text-black text-lg">
+              Submit
+            </StyledText>
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </MainContainer>
   );
 };
 

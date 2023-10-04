@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,15 +7,32 @@ import {
   Pressable,
   Dimensions,
   TextInput,
+  Image,
+  Platform,
 } from "react-native";
 import SubmitTicket from "@/components/ticket/submit";
 
 import RNPickerSelect from "react-native-picker-select";
-
+import { ThemeContext } from "@/context/themeContext";
+import { colors } from "@/constants/Colors";
 import Svg, { Path } from "react-native-svg";
-import { CloudIcon } from "react-native-heroicons/outline";
+import {
+  CalendarDaysIcon,
+  CloudIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneArrowUpRightIcon,
+} from "react-native-heroicons/outline";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import MainContainer from "@/components/container/MainContainer";
+import StyledText from "@/components/Text/StyledText";
+import DropdownSelect from "react-native-input-select";
+
+import concernsData from "@/data/concernsData.json";
+import StyledView from "@/components/View/StyledView";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
+import * as ImagePicker from "expo-image-picker";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -27,10 +44,42 @@ export default function App() {
   const [priority, setPriority] = useState("first");
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("Type something here");
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
+
+  // concern
+  const [selectedConcern, setSelectedConcern] = useState("");
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState({});
+  const [users, setUsers] = useState<any>("");
+  const [completedSteps, setCompletedSteps] = useState([]);
+  const handleConcernChange = (value) => {
+    setSelectedConcern(value);
+    setCurrentStep(0);
+    setFormData({});
+    setCompletedSteps([]);
+  };
+
+  const handleStepChange = (value) => {
+    const updatedFormData = { ...formData, [currentStep]: value };
+    setFormData(updatedFormData);
+
+    if (!completedSteps.includes(currentStep)) {
+      setCompletedSteps([...completedSteps, currentStep]);
+    }
+
+    if (currentStep < concernsData[selectedConcern].steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const currentConcern = concernsData[selectedConcern];
+  const currentStepData = currentConcern?.steps[currentStep];
 
   const Slide1 = () => {
     return (
-      <View className="flex flex-col  pr-2 items-center space-y-5 ">
+      <View className="flex flex-col  pr-2 items-center space-y-4 ">
         <StyledTextInput
           // value="Kuyeso Rogers"
           // defaultValue="Kuyeso Rogers"
@@ -38,7 +87,24 @@ export default function App() {
           placeholderTextColor="gray"
           onChangeText={(text) => setName(text)}
           className="e w-full"
+          style={{
+            borderRadius: 15,
+            paddingVertical: 13,
+            borderColor: activeColors.grayAccent,
+            borderWidth: 1,
+          }}
         />
+        <View className="flex  w-full">
+          <StyledText
+            className="text-sm pb-4"
+            style={{
+              color: activeColors.gray,
+            }}
+          >
+            This is the name that will be displayed on your ticket and to the
+            person who will be handling your ticket
+          </StyledText>
+        </View>
         <StyledTextInput
           // value="2019bce028@std.must.ac.ug"
           // defaultValue="Kuyeso Rogers"
@@ -46,6 +112,12 @@ export default function App() {
           className=" w-full"
           placeholder="Email"
           placeholderTextColor="gray"
+          style={{
+            borderRadius: 15,
+            paddingVertical: 13,
+            borderColor: activeColors.grayAccent,
+            borderWidth: 1,
+          }}
         />
         <StyledTextInput
           // value="2019/BSE/031/PS"
@@ -54,6 +126,12 @@ export default function App() {
           // defaultValue="Kuyeso Rogers"
           onChangeText={(text) => setName(text)}
           className=" w-full"
+          style={{
+            borderRadius: 15,
+            paddingVertical: 13,
+            borderColor: activeColors.grayAccent,
+            borderWidth: 1,
+          }}
         />
         <StyledTextInput
           // value="(256) 77 2820 840"
@@ -62,14 +140,20 @@ export default function App() {
           // defaultValue="Kuyeso Rogers"
           onChangeText={(text) => setName(text)}
           className=" w-full"
+          style={{
+            borderRadius: 15,
+            paddingVertical: 13,
+            borderColor: activeColors.grayAccent,
+            borderWidth: 1,
+          }}
         />
       </View>
     );
   };
   const SlideDetails = () => {
     return (
-      <View className="flex flex-col  pr-2 items-center space-y-5 ">
-        <RNPickerSelect
+      <View className="flex flex-col  pr-2 items-center space-y-0 ">
+        {/* <RNPickerSelect
           onValueChange={(value) => console.log(value)}
           items={[
             { label: "Issues with marks", value: "marks" },
@@ -84,47 +168,47 @@ export default function App() {
               borderWidth: 1,
               paddingVertical: 14,
               paddingHorizontal: 12,
-              borderRadius: 5,
-              borderColor: "gray",
+              borderRadius: 12,
+              borderColor: activeColors.secondary,
+              color: activeColors.tint,
             },
             inputAndroid: {
-              //   borderWidth: 4,
-              //   paddingVertical: 14,
-              //   paddingHorizontal: 12,
-              //   borderRadius: 5,
-              //   borderColor: COLORS.primary,
+              borderWidth: 1,
+              borderRadius: 12,
+              borderColor: activeColors.secondary,
+              color: activeColors.tint,
             },
             viewContainer: {
-              backgroundColor: "white",
-              borderRadius: 20,
+              backgroundColor: activeColors.secondary,
+              borderRadius: 12,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
             },
             inputIOSContainer: {
-              backgroundColor: "white",
+              backgroundColor: activeColors.secondary,
+            },
+            inputAndroidContainer: {
+              backgroundColor: activeColors.secondary,
+              borderWidth: 1,
+              borderRadius: 5,
+              borderColor: activeColors.grayAccent,
             },
             modalViewBottom: {
-              backgroundColor: "white",
-              height: 400,
-              display: "flex",
+              backgroundColor: activeColors.secondary,
             },
             modalViewMiddle: {
-              backgroundColor: "white",
+              backgroundColor: activeColors.secondary,
               //   borderRadius: 20,
-              borderBottomColor: "#86e63b",
-              borderBottomWidth: 3,
-              margin: 0,
-              height: 70,
-              display: "flex",
-              top: 0,
-              //   paddingVertical: 50,
-              // marginVertical: 50
+              borderBottomColor: activeColors.grayAccent,
+              borderBottomWidth: 1,
             },
             modalViewTop: {
               backgroundColor: "rgba(0, 0, 0, 0.3)",
               //   opacity: 0.2,
             },
             done: {
-              color: "#041633",
-              backgroundColor: "#86e63b",
+              color: activeColors.tint,
+              backgroundColor: activeColors.secondary,
               borderColor: "#041633",
               padding: 7,
               paddingLeft: 15,
@@ -134,12 +218,12 @@ export default function App() {
               borderRadius: 2,
             },
             chevronDown: {
-              borderColor: "#041633",
+              borderColor: activeColors.grayAccent,
               height: 10,
               width: 10,
             },
             chevronUp: {
-              borderColor: "#041633",
+              borderColor: activeColors.grayAccent,
               height: 10,
               width: 10,
             },
@@ -151,61 +235,324 @@ export default function App() {
               paddingVertical: 14,
               paddingHorizontal: 12,
               borderRadius: 5,
-              borderColor: "gray",
+              borderColor: activeColors.grayAccent,
             },
-            inputAndroidContainer: {
+            headlessAndroidPicker: {
               borderWidth: 1,
-              paddingVertical: 14,
-              paddingHorizontal: 12,
               borderRadius: 5,
-              borderColor: "gray",
+              borderColor: activeColors.grayAccent,
+            },
+          }}
+        /> */}
+        <DropdownSelect
+          placeholder="Select your issue/concern"
+          options={[
+            ...Object.keys(concernsData).map((concern) => ({
+              label: concern,
+              value: concern,
+            })),
+          ]}
+          modalOptionsContainerStyle={{
+            backgroundColor: activeColors.primary,
+          }}
+          checkboxLabelStyle={{
+            color: activeColors.tint,
+          }}
+          selectedValue={selectedConcern}
+          onValueChange={handleConcernChange}
+          isSearchable
+          primaryColor={activeColors.accent}
+          dropdownStyle={{
+            borderWidth: 1, // To remove border, set borderWidth to 0
+            borderColor: activeColors.grayAccent,
+            borderRadius: 12,
+            backgroundColor: activeColors.secondary,
+          }}
+          placeholderStyle={{
+            color: activeColors.tint,
+            fontSize: 15,
+            fontWeight: "500",
+          }}
+          labelStyle={{
+            color: activeColors.tint,
+            fontSize: 15,
+            fontWeight: "500",
+          }}
+          selectedItemStyle={{
+            color: activeColors.tint,
+            fontSize: 15,
+            fontWeight: "500",
+          }}
+          dropdownIcon={
+            users && (
+              <StyledView
+                style={{
+                  borderRadius: 30 / 2,
+                  borderColor: activeColors.accent,
+                  borderWidth: 2,
+                  backgroundColor: activeColors.secondary,
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <View
+                  style={{
+                    width: 15,
+                    height: 15,
+                    borderRadius: 15 / 2,
+                    backgroundColor: activeColors.accent,
+                    margin: 5,
+                  }}
+                />
+              </StyledView>
+            )
+          }
+          dropdownIconStyle={
+            users && {
+              top: 20,
+              right: 15,
+            }
+          }
+          searchControls={{
+            textInputStyle: {
+              color: activeColors.tint,
+              fontWeight: "500",
+              minHeight: 10,
+              paddingVertical: 10,
+              paddingHorizontal: 25,
+              width: "100%",
+              textAlign: "left",
+              backgroundColor: activeColors.secondary,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+              borderRadius: 12,
+            },
+            textInputContainerStyle: {
+              flex: 1,
+              justifyContent: "flex-start",
+              alignItems: "center",
+              backgroundColor: activeColors.secondary,
+              borderRadius: 12,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+            },
+            textInputProps: {
+              placeholder: "Search for your Issues here",
+              placeholderTextColor: activeColors.tint,
             },
           }}
         />
-
-        <View className="flex  flex-row w-full justify-between py-4">
-          <View className="flex flex-row items-center space-x-1">
-            {/* <RadioButton
-              value="first"
-              color="#041633"
-              status={priority === "first" ? "checked" : "unchecked"}
-              onPress={() => setPriority("first")}
-            /> */}
-            <Text>Priority</Text>
-          </View>
-          <View className="flex flex-row items-center space-x-1">
-            {/* <RadioButton
-              value="second"
-              color="#041633"
-              status={priority === "third" ? "checked" : "unchecked"}
-              onPress={() => setPriority("second")}
-            /> */}
-            <Text>Medium</Text>
-          </View>
-          <View className="flex flex-row items-center space-x-1">
-            {/* <RadioButton
-              value="second"
-              color="#041633"
-              status={priority === "second" ? "checked" : "unchecked"}
-              onPress={() => setPriority("second")}
-            /> */}
-            <Text>Low</Text>
-          </View>
+        <View className="flex  w-full">
+          <StyledText
+            className="text-sm pt-0"
+            style={{
+              color: activeColors.gray,
+            }}
+          >
+            You need to select the category that best describes your issue or
+            concern from the list below to help us route your ticket to the best
+            person
+          </StyledText>
         </View>
-        <TextInput
-          value={subject}
-          defaultValue="Kuyeso Rogers"
-          onChangeText={(text) => setName(text)}
-          className="bg-white w-full"
-        />
-        <TextInput
-          value={description}
-          //   defaultValue="Kuyeso Rogers"
-          onChangeText={(text) => setDescription(text)}
-          multiline
-          numberOfLines={5}
-          className="bg-white w-full"
-        />
+        {/* step */}
+        {currentConcern && (
+          <View className="flex  w-full">
+            <StyledText
+              className="text-sm pt-4 pb-2"
+              style={{
+                color: activeColors.accent,
+              }}
+            >
+              {currentStepData.question}
+            </StyledText>
+
+            {currentStepData.type === "select" ? (
+              <DropdownSelect
+                placeholder={currentStepData.placeholder}
+                options={[
+                  ...currentStepData.options.map((option) => ({
+                    label: option,
+                    value: option,
+                  })),
+                ]}
+                modalOptionsContainerStyle={{
+                  backgroundColor: activeColors.primary,
+                }}
+                checkboxLabelStyle={{
+                  color: activeColors.tint,
+                }}
+                selectedValue={formData[currentStep] || ""}
+                onValueChange={handleStepChange}
+                isSearchable
+                primaryColor={activeColors.accent}
+                dropdownStyle={{
+                  borderWidth: 1, // To remove border, set borderWidth to 0
+                  borderColor: activeColors.grayAccent,
+                  borderRadius: 12,
+                  backgroundColor: activeColors.secondary,
+                }}
+                placeholderStyle={{
+                  color: activeColors.tint,
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+                labelStyle={{
+                  color: activeColors.tint,
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+                selectedItemStyle={{
+                  color: activeColors.tint,
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+                dropdownIcon={
+                  users && (
+                    <StyledView
+                      style={{
+                        borderRadius: 30 / 2,
+                        borderColor: activeColors.accent,
+                        borderWidth: 2,
+                        backgroundColor: activeColors.secondary,
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: 15,
+                          height: 15,
+                          borderRadius: 15 / 2,
+                          backgroundColor: activeColors.accent,
+                          margin: 5,
+                        }}
+                      />
+                    </StyledView>
+                  )
+                }
+                dropdownIconStyle={
+                  users && {
+                    top: 20,
+                    right: 15,
+                  }
+                }
+                searchControls={{
+                  textInputStyle: {
+                    color: activeColors.tint,
+                    fontWeight: "500",
+                    minHeight: 10,
+                    paddingVertical: 10,
+                    paddingHorizontal: 25,
+                    width: "100%",
+                    textAlign: "left",
+                    backgroundColor: activeColors.secondary,
+                    borderColor: activeColors.grayAccent,
+                    borderWidth: 1,
+                    borderRadius: 12,
+                  },
+                  textInputContainerStyle: {
+                    flex: 1,
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    backgroundColor: activeColors.secondary,
+                    borderRadius: 12,
+                    borderColor: activeColors.grayAccent,
+                    borderWidth: 1,
+                  },
+                  textInputProps: {
+                    placeholder: "Search for your Issues here",
+                    placeholderTextColor: activeColors.tint,
+                  },
+                }}
+              />
+            ) : (
+              <View className="w-full py-4">
+                <StyledTextInput
+                  style={{
+                    borderRadius: 15,
+                    textAlignVertical: "top",
+                    textAlign: "justify",
+                    borderColor: activeColors.grayAccent,
+                    borderWidth: 1,
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                  }}
+                  rows={5}
+                  value={formData[currentStep] || ""}
+                  onChangeText={handleStepChange}
+                  placeholder={currentStepData.placeholder}
+                  placeholderTextColor={activeColors.gray}
+                />
+              </View>
+            )}
+          </View>
+        )}
+        <View className="flex  w-full">
+          {currentConcern && (
+            <StyledText className=" pb-2">Summary of Ticket</StyledText>
+          )}
+          {/* get all questions */}
+          {currentConcern?.steps.map((step, index) => (
+            <View
+              key={index}
+              style={{
+                marginBottom: 2,
+                gap: 5,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <MaterialCommunityIcons
+                name="checkbox-marked"
+                color={
+                  completedSteps.includes(index)
+                    ? activeColors.accent
+                    : activeColors.grayAccent
+                }
+                size={20}
+              />
+              <StyledText
+                style={[
+                  completedSteps.includes(index)
+                    ? {
+                        color: activeColors.tint,
+                        fontWeight: "bold",
+                        fontSize: 12,
+                      }
+                    : {
+                        color: activeColors.gray,
+                        fontWeight: "normal",
+                        fontSize: 12,
+                      },
+                ]}
+              >
+                {step.question}
+              </StyledText>
+            </View>
+          ))}
+        </View>
+        {/* {currentStep === currentConcern.steps.length - 1 && (
+          <View className="flex  w-full">
+            <StyledText className="text-sm pt-4">Summary of Ticket</StyledText>
+            <StyledText
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <MaterialCommunityIcons
+                name="check-circle"
+                color={activeColors.accent}
+                size={20}
+              /> */}
+        {/* {JSON.stringify(formData, null, 2)} */}
+        {/* </StyledText>
+          </View>
+        )} */}
       </View>
     );
   };
@@ -229,6 +576,24 @@ export default function App() {
   //   };
 
   const SlideAttachments = () => {
+    const [image, setImage] = useState(null);
+
+    const pickImage = async () => {
+      // No permissions request is necessary for launching the image library
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      console.log(result);
+
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+      }
+    };
+
     return (
       <View
         style={{
@@ -236,29 +601,58 @@ export default function App() {
         }}
         className="flex flex-col  items-center "
       >
-        <Pressable
+        <View
           style={{
             width: Dimensions.get("window").width - 40,
           }}
           className="flex "
         >
           <View className="flex items-center justify-center w-full">
-            <View className="flex flex-col items-center justify-center w-full h-56 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <Pressable
+              className="flex flex-col items-center justify-center w-full h-56 border-2  border-dashed rounded-lg "
+              style={[
+                {
+                  backgroundColor: activeColors.secondary,
+                  borderRadius: 5,
+                  borderColor: activeColors.grayAccent,
+                },
+              ]}
+              onPress={pickImage}
+            >
               <View className="flex flex-col items-center justify-center pt-5 pb-6">
-                <CloudIcon color={"gray"} size={80} />
-                <Text className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <CloudIcon color={activeColors.gray} size={80} />
+                <StyledText className="mb-2 text-sm  ">
                   Click to upload or drag and drop
-                </Text>
-                <Text className="text-xs text-gray-500 dark:text-gray-400">
+                </StyledText>
+                <StyledText className="text-xs ">
                   SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </Text>
+                </StyledText>
               </View>
-            </View>
+            </Pressable>
           </View>
-          <Text className="items-center  justify-center text-[#041633] pt-4 font-bold  ">
+          <StyledText
+            className="items-center  justify-center pt-4 font-bold  "
+            style={{
+              color: activeColors.gray,
+            }}
+          >
             Uploaded documents
-          </Text>
-        </Pressable>
+          </StyledText>
+          <View className="w-full pt-2">
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{
+                  width: "100%",
+                  height: 250,
+                  borderRadius: 5,
+                  borderColor: activeColors.grayAccent,
+                  borderWidth: 1,
+                }}
+              />
+            )}
+          </View>
+        </View>
       </View>
     );
   };
@@ -271,19 +665,159 @@ export default function App() {
         }}
         className="flex flex-col w-full  items-center "
       >
-        <TextInput
-          value={description}
-          placeholder="Type something here"
-          defaultValue="Type something here"
-          onChangeText={(text) => setDescription(text)}
-          multiline
-          numberOfLines={5}
-          className="bg-white text-start justify-start "
-          style={{
-            width: Dimensions.get("window").width - 40,
-            height: Dimensions.get("screen").height - 500,
-          }}
-        />
+        <View style={{}} className=" flex-1 rounded-3xl py-4 w-full ">
+          <View className="flex flex-row pb-4 justify-between items-center ">
+            <View className=" items-center space-x-2 flex flex-row">
+              <CalendarDaysIcon size={20} strokeWidth={2} color={"gray"} />
+              <StyledText>06 May, 2023</StyledText>
+            </View>
+          </View>
+          <ScrollView>
+            <StyledView
+              className="  rounded-md border  w-full "
+              style={{ borderColor: activeColors.grayAccent }}
+            >
+              <View
+                style={[
+                  {
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
+                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
+                    // borderRadius: 5,
+                    marginRight: 0,
+                    marginTop: 10,
+                  },
+                  { borderWidth: 0, borderLeftWidth: 5 },
+                  { borderColor: activeColors.accent },
+                ]}
+                className="py-4 "
+              >
+                <View />
+                <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
+                  <StyledText bold>Kuyeso Rogers</StyledText>
+                  <Entypo name="star" size={18} color={"orange"} />
+                </View>
+                <View className="flex px-4 flex-row justify-between items-center w-full">
+                  <Text
+                    className=" font-semibold"
+                    style={{
+                      color: activeColors.accent,
+                    }}
+                  >
+                    Missing Marks
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  {
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
+                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
+                    // borderRadius: 5,
+                    marginRight: 0,
+                    marginTop: 10,
+                  },
+                  {
+                    borderColor: "#041633",
+                    borderWidth: 0,
+                    borderLeftWidth: 5,
+                  },
+                ]}
+                className="py-4  "
+              >
+                <View />
+                <View className="flex pb-2 flex-row justify-between items-center px-4 space-x-5 ">
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <PhoneArrowUpRightIcon
+                      size={15}
+                      strokeWidth={2}
+                      color={"gray"}
+                    />
+                    <Text
+                      className="text-xs "
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      (256) 772 820 840
+                    </Text>
+                  </View>
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <EnvelopeIcon size={15} color={"gray"} strokeWidth={2} />
+                    <Text
+                      className="text-xs "
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      2019bce028@std.must.ac.ug
+                    </Text>
+                  </View>
+                </View>
+                <View className="flex flex-row justify-between items-center px-4">
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <MaterialCommunityIcons
+                      size={15}
+                      strokeWidth={2}
+                      color={activeColors.gray}
+                      name="identifier"
+                    />
+                    <Text
+                      className=" font-medium"
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      2019/BSE/031/PS
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </StyledView>
+            <StyledView
+              className="space-y-2   rounded-md border p-4  mt-4 w-full"
+              style={{ borderColor: activeColors.grayAccent }}
+            >
+              <ScrollView
+                bounces
+                showsVerticalScrollIndicator={false}
+                style={{
+                  maxHeight: Dimensions.get("screen").height - 680,
+                }}
+              >
+                <Text
+                  className=" font-semibold  "
+                  style={{
+                    color: activeColors.tint,
+                  }}
+                >
+                  Details -
+                </Text>
+                <Text
+                  className=" font-normal  "
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                >
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic Lorem Ipsum is simply dummy text
+                  of the printing and typesetting industry. Lorem Ipsum has been
+                  the industry's standard dummy text ever since the 1500s, when
+                  an unknown printer took a galley of type and scrambled it to
+                  make a type specimen book. It has survived not only five
+                  centuries, but also the leap into electronic{" "}
+                </Text>
+              </ScrollView>
+            </StyledView>
+          </ScrollView>
+        </View>
       </View>
     );
   };
@@ -311,8 +845,8 @@ export default function App() {
     },
     {
       key: 4,
-      title: "Additional Information",
-      desc: "Additional Information",
+      title: "Review your Information",
+      desc: "Please review your information for any errors before submitting",
       backgroundColor: "green",
       component: <SlideAdditional />,
     },
@@ -324,7 +858,7 @@ export default function App() {
   //   if (loading) return null;
   return (
     <MainContainer
-      className="flex-1 flex-col px-4 pt-12 "
+      className="flex-1 flex-col px-4 pt-14 "
       style={{
         width: Dimensions.get("window").width,
       }}
@@ -341,5 +875,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  outerCircle: {
+    borderRadius: 30 / 2,
+    borderColor: "green",
+    borderWidth: 2,
+    backgroundColor: "white",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  innerCircle: {
+    width: 15,
+    height: 15,
+    borderRadius: 15 / 2,
+    backgroundColor: "green",
+    margin: 5,
   },
 });

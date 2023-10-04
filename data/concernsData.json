@@ -1,0 +1,89 @@
+{
+  "Missing Marks": {
+    "name": "Missing Marks",
+    "steps": [
+      {
+        "type": "select",
+        "question": "What programming are you in?",
+        "options": [
+          "Software Engineering",
+          "Computer Science",
+          "Information Technology",
+          "Medicine & Surgery"
+        ],
+        "placeholder": "Select Program (Required)"
+      },
+      {
+        "type": "select",
+        "question": "What course are missing marks for?",
+        "options": [
+          "Artificial Intelligence",
+          "Software Metrics",
+          "Software Engineering",
+          "Software Testing"
+        ],
+        "placeholder": "Select Course (Required)"
+      },
+      {
+        "type": "select",
+        "question": "Which lecturer is responsible for the course?",
+        "options": ["Lecturer X", "Lecturer Y"],
+        "placeholder": "Select Lecturer (Optional)"
+      },
+      {
+        "type": "select",
+        "question": "Select Year",
+        "options": ["Year 1", "Year 2"],
+        "placeholder": "Select Year (Required)"
+      },
+      {
+        "type": "select",
+        "question": "Select Semester",
+        "options": ["Semester 1", "Semester 2"],
+        "placeholder": "Select Semester (Required)"
+      }
+    ]
+  },
+  "Marks are Changing in e.g. Portal": {
+    "name": "Marks are Changing",
+    "steps": [
+      {
+        "type": "select",
+        "question": "What programming are you in?",
+        "options": [
+          "Software Engineering",
+          "Computer Science",
+          "Information Technology",
+          "Medicine & Surgery"
+        ],
+        "placeholder": "Select Program (Required)"
+      },
+      {
+        "type": "select",
+        "question": "What course are missing marks for?",
+        "options": [
+          "Artificial Intelligence",
+          "Software Metrics",
+          "Software Engineering",
+          "Software Testing"
+        ],
+        "placeholder": "Select Course (Required)"
+      },
+      {
+        "type": "text",
+        "question": "Write to the AR (Additional Remarks)",
+        "placeholder": "Write to the AR (Optional)"
+      }
+    ]
+  },
+  "Othes / General": {
+    "name": "Others / General",
+    "steps": [
+      {
+        "type": "text",
+        "question": "You need to describe your problem/inquiry or issue/s here  ",
+        "placeholder": " Describe your problem here (Required)"
+      }
+    ]
+  }
+}

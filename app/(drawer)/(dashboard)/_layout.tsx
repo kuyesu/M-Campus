@@ -53,7 +53,7 @@ export default function TabLayout() {
           } else if (route.name === "messages/userchats") {
             iconName = "account-multiple-outline";
           } else if (route.name === "inquiries/index") {
-            iconName = "apple-keyboard-command";
+            iconName = "align-horizontal-distribute";
           } else if (route.name === "assistant/index") {
             iconName = "robot-happy-outline";
           }

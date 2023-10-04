@@ -1,3 +1,4 @@
+import StyledText from "@/components/Text/StyledText";
 import { colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
 import React, { useContext, useState } from "react";
@@ -12,17 +13,17 @@ const Slide = ({ item }) => {
 
   return (
     <View style={[styles.slide]}>
-      <View className="flex w-full items-start pt-4">
-        <Text className="text-lg font-semibold text-[#041633]">{title}</Text>
-        <Text
-          className="text-sm"
+      <View className="flex w-full items-start pt-4 space-y-3">
+        <StyledText className="text-lg font-semibold ">{title}</StyledText>
+        <StyledText
+          className="text-sm pt-4"
           style={{
-            color: activeColors.primary,
+            color: activeColors.gray,
           }}
         >
           {desc}
-        </Text>
-        <ScrollView className="my-4 mt-8 w-full">{component}</ScrollView>
+        </StyledText>
+        <ScrollView className="my-4 pt-2 w-full">{component}</ScrollView>
       </View>
     </View>
   );
