@@ -24,6 +24,7 @@ import MainContainer from "@/components/container/MainContainer";
 import { ThemeContext } from "@/context/themeContext";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import StyledText from "@/components/Text/StyledText";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 const HomeScreen = () => {
   const optionsList = [
     { title: "Tank Hill", img: require("@/assets/houses/house1.jpg"), id: 1 },
@@ -50,15 +51,18 @@ const HomeScreen = () => {
             key={index}
             onPress={() => setSelectedCategoryIndex(index)}
           >
-            <Text
+            <StyledText
               style={[
                 { color: activeColors.tint },
-                style.categoryListText,
-                index == selectedCategoryIndex && style.activeCategoryListText,
+
+                index == selectedCategoryIndex && {
+                  borderBottomWidth: 1,
+                  paddingBottom: 5,
+                },
               ]}
             >
               {category}
-            </Text>
+            </StyledText>
           </Pressable>
         ))}
       </View>
@@ -78,16 +82,14 @@ const HomeScreen = () => {
                 <Image source={item.img} style={style.optionsCardImage} />
 
                 {/* Option title */}
-                <Text
+                <StyledText
                   style={{
                     marginTop: 10,
-                    fontSize: 18,
-                    fontWeight: "bold",
-                    color: activeColors.tint,
                   }}
+                  bold
                 >
                   {item.title}
-                </Text>
+                </StyledText>
               </View>
             </Link>
           )}
@@ -118,65 +120,45 @@ const HomeScreen = () => {
                   marginTop: 10,
                 }}
               >
+                <StyledText bold>{house.title}</StyledText>
                 <StyledText
                   style={{
-                    fontSize: 16,
-                    fontWeight: "bold",
-                    color: activeColors.tint,
-                  }}
-                >
-                  {house.title}
-                </StyledText>
-                <Text
-                  style={{
-                    fontWeight: "bold",
-                    color: activeColors.tint,
-                    fontSize: 16,
+                    color: activeColors.gray,
                   }}
                 >
                   UGX {house.price}
-                </Text>
+                </StyledText>
               </View>
 
               {/* Location text */}
 
-              <Text
-                style={{ color: activeColors.gray, fontSize: 14, marginTop: 5 }}
-              >
-                {house.location}
-              </Text>
+              <StyledText style={{ marginTop: 5 }}>{house.location}</StyledText>
 
               {/* Facilities container */}
               <View style={{ marginTop: 10, flexDirection: "row" }}>
                 <View style={style.facility}>
-                  <Icon name="hotel" color={activeColors.accent} size={18} />
-                  <Text
-                    style={{
-                      color: activeColors.gray,
-                    }}
-                  >
-                    2 people
-                  </Text>
+                  <MaterialCommunityIcons
+                    name="room-service"
+                    color={activeColors.accent}
+                    size={18}
+                  />
+                  <StyledText>Double room</StyledText>
                 </View>
                 <View style={style.facility}>
-                  <Icon name="bathtub" color={activeColors.accent} size={18} />
-                  <Text
-                    style={{
-                      color: activeColors.gray,
-                    }}
-                  >
-                    Self-contained
-                  </Text>
+                  <MaterialCommunityIcons
+                    name="bathtub"
+                    color={activeColors.accent}
+                    size={18}
+                  />
+                  <StyledText>Self-contained</StyledText>
                 </View>
                 <View style={style.facility}>
-                  <Icon name="map" color={activeColors.accent} size={18} />
-                  <Text
-                    style={{
-                      color: activeColors.gray,
-                    }}
-                  >
-                    500m from campus
-                  </Text>
+                  <MaterialCommunityIcons
+                    name="map"
+                    color={activeColors.accent}
+                    size={18}
+                  />
+                  <StyledTextText>500m from campus</StyledTextText>
                 </View>
               </View>
             </View>
@@ -200,16 +182,10 @@ const HomeScreen = () => {
       {/* Header container */}
       <View style={style.header}>
         <View>
-          <Text style={{ color: activeColors.gray }}>Accommodations</Text>
-          <Text
-            style={{
-              color: activeColors.tint,
-              fontSize: 20,
-              fontWeight: "bold",
-            }}
-          >
-            Hostels and Rentals
-          </Text>
+          <StyledText style={{ color: activeColors.gray }}>
+            Accommodations
+          </StyledText>
+          <StyledText bold>Hostels and Rentals</StyledText>
         </View>
         {/* <Image
           style={style.profileImage}
@@ -240,7 +216,11 @@ const HomeScreen = () => {
           </View>
 
           <View style={style.sortBtn}>
-            <Icon name="tune" color={activeColors.gray} size={25} />
+            <MaterialCommunityIcons
+              name="tune"
+              color={activeColors.accent}
+              size={25}
+            />
           </View>
         </View>
 
@@ -315,11 +295,7 @@ const style = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 20,
   },
-  categoryListText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingBottom: 5,
-  },
+
   activeCategoryListText: {
     borderBottomWidth: 1,
     paddingBottom: 5,
@@ -341,7 +317,7 @@ const style = StyleSheet.create({
   },
   cardImage: {
     width: "100%",
-    height: 180,
+    height: 140,
     borderRadius: 5,
   },
   facility: { flexDirection: "row", marginRight: 15 },

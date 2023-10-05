@@ -82,19 +82,20 @@ export default function InquiryId() {
               onPress={handlePresentModal}
               style={{
                 backgroundColor: activeColors.accent,
+                borderRadius: 5,
               }}
               className={` flex   items-center -right-1  justify-center  p-1 font-bold  px-3 `}
             >
-              <Text className="text-[#041633]  font-medium text-base">
-                Withdraw
-              </Text>
+              <StyledText>Cancel</StyledText>
             </TouchableOpacity>
             <TouchableOpacity
-              className={` flex absolute -z-10  top-1 items-center   justify-center bg-[#041633] p-1 font-bold  px-3`}
+              style={{
+                backgroundColor: activeColors.grayAccent,
+                borderRadius: 5,
+              }}
+              className={` flex absolute -z-10  top-1 items-center   justify-center  p-1 font-bold  px-3`}
             >
-              <Text className="text-[#041633] font-medium text-base">
-                Withdraw
-              </Text>
+              <StyledText>Cancel</StyledText>
             </TouchableOpacity>
           </View>
         </View>

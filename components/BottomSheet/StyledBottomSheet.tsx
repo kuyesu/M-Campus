@@ -1,13 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
 
-
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const StyledBottomSheet = ({
   children,
@@ -15,20 +11,20 @@ const StyledBottomSheet = ({
   snapPoints,
   ...props
 }) => {
-    const { theme } = useContext(ThemeContext);
-    // @ts-ignore
-    let activeColors = colors[theme.mode];
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
   return (
     <BottomSheetModal
       ref={bottomSheetModalRef}
       index={1}
       snapPoints={snapPoints}
       backgroundStyle={{
-        borderRadius: 20,
+        borderRadius: 15,
         backgroundColor: activeColors.secondary,
       }}
-          handleIndicatorStyle={{
-          backgroundColor: activeColors.accent
+      handleIndicatorStyle={{
+        backgroundColor: activeColors.accent,
       }}
       backdropComponent={({ style }) => (
         <View style={[style, { backgroundColor: "rgba(0, 0, 0, 0.9)" }]} />
@@ -40,6 +36,6 @@ const StyledBottomSheet = ({
   );
 };
 
-export default StyledBottomSheet
+export default StyledBottomSheet;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

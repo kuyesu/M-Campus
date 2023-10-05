@@ -19,7 +19,6 @@ import { RadixIcon } from "radix-ui-react-native-icons";
 import axios from "axios";
 import fetch from "isomorphic-fetch";
 
-
 export default function TabOneScreen() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
@@ -78,7 +77,9 @@ export default function TabOneScreen() {
   function TypingIndicator() {
     return (
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <StyledText style={{ color: activeColors.tint }}>Mi is typing</StyledText>
+        <StyledText style={{ color: activeColors.tint }}>
+          Mi is typing
+        </StyledText>
         <StyledView
           style={{
             backgroundColor: activeColors.accent,
@@ -90,7 +91,7 @@ export default function TabOneScreen() {
           <RadixIcon name="pencil" size={16} color={activeColors.tint} />
         </StyledView>
       </View>
-    )
+    );
   }
   const getBardResp = async (user_prompt) => {
     setLoading(true);
@@ -187,6 +188,7 @@ export default function TabOneScreen() {
             color: activeColors.tint,
             // fontSize:20,
             padding: 2,
+            textAlign: "justify",
           },
         }}
         renderUsernameOnMessage={true}
@@ -194,11 +196,11 @@ export default function TabOneScreen() {
         inverted={true}
         optionTitles={{
           copy: "copy",
-          delete: "Delete",
-          forward: "Forward",
-          share: "Share",
-          edit: "Edit",
-          reply: "Reply",
+          delete: "delete",
+          forward: "forward",
+          share: "share",
+          edit: "edit",
+          reply: "reply",
         }}
         // optionTintColor={activeColors.tint}
       />
@@ -314,7 +316,6 @@ export default function TabOneScreen() {
           renderSend={renderSend}
           placeholder="Ask anything..."
           renderAvatarOnTop
-
         />
       </View>
     </SafeAreaView>

@@ -29,12 +29,9 @@ import {
 import { loadUser, registerUser } from "@/redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import StyeledMessageBox from "@/components/Text/MessageBox";
-import { TextInput } from "react-native-gesture-handler";
 
-export default function Email() {
+export default function Password() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassowrd] = useState("");
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -85,15 +82,9 @@ export default function Email() {
       } else {
         Alert.alert("Email is not valid!");
       }
-    } else if (password != confirmPassword || password === "") {
-      if (Platform.OS === "android") {
-        ToastAndroid.show("Passwords do not match!", ToastAndroid.LONG);
-      } else {
-        Alert.alert("Passwords do not match!");
-      }
     } else {
       // @ts-ignore
-      registerUser(name, email, phone, password)(dispatch);
+      registerUser(name, email, phone)(dispatch);
       setIsSuccess(true);
       setIsLoading(false);
     }
@@ -145,7 +136,7 @@ export default function Email() {
           <View className="gap-10   ">
             <View>
               <StyledText bold>
-                You are almost there, {name}! <Text>🎉</Text>
+                OTP verification will be sent to your email
               </StyledText>
             </View>
 
@@ -166,68 +157,6 @@ export default function Email() {
                 cursorColor={activeColors.tint}
                 // value={email}
                 onChangeText={(text) => setEmail(text)}
-                // onBlur={handleBlur("email")}
-                // value={values.email}
-              />
-            </View>
-            <View
-              style={{
-                marginTop: 20,
-                paddingTop: 80,
-              }}
-            >
-              <StyledText small>
-                Choose a strong password to protect your account
-              </StyledText>
-
-              <StyledTextInput
-                style={{
-                  backgroundColor: activeColors.primary,
-                  fontSize: 16,
-                  borderBottomWidth: 2,
-                  borderColor: activeColors.grayAccent,
-                  width: "100%",
-                  borderRadius: 0,
-                  borderWidth: 0,
-                }}
-                // onChangeText={(text) => setName(text)}
-                className=" w-full px-0 my-8"
-                bold
-                // autoFocus
-                autoCapitalize="none"
-                inputMode="text"
-                secureTextEntry
-                placeholder="Password"
-                placeholderTextColor={activeColors.gray}
-                cursorColor={activeColors.tint}
-                // value={email}
-                onChangeText={(text) => setPassword(text)}
-                // onBlur={handleBlur("email")}
-                // value={values.email}
-              />
-
-              <StyledTextInput
-                style={{
-                  backgroundColor: activeColors.primary,
-                  fontSize: 16,
-                  borderBottomWidth: 2,
-                  borderColor: activeColors.grayAccent,
-                  width: "100%",
-                  borderRadius: 0,
-                  borderWidth: 0,
-                }}
-                // onChangeText={(text) => setName(text)}
-                className=" w-full px-0"
-                bold
-                // autoFocus
-                autoCapitalize="none"
-                inputMode="text"
-                secureTextEntry
-                placeholder="Confirm Password"
-                placeholderTextColor={activeColors.gray}
-                cursorColor={activeColors.tint}
-                // value={email}
-                onChangeText={(text) => setConfirmPassowrd(text)}
                 // onBlur={handleBlur("email")}
                 // value={values.email}
               />

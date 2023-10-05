@@ -3,27 +3,28 @@ import MapViewDirections from "react-native-maps-directions";
 import { StyleSheet, View, Dimensions } from "react-native";
 
 import MapView, { Marker } from "react-native-maps";
+import MainContainer from "@/components/container/MainContainer";
 
 export default function map() {
-    const origin = {
-        latitude: 48.8588377,
-        longitude: 2.2770205,
-   };
-    const destination = {
-        latitude: 48.8580377,
-        longitude: 2.2770005,
-   };
-    const GOOGLE_API_KEY = "AIzaSyD49SW35u3UeZ2Y8GZes18UyAw4Kz4ubTg";
-     const [coordinates] = useState([
-       {
-         latitude: 48.8587741,
-         longitude: 2.2069771,
-       },
-       {
-         latitude: 48.8323785,
-         longitude: 2.3361663,
-       },
-     ]);
+  const origin = {
+    latitude: 48.8588377,
+    longitude: 2.2770205,
+  };
+  const destination = {
+    latitude: 48.8580377,
+    longitude: 2.2770005,
+  };
+  const GOOGLE_API_KEY = "AIzaSyD49SW35u3UeZ2Y8GZes18UyAw4Kz4ubTg";
+  const [coordinates] = useState([
+    {
+      latitude: 48.8587741,
+      longitude: 2.2069771,
+    },
+    {
+      latitude: 48.8323785,
+      longitude: 2.3361663,
+    },
+  ]);
   return (
     // <View style={{ flex: 1 }}>
     //   <MapView
@@ -47,7 +48,7 @@ export default function map() {
     //     />
     //   </MapView>
     // </View>
-    <View style={styles.container}>
+    <MainContainer>
       <MapView
         style={styles.maps}
         initialRegion={{
@@ -67,7 +68,7 @@ export default function map() {
         <Marker coordinate={coordinates[0]} />
         <Marker coordinate={coordinates[1]} />
       </MapView>
-    </View>
+    </MainContainer>
   );
 }
 

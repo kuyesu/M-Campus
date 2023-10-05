@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View, Pressable, Dimensions } from "react-native";
 import { ToastProvider } from "react-native-toast-notifications";
 import { useToast } from "react-native-toast-notifications";
+import * as ImagePicker from "expo-image-picker";
 
 import AuthPages from "@/components/auth";
 import MainContainer from "@/components/container/MainContainer";
@@ -26,7 +27,7 @@ import {
   Image,
   Platform,
 } from "react-native";
-import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
+
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser, registerUser } from "@/redux/actions/userAction";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -34,7 +35,7 @@ import axios from "axios";
 type Props = {
   navigation: any;
 };
-import { URI } from "../../redux/URI";
+import { URI } from "@/redux/URI";
 
 export default function Profile() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -48,36 +49,40 @@ export default function Profile() {
 
   const params = useLocalSearchParams();
   const { name, phone, email, code } = params;
+  const [image, setImage] = useState(null);
 
-  const ImageUpload = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-      compressImageQuality: 0.8,
-      includeBase64: true,
-    }).then((image: ImageOrVideo | null) => {
-      if (image) {
-        setAvatar(image?.path);
-        // setImage('data:image/jpeg;base64,' + image.data);
-        axios
-          .put(
-            `${URI}/update-avatar`,
-            {
-              avatar: "data:image/jpeg;base64," + image?.data,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-          .then((res: any) => {
-            loadUser()(dispatch);
-            // console.log(res.data);
-          });
-      }
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
     });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      setAvatar(result.assets[0].uri);
+      axios
+        .put(
+          `${URI}/update-avatar`,
+          {
+            avatar: result.assets[0].uri,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res: any) => {
+          loadUser()(dispatch);
+          // console.log(res.data);
+        });
+    }
   };
 
   return (
@@ -111,7 +116,7 @@ export default function Profile() {
               <View className="space-y-10">
                 <TouchableOpacity
                   className="flex-row items-center"
-                  onPress={ImageUpload}
+                  onPress={pickImage}
                 >
                   {avatar ? (
                     <Image
@@ -187,7 +192,7 @@ export default function Profile() {
                 >
                   <TouchableOpacity
                     className="flex items-center justify-center"
-                    onPress={ImageUpload}
+                    onPress={pickImage}
                     style={{
                       width: "100%",
                       height: "100%",

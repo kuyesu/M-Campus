@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
+import * as ImagePicker from "expo-image-picker";
 import { createPostAction, getAllPosts } from "@/redux/actions/postAction";
 import MainContainer from "@/components/container/MainContainer";
 import { ThemeContext } from "@/context/themeContext";
@@ -67,27 +67,32 @@ export default function PostScreen({ navigation }: Props) {
       return updatedPost;
     });
   };
-
-  const uploadImage = (index: number) => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-      compressImageQuality: 0.9,
-      includeBase64: true,
-    }).then((image: ImageOrVideo | null) => {
-      if (image) {
-        setReplies((prevPost) => {
-          const updatedPost = [...prevPost];
-          updatedPost[index] = {
-            ...updatedPost[index],
-            image: "data:image/jpeg;base64," + image?.data,
-          };
-          return updatedPost;
-        });
-      }
+  const uploadImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
     });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      setReplies((prevPost) => {
+        const updatedPost = [...prevPost];
+        updatedPost[activeIndex] = {
+          ...updatedPost[activeIndex],
+          image: result.assets[0].uri,
+        };
+        return updatedPost;
+      });
+    }
   };
+
+
 
   const addNewThread = () => {
     if (
@@ -118,18 +123,20 @@ export default function PostScreen({ navigation }: Props) {
     }
   };
 
-  const postImageUpload = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-      compressImageQuality: 0.8,
-      includeBase64: true,
-    }).then((image: ImageOrVideo | null) => {
-      if (image) {
-        setImage("data:image/jpeg;base64," + image.data);
-      }
+  const postImageUpload = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
     });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+
+
   };
 
   const createPost = () => {
@@ -273,7 +280,7 @@ export default function PostScreen({ navigation }: Props) {
                       />
                       <TouchableOpacity
                         className="mt-2"
-                        onPress={() => uploadImage(index)}
+                        onPress={() => uploadImage()}
                       >
                         <MaterialCommunityIcons
                           name="image"

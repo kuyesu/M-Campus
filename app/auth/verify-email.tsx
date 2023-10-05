@@ -6,6 +6,7 @@ import {
   ToastAndroid,
   Platform,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 
 import MainContainer from "@/components/container/MainContainer";
@@ -50,55 +51,97 @@ export default function VerifyEmail({ navigation }) {
   );
 
   useEffect(() => {
-    if (error) {
-      if (Platform.OS === "android") {
-        ToastAndroid.show(error, ToastAndroid.LONG);
-      } else {
-        Alert.alert(error);
-      }
-    }
     if (isVerified) {
       loadUser()(dispatch);
       // navigate to profile
     }
   }, [error, isVerified, loading]);
-
+  if (error) {
+    if (Platform.OS === "android") {
+      ToastAndroid.show(error, ToastAndroid.LONG);
+    } else {
+      Alert.alert(error);
+    }
+  }
   const submitHandler = (e: any) => {
     e.preventDefault();
     // use axios to send otp to server
     verifyEmail(email, otp)(dispatch);
-    router.push({
-      pathname: "/home",
-      params: { email: email },
-    });
+    router.push("/");
+    // router.push({
+    //   pathname: "/",
+    //   params: { email: email },
+    // });
   };
 
   const HandleNext = (e: any) => {
     e.preventDefault();
     // navigation.navigate("Profile");
-    router.push({
-      pathname: "/home",
-      params: { email: email },
-    });
+    router.push("/");
+    // router.push({
+    //   pathname: "/",
+    //   params: { email: email },
+    // });
   };
 
+  const [countdownTime, setCountdownTime] = useState(300); // 5 minutes in seconds
+
+  useEffect(() => {
+    const timerInterval = setInterval(() => {
+      setCountdownTime((prevCountdownTime) => {
+        if (prevCountdownTime <= 0) {
+          clearInterval(timerInterval);
+          // You can add any action you want when the countdown reaches 0 here.
+          return 0;
+        } else {
+          return prevCountdownTime - 1;
+        }
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, []);
+
+  // Convert remaining seconds into minutes and seconds
+  const minutes = Math.floor(countdownTime / 60);
+  const seconds = countdownTime % 60;
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: activeColors.primary,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <MainContainer
           // className="flex-1"
           style={{
             width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height,
+            // alignItems: "center",
+            // justifyContent: "center",
           }}
         >
           <View
-            className=" pt-20"
+            className=" pt-0"
             style={{
               width: "100%",
               flex: 1,
               display: "flex",
               alignItems: "center",
-              paddingHorizontal: 25,
+              height: Dimensions.get("window").height,
+              // paddingHorizontal: 25,
+              justifyContent: "center",
             }}
           >
             <View
@@ -109,28 +152,8 @@ export default function VerifyEmail({ navigation }) {
                 alignItems: "center",
                 paddingHorizontal: 25,
               }}
-              className="gap-32  "
+              className="gap-20  "
             >
-              <View
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  paddingHorizontal: 0,
-                }}
-              >
-                <StyledText bold>
-                  An Email verification code has been sent to{" "}
-                  <StyledText
-                    style={{
-                      color: activeColors.accent,
-                    }}
-                    bold
-                  >
-                    {email}
-                  </StyledText>
-                </StyledText>
-              </View>
               <View
                 style={{
                   width: "100%",
@@ -138,7 +161,7 @@ export default function VerifyEmail({ navigation }) {
                   justifyContent: "center",
                   alignItems: "center",
 
-                  gap: 50,
+                  gap: 30,
                 }}
               >
                 <View style={[{ alignItems: "center" }]}>
@@ -146,16 +169,66 @@ export default function VerifyEmail({ navigation }) {
                     style={{
                       alignContent: "center",
                       justifyContent: "center",
-                      borderRadius: 50,
+                      borderRadius: 15,
+                      borderColor: activeColors.grayAccent,
+                      borderWidth: 2,
                       padding: 15,
                     }}
                   >
                     <MaterialCommunityIcons
                       color={activeColors.accent}
-                      size={75}
-                      name="lock-open"
+                      size={60}
+                      name="security"
                     />
                   </StyledView>
+                </View>
+                <View
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingHorizontal: 0,
+                  }}
+                >
+                  <StyledText
+                    style={{
+                      // color: activeColors.accent,
+                      fontSize: 25,
+                      fontFamily: "H",
+                    }}
+                  >
+                    Verify Your Email
+                  </StyledText>
+
+                  <StyledText
+                    style={{
+                      paddingTop: 20,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "justify",
+                      color: activeColors.gray,
+                    }}
+                    small
+                  >
+                    A 4-digit code has been sent to your email address{" "}
+                    <StyledText bold>{email}</StyledText>. Please enter the code
+                    in the box below to verify your email address.
+                    <TouchableOpacity
+                      onPress={() => {
+                        bottomSheetModalRef.current?.present();
+                      }}
+                    >
+                      <StyledText
+                        style={{
+                          color: activeColors.accent,
+                          textDecorationLine: "underline",
+                        }}
+                      >
+                        Change
+                      </StyledText>
+                    </TouchableOpacity>
+                  </StyledText>
                 </View>
                 <View
                   style={{
@@ -164,40 +237,100 @@ export default function VerifyEmail({ navigation }) {
                 >
                   <OTPTextView
                     ref={input}
-                    containerStyle={{ marginVertical: 20, borderRadius: 50 }}
+                    containerStyle={{ marginVertical: 30, borderRadius: 5 }}
                     handleTextChange={setOTP}
                     offTintColor={activeColors.accent}
-                    tintColor={activeColors.tint}
+                    tintColor={activeColors.grayAccent}
                     textInputStyle={{
                       // @ts-ignore
                       color: activeColors.tint,
                       fontSize: 30,
                       fontWeight: "bold",
-                      borderRadius: 50,
+                      borderRadius: 5,
+                      borderWidth: 1,
+                      borderColor: activeColors.grayAccent,
+                      backgroundColor: activeColors.secondary,
+                      paddingVertical: 0,
+                      height: 70,
                     }}
                     inputCount={4}
                     keyboardType="numeric"
                   />
                 </View>
-
                 <View
                   style={{
                     width: "100%",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    paddingHorizontal: 0,
+                  }}
+                >
+                  <StyledText
+                    style={{
+                      textAlign: "left",
+                      color: activeColors.gray,
+                    }}
+                    small
+                  >
+                    • This code will expire in{" "}
+                    {
+                      <StyledText
+                        style={{
+                          color: activeColors.accent,
+                        }}
+                      >
+                        {minutes < 10 ? "0" : ""}
+                        {minutes}:{seconds < 10 ? "0" : ""}
+                        {seconds}
+                      </StyledText>
+                    }
+                  </StyledText>
+                  <StyledText
+                    style={{
+                      paddingTop: 10,
+                      textAlign: "left",
+                      color: activeColors.gray,
+                    }}
+                    small
+                  >
+                    • If you didn't receive the code,{" "}
+                    <StyledText
+                      style={{
+                        color: activeColors.accent,
+                        textDecorationLine: "underline",
+                      }}
+                    >
+                      Resend Code
+                    </StyledText>
+                  </StyledText>
+                </View>
+                <View
+                  style={{
+                    width: "100%",
+                    position: "relative",
+                    top: 100,
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "flex-start",
                     gap: 20,
                   }}
                 >
-                  <StyledTouchableOpacityLight
+                  <TouchableOpacity
                     style={{
                       width: "100%",
                       alignItems: "center",
                       justifyContent: "center",
+                      backgroundColor: activeColors.secondary,
+                      borderColor: activeColors.grayAccent,
+                      borderWidth: 1,
+                      paddingVertical: 15,
+                      borderRadius: 5,
                     }}
                     onPress={submitHandler}
                   >
-                    Verify
-                  </StyledTouchableOpacityLight>
+                    <StyledText>Verify</StyledText>
+                  </TouchableOpacity>
                   {/* <StyledText bold>
                     Didn't receive the code?{" "}
                     <StyledText

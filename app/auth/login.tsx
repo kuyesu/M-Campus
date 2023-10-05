@@ -12,6 +12,7 @@ import {
   Platform,
   ToastAndroid,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -27,6 +28,7 @@ import MainContainer from "@/components/container/MainContainer";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser, loginUser } from "@/redux/actions/userAction";
+import { StyledTouchableOpacity } from "@/components/buttons/StyledTouchableOpacity";
 
 export default function Login() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -34,41 +36,36 @@ export default function Login() {
   let activeColors = colors[theme.mode];
   const [secure, setSecure] = useState(true);
 
-  const { error, isAuthenticated } = useSelector((state: any) => state.user);
+  const { error, isAuthenticated, loading } = useSelector(
+    (state: any) => state.user
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const submitHandler = (e: any) => {
-    // loginUser(email, password)(dispatch);
-    if (Platform.OS === "android") {
-      ToastAndroid.show("Login successful!", ToastAndroid.LONG);
-      router.push("/home");
-    } else {
-      Alert.alert("Login successful!");
-      router.push("/home");
-    }
+    loginUser(email, password)(dispatch);
   };
 
-  // useEffect(() => {
-  //   if (error) {
-  //     if (Platform.OS === "android") {
-  //       ToastAndroid.show(
-  //         "Email and password not matching!",
-  //         ToastAndroid.LONG
-  //       );
-  //     } else {
-  //       Alert.alert("Email and password not matching!");
-  //     }
-  //   }
-  //   if (isAuthenticated) {
-  //     loadUser()(dispatch);
-  //     if (Platform.OS === "android") {
-  //       ToastAndroid.show("Login successful!", ToastAndroid.LONG);
-  //     } else {
-  //       Alert.alert("Login successful!");
-  //     }
-  //   }
-  // }, [isAuthenticated, error]);
+  useEffect(() => {
+    if (error) {
+      if (Platform.OS === "android") {
+        ToastAndroid.show(
+          "Email and password not matching!",
+          ToastAndroid.LONG
+        );
+      } else {
+        Alert.alert("Email and password not matching!");
+      }
+    }
+    if (isAuthenticated) {
+      loadUser()(dispatch);
+      if (Platform.OS === "android") {
+        ToastAndroid.show("Login successful!", ToastAndroid.LONG);
+      } else {
+        Alert.alert("Login successful!");
+      }
+    }
+  }, [isAuthenticated, error, loading]);
 
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
@@ -220,27 +217,33 @@ export default function Login() {
               />
             </View>
 
-            <TouchableOpacity onPress={submitHandler}>
-              <LinearGradient
-                // Button Linear Gradient
-
-                colors={[activeColors.accent, activeColors.accent]}
-                start={[1, -0.3]}
-                end={[1, 1]}
-                style={styles.btn}
-              >
-                <Text
-                  style={[
-                    styles.btnlabel,
-                    {
-                      color: activeColors.primary,
-                    },
-                  ]}
+            <View className="pt-16">
+              {loading ? (
+                <StyledTouchableOpacity
+                  disabled={true}
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  Login
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
+                  <ActivityIndicator
+                    size="small"
+                    color={activeColors.primary}
+                  />
+                </StyledTouchableOpacity>
+              ) : (
+                <StyledTouchableOpacity
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 15,
+                  }}
+                  onPress={submitHandler}
+                >
+                  Log in
+                </StyledTouchableOpacity>
+              )}
+            </View>
 
             <Link href={"/auth/register"} asChild>
               <TouchableOpacity

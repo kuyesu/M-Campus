@@ -1,35 +1,11 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Modal,
-  Alert,
-  Pressable,
-  Share,
-} from "react-native";
-import {
-  ArrowTrendingUpIcon,
-  ClockIcon,
-  CursorArrowRaysIcon,
-  DevicePhoneMobileIcon,
-  FingerPrintIcon,
-  ShareIcon,
-  UserIcon,
-  ViewfinderCircleIcon,
-} from "react-native-heroicons/outline";
+import { StyleSheet, TouchableOpacity, View, Share } from "react-native";
+
 // components
 import MainContainer from "@/components/container/MainContainer";
 import { colors } from "@/constants/Colors";
 import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "@/context/themeContext";
-import StyledView from "@/components/View/StyledView";
-import {
-  ChevronRightIcon,
-  ShieldCheckIcon,
-} from "react-native-heroicons/outline";
-import StyledText from "@/components/Text/StyledText";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import StyledMenuItem from "@/components/Menu/StyledMenuItem";
 import StyledWeatherView from "@/components/weather/StyledWeatherView";
@@ -170,7 +146,7 @@ export default function TabOneScreen() {
     setTimeout(() => {
       setIsOpen(false);
     }, 100);
-  }
+  };
   return (
     <MainContainer
       style={[styles.container]}
@@ -227,10 +203,12 @@ export default function TabOneScreen() {
               >
                 {/* here is the modal bottomsheet */}
                 <StyledBottomSheet
+                  setIsOpen={setIsOpen(false)}
+                  index={1}
                   bottomSheetModalRef={bottomSheetModalRef}
                   snapPoints={snapPoints}
                 >
-                  <MoreApps handleOnPress={handleAppOnPress}  />
+                  <MoreApps handleOnPress={handleAppOnPress} />
                 </StyledBottomSheet>
                 <TouchableOpacity onPress={handlePresentModal}>
                   <MaterialCommunityIcons

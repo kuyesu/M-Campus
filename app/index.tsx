@@ -18,7 +18,7 @@ import MainContainer from "@/components/container/MainContainer";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import StyledText from "@/components/Text/StyledText";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Store from "@/redux/Store";
 import { loadUser } from "@/redux/actions/userAction";
 import { StyledLoading } from "@/components/loading/StyledLoading";
@@ -29,44 +29,71 @@ export default function Welcome() {
   let activeColors = colors[theme.mode];
 
   const { isAuthenticated, loading } = useSelector((state: any) => state.user);
-  // const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
+  if (isAuthenticated) {
+    router.push("/home");
+  }
   React.useEffect(() => {
     Store.dispatch(loadUser());
-  }, []);
+  }, [dispatch]);
   //   if (loading) return null;
 
-  // if (loading)
-  //   return (
-  //     <View
-  //       style={{
-  //         flex: 1,
-  //         height: "100%",
-  //         width: "100%",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         backgroundColor: activeColors.primary,
-  //       }}
-  //     >
-  //       <StatusBar
-  //         // backgroundColor={activeColors.primary}
-  //         style={theme.mode === "dark" ? "light" : "dark"}
-  //       />
-  //       <View
-  //         style={{
-  //           flex: 1,
-  //           height: "100%",
-  //           width: "100%",
-  //           justifyContent: "center",
-  //           alignItems: "center",
-  //         }}
-  //       >
-  //         <StyledLoading />
-  //       </View>
-  //     </View>
-  //   );
+  if (loading)
+    return (
+      <View
+        style={{
+          flex: 1,
+          height: "100%",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: activeColors.primary,
+        }}
+      >
+        <StatusBar
+          // backgroundColor={activeColors.primary}
+          style={theme.mode === "dark" ? "light" : "dark"}
+        />
+        <View
+          style={{
+            flex: 1,
+            height: "100%",
+            width: "80%",
+            justifyContent: "space-between",
+            alignItems: "center",
 
-  // if (isAuthenticated) router.push("/home");
+            paddingVertical: "15%",
+            paddingTop: "20%",
+          }}
+        >
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+              resizeMode: "contain",
+              alignSelf: "center",
+            }}
+            source={require("../assets/images/icon.png")}
+          />
+
+          <ActivityIndicator size="large" color={activeColors.accent} />
+          <Text
+            style={[
+              {
+                color: activeColors.tint,
+                fontSize: 12,
+                fontWeight: "normal",
+                fontFamily: "B",
+                textAlign: "center",
+              },
+            ]}
+          >
+            With Love <Text>{theme.mode === "dark" ? "💚" : "💙"}</Text> ::
+            Rogers - Mbarara University &copy; 2023
+          </Text>
+        </View>
+      </View>
+    );
 
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>

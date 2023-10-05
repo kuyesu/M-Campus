@@ -21,6 +21,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { MapPinIcon } from "react-native-heroicons/solid";
 import MainContainer from "@/components/container/MainContainer";
 import { ThemeContext } from "@/context/themeContext";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import StyledText from "@/components/Text/StyledText";
 
 const { width } = Dimensions.get("screen");
 const DetailsScreen = () => {
@@ -44,11 +46,15 @@ const DetailsScreen = () => {
           <View style={style.header}>
             <View style={style.headerBtn}>
               <Link href="/hostels">
-                <Icon name="arrow-back-ios" size={20} />
+                <MaterialCommunityIcons name="arrow-left" size={20} />
               </Link>
             </View>
             <View style={style.headerBtn}>
-              <Icon name="favorite" size={20} color={activeColors.tint} />
+              <MaterialCommunityIcons
+                name="heart"
+                size={20}
+                color={activeColors.tint}
+              />
             </View>
           </View>
         </ImageBackground>
@@ -66,8 +72,8 @@ const DetailsScreen = () => {
                   <MapPinIcon
                     size={35}
                     // color={color}
-                    fill="#86e63b"
-                    stroke="#041633"
+                    fill={activeColors.accent}
+                    stroke={activeColors.secondary}
                     strokeWidth={2}
                   />
                 </View>
@@ -80,15 +86,7 @@ const DetailsScreen = () => {
       <View style={style.detailsContainer}>
         {/* Name and rating view container */}
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              color: activeColors.tint,
-            }}
-          >
-            {house?.title}
-          </Text>
+          <StyledText bold>{house?.title}</StyledText>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <View
               style={{
@@ -98,49 +96,51 @@ const DetailsScreen = () => {
                 padding: 5,
               }}
             >
-              <Text style={{ color: activeColors.accent }}>4.8</Text>
+              <StyledText>4.8</StyledText>
             </View>
-            <Text
-              style={{ fontSize: 13, marginLeft: 5, color: activeColors.gray }}
-            >
-              155 ratings
-            </Text>
+            <StyledText style={{ marginLeft: 5 }}>155 ratings</StyledText>
           </View>
         </View>
 
         {/* Location text */}
-        <Text style={{ fontSize: 16, color: activeColors.gray }}>
-          {house?.location}
-        </Text>
+        <StyledText>{house?.location}</StyledText>
 
         {/* Facilities container */}
         <View style={{ flexDirection: "row", marginTop: 20 }}>
           <View style={style.facility}>
-            <Icon name="hotel" size={18} color={activeColors.accent} />
-            <Text style={[style.facilityText, { color: activeColors.tint }]}>
-              2 (double)
-            </Text>
+            <MaterialCommunityIcons
+              name="hoop-house"
+              size={18}
+              color={activeColors.accent}
+            />
+            <StyledText>2 (double)</StyledText>
           </View>
           <View style={style.facility}>
-            <Icon name="bathtub" size={18} color={activeColors.accent} />
-            <Text style={[style.facilityText, { color: activeColors.tint }]}>
-              2
-            </Text>
+            <MaterialCommunityIcons
+              name="bathtub"
+              size={18}
+              color={activeColors.accent}
+            />
+            <StyledText>2</StyledText>
           </View>
           <View style={style.facility}>
-            <Icon name="aspect-ratio" size={18} color={activeColors.accent} />
-            <Text style={[style.facilityText, { color: activeColors.tint }]}>
-              0.5km from Town campus
-            </Text>
+            <MaterialCommunityIcons
+              name="aspect-ratio"
+              size={18}
+              color={activeColors.accent}
+            />
+            <StyledText>0.5km from Town campus</StyledText>
           </View>
         </View>
 
         <View style={{ marginTop: 30 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <PhoneIcon size={18} color={activeColors.accent} />
-            <Text style={{ color: activeColors.tint, marginLeft: 8 }}>
-              {house?.call}
-            </Text>
+            <MaterialCommunityIcons
+              name="phone"
+              size={18}
+              color={activeColors.accent}
+            />
+            <StyledText>{house?.call}</StyledText>
           </View>
           <View
             style={{
@@ -149,17 +149,15 @@ const DetailsScreen = () => {
               marginTop: 20,
             }}
           >
-            <SocialIcon
-              type="whatsapp"
+            <MaterialCommunityIcons
+              name="whatsapp"
               style={{
                 height: 18,
                 width: 18,
                 marginLeft: 0,
               }}
             />
-            <Text style={{ color: activeColors.tint, marginLeft: 8 }}>
-              {house?.whatsapp}
-            </Text>
+            <StyledText style={{ marginLeft: 8 }}>{house?.whatsapp}</StyledText>
           </View>
         </View>
 
@@ -176,45 +174,22 @@ const DetailsScreen = () => {
         {/* footer container */}
         <View style={style.footer}>
           <View>
-            <Text
-              style={{
-                color: activeColors.tint,
-                fontWeight: "bold",
-                fontSize: 18,
-              }}
-            >
-              UGX {house?.price}
-            </Text>
-            <Text
-              style={{
-                fontSize: 12,
-                color: activeColors.tint,
-                fontWeight: "bold",
-              }}
-            >
-              Per Semester
-            </Text>
+            <StyledText bold>UGX {house?.price}</StyledText>
+            <StyledText bold>Per Semester</StyledText>
           </View>
           <View className="relative">
             <View className="flex relative w-full flex-col space-y-3 pt-4 ">
               <View>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: activeColors.accent,
-                    borderRadius: 10,
+                    backgroundColor: activeColors.secondary,
+                    borderRadius: 5,
                     borderWidth: 1,
-                    borderColor: activeColors.accent,
+                    borderColor: activeColors.grayAccent,
                   }}
                   className={` flex  right-0.5 items-center  w-full justify-center  p-2.5 font-bold border  `}
                 >
-                  <Text
-                    className="text-md  font-bold "
-                    style={{
-                      color: activeColors.accentGray,
-                    }}
-                  >
-                    Book Now
-                  </Text>
+                  <StyledText bold>Book Now</StyledText>
                 </TouchableOpacity>
               </View>
               {/* <View
@@ -255,7 +230,7 @@ const style = StyleSheet.create({
   headerBtn: {
     height: 50,
     width: 50,
-    backgroundColor: COLORS.white,
+
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -263,7 +238,6 @@ const style = StyleSheet.create({
   ratingTag: {
     height: 30,
     width: 35,
-    backgroundColor: COLORS.blue,
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
@@ -302,7 +276,6 @@ const style = StyleSheet.create({
   },
   detailsContainer: { flex: 1, paddingHorizontal: 20, marginTop: 40 },
   facility: { flexDirection: "row", marginRight: 15 },
-  facilityText: { marginLeft: 5, color: COLORS.grey },
 });
 
 export default DetailsScreen;

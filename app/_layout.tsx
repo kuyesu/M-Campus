@@ -2,7 +2,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeContext } from "@/context/themeContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
-import { Slot, SplashScreen, Stack } from "expo-router";
+import { Slot, SplashScreen, Stack, router } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Appearance, View } from "react-native";
 import { getData, storeData } from "@/store/asyncStorage";
@@ -12,6 +12,9 @@ import "@/styles/global.css";
 import { loadUser } from "@/redux/actions/userAction";
 import MainContainer from "@/components/container/MainContainer";
 import { colors } from "@/constants/Colors";
+import { Image, Text } from "moti";
+import StyledText from "@/components/Text/StyledText";
+import { StatusBar } from "expo-status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -25,7 +28,6 @@ export {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -109,7 +111,69 @@ const RootLayoutNav = () => {
   }, []);
 
   const { isAuthenticated, loading } = useSelector((state: any) => state.user);
-  // const dispatch = useDispatch();
+  useEffect(() => {
+    Store.dispatch(loadUser());
+  }, []);
+  if (isAuthenticated) router.push("/home");
+
+  // if (loading)
+  //   return (
+  //     <View
+  //       style={{
+  //         flex: 1,
+  //         height: "100%",
+  //         width: "100%",
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //         backgroundColor: theme.mode === "dark" ? "#1f2937" : "#f3f4f6",
+  //       }}
+  //     >
+  //       <StatusBar
+  //         // backgroundColor={activeColors.primary}
+  //         style={theme.mode === "dark" ? "light" : "dark"}
+  //       />
+  //       <View
+  //         style={{
+  //           flex: 1,
+  //           height: "100%",
+  //           width: "100%",
+  //           justifyContent: "space-between",
+  //           alignItems: "center",
+
+  //           paddingVertical: "10%",
+  //           paddingTop: "30%",
+  //         }}
+  //       >
+  //         <Image
+  //           style={{
+  //             width: 100,
+  //             height: 100,
+  //             resizeMode: "contain",
+  //             alignSelf: "center",
+  //           }}
+  //           source={require("../assets/images/icon.png")}
+  //         />
+
+  //         <ActivityIndicator
+  //           size="large"
+  //           color={theme.mode === "dark" ? "#86e63b" : "#0891b2"}
+  //         />
+  //         <Text
+  //           style={[
+  //             {
+  //               color: theme.mode === "dark" ? "#f9fafb" : "#111827",
+  //               fontSize: 14,
+  //               fontWeight: "normal",
+  //               fontFamily: "B",
+  //             },
+  //           ]}
+  //         >
+  //           With Love <Text>{theme.mode === "dark" ? "💚" : "💙"}</Text> ::
+  //           Rogers &copy; 2023
+  //         </Text>
+  //       </View>
+  //     </View>
+  //   );
 
   return (
     <ThemeContext.Provider value={{ theme, updateTheme }}>

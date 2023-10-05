@@ -61,12 +61,14 @@ function CustomDrawerContent(props: any) {
     setIsActivate((previousState) => !previousState);
   };
 
-  const { user } = useSelector((state: any) => state.user);
+  const { user, isAuthenticated } = useSelector((state: any) => state.user);
 
   const dispatch = useDispatch();
   const logoutHandler = async () => {
     logoutUser()(dispatch);
   };
+
+  if (!isAuthenticated) router.push("/");
   return (
     <DrawerContentScrollView
       {...props}
