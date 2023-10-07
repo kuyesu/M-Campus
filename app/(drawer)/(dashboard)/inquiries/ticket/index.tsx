@@ -3,12 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   Pressable,
   Dimensions,
   TextInput,
   Image,
   Platform,
+  ToastAndroid,
 } from "react-native";
 import SubmitTicket from "@/components/ticket/submit";
 
@@ -33,125 +33,33 @@ import StyledView from "@/components/View/StyledView";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
-export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [name, setName] = useState("");
-  const [studentID, setStudentID] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [category, setCategory] = useState("");
-  const [priority, setPriority] = useState("first");
-  const [subject, setSubject] = useState("");
-  const [description, setDescription] = useState("Type something here");
+const SlideDetails = ({
+  currentStepData,
+  selectedConcern,
+  handleConcernChange,
+  users,
+  currentConcern,
+  handleStepChange,
+  completedSteps,
+  formData,
+  currentStep,
+}) => {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-
-  // concern
-  const [selectedConcern, setSelectedConcern] = useState("");
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({});
-  const [users, setUsers] = useState<any>("");
-  const [completedSteps, setCompletedSteps] = useState([]);
-  const handleConcernChange = (value) => {
-    setSelectedConcern(value);
-    setCurrentStep(0);
-    setFormData({});
-    setCompletedSteps([]);
-  };
-
-  const handleStepChange = (value) => {
-    const updatedFormData = { ...formData, [currentStep]: value };
-    setFormData(updatedFormData);
-
-    if (!completedSteps.includes(currentStep)) {
-      setCompletedSteps([...completedSteps, currentStep]);
-    }
-
-    if (currentStep < concernsData[selectedConcern].steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const currentConcern = concernsData[selectedConcern];
-  const currentStepData = currentConcern?.steps[currentStep];
-
-  const Slide1 = () => {
-    return (
-      <View className="flex flex-col  pr-2 items-center space-y-4 ">
-        <StyledTextInput
-          // value="Kuyeso Rogers"
-          // defaultValue="Kuyeso Rogers"
-          placeholder="Name"
-          placeholderTextColor="gray"
-          onChangeText={(text) => setName(text)}
-          className="e w-full"
-          style={{
-            borderRadius: 15,
-            paddingVertical: 13,
-            borderColor: activeColors.grayAccent,
-            borderWidth: 1,
-          }}
-        />
-        <View className="flex  w-full">
-          <StyledText
-            className="text-sm pb-4"
-            style={{
-              color: activeColors.gray,
-            }}
-          >
-            This is the name that will be displayed on your ticket and to the
-            person who will be handling your ticket
-          </StyledText>
-        </View>
-        <StyledTextInput
-          // value="2019bce028@std.must.ac.ug"
-          // defaultValue="Kuyeso Rogers"
-          onChangeText={(text) => setName(text)}
-          className=" w-full"
-          placeholder="Email"
-          placeholderTextColor="gray"
-          style={{
-            borderRadius: 15,
-            paddingVertical: 13,
-            borderColor: activeColors.grayAccent,
-            borderWidth: 1,
-          }}
-        />
-        <StyledTextInput
-          // value="2019/BSE/031/PS"
-          placeholder="Reg"
-          placeholderTextColor="gray"
-          // defaultValue="Kuyeso Rogers"
-          onChangeText={(text) => setName(text)}
-          className=" w-full"
-          style={{
-            borderRadius: 15,
-            paddingVertical: 13,
-            borderColor: activeColors.grayAccent,
-            borderWidth: 1,
-          }}
-        />
-        <StyledTextInput
-          // value="(256) 77 2820 840"
-          placeholder="Phone Number"
-          placeholderTextColor="gray"
-          // defaultValue="Kuyeso Rogers"
-          onChangeText={(text) => setName(text)}
-          className=" w-full"
-          style={{
-            borderRadius: 15,
-            paddingVertical: 13,
-            borderColor: activeColors.grayAccent,
-            borderWidth: 1,
-          }}
-        />
-      </View>
-    );
-  };
-  const SlideDetails = () => {
-    return (
+  return (
+    <ScrollView
+      bounces
+      showsVerticalScrollIndicator={false}
+      style={{
+        flex: 1,
+        maxHeight: Dimensions.get("screen").height - 380,
+      }}
+    >
       <View className="flex flex-col  pr-2 items-center space-y-0 ">
         {/* <RNPickerSelect
           onValueChange={(value) => console.log(value)}
@@ -343,16 +251,63 @@ export default function App() {
             },
           }}
         />
+
+        <View className="flex  w-full">
+          {currentConcern && (
+            <StyledText className=" pb-2">
+              Summary of steps required to submit this Ticket
+            </StyledText>
+          )}
+          {/* get all questions */}
+          {currentConcern?.steps.map((step, index) => (
+            <View
+              key={index}
+              style={{
+                marginBottom: 2,
+                gap: 5,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <MaterialCommunityIcons
+                name="checkbox-marked"
+                color={
+                  completedSteps.includes(index)
+                    ? activeColors.accent
+                    : activeColors.grayAccent
+                }
+                size={20}
+              />
+              <StyledText
+                style={[
+                  completedSteps.includes(index)
+                    ? {
+                        color: activeColors.tint,
+                        fontWeight: "bold",
+                        fontSize: 12,
+                      }
+                    : {
+                        color: activeColors.gray,
+                        fontWeight: "normal",
+                        fontSize: 12,
+                      },
+                ]}
+              >
+                {step.question}
+              </StyledText>
+            </View>
+          ))}
+        </View>
         <View className="flex  w-full">
           <StyledText
-            className="text-sm pt-0"
+            className="text-sm pt-4"
             style={{
               color: activeColors.gray,
             }}
           >
-            You need to select the category that best describes your issue or
-            concern from the list below to help us route your ticket to the best
-            person
+            Choose a category to route your ticket correctly.
           </StyledText>
         </View>
         {/* step */}
@@ -479,7 +434,9 @@ export default function App() {
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
                   }}
+                  className=" text-justify"
                   rows={5}
+                  multiline={true}
                   value={formData[currentStep] || ""}
                   onChangeText={handleStepChange}
                   placeholder={currentStepData.placeholder}
@@ -489,52 +446,7 @@ export default function App() {
             )}
           </View>
         )}
-        <View className="flex  w-full">
-          {currentConcern && (
-            <StyledText className=" pb-2">Summary of Ticket</StyledText>
-          )}
-          {/* get all questions */}
-          {currentConcern?.steps.map((step, index) => (
-            <View
-              key={index}
-              style={{
-                marginBottom: 2,
-                gap: 5,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
-              <MaterialCommunityIcons
-                name="checkbox-marked"
-                color={
-                  completedSteps.includes(index)
-                    ? activeColors.accent
-                    : activeColors.grayAccent
-                }
-                size={20}
-              />
-              <StyledText
-                style={[
-                  completedSteps.includes(index)
-                    ? {
-                        color: activeColors.tint,
-                        fontWeight: "bold",
-                        fontSize: 12,
-                      }
-                    : {
-                        color: activeColors.gray,
-                        fontWeight: "normal",
-                        fontSize: 12,
-                      },
-                ]}
-              >
-                {step.question}
-              </StyledText>
-            </View>
-          ))}
-        </View>
+
         {/* {currentStep === currentConcern.steps.length - 1 && (
           <View className="flex  w-full">
             <StyledText className="text-sm pt-4">Summary of Ticket</StyledText>
@@ -549,13 +461,255 @@ export default function App() {
                 color={activeColors.accent}
                 size={20}
               /> */}
-        {/* {JSON.stringify(formData, null, 2)} */}
+
         {/* </StyledText>
           </View>
         )} */}
       </View>
+    </ScrollView>
+  );
+};
+
+const SlideAttachments = ({ image, setImage }) => {
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  return (
+    <View
+      style={{
+        width: Dimensions.get("window").width - 40,
+      }}
+      className="flex flex-col  items-center "
+    >
+      <View
+        style={{
+          width: Dimensions.get("window").width - 40,
+        }}
+        className="flex "
+      >
+        <View className="flex items-center justify-center w-full">
+          <Pressable
+            className="flex flex-col items-center justify-center w-full h-56 border-2  border-dashed rounded-lg "
+            style={[
+              {
+                backgroundColor: activeColors.secondary,
+                borderRadius: 5,
+                borderColor: activeColors.grayAccent,
+              },
+            ]}
+            onPress={pickImage}
+          >
+            <View className="flex flex-col items-center justify-center pt-5 pb-6">
+              <CloudIcon color={activeColors.gray} size={80} />
+              <StyledText className="mb-2 text-sm  ">
+                Click to upload or drag and drop
+              </StyledText>
+              <StyledText className="text-xs ">
+                SVG, PNG, JPG or GIF (MAX. 800x400px)
+              </StyledText>
+            </View>
+          </Pressable>
+        </View>
+        <StyledText
+          className="items-center  justify-center pt-4 font-bold  "
+          style={{
+            color: activeColors.gray,
+          }}
+        >
+          Uploaded documents
+        </StyledText>
+        <View className="w-full pt-2">
+          {image && (
+            <Image
+              source={{ uri: image }}
+              style={{
+                width: "100%",
+                height: 250,
+                borderRadius: 5,
+                borderColor: activeColors.grayAccent,
+                borderWidth: 1,
+              }}
+            />
+          )}
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default function App() {
+  const [name, setName] = useState("");
+  const [studentID, setStudentID] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [image, setImage] = useState(null);
+
+  const [isCompleted, setIsCompleted] = useState(false);
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
+
+  // concern
+  const [selectedConcern, setSelectedConcern] = useState("");
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState({});
+  const [users, setUsers] = useState<any>("");
+  const [completedSteps, setCompletedSteps] = useState([]);
+  const handleConcernChange = (value) => {
+    setSelectedConcern(value);
+    setCurrentStep(0);
+    setFormData({});
+    setCompletedSteps([]);
+  };
+
+  const handleStepChange = (value) => {
+    const updatedFormData = { ...formData, [currentStep]: value };
+    setFormData(updatedFormData);
+
+    if (!completedSteps.includes(currentStep)) {
+      setCompletedSteps([...completedSteps, currentStep]);
+    }
+
+    if (currentStep < concernsData[selectedConcern].steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const currentConcern = concernsData[selectedConcern];
+  const currentStepData = currentConcern?.steps[currentStep];
+
+  // console.warn(email, name, studentID, phoneNumber);
+  var tempEmail = "";
+  var tempName = "";
+  var tempStudentID = "";
+  var tempPhoneNumber = "";
+  var temDescription = "";
+
+  // useEffect(() => {
+
+  // }, []);
+
+  const Slide1 = () => {
+    const [name1, setName11] = useState("");
+    // const [studentID1, setStudentID1] = useState("");
+    const [email1, setEmail1] = useState("");
+    // const [phoneNumber1, setPhoneNumber1] = useState("");
+    // const [category, setCategory] = useState("");
+
+    return (
+      <KeyboardAwareScrollView>
+        <View className="flex flex-col  pr-2 items-center space-y-4 ">
+          <TextInput editable selectTextOnFocus />
+          <StyledTextInput
+            // value="Kuyeso Rogers"
+            editable
+            // defaultValue={name}
+            placeholder="Name"
+            selectTextOnFocus
+            placeholderTextColor="gray"
+            onChangeText={(val) => (tempName = val)}
+            onEndEditing={() => setName(tempName)}
+            defaultValue={name}
+            className="e w-full"
+            keyboardAppearance={theme.mode === "dark" ? "dark" : "light"}
+            style={{
+              borderRadius: 15,
+              paddingVertical: 13,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+            }}
+          />
+          <View className="flex  w-full">
+            <StyledText
+              className="text-sm pb-4"
+              style={{
+                color: activeColors.gray,
+              }}
+            >
+              This is the name that will be displayed on your ticket and to the
+              person who will be handling your ticket
+            </StyledText>
+          </View>
+          <StyledTextInput
+            keyboardType="text"
+            // value={email}
+            selectTextOnFocus
+            onChangeText={(val) => (tempEmail = val)}
+            onEndEditing={() => setEmail(tempEmail)}
+            defaultValue={email}
+            // onChangeText={(text) => setEmail1(text)}
+            // onEndEditing={(text) => setEmail(text)}
+            className=" w-full"
+            placeholder="Email"
+            keyboardAppearance={theme.mode === "dark" ? "dark" : "light"}
+            placeholderTextColor="gray"
+            style={{
+              borderRadius: 15,
+              paddingVertical: 13,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+            }}
+          />
+          <StyledTextInput
+            // value="2019/BSE/031/PS"
+            placeholder="Reg"
+            placeholderTextColor="gray"
+            // defaultValue="Kuyeso Rogers"
+
+            keyboardAppearance={theme.mode === "dark" ? "dark" : "light"}
+            onChangeText={(val) => (tempStudentID = val)}
+            onEndEditing={() => setStudentID(tempStudentID)}
+            defaultValue={studentID}
+            // onEndEditing={() => setStudentID(studentID1)}
+            className=" w-full"
+            style={{
+              borderRadius: 15,
+              paddingVertical: 13,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+            }}
+          />
+          <StyledTextInput
+            // value="(256) 77 2820 840"
+            placeholder="Phone Number"
+            placeholderTextColor="gray"
+            // defaultValue="Kuyeso Rogers"
+            // value={phoneNumber}
+            onChangeText={(val) => (tempPhoneNumber = val)}
+            onEndEditing={() => setPhoneNumber(tempPhoneNumber)}
+            defaultValue={phoneNumber}
+            className=" w-full"
+            keyboardAppearance={theme.mode === "dark" ? "dark" : "light"}
+            style={{
+              borderRadius: 15,
+              paddingVertical: 13,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+            }}
+          />
+        </View>
+      </KeyboardAwareScrollView>
     );
   };
+
   // documents and attachments
 
   //   useEffect(() => {
@@ -575,87 +729,6 @@ export default function App() {
   //     }
   //   };
 
-  const SlideAttachments = () => {
-    const [image, setImage] = useState(null);
-
-    const pickImage = async () => {
-      // No permissions request is necessary for launching the image library
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-
-      console.log(result);
-
-      if (!result.canceled) {
-        setImage(result.assets[0].uri);
-      }
-    };
-
-    return (
-      <View
-        style={{
-          width: Dimensions.get("window").width - 40,
-        }}
-        className="flex flex-col  items-center "
-      >
-        <View
-          style={{
-            width: Dimensions.get("window").width - 40,
-          }}
-          className="flex "
-        >
-          <View className="flex items-center justify-center w-full">
-            <Pressable
-              className="flex flex-col items-center justify-center w-full h-56 border-2  border-dashed rounded-lg "
-              style={[
-                {
-                  backgroundColor: activeColors.secondary,
-                  borderRadius: 5,
-                  borderColor: activeColors.grayAccent,
-                },
-              ]}
-              onPress={pickImage}
-            >
-              <View className="flex flex-col items-center justify-center pt-5 pb-6">
-                <CloudIcon color={activeColors.gray} size={80} />
-                <StyledText className="mb-2 text-sm  ">
-                  Click to upload or drag and drop
-                </StyledText>
-                <StyledText className="text-xs ">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </StyledText>
-              </View>
-            </Pressable>
-          </View>
-          <StyledText
-            className="items-center  justify-center pt-4 font-bold  "
-            style={{
-              color: activeColors.gray,
-            }}
-          >
-            Uploaded documents
-          </StyledText>
-          <View className="w-full pt-2">
-            {image && (
-              <Image
-                source={{ uri: image }}
-                style={{
-                  width: "100%",
-                  height: 250,
-                  borderRadius: 5,
-                  borderColor: activeColors.grayAccent,
-                  borderWidth: 1,
-                }}
-              />
-            )}
-          </View>
-        </View>
-      </View>
-    );
-  };
   const SlideAdditional = () => {
     return (
       <View
@@ -669,10 +742,23 @@ export default function App() {
           <View className="flex flex-row pb-4 justify-between items-center ">
             <View className=" items-center space-x-2 flex flex-row">
               <CalendarDaysIcon size={20} strokeWidth={2} color={"gray"} />
-              <StyledText>06 May, 2023</StyledText>
+              <StyledText>
+                {new Date().toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </StyledText>
             </View>
           </View>
-          <ScrollView>
+          <ScrollView
+            bounces
+            showsVerticalScrollIndicator={false}
+            style={{
+              maxHeight: Dimensions.get("screen").height - 450,
+            }}
+          >
             <StyledView
               className="  rounded-md border  w-full "
               style={{ borderColor: activeColors.grayAccent }}
@@ -695,7 +781,7 @@ export default function App() {
               >
                 <View />
                 <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-                  <StyledText bold>Kuyeso Rogers</StyledText>
+                  <StyledText bold>{name}</StyledText>
                   <Entypo name="star" size={18} color={"orange"} />
                 </View>
                 <View className="flex px-4 flex-row justify-between items-center w-full">
@@ -705,7 +791,7 @@ export default function App() {
                       color: activeColors.accent,
                     }}
                   >
-                    Missing Marks
+                    {selectedConcern}
                   </Text>
                 </View>
               </View>
@@ -742,7 +828,7 @@ export default function App() {
                         color: activeColors.gray,
                       }}
                     >
-                      (256) 772 820 840
+                      {phoneNumber || "null"}
                     </Text>
                   </View>
                   <View className=" items-center space-x-2 flex flex-row">
@@ -753,7 +839,7 @@ export default function App() {
                         color: activeColors.gray,
                       }}
                     >
-                      2019bce028@std.must.ac.ug
+                      {email || "null"}
                     </Text>
                   </View>
                 </View>
@@ -771,7 +857,7 @@ export default function App() {
                         color: activeColors.gray,
                       }}
                     >
-                      2019/BSE/031/PS
+                      {studentID || "null"}
                     </Text>
                   </View>
                 </View>
@@ -796,26 +882,74 @@ export default function App() {
                 >
                   Details -
                 </Text>
-                <Text
+                <View
+                  style={{
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
+                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
+                    // borderRadius: 5,
+                    marginRight: 0,
+                    marginTop: 10,
+                  }}
+                >
+                  {Object.keys(formData).map((obj, i) => {
+                    return (
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "flex-start",
+                        }}
+                        key={i}
+                      >
+                        <StyledText
+                          style={{
+                            color: activeColors.gray,
+                          }}
+                          bold
+                        >
+                          {obj} : &nbsp;
+                        </StyledText>
+                        <Text
+                          className=" font-normal text-justify   "
+                          style={{
+                            color: activeColors.gray,
+                          }}
+                        >
+                          {formData[obj]}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
+                {/* <Text
                   className=" font-normal  "
                   style={{
                     color: activeColors.gray,
                   }}
                 >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic Lorem Ipsum is simply dummy text
-                  of the printing and typesetting industry. Lorem Ipsum has been
-                  the industry's standard dummy text ever since the 1500s, when
-                  an unknown printer took a galley of type and scrambled it to
-                  make a type specimen book. It has survived not only five
-                  centuries, but also the leap into electronic{" "}
-                </Text>
+                  {JSON.stringify(formData, null, 2)}
+                </Text> */}
               </ScrollView>
             </StyledView>
+            <View
+              style={{
+                paddingVertical: 20,
+              }}
+            >
+              {image && (
+                <Image
+                  source={{ uri: image }}
+                  style={{
+                    width: "100%",
+                    height: 250,
+                    borderRadius: 5,
+                    borderColor: activeColors.grayAccent,
+                    borderWidth: 1,
+                  }}
+                />
+              )}
+            </View>
           </ScrollView>
         </View>
       </View>
@@ -834,14 +968,26 @@ export default function App() {
       title: "Inquiry Details",
       desc: "Provide details about your inquiry",
       backgroundColor: "blue",
-      component: <SlideDetails />,
+      component: (
+        <SlideDetails
+          currentStepData={currentStepData}
+          selectedConcern={selectedConcern}
+          handleConcernChange={handleConcernChange}
+          users={users}
+          currentConcern={currentConcern}
+          handleStepChange={handleStepChange}
+          completedSteps={completedSteps}
+          formData={formData}
+          currentStep={currentStep}
+        />
+      ),
     },
     {
       key: 3,
       title: "Attachments",
       desc: "You can attach any relevant files (optional)",
       backgroundColor: "green",
-      component: <SlideAttachments />,
+      component: <SlideAttachments image={image} setImage={setImage} />,
     },
     {
       key: 4,
@@ -852,10 +998,29 @@ export default function App() {
     },
   ];
   const handleDone = () => {
-    // setIsFirstTimeLoad(false);
-    // AsyncStorage.setItem("isFirstTimeOpen", "no");
+    if (
+      name === "" ||
+      null ||
+      studentID === "" ||
+      null ||
+      email === "" ||
+      null ||
+      phoneNumber === "" ||
+      null
+    ) {
+      if (Platform.OS === "ios") {
+        alert("Please fill in all the required required fields to continue");
+      } else {
+        ToastAndroid.show(
+          "Please fill in all the required fields",
+          ToastAndroid.LONG
+        );
+      }
+      return;
+    }
   };
   //   if (loading) return null;
+
   return (
     <MainContainer
       className="flex-1 flex-col px-4 pt-14 "
@@ -865,6 +1030,10 @@ export default function App() {
     >
       {/* <StatusBar hidden /> */}
       <SubmitTicket onDone={handleDone} slides={slides} />
+      <StatusBar
+        // backgroundColor={activeColors.primary}
+        style={theme.mode === "dark" ? "light" : "dark"}
+      />
     </MainContainer>
   );
 }

@@ -30,12 +30,10 @@ export default function Welcome() {
 
   const { isAuthenticated, loading } = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
-  if (isAuthenticated) {
-    router.push("/home");
-  }
+
   React.useEffect(() => {
     Store.dispatch(loadUser());
-  }, [dispatch]);
+  }, []);
   //   if (loading) return null;
 
   if (loading)
@@ -95,6 +93,8 @@ export default function Welcome() {
       </View>
     );
 
+  //github.com/shahriarsajeeb/threads-clone/blob/master/client/App.tsx
+  // if (isAuthenticated) router.push("/home");
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
       <MainContainer

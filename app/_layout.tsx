@@ -52,10 +52,6 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-  // const { isAuthenticated, loading } = useSelector((state: any) => state.user);
-  // useEffect(() => {
-  //   Store.dispatch(loadUser());
-  // }, []);
 
   return (
     <Provider store={Store}>
@@ -114,8 +110,9 @@ const RootLayoutNav = () => {
   useEffect(() => {
     Store.dispatch(loadUser());
   }, []);
-  if (isAuthenticated) router.push("/home");
-
+  if (isAuthenticated) {
+    router.push("/home");
+  }
   // if (loading)
   //   return (
   //     <View

@@ -1,5 +1,3 @@
-import images from "@/constants/images";
-
 import React, {
   useCallback,
   useContext,
@@ -244,10 +242,11 @@ const TicketListingScreen = () => {
                     >
                       {item.toWhom}
                     </Text>
-                    <Image
+                    {/* Fix this image */}
+                    {/* <Image
                       source={images.notice2}
                       className="h-8 w-8 rounded-full"
-                    />
+                    /> */}
                   </View>
                 </View>
               </View>

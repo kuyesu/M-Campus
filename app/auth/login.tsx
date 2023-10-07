@@ -49,10 +49,7 @@ export default function Login() {
   useEffect(() => {
     if (error) {
       if (Platform.OS === "android") {
-        ToastAndroid.show(
-          "Email and password not matching!",
-          ToastAndroid.LONG
-        );
+        ToastAndroid.show(error, ToastAndroid.LONG);
       } else {
         Alert.alert("Email and password not matching!");
       }
@@ -67,6 +64,9 @@ export default function Login() {
     }
   }, [isAuthenticated, error, loading]);
 
+  if (isAuthenticated) {
+    router.push("/home");
+  }
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
       <MainContainer
@@ -146,8 +146,10 @@ export default function Login() {
                     borderRadius: 15,
                     paddingLeft: 20,
                     borderWidth: 2,
+
                     borderColor: activeColors.gray,
                   }}
+                  autoCapitalize="none"
                   className=" w-full px-0"
                   bold
                   value={email}

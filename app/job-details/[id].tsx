@@ -1,76 +1,81 @@
-import React from 'react'
+import React, { useContext } from "react";
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
 import {
-    View,
-    Text,
-    SafeAreaView,
-    ScrollView,
-    ActivityIndicator,
-    RefreshControl,
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 
 import {
-    Company,
-    JobAbout,
-    JobFooter,
-    JobTabs,
-    ScreenHeaderBtn,
-    Specifics,
+  Company,
+  JobAbout,
+  JobFooter,
+  JobTabs,
+  ScreenHeaderBtn,
+  Specifics,
 } from "@/components/jobs";
-import { COLORS, icons, SIZES } from "@/constants";
-import useFetch from '@/hooks/useFetch';
+import { ThemeContext } from "@/context/themeContext";
+import { colors } from "@/constants/Colors";
+import useFetch from "@/hooks/useFetch";
 
-const tabs = ["About", "Qualifications","Responsibilites"];
+const tabs = ["About", "Qualifications", "Responsibilites"];
 
-export default function JobDeatils(){
-    const params = useSearchParams();
-    const router = useRouter();
+export default function JobDeatils() {
+  const params = useSearchParams();
+  const router = useRouter();
 
-    const { data, isLoading, error, refetch } = useFetch("job-details", {
-        job_id: params.id,
-    });
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
 
-    const [activeTab, setActiveTab] = useState(tabs[0]);
-    const [refreshing, setRefreshing] = useState(false);
+  const { data, isLoading, error, refetch } = useFetch("job-details", {
+    job_id: params.id,
+  });
 
-    const onRefresh = useCallback(() => {
-        setRefreshing(true);
-        refetch()
-        setRefreshing(false)
-    }, []);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [refreshing, setRefreshing] = useState(false);
 
-    const displayTabContent = () => {
-        switch (activeTab) {
-            case "Qualifications":
-                return (
-                    <Specifics
-                        title='Qualifications'
-                        points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
-                    />
-                );
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
 
-            case "About":
-                return (
-                    <JobAbout info={data[0].job_description ?? "No data provided"} />
-                );
+  const displayTabContent = () => {
+    switch (activeTab) {
+      case "Qualifications":
+        return (
+          <Specifics
+            title="Qualifications"
+            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+          />
+        );
 
-            case "Responsibilities":
-                return (
-                    <Specifics
-                        title='Responsibilities'
-                        points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
-                    />
-                );
+      case "About":
+        return (
+          <JobAbout info={data[0].job_description ?? "No data provided"} />
+        );
 
-            default:
-                return null;
-        }
-    };
+      case "Responsibilities":
+        return (
+          <Specifics
+            title="Responsibilities"
+            points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
+          />
+        );
 
-    return (
-        <SafeAreaView>
-            {/* <Stack.Screen
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <SafeAreaView>
+      {/* <Stack.Screen
                 options={{
                     headerStyle: { backgroundColor: COLORS.lightWhite },
                     headerShadowVisible: false,
@@ -88,38 +93,48 @@ export default function JobDeatils(){
                     headerTitle: "",
                 }}
             /> */}
-            <>
-                <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }>
-                    {isLoading ? (
-                        <ActivityIndicator size='large' color={COLORS.primary} />
-                    ) : error ? (
-                        <Text>Something went wrong</Text>
-                    ) : data.length === 0 ? (
-                        <Text>No data available</Text>
-                    ) : (
-                        <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-                            <Company
-                                companyLogo={data[0].employer_logo}
-                                jobTitle={data[0].job_title}
-                                companyName={data[0].employer_name}
-                                location={data[0].job_country}
-                            />
+      <>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
+          {isLoading ? (
+            <ActivityIndicator size="large" color={activeColors.accent} />
+          ) : error ? (
+            <Text>Something went wrong</Text>
+          ) : data.length === 0 ? (
+            <Text>No data available</Text>
+          ) : (
+            <View style={{ paddingBottom: 100 }}>
+              <Company
+                companyLogo={data[0].employer_logo}
+                jobTitle={data[0].job_title}
+                companyName={data[0].employer_name}
+                location={data[0].job_country}
+              />
 
-                            <JobTabs
-                                tabs={tabs}
-                                activeTab={activeTab}
-                                setActiveTab={setActiveTab}
-                            />
+              <JobTabs
+                tabs={tabs}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+              />
 
-                            {displayTabContent()}
-                        </View>
-                    )}
-                </ScrollView>
+              {displayTabContent()}
+            </View>
+          )}
+        </ScrollView>
 
-                {!isLoading ? (<JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />): null}
-            </>
-        </SafeAreaView>
-    )
+        {!isLoading ? (
+          <JobFooter
+            url={
+              data[0]?.job_google_link ??
+              "https://careers.google.com/jobs/results/"
+            }
+          />
+        ) : null}
+      </>
+    </SafeAreaView>
+  );
 }

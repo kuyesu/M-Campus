@@ -37,6 +37,7 @@ export default function TabLayout() {
     <Tabs
       initialRouteName="home/index"
       screenOptions={({ route }) => ({
+        tabBarHideOnKeyboard: true,
         headerLeftContainerStyle: {
           justifyContent: "center",
           alignContent: "center",

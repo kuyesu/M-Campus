@@ -139,13 +139,13 @@ export default function TabOneScreen() {
   }
 
   const handleAppOnPress = (route: any) => {
-    setIsOpen(false);
-    router.push(route);
-    setIsOpen(false);
-    bottomSheetModalRef.current?.close();
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 100);
+    // setIsOpen(false);
+    // router.push(route);
+    // setIsOpen(false);
+    // bottomSheetModalRef.current?.close();
+    // setTimeout(() => {
+    //   setIsOpen(false);
+    // }, 100);
   };
   return (
     <MainContainer
@@ -203,7 +203,7 @@ export default function TabOneScreen() {
               >
                 {/* here is the modal bottomsheet */}
                 <StyledBottomSheet
-                  setIsOpen={setIsOpen(false)}
+                  // setIsOpen={setIsOpen(false)}
                   index={1}
                   bottomSheetModalRef={bottomSheetModalRef}
                   snapPoints={snapPoints}

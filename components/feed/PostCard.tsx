@@ -32,6 +32,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
     avatar: {
       url: "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png",
     },
+    role: "",
   });
   const time = item?.createdAt;
   const formattedDuration = getTimeDuration(time);

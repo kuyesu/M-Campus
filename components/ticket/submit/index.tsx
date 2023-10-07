@@ -17,6 +17,7 @@ import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import MainContainer from "@/components/container/MainContainer";
 import StyledText from "@/components/Text/StyledText";
+import { StatusBar } from "expo-status-bar";
 
 const SubmitTicket = ({ slides = [], onDone }) => {
   const { theme } = useContext(ThemeContext);
@@ -58,6 +59,10 @@ const SubmitTicket = ({ slides = [], onDone }) => {
         flexDirection: "column",
       }}
     >
+      <StatusBar
+        style={theme.mode === "dark" ? "light" : "dark"}
+        backgroundColor={activeColors.primary}
+      />
       <FlatList
         ref={flatListRef}
         horizontal
