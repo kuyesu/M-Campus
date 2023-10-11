@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dimensions } from "react-native";
@@ -17,8 +17,9 @@ import MainContainer from "@/components/container/MainContainer";
 import { colors } from "@/constants/Colors";
 import { useContext, useState } from "react";
 import { ThemeContext } from "@/context/themeContext";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import StyledText from "@/components/Text/StyledText";
+import StyledView from "@/components/View/StyledView";
 
 const { width } = Dimensions.get("window");
 
@@ -60,28 +61,35 @@ export default function TabOneScreen() {
   }, [posts, user]);
   return (
     <MainContainer style={styles.container}>
-      <View>
+      <View
+        style={{
+          width: "100%",
+          borderBottomColor: activeColors.grayAccent,
+          borderBottomWidth: 1,
+        }}
+      >
         <View
           className="flex-row justify-between"
-          style={{ width: width, padding: 10 }}
+          style={{ width: "100%", padding: 10 }}
         >
           <View>
             <StyledText big bold>
               {user?.name}
             </StyledText>
             <StyledText
-              bold
               style={{
                 color: activeColors.gray,
+                textTransform: "none",
+                fontStyle: "italic",
               }}
             >
-              {user?.userName}
+              @{user?.userName}
             </StyledText>
           </View>
 
           <View className="relative">
             <Image
-              source={{ uri: user?.avatar?.url }}
+              source={{ uri: user?.avatar.url }}
               height={80}
               width={80}
               borderRadius={100}
@@ -108,74 +116,89 @@ export default function TabOneScreen() {
           //   })
           // }
           >
-            <StyledText
-              style={{
-                color: activeColors.gray,
-              }}
-            >
-              {user?.followers.length} followers
-            </StyledText>
+            {/* <StyledText style={{}}>Update your profile info</StyledText> */}
           </TouchableOpacity>
         </View>
-        <View className="px-8 py-3 flex-row w-full items-center">
-          <TouchableOpacity
-          // onPress={() => navigation.navigate("EditProfile")}
-          >
-            <StyledText
-              className="w-[100] pt-2 text-center h-[40px]"
-              style={{
-                backgroundColor: activeColors.accent,
-                borderColor: activeColors.accent,
-                borderWidth: 1,
-                borderRadius: 5,
-                color: activeColors.accentGray,
-                textAlign: "center",
-              }}
-            >
-              Edit Profile
-            </StyledText>
-          </TouchableOpacity>
+        <StyledView
+          className="px-4 py-5 my-5 flex-row w-full items-center justify-between rounded-none"
+          style={{
+            borderColor: activeColors.grayAccent,
+            borderWidth: 1,
+          }}
+        >
+          <Link href="/EditProfile" asChild>
+            <Pressable>
+              {({ pressed }) => (
+                <StyledText
+                  className="w-[100] pt-2 text-center h-[40px]"
+                  style={{
+                    backgroundColor: activeColors.accent,
+                    borderColor: activeColors.accent,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    color: activeColors.accentGray,
+                    textAlign: "center",
+                  }}
+                  bold
+                >
+                  Edit Profile
+                </StyledText>
+              )}
+            </Pressable>
+          </Link>
+
           <TouchableOpacity className="ml-5" onPress={logoutHandler}>
             <StyledText
               className="w-[100] pt-2 text-center h-[40px] "
               style={{
-                borderColor: activeColors.gray,
+                borderColor: activeColors.grayAccent,
                 borderWidth: 1,
                 borderRadius: 5,
                 textAlign: "center",
               }}
+              bold
             >
               Log Out
             </StyledText>
           </TouchableOpacity>
-        </View>
+        </StyledView>
         <View
-          className="border-b border-b-[#00000032] px-4 py-3"
-          style={{ width: "100%" }}
+          className=" px-4 py-3"
+          style={{
+            width: "100%",
+            borderBottomColor: activeColors.grayAccent,
+            borderBottomWidth: 1,
+          }}
         >
           <View className="w-[80%] m-auto flex-row justify-between">
-            <TouchableOpacity onPress={() => setActive(0)}>
-              <Text
-                className="text-[18px] pl-3 text-[#000]"
-                style={{ opacity: active === 0 ? 1 : 0.6 }}
-              >
-                Threads
-              </Text>
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => setActive(1)}>
-              <Text
-                className="text-[18px] pl-3 text-[#000]"
-                style={{ opacity: active === 1 ? 1 : 0.6 }}
-              >
+              <StyledText bold style={{ opacity: active === 1 ? 1 : 0.6 }}>
                 Replies
-              </Text>
+              </StyledText>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActive(0)}>
+              <StyledText bold style={{ opacity: active === 0 ? 1 : 0.6 }}>
+                Posts
+              </StyledText>
             </TouchableOpacity>
           </View>
         </View>
         {active === 0 ? (
-          <View className="w-[50%] absolute h-[1px] bg-black left-[-10px] bottom-0" />
+          <View
+            className="w-[50%] absolute h-[1px]  left-[-10px] bottom-0"
+            style={{
+              backgroundColor: activeColors.grayAccent,
+              borderBottomWidth: 2,
+            }}
+          />
         ) : (
-          <View className="w-[50%] absolute h-[1px] bg-black right-[-10px] bottom-0" />
+          <View
+            className="w-[50%] absolute h-[1px]  right-[-10px] bottom-0"
+            style={{
+              backgroundColor: activeColors.grayAccent,
+              borderBottomWidth: 2,
+            }}
+          />
         )}
       </View>
       {active === 0 && (
@@ -204,9 +227,9 @@ export default function TabOneScreen() {
       {active === 0 && (
         <>
           {data.length === 0 && (
-            <Text className="text-black text-[14px] mt-8 text-center">
-              You have no posts yet!
-            </Text>
+            <StyledText className="  mt-8 text-center">
+              There are no posts yet!
+            </StyledText>
           )}
         </>
       )}
@@ -214,9 +237,9 @@ export default function TabOneScreen() {
       {active === 1 && (
         <>
           {repliesData.length === 0 && (
-            <Text className="text-black text-[14px] mt-8 text-center">
-              You have no replies yet!
-            </Text>
+            <StyledText className="  mt-8 text-center">
+              You have no reply yet!
+            </StyledText>
           )}
         </>
       )}
@@ -226,6 +249,7 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 25,
+    paddingVertical: 25,
+    paddingHorizontal: 10,
   },
 });

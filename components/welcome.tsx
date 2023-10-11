@@ -20,6 +20,7 @@ import { colors } from "@/constants/Colors";
 import SettingItem from "@/components/reuseable/Settings/SettingItem";
 import { ThemeContext } from "@/context/themeContext";
 import { StatusBar } from "expo-status-bar";
+import { router } from "expo-router";
 
 export default function TabOneScreen() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -68,7 +69,7 @@ export default function TabOneScreen() {
             fingertips.
           </StyledText>
           <View style={{ marginTop: "15%" }}></View>
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <TouchableOpacity onPress={() => router.push("/auth/login")}>
             <LinearGradient
               // Button Linear Gradient
               colors={["#FFFFFF", "#F4ACAC"]}
@@ -93,7 +94,7 @@ export default function TabOneScreen() {
             </LinearGradient>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <TouchableOpacity onPress={() => router.push("/auth/register")}>
             <View style={styles.btn2}>
               <View
                 style={{

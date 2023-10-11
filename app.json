@@ -11,21 +11,24 @@
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#1f2937"
-      // "darkMode": true
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "usesIcloudStorage": true,
       "supportsTablet": true,
       "bundleIdentifier": "com.kuyeso.MCampus"
     },
-
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.kuyeso.MCampus"
+      "package": "com.kuyeso.MCampus",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -45,6 +48,14 @@
     "experiments": {
       "tsconfigPaths": true,
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6f02aed6-2e3b-4d4d-91ba-bfa9dc18cfdc"
+      }
     }
   }
 }

@@ -9,765 +9,756 @@
 9        android:targetSdkVersion="33" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:4:3-75
-11-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:4:20-73
-12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:2:3-64
-12-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:2:20-62
-13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-13-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:3:3-77
-13-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:3:20-75
-14    <uses-permission android:name="android.permission.VIBRATE" />
-14-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:5:3-63
-14-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:5:20-61
-15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-15-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:6:3-78
-15-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:6:20-76
-16
-17    <queries>
-17-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:7:3-13:13
-18        <intent>
-18-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:8:5-12:14
-19            <action android:name="android.intent.action.VIEW" />
-19-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:7-58
-19-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:15-56
-20
-21            <category android:name="android.intent.category.BROWSABLE" />
-21-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:7-67
-21-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:17-65
+11-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:6:3-75
+11-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:6:20-73
+12    <uses-permission android:name="android.permission.CAMERA" />
+12-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:2:3-62
+12-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:2:20-60
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:3:3-64
+13-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:3:20-62
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:4:3-77
+14-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:4:20-75
+15    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+15-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:5:3-68
+15-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:5:20-66
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:7:3-63
+16-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:7:20-61
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:8:3-78
+17-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:8:20-76
+18
+19    <queries>
+19-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:3-15:13
+20        <intent>
+20-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:5-14:14
+21            <action android:name="android.intent.action.VIEW" />
+21-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-58
+21-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:15-56
 22
-23            <data android:scheme="https" />
-23-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-23-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:13-35
-24        </intent>
-25        <intent>
-25-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-10:18
-26            <action android:name="android.media.action.IMAGE_CAPTURE" />
-26-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-73
-26-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:21-70
-27        </intent>
-28
-29        <package android:name="host.exp.exponent" /> <!-- Query open documents -->
-29-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-53
-29-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:18-50
-30        <intent>
-30-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-17:18
-31            <action android:name="android.intent.action.OPEN_DOCUMENT" />
-31-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
-31-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-71
-32
-33            <category android:name="android.intent.category.DEFAULT" />
-33-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:9-67
-33-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:19-65
-34            <category android:name="android.intent.category.OPENABLE" />
-34-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-73
-34-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:23-70
-35
-36            <data android:mimeType="*/*" />
-36-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-37        </intent> <!-- Query open documents -->
-38        <intent>
-38-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-17:18
-39            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
-39-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-79
-39-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:21-76
-40        </intent>
-41        <intent>
-41-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:9-26:18
-42
-43            <!-- Required for picking images from the camera if targeting API 30 -->
-44            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
-44-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-80
-44-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:21-77
-45        </intent>
-46        <intent>
-46-->[:expo-web-browser] /Users/goodman/Desktop/M-Campus/node_modules/expo-web-browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-12:18
-47
-48            <!-- Required for opening tabs if targeting API 30 -->
-49            <action android:name="android.support.customtabs.action.CustomTabsService" />
-49-->[:expo-web-browser] /Users/goodman/Desktop/M-Campus/node_modules/expo-web-browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-90
-49-->[:expo-web-browser] /Users/goodman/Desktop/M-Campus/node_modules/expo-web-browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-87
-50        </intent>
-51        <intent>
-51-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:10:9-16:18
-52            <action android:name="android.intent.action.GET_CONTENT" />
-52-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:11:13-72
-52-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:11:21-69
-53
-54            <category android:name="android.intent.category.OPENABLE" />
-54-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-73
-54-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:23-70
+23            <category android:name="android.intent.category.BROWSABLE" />
+23-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:7-67
+23-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:17-65
+24
+25            <data android:scheme="https" />
+25-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+25-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:13-35
+26        </intent>
+27        <intent>
+27-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-10:18
+28            <action android:name="android.media.action.IMAGE_CAPTURE" />
+28-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-73
+28-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:21-70
+29        </intent>
+30
+31        <package android:name="host.exp.exponent" /> <!-- Query open documents -->
+31-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-53
+31-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:18-50
+32        <intent>
+32-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-17:18
+33            <action android:name="android.intent.action.OPEN_DOCUMENT" />
+33-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+33-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-71
+34
+35            <category android:name="android.intent.category.DEFAULT" />
+35-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:9-67
+35-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:19-65
+36            <category android:name="android.intent.category.OPENABLE" />
+36-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-73
+36-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:23-70
+37
+38            <data android:mimeType="*/*" />
+38-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+39        </intent> <!-- Query open documents -->
+40        <intent>
+40-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-17:18
+41            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+41-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-79
+41-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:21-76
+42        </intent>
+43        <intent>
+43-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:9-26:18
+44
+45            <!-- Required for picking images from the camera if targeting API 30 -->
+46            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+46-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-80
+46-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:21-77
+47        </intent>
+48        <intent>
+48-->[:expo-web-browser] /Users/goodman/Desktop/M-Campus/node_modules/expo-web-browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-12:18
+49
+50            <!-- Required for opening tabs if targeting API 30 -->
+51            <action android:name="android.support.customtabs.action.CustomTabsService" />
+51-->[:expo-web-browser] /Users/goodman/Desktop/M-Campus/node_modules/expo-web-browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-90
+51-->[:expo-web-browser] /Users/goodman/Desktop/M-Campus/node_modules/expo-web-browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-87
+52        </intent>
+53        <intent>
+53-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:10:9-16:18
+54            <action android:name="android.intent.action.GET_CONTENT" />
+54-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:11:13-72
+54-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:11:21-69
 55
-56            <data android:mimeType="*/*" />
-56-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-57        </intent> <!-- Needs to be explicitly declared on Android R+ -->
-58        <package android:name="com.google.android.apps.maps" />
-58-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:33:9-64
-58-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:33:18-61
-59    </queries>
-60
-61    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required for picking images from camera directly -->
-61-->[com.facebook.flipper:flipper:0.182.0] /Users/goodman/.gradle/caches/transforms-3/96aa0437b2be82ab10ada7819631979e/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:16:5-76
-61-->[com.facebook.flipper:flipper:0.182.0] /Users/goodman/.gradle/caches/transforms-3/96aa0437b2be82ab10ada7819631979e/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:16:22-73
-62    <uses-permission android:name="android.permission.CAMERA" />
-62-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-65
-62-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-62
-63    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-63-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-76
-63-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:22-73
-64    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" /> <!-- Include required permissions for Google Maps API to run. -->
-64-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:5-75
-64-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:22-72
-65    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-65-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:23:5-79
-65-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:23:22-76
-66
-67    <uses-feature
-67-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:26:5-28:35
-68        android:glEsVersion="0x00020000"
-68-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:27:9-41
-69        android:required="true" />
-69-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:28:9-32
-70
-71    <uses-permission android:name="android.permission.WAKE_LOCK" />
-71-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:25:5-68
-71-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:25:22-65
-72    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-72-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:5-81
-72-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:22-78
-73    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-73-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:28:5-77
-73-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:28:22-74
-74
-75    <permission
-75-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
-76        android:name="com.kuyeso.MCampus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-76-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
-77        android:protectionLevel="signature" />
-77-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
-78
-79    <uses-permission android:name="com.kuyeso.MCampus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-79-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
-79-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
-80    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-80-->[com.android.installreferrer:installreferrer:1.0] /Users/goodman/.gradle/caches/transforms-3/b1a16a15647b79011e01c3be39eeeaf0/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
-80-->[com.android.installreferrer:installreferrer:1.0] /Users/goodman/.gradle/caches/transforms-3/b1a16a15647b79011e01c3be39eeeaf0/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
-81
-82    <application
-82-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:3-34:17
-83        android:name="com.kuyeso.MCampus.MainApplication"
-83-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:16-47
-84        android:allowBackup="true"
-84-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:162-188
-85        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-85-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
-86        android:debuggable="true"
-87        android:icon="@mipmap/ic_launcher"
-87-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:81-115
-88        android:label="@string/app_name"
-88-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:48-80
-89        android:roundIcon="@mipmap/ic_launcher_round"
-89-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:116-161
-90        android:theme="@style/AppTheme"
-90-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:14:189-220
-91        android:usesCleartextTraffic="true" >
-91-->/Users/goodman/Desktop/M-Campus/android/app/src/debug/AndroidManifest.xml:6:18-53
-92        <meta-data
-92-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:15:5-83
-93            android:name="expo.modules.updates.ENABLED"
-93-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:15:16-59
-94            android:value="false" />
-94-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:15:60-81
-95        <meta-data
-95-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:5-93
-96            android:name="expo.modules.updates.EXPO_SDK_VERSION"
-96-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:16-68
-97            android:value="49.0.0" />
-97-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:69-91
-98        <meta-data
-98-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:17:5-105
-99            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
-99-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:17:16-80
-100            android:value="ALWAYS" />
-100-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:17:81-103
-101        <meta-data
-101-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:18:5-99
-102            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
-102-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:18:16-79
-103            android:value="0" />
-103-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:18:80-97
-104
-105        <activity
-105-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:5-32:16
-106            android:name="com.kuyeso.MCampus.MainActivity"
-106-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:15-43
-107            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-107-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:77-154
-108            android:exported="true"
-108-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:276-299
-109            android:label="@string/app_name"
-109-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:44-76
-110            android:launchMode="singleTask"
-110-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:155-186
-111            android:screenOrientation="portrait"
-111-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:300-336
-112            android:theme="@style/Theme.App.SplashScreen"
-112-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:230-275
-113            android:windowSoftInputMode="adjustResize" >
-113-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:187-229
-114            <intent-filter>
-114-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:20:7-23:23
-115                <action android:name="android.intent.action.MAIN" />
-115-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:21:9-60
-115-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:21:17-58
-116
-117                <category android:name="android.intent.category.LAUNCHER" />
-117-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:9-68
-117-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:19-66
-118            </intent-filter>
-119            <intent-filter>
-119-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:24:7-31:23
-120                <action android:name="android.intent.action.VIEW" />
-120-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:7-58
-120-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:15-56
-121
-122                <category android:name="android.intent.category.DEFAULT" />
-122-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:9-67
-122-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:19-65
-123                <category android:name="android.intent.category.BROWSABLE" />
-123-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:7-67
-123-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:17-65
-124
-125                <data android:scheme="myapp" />
-125-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-125-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:13-35
-126                <data android:scheme="com.kuyeso.MCampus" />
-126-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-126-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:13-35
-127                <data android:scheme="exp+m-campus" />
-127-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-127-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:13-35
-128            </intent-filter>
-129        </activity>
-130        <activity
-130-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:33:5-106
-131            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-131-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:33:15-79
-132            android:exported="false" />
-132-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:33:80-104
-133
-134        <provider
-134-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
-135            android:name="com.vinzscam.reactnativefileviewer.FileProvider"
-135-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-75
-136            android:authorities="com.kuyeso.MCampus.provider"
-136-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-60
-137            android:exported="false"
-137-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
-138            android:grantUriPermissions="true" >
-138-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
-139            <meta-data
-139-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-140                android:name="android.support.FILE_PROVIDER_PATHS"
-140-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-141                android:resource="@xml/file_viewer_provider_paths" />
-141-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-142        </provider>
-143        <provider
-143-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-24:20
-144            android:name="com.reactnative.ivpusic.imagepicker.IvpusicImagePickerFileProvider"
-144-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-94
-145            android:authorities="com.kuyeso.MCampus.provider"
-145-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-60
-146            android:exported="false"
-146-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
-147            android:grantUriPermissions="true" >
-147-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-47
-148            <meta-data
-148-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-149                android:name="android.support.FILE_PROVIDER_PATHS"
-149-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-150                android:resource="@xml/ivpusic_imagepicker_provider_paths" />
-150-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-151        </provider>
-152
-153        <activity
-153-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:9-28:72
-154            android:name="com.yalantis.ucrop.UCropActivity"
-154-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-60
-155            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-155-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-69
+56            <category android:name="android.intent.category.OPENABLE" />
+56-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-73
+56-->[:expo-document-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:23-70
+57
+58            <data android:mimeType="*/*" />
+58-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+59        </intent> <!-- Needs to be explicitly declared on Android R+ -->
+60        <package android:name="com.google.android.apps.maps" />
+60-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:33:9-64
+60-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:33:18-61
+61    </queries>
+62
+63    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+63-->[com.facebook.flipper:flipper:0.182.0] /Users/goodman/.gradle/caches/transforms-3/96aa0437b2be82ab10ada7819631979e/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:16:5-76
+63-->[com.facebook.flipper:flipper:0.182.0] /Users/goodman/.gradle/caches/transforms-3/96aa0437b2be82ab10ada7819631979e/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:16:22-73
+64    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+64-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-76
+64-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:22-73
+65    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" /> <!-- Include required permissions for Google Maps API to run. -->
+65-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:5-75
+65-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:22-72
+66    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+66-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:23:5-79
+66-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:23:22-76
+67
+68    <uses-feature
+68-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:26:5-28:35
+69        android:glEsVersion="0x00020000"
+69-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:27:9-41
+70        android:required="true" />
+70-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:28:9-32
+71
+72    <uses-permission android:name="android.permission.WAKE_LOCK" />
+72-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:25:5-68
+72-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:25:22-65
+73    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+73-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:5-81
+73-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:22-78
+74    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+74-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:28:5-77
+74-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:28:22-74
+75
+76    <permission
+76-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+77        android:name="com.kuyeso.MCampus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+77-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+78        android:protectionLevel="signature" />
+78-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+79
+80    <uses-permission android:name="com.kuyeso.MCampus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+80-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+80-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+81    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+81-->[com.android.installreferrer:installreferrer:1.0] /Users/goodman/.gradle/caches/transforms-3/b1a16a15647b79011e01c3be39eeeaf0/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+81-->[com.android.installreferrer:installreferrer:1.0] /Users/goodman/.gradle/caches/transforms-3/b1a16a15647b79011e01c3be39eeeaf0/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+82
+83    <application
+83-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:3-37:17
+84        android:name="com.kuyeso.MCampus.MainApplication"
+84-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:16-47
+85        android:allowBackup="true"
+85-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:162-188
+86        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+86-->[androidx.core:core:1.9.0] /Users/goodman/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+87        android:debuggable="true"
+88        android:icon="@mipmap/ic_launcher"
+88-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:81-115
+89        android:label="@string/app_name"
+89-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:48-80
+90        android:roundIcon="@mipmap/ic_launcher_round"
+90-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:116-161
+91        android:theme="@style/AppTheme"
+91-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:16:189-220
+92        android:usesCleartextTraffic="true" >
+92-->/Users/goodman/Desktop/M-Campus/android/app/src/debug/AndroidManifest.xml:6:18-53
+93        <meta-data
+93-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:17:5-83
+94            android:name="expo.modules.updates.ENABLED"
+94-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:17:16-59
+95            android:value="false" />
+95-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:17:60-81
+96        <meta-data
+96-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:18:5-93
+97            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+97-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:18:16-68
+98            android:value="49.0.0" />
+98-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:18:69-91
+99        <meta-data
+99-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:5-105
+100            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+100-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:16-80
+101            android:value="ALWAYS" />
+101-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:19:81-103
+102        <meta-data
+102-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:20:5-99
+103            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+103-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:20:16-79
+104            android:value="0" />
+104-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:20:80-97
+105        <meta-data
+105-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:21:5-119
+106            android:name="com.google.android.geo.API_KEY"
+106-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:21:16-61
+107            android:value="AIzaSyCAGjQvoP0Li6ZrXVayHvzV2ReB18pt86k" />
+107-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:21:62-117
+108
+109        <activity
+109-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:5-35:16
+110            android:name="com.kuyeso.MCampus.MainActivity"
+110-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:15-43
+111            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+111-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:77-154
+112            android:exported="true"
+112-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:276-299
+113            android:label="@string/app_name"
+113-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:44-76
+114            android:launchMode="singleTask"
+114-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:155-186
+115            android:screenOrientation="portrait"
+115-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:300-336
+116            android:theme="@style/Theme.App.SplashScreen"
+116-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:230-275
+117            android:windowSoftInputMode="adjustResize" >
+117-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:22:187-229
+118            <intent-filter>
+118-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:23:7-26:23
+119                <action android:name="android.intent.action.MAIN" />
+119-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:24:9-60
+119-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:24:17-58
+120
+121                <category android:name="android.intent.category.LAUNCHER" />
+121-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:25:9-68
+121-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:25:19-66
+122            </intent-filter>
+123            <intent-filter>
+123-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:27:7-34:23
+124                <action android:name="android.intent.action.VIEW" />
+124-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-58
+124-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:15-56
+125
+126                <category android:name="android.intent.category.DEFAULT" />
+126-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:9-67
+126-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:19-65
+127                <category android:name="android.intent.category.BROWSABLE" />
+127-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:7-67
+127-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:17-65
+128
+129                <data android:scheme="myapp" />
+129-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+129-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:13-35
+130                <data android:scheme="com.kuyeso.MCampus" />
+130-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+130-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:13-35
+131                <data android:scheme="exp+m-campus" />
+131-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+131-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:13-35
+132            </intent-filter>
+133        </activity>
+134        <activity
+134-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:36:5-106
+135            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+135-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:36:15-79
+136            android:exported="false" />
+136-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:36:80-104
+137
+138        <provider
+138-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
+139            android:name="com.vinzscam.reactnativefileviewer.FileProvider"
+139-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-75
+140            android:authorities="com.kuyeso.MCampus.provider"
+140-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-60
+141            android:exported="false"
+141-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
+142            android:grantUriPermissions="true" >
+142-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
+143            <meta-data
+143-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+144                android:name="android.support.FILE_PROVIDER_PATHS"
+144-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+145                android:resource="@xml/file_viewer_provider_paths" />
+145-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+146        </provider>
+147        <provider
+147-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-24:20
+148            android:name="com.reactnative.ivpusic.imagepicker.IvpusicImagePickerFileProvider"
+148-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-94
+149            android:authorities="com.kuyeso.MCampus.provider"
+149-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-60
+150            android:exported="false"
+150-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
+151            android:grantUriPermissions="true" >
+151-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-47
+152            <meta-data
+152-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+153                android:name="android.support.FILE_PROVIDER_PATHS"
+153-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+154                android:resource="@xml/ivpusic_imagepicker_provider_paths" />
+154-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+155        </provider>
 156
-157        <provider
-157-->[:react-native-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
-158            android:name="com.imagepicker.ImagePickerProvider"
-158-->[:react-native-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-63
-159            android:authorities="com.kuyeso.MCampus.imagepickerprovider"
-159-->[:react-native-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-71
-160            android:exported="false"
-160-->[:react-native-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
-161            android:grantUriPermissions="true" >
-161-->[:react-native-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
-162            <meta-data
-162-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-163                android:name="android.support.FILE_PROVIDER_PATHS"
-163-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-164                android:resource="@xml/imagepicker_provider_paths" />
-164-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-165        </provider>
-166
-167        <meta-data
-167-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-14:37
-168            android:name="expo.modules.updates.AUTO_SETUP"
-168-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-59
-169            android:value="false" />
-169-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-34
-170
-171        <activity
-171-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-29:20
-172            android:name="expo.modules.devlauncher.launcher.DevLauncherActivity"
-172-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-81
-173            android:exported="true"
-173-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-36
-174            android:launchMode="singleTask"
-174-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-44
-175            android:theme="@style/Theme.DevLauncher.LauncherActivity" >
-175-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-70
-176            <intent-filter>
-176-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-28:29
-177                <action android:name="android.intent.action.VIEW" />
-177-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:7-58
-177-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:15-56
-178
-179                <category android:name="android.intent.category.DEFAULT" />
-179-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:9-67
-179-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:19-65
-180                <category android:name="android.intent.category.BROWSABLE" />
-180-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:7-67
-180-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:17-65
-181
-182                <data android:scheme="expo-dev-launcher" />
-182-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-182-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:13-35
-183            </intent-filter>
-184        </activity>
-185        <activity
-185-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:9-33:70
-186            android:name="expo.modules.devlauncher.launcher.errors.DevLauncherErrorActivity"
-186-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-93
-187            android:screenOrientation="portrait"
-187-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-49
-188            android:theme="@style/Theme.DevLauncher.ErrorActivity" />
-188-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-67
-189        <activity
-189-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-21:20
-190            android:name="expo.modules.devmenu.DevMenuActivity"
-190-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-64
-191            android:exported="true"
-191-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-36
-192            android:launchMode="singleTask"
-192-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-44
-193            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" >
-193-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-75
-194            <intent-filter>
-194-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-20:29
-195                <action android:name="android.intent.action.VIEW" />
-195-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:7-58
-195-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:9:15-56
-196
-197                <category android:name="android.intent.category.DEFAULT" />
-197-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:9-67
-197-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:26:19-65
-198                <category android:name="android.intent.category.BROWSABLE" />
-198-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:7-67
-198-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:10:17-65
-199
-200                <data android:scheme="expo-dev-menu" />
-200-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-37
-200-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:13-35
-201            </intent-filter>
-202        </activity>
-203
-204        <provider
-204-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-30:20
-205            android:name="expo.modules.filesystem.FileSystemFileProvider"
-205-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-74
-206            android:authorities="com.kuyeso.MCampus.FileSystemFileProvider"
-206-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-74
-207            android:exported="false"
-207-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
-208            android:grantUriPermissions="true" >
-208-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-47
-209            <meta-data
-209-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-210                android:name="android.support.FILE_PROVIDER_PATHS"
-210-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-211                android:resource="@xml/file_system_provider_paths" />
-211-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-212        </provider>
-213
-214        <service
-214-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:9-42:19
-215            android:name="com.google.android.gms.metadata.ModuleDependencies"
-215-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-78
-216            android:enabled="false"
-216-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-36
-217            android:exported="false" >
-217-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-37
-218            <intent-filter>
-218-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-37:29
-219                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
-219-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:17-94
-219-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:25-91
-220            </intent-filter>
-221
-222            <meta-data
-222-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-41:36
-223                android:name="photopicker_activity:0:required"
-223-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:17-63
-224                android:value="" />
-224-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:17-33
-225        </service>
-226
-227        <activity
-227-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:44:9-46:59
-228            android:name="com.canhub.cropper.CropImageActivity"
-228-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:45:13-64
-229            android:exported="true"
-229-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:35:13-36
-230            android:theme="@style/Base.Theme.AppCompat" /> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
-230-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:46:13-56
-231        <provider
-231-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:48:9-56:20
-232            android:name="expo.modules.imagepicker.fileprovider.ImagePickerFileProvider"
-232-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:49:13-89
-233            android:authorities="com.kuyeso.MCampus.ImagePickerFileProvider"
-233-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:50:13-75
-234            android:exported="false"
-234-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:51:13-37
-235            android:grantUriPermissions="true" >
-235-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:52:13-47
-236            <meta-data
-236-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-237                android:name="android.support.FILE_PROVIDER_PATHS"
-237-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-238                android:resource="@xml/image_picker_provider_paths" />
-238-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-239        </provider>
-240
-241        <meta-data
-241-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:89
-242            android:name="org.unimodules.core.AppLoader#react-native-headless"
-242-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-79
-243            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
-243-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-86
-244        <meta-data
-244-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-15:45
-245            android:name="com.facebook.soloader.enabled"
-245-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-57
-246            android:value="true" />
-246-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-33
-247
-248        <provider
-248-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:23:9-31:20
-249            android:name="com.canhub.cropper.CropFileProvider"
-249-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:24:13-63
-250            android:authorities="com.kuyeso.MCampus.cropper.fileprovider"
-250-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:25:13-72
-251            android:exported="false"
-251-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:26:13-37
-252            android:grantUriPermissions="true" >
-252-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:27:13-47
-253            <meta-data
-253-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-254                android:name="android.support.FILE_PROVIDER_PATHS"
-254-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-255                android:resource="@xml/library_file_paths" />
-255-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-256        </provider> <!-- Needs to be explicitly declared on P+ -->
-257        <uses-library
-257-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:39:9-41:40
-258            android:name="org.apache.http.legacy"
-258-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:40:13-50
-259            android:required="false" />
-259-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:41:13-37
-260
-261        <activity
-261-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
-262            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-262-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
-263            android:exported="false"
-263-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
-264            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-264-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
-265
-266        <meta-data
-266-->[com.google.android.gms:play-services-basement:18.1.0] /Users/goodman/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
-267            android:name="com.google.android.gms.version"
-267-->[com.google.android.gms:play-services-basement:18.1.0] /Users/goodman/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
-268            android:value="@integer/google_play_services_version" />
-268-->[com.google.android.gms:play-services-basement:18.1.0] /Users/goodman/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
-269
-270        <provider
-270-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:31:9-39:20
-271            android:name="androidx.startup.InitializationProvider"
-271-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:32:13-67
-272            android:authorities="com.kuyeso.MCampus.androidx-startup"
-272-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:33:13-68
-273            android:exported="false" >
-273-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:34:13-37
+157        <activity
+157-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:9-28:72
+158            android:name="com.yalantis.ucrop.UCropActivity"
+158-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-60
+159            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+159-->[:react-native-image-crop-picker] /Users/goodman/Desktop/M-Campus/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-69
+160
+161        <meta-data
+161-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-14:37
+162            android:name="expo.modules.updates.AUTO_SETUP"
+162-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-59
+163            android:value="false" />
+163-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-34
+164
+165        <activity
+165-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-29:20
+166            android:name="expo.modules.devlauncher.launcher.DevLauncherActivity"
+166-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-81
+167            android:exported="true"
+167-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-36
+168            android:launchMode="singleTask"
+168-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-44
+169            android:theme="@style/Theme.DevLauncher.LauncherActivity" >
+169-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-70
+170            <intent-filter>
+170-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-28:29
+171                <action android:name="android.intent.action.VIEW" />
+171-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-58
+171-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:15-56
+172
+173                <category android:name="android.intent.category.DEFAULT" />
+173-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:9-67
+173-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:19-65
+174                <category android:name="android.intent.category.BROWSABLE" />
+174-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:7-67
+174-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:17-65
+175
+176                <data android:scheme="expo-dev-launcher" />
+176-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+176-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:13-35
+177            </intent-filter>
+178        </activity>
+179        <activity
+179-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:9-33:70
+180            android:name="expo.modules.devlauncher.launcher.errors.DevLauncherErrorActivity"
+180-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-93
+181            android:screenOrientation="portrait"
+181-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-49
+182            android:theme="@style/Theme.DevLauncher.ErrorActivity" />
+182-->[:expo-dev-launcher] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-67
+183        <activity
+183-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-21:20
+184            android:name="expo.modules.devmenu.DevMenuActivity"
+184-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-64
+185            android:exported="true"
+185-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-36
+186            android:launchMode="singleTask"
+186-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-44
+187            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" >
+187-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-75
+188            <intent-filter>
+188-->[:expo-dev-menu] /Users/goodman/Desktop/M-Campus/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-20:29
+189                <action android:name="android.intent.action.VIEW" />
+189-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:7-58
+189-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:11:15-56
+190
+191                <category android:name="android.intent.category.DEFAULT" />
+191-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:9-67
+191-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:29:19-65
+192                <category android:name="android.intent.category.BROWSABLE" />
+192-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:7-67
+192-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:12:17-65
+193
+194                <data android:scheme="expo-dev-menu" />
+194-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:7-37
+194-->/Users/goodman/Desktop/M-Campus/android/app/src/main/AndroidManifest.xml:13:13-35
+195            </intent-filter>
+196        </activity>
+197
+198        <provider
+198-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-30:20
+199            android:name="expo.modules.filesystem.FileSystemFileProvider"
+199-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-74
+200            android:authorities="com.kuyeso.MCampus.FileSystemFileProvider"
+200-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-74
+201            android:exported="false"
+201-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
+202            android:grantUriPermissions="true" >
+202-->[:expo-file-system] /Users/goodman/Desktop/M-Campus/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-47
+203            <meta-data
+203-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+204                android:name="android.support.FILE_PROVIDER_PATHS"
+204-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+205                android:resource="@xml/file_system_provider_paths" />
+205-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+206        </provider>
+207
+208        <service
+208-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:9-42:19
+209            android:name="com.google.android.gms.metadata.ModuleDependencies"
+209-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-78
+210            android:enabled="false"
+210-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-36
+211            android:exported="false" >
+211-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-37
+212            <intent-filter>
+212-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-37:29
+213                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+213-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:17-94
+213-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:25-91
+214            </intent-filter>
+215
+216            <meta-data
+216-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-41:36
+217                android:name="photopicker_activity:0:required"
+217-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:17-63
+218                android:value="" />
+218-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:17-33
+219        </service>
+220
+221        <activity
+221-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:44:9-46:59
+222            android:name="com.canhub.cropper.CropImageActivity"
+222-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:45:13-64
+223            android:exported="true"
+223-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:35:13-36
+224            android:theme="@style/Base.Theme.AppCompat" /> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+224-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:46:13-56
+225        <provider
+225-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:48:9-56:20
+226            android:name="expo.modules.imagepicker.fileprovider.ImagePickerFileProvider"
+226-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:49:13-89
+227            android:authorities="com.kuyeso.MCampus.ImagePickerFileProvider"
+227-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:50:13-75
+228            android:exported="false"
+228-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:51:13-37
+229            android:grantUriPermissions="true" >
+229-->[:expo-image-picker] /Users/goodman/Desktop/M-Campus/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:52:13-47
+230            <meta-data
+230-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+231                android:name="android.support.FILE_PROVIDER_PATHS"
+231-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+232                android:resource="@xml/image_picker_provider_paths" />
+232-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+233        </provider>
+234
+235        <meta-data
+235-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:89
+236            android:name="org.unimodules.core.AppLoader#react-native-headless"
+236-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-79
+237            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+237-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-86
+238        <meta-data
+238-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-15:45
+239            android:name="com.facebook.soloader.enabled"
+239-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-57
+240            android:value="true" />
+240-->[:expo-modules-core] /Users/goodman/Desktop/M-Campus/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-33
+241
+242        <provider
+242-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:23:9-31:20
+243            android:name="com.canhub.cropper.CropFileProvider"
+243-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:24:13-63
+244            android:authorities="com.kuyeso.MCampus.cropper.fileprovider"
+244-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:25:13-72
+245            android:exported="false"
+245-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:26:13-37
+246            android:grantUriPermissions="true" >
+246-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/goodman/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:27:13-47
+247            <meta-data
+247-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+248                android:name="android.support.FILE_PROVIDER_PATHS"
+248-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+249                android:resource="@xml/library_file_paths" />
+249-->[:react-native-file-viewer] /Users/goodman/Desktop/M-Campus/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+250        </provider> <!-- Needs to be explicitly declared on P+ -->
+251        <uses-library
+251-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:39:9-41:40
+252            android:name="org.apache.http.legacy"
+252-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:40:13-50
+253            android:required="false" />
+253-->[com.google.android.gms:play-services-maps:18.0.2] /Users/goodman/.gradle/caches/transforms-3/b25f847589e7002fd8e78ea589f1a345/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:41:13-37
+254
+255        <activity
+255-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+256            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+256-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+257            android:exported="false"
+257-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+258            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+258-->[com.google.android.gms:play-services-base:18.1.0] /Users/goodman/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+259
+260        <meta-data
+260-->[com.google.android.gms:play-services-basement:18.1.0] /Users/goodman/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+261            android:name="com.google.android.gms.version"
+261-->[com.google.android.gms:play-services-basement:18.1.0] /Users/goodman/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+262            android:value="@integer/google_play_services_version" />
+262-->[com.google.android.gms:play-services-basement:18.1.0] /Users/goodman/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+263
+264        <provider
+264-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:31:9-39:20
+265            android:name="androidx.startup.InitializationProvider"
+265-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:32:13-67
+266            android:authorities="com.kuyeso.MCampus.androidx-startup"
+266-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:33:13-68
+267            android:exported="false" >
+267-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:34:13-37
+268            <meta-data
+268-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:36:13-38:52
+269                android:name="androidx.work.WorkManagerInitializer"
+269-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:37:17-68
+270                android:value="androidx.startup" />
+270-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:38:17-49
+271            <meta-data
+271-->[androidx.emoji2:emoji2:1.2.0] /Users/goodman/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+272                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+272-->[androidx.emoji2:emoji2:1.2.0] /Users/goodman/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+273                android:value="androidx.startup" />
+273-->[androidx.emoji2:emoji2:1.2.0] /Users/goodman/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
 274            <meta-data
-274-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:36:13-38:52
-275                android:name="androidx.work.WorkManagerInitializer"
-275-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:37:17-68
+274-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/goodman/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+275                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+275-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/goodman/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
 276                android:value="androidx.startup" />
-276-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:38:17-49
+276-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/goodman/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
 277            <meta-data
-277-->[androidx.emoji2:emoji2:1.2.0] /Users/goodman/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-278                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-278-->[androidx.emoji2:emoji2:1.2.0] /Users/goodman/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+277-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+278                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+278-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
 279                android:value="androidx.startup" />
-279-->[androidx.emoji2:emoji2:1.2.0] /Users/goodman/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
-280            <meta-data
-280-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/goodman/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
-281                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-281-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/goodman/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
-282                android:value="androidx.startup" />
-282-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/goodman/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
-283            <meta-data
-283-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
-284                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-284-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-285                android:value="androidx.startup" />
-285-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
-286        </provider>
-287
-288        <service
-288-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:41:9-46:35
-289            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
-289-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:42:13-88
-290            android:directBootAware="false"
-290-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:43:13-44
-291            android:enabled="@bool/enable_system_alarm_service_default"
-291-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:44:13-72
-292            android:exported="false" />
-292-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:45:13-37
+279-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+280        </provider>
+281
+282        <service
+282-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:41:9-46:35
+283            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+283-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:42:13-88
+284            android:directBootAware="false"
+284-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:43:13-44
+285            android:enabled="@bool/enable_system_alarm_service_default"
+285-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:44:13-72
+286            android:exported="false" />
+286-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:45:13-37
+287        <service
+287-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:47:9-53:35
+288            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+288-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:48:13-84
+289            android:directBootAware="false"
+289-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:49:13-44
+290            android:enabled="@bool/enable_system_job_service_default"
+290-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:50:13-70
+291            android:exported="true"
+291-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:51:13-36
+292            android:permission="android.permission.BIND_JOB_SERVICE" />
+292-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:52:13-69
 293        <service
-293-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:47:9-53:35
-294            android:name="androidx.work.impl.background.systemjob.SystemJobService"
-294-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:48:13-84
+293-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:54:9-59:35
+294            android:name="androidx.work.impl.foreground.SystemForegroundService"
+294-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:55:13-81
 295            android:directBootAware="false"
-295-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:49:13-44
-296            android:enabled="@bool/enable_system_job_service_default"
-296-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:50:13-70
-297            android:exported="true"
-297-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:51:13-36
-298            android:permission="android.permission.BIND_JOB_SERVICE" />
-298-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:52:13-69
-299        <service
-299-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:54:9-59:35
-300            android:name="androidx.work.impl.foreground.SystemForegroundService"
-300-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:55:13-81
+295-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:56:13-44
+296            android:enabled="@bool/enable_system_foreground_service_default"
+296-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:57:13-77
+297            android:exported="false" />
+297-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:58:13-37
+298
+299        <receiver
+299-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:61:9-66:35
+300            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+300-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:62:13-88
 301            android:directBootAware="false"
-301-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:56:13-44
-302            android:enabled="@bool/enable_system_foreground_service_default"
-302-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:57:13-77
+301-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:63:13-44
+302            android:enabled="true"
+302-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:64:13-35
 303            android:exported="false" />
-303-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:58:13-37
-304
-305        <receiver
-305-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:61:9-66:35
-306            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
-306-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:62:13-88
-307            android:directBootAware="false"
-307-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:63:13-44
-308            android:enabled="true"
-308-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:64:13-35
-309            android:exported="false" />
-309-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:65:13-37
-310        <receiver
-310-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:67:9-77:20
-311            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
-311-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:68:13-106
-312            android:directBootAware="false"
-312-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:69:13-44
-313            android:enabled="false"
-313-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:70:13-36
-314            android:exported="false" >
-314-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:71:13-37
-315            <intent-filter>
-315-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:73:13-76:29
-316                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-316-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:74:17-87
-316-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:74:25-84
-317                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-317-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:75:17-90
-317-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:75:25-87
-318            </intent-filter>
-319        </receiver>
-320        <receiver
-320-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:78:9-88:20
-321            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
-321-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:79:13-104
-322            android:directBootAware="false"
-322-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:80:13-44
-323            android:enabled="false"
-323-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:81:13-36
-324            android:exported="false" >
-324-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:82:13-37
-325            <intent-filter>
-325-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:84:13-87:29
-326                <action android:name="android.intent.action.BATTERY_OKAY" />
-326-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:85:17-77
-326-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:85:25-74
-327                <action android:name="android.intent.action.BATTERY_LOW" />
-327-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:86:17-76
-327-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:86:25-73
-328            </intent-filter>
-329        </receiver>
-330        <receiver
-330-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:89:9-99:20
-331            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
-331-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:90:13-104
-332            android:directBootAware="false"
-332-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:91:13-44
-333            android:enabled="false"
-333-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:92:13-36
-334            android:exported="false" >
-334-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:93:13-37
-335            <intent-filter>
-335-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:95:13-98:29
-336                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
-336-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:96:17-83
-336-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:96:25-80
-337                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
-337-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:97:17-82
-337-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:97:25-79
-338            </intent-filter>
-339        </receiver>
-340        <receiver
-340-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:100:9-109:20
-341            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
-341-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:101:13-103
-342            android:directBootAware="false"
-342-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:102:13-44
-343            android:enabled="false"
-343-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:103:13-36
-344            android:exported="false" >
-344-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:104:13-37
-345            <intent-filter>
-345-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:106:13-108:29
-346                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-346-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:107:17-79
-346-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:107:25-76
-347            </intent-filter>
-348        </receiver>
-349        <receiver
-349-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:110:9-121:20
-350            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
-350-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:111:13-88
-351            android:directBootAware="false"
-351-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:112:13-44
-352            android:enabled="false"
-352-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:113:13-36
-353            android:exported="false" >
-353-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:114:13-37
-354            <intent-filter>
-354-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:116:13-120:29
-355                <action android:name="android.intent.action.BOOT_COMPLETED" />
-355-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:117:17-79
-355-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:117:25-76
-356                <action android:name="android.intent.action.TIME_SET" />
-356-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:118:17-73
-356-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:118:25-70
-357                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-357-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:119:17-81
-357-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:119:25-78
-358            </intent-filter>
-359        </receiver>
-360        <receiver
-360-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:122:9-131:20
-361            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
-361-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:123:13-99
-362            android:directBootAware="false"
-362-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:124:13-44
-363            android:enabled="@bool/enable_system_alarm_service_default"
-363-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:125:13-72
-364            android:exported="false" >
-364-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:126:13-37
-365            <intent-filter>
-365-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:128:13-130:29
-366                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
-366-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:129:17-98
-366-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:129:25-95
-367            </intent-filter>
-368        </receiver>
-369        <receiver
-369-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:132:9-142:20
-370            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
-370-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:133:13-78
-371            android:directBootAware="false"
-371-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:134:13-44
-372            android:enabled="true"
-372-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:135:13-35
-373            android:exported="true"
-373-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:136:13-36
-374            android:permission="android.permission.DUMP" >
-374-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:137:13-57
-375            <intent-filter>
-375-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:139:13-141:29
-376                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
-376-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:140:17-88
-376-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:140:25-85
-377            </intent-filter>
-378        </receiver>
-379
-380        <service
-380-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:25:9-28:40
-381            android:name="androidx.room.MultiInstanceInvalidationService"
-381-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
-382            android:directBootAware="true"
-382-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
-383            android:exported="false" />
-383-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:28:13-37
-384
-385        <receiver
-385-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-386            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-386-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
-387            android:directBootAware="false"
-387-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
-388            android:enabled="true"
-388-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
-389            android:exported="true"
-389-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-390            android:permission="android.permission.DUMP" >
-390-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+303-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:65:13-37
+304        <receiver
+304-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:67:9-77:20
+305            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+305-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:68:13-106
+306            android:directBootAware="false"
+306-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:69:13-44
+307            android:enabled="false"
+307-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:70:13-36
+308            android:exported="false" >
+308-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:71:13-37
+309            <intent-filter>
+309-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:73:13-76:29
+310                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+310-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:74:17-87
+310-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:74:25-84
+311                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+311-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:75:17-90
+311-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:75:25-87
+312            </intent-filter>
+313        </receiver>
+314        <receiver
+314-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:78:9-88:20
+315            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+315-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:79:13-104
+316            android:directBootAware="false"
+316-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:80:13-44
+317            android:enabled="false"
+317-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:81:13-36
+318            android:exported="false" >
+318-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:82:13-37
+319            <intent-filter>
+319-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:84:13-87:29
+320                <action android:name="android.intent.action.BATTERY_OKAY" />
+320-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:85:17-77
+320-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:85:25-74
+321                <action android:name="android.intent.action.BATTERY_LOW" />
+321-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:86:17-76
+321-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:86:25-73
+322            </intent-filter>
+323        </receiver>
+324        <receiver
+324-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:89:9-99:20
+325            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+325-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:90:13-104
+326            android:directBootAware="false"
+326-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:91:13-44
+327            android:enabled="false"
+327-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:92:13-36
+328            android:exported="false" >
+328-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:93:13-37
+329            <intent-filter>
+329-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:95:13-98:29
+330                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+330-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:96:17-83
+330-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:96:25-80
+331                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+331-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:97:17-82
+331-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:97:25-79
+332            </intent-filter>
+333        </receiver>
+334        <receiver
+334-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:100:9-109:20
+335            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+335-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:101:13-103
+336            android:directBootAware="false"
+336-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:102:13-44
+337            android:enabled="false"
+337-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:103:13-36
+338            android:exported="false" >
+338-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:104:13-37
+339            <intent-filter>
+339-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:106:13-108:29
+340                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+340-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:107:17-79
+340-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:107:25-76
+341            </intent-filter>
+342        </receiver>
+343        <receiver
+343-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:110:9-121:20
+344            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+344-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:111:13-88
+345            android:directBootAware="false"
+345-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:112:13-44
+346            android:enabled="false"
+346-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:113:13-36
+347            android:exported="false" >
+347-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:114:13-37
+348            <intent-filter>
+348-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:116:13-120:29
+349                <action android:name="android.intent.action.BOOT_COMPLETED" />
+349-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:117:17-79
+349-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:117:25-76
+350                <action android:name="android.intent.action.TIME_SET" />
+350-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:118:17-73
+350-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:118:25-70
+351                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+351-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:119:17-81
+351-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:119:25-78
+352            </intent-filter>
+353        </receiver>
+354        <receiver
+354-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:122:9-131:20
+355            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+355-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:123:13-99
+356            android:directBootAware="false"
+356-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:124:13-44
+357            android:enabled="@bool/enable_system_alarm_service_default"
+357-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:125:13-72
+358            android:exported="false" >
+358-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:126:13-37
+359            <intent-filter>
+359-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:128:13-130:29
+360                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+360-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:129:17-98
+360-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:129:25-95
+361            </intent-filter>
+362        </receiver>
+363        <receiver
+363-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:132:9-142:20
+364            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+364-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:133:13-78
+365            android:directBootAware="false"
+365-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:134:13-44
+366            android:enabled="true"
+366-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:135:13-35
+367            android:exported="true"
+367-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:136:13-36
+368            android:permission="android.permission.DUMP" >
+368-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:137:13-57
+369            <intent-filter>
+369-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:139:13-141:29
+370                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+370-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:140:17-88
+370-->[androidx.work:work-runtime:2.7.1] /Users/goodman/.gradle/caches/transforms-3/6864d1387cab7255a87314fc90ee1430/transformed/work-runtime-2.7.1/AndroidManifest.xml:140:25-85
+371            </intent-filter>
+372        </receiver>
+373
+374        <service
+374-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:25:9-28:40
+375            android:name="androidx.room.MultiInstanceInvalidationService"
+375-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
+376            android:directBootAware="true"
+376-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
+377            android:exported="false" />
+377-->[androidx.room:room-runtime:2.2.5] /Users/goodman/.gradle/caches/transforms-3/4c4f80ba2efae389ae1987ed6c07db69/transformed/room-runtime-2.2.5/AndroidManifest.xml:28:13-37
+378
+379        <receiver
+379-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+380            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+380-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+381            android:directBootAware="false"
+381-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+382            android:enabled="true"
+382-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+383            android:exported="true"
+383-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+384            android:permission="android.permission.DUMP" >
+384-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+385            <intent-filter>
+385-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+386                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+386-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+386-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+387            </intent-filter>
+388            <intent-filter>
+388-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+389                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+389-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+389-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+390            </intent-filter>
 391            <intent-filter>
-391-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
-392                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-392-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
-392-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+391-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+392                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+392-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+392-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
 393            </intent-filter>
 394            <intent-filter>
-394-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
-395                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-395-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
-395-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+394-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+395                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+395-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+395-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
 396            </intent-filter>
-397            <intent-filter>
-397-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
-398                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-398-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
-398-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
-399            </intent-filter>
-400            <intent-filter>
-400-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
-401                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-401-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
-401-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/goodman/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
-402            </intent-filter>
-403        </receiver>
-404    </application>
-405
-406</manifest>
+397        </receiver>
+398    </application>
+399
+400</manifest>

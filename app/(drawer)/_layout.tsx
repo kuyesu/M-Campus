@@ -92,11 +92,11 @@ function CustomDrawerContent(props: any) {
             style={{
               alignItems: "center",
             }}
-            className="flex w-full flex-row item-center justify-between"
+            className="flex w-full flex-row item-center justify-between pt-5"
           >
             <Image
               source={{
-                uri: user?.avatar?.url,
+                uri: user?.avatar.url,
               }}
               style={[
                 {
@@ -432,7 +432,7 @@ export default function DrawerLayout() {
                 {({ pressed }) => (
                   <Image
                     source={{
-                      uri: user?.avatar?.url,
+                      uri: user?.avatar.url,
                     }}
                     style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
                   />
@@ -515,7 +515,7 @@ export default function DrawerLayout() {
                 {({ pressed }) => (
                   <Image
                     source={{
-                      uri: user?.avatar?.url,
+                      uri: user?.avatar.url,
                     }}
                     style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
                   />

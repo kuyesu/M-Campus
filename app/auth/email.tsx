@@ -3,38 +3,37 @@ import {
   StyleSheet,
   Text,
   View,
-  Pressable,
   Dimensions,
   ToastAndroid,
   Platform,
   Alert,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
-import { ToastProvider } from "react-native-toast-notifications";
+import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
 
 import MainContainer from "@/components/container/MainContainer";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
-import PhoneInput from "react-native-phone-number-input";
 import { router, useLocalSearchParams } from "expo-router";
-import { Formik } from "formik";
 
 import StyledText from "@/components/Text/StyledText";
-import {
-  StyledTouchableOpacity,
-  StyledTouchableOpacityLight,
-} from "@/components/buttons/StyledTouchableOpacity";
+import { StyledTouchableOpacity } from "@/components/buttons/StyledTouchableOpacity";
 import { loadUser, registerUser } from "@/redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
-import StyeledMessageBox from "@/components/Text/MessageBox";
-import { TextInput } from "react-native-gesture-handler";
+import StyledView from "@/components/View/StyledView";
+import { Image } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Email() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassowrd] = useState("");
+  const [avatar, setAvatar] = useState(
+    "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png"
+  );
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -65,8 +64,23 @@ export default function Email() {
         params: { email: email },
       });
     }
+    // console.warn(error);
     setIsLoading(false);
   }, [error, isAuthenticated, loading]);
+
+  const uploadImage = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      compressImageQuality: 0.8,
+      includeBase64: true,
+    }).then((image: ImageOrVideo | null) => {
+      if (image) {
+        setAvatar("data:image/jpeg;base64," + image.data);
+      }
+    });
+  };
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -93,7 +107,7 @@ export default function Email() {
       }
     } else {
       // @ts-ignore
-      registerUser(name, email, phone, password)(dispatch);
+      registerUser(name, email, phone, password, avatar)(dispatch);
       setIsSuccess(true);
       setIsLoading(false);
     }
@@ -148,12 +162,74 @@ export default function Email() {
                 You are almost there, {name}! <Text>🎉</Text>
               </StyledText>
             </View>
-
-            <View>
+            <View
+              style={{
+                marginTop: 20,
+                paddingTop: 30,
+                // alignItems: "center",
+                // justifyContent: "center",
+              }}
+            >
+              <StyledView
+                style={{
+                  borderdColor: activeColors.grayAccent,
+                  borderWidth: 2,
+                  height: 100,
+                  width: 100,
+                  borderRadius: 50,
+                  marginTop: 10,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <TouchableOpacity onPress={uploadImage}>
+                  <Image
+                    source={{ uri: avatar }}
+                    style={{
+                      height: 100,
+                      width: 100,
+                      // tintColor: activeColors.primary,
+                      borderRadius: 50,
+                      resizeMode: "contain",
+                    }}
+                  />
+                  <View
+                    className="absolute bottom-0 right-0"
+                    style={{
+                      borderColor: activeColors.secondary,
+                      backgroundColor: activeColors.secondary,
+                      borderWidth: 2,
+                      height: 25,
+                      width: 25,
+                      borderRadius: 50,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="camera-account"
+                      size={20}
+                      color={activeColors.accent}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </StyledView>
+            </View>
+            <View
+              style={{
+                marginTop: 20,
+                paddingTop: 20,
+              }}
+            >
               <StyledTextInput
                 style={{
                   backgroundColor: activeColors.primary,
-                  fontSize: 20,
+                  fontSize: 16,
+                  borderBottomWidth: 2,
+                  borderColor: activeColors.grayAccent,
+                  width: "100%",
+                  borderRadius: 0,
+                  borderWidth: 0,
                 }}
                 // onChangeText={(text) => setName(text)}
                 className=" w-full px-0"
@@ -173,7 +249,7 @@ export default function Email() {
             <View
               style={{
                 marginTop: 20,
-                paddingTop: 80,
+                // paddingTop: 80,
               }}
             >
               <StyledText small>

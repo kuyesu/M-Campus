@@ -9,8 +9,10 @@
         android:targetSdkVersion="33" />
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -58,8 +60,7 @@
         <package android:name="com.google.android.apps.maps" />
     </queries>
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required for picking images from camera directly -->
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" /> <!-- Include required permissions for Google Maps API to run. -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -101,6 +102,9 @@
         <meta-data
             android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
             android:value="0" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCAGjQvoP0Li6ZrXVayHvzV2ReB18pt86k" />
 
         <activity
             android:name="com.kuyeso.MCampus.MainActivity"
@@ -153,16 +157,6 @@
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <provider
-            android:name="com.imagepicker.ImagePickerProvider"
-            android:authorities="com.kuyeso.MCampus.imagepickerprovider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/imagepicker_provider_paths" />
-        </provider>
 
         <meta-data
             android:name="expo.modules.updates.AUTO_SETUP"

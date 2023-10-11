@@ -7,10 +7,10 @@ import { SIZES } from "@/constants";
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
     <TouchableOpacity
-      style={styles.btn(name, activeTab)}
+      // style={styles.btn(name, activeTab)}
       onPress={onHandleSearchType}
     >
-      <Text style={styles.btnText(name, activeTab)}>{name}</Text>
+      {/* <Text style={styles.btnText(name, activeTab)}>{name}</Text> */}
     </TouchableOpacity>
   );
 }

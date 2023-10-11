@@ -13,7 +13,7 @@ import { BlurView } from "expo-blur";
 
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
-import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MapPinIcon } from "react-native-heroicons/outline";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import StyledText from "@/components/Text/StyledText";
@@ -32,7 +32,7 @@ export default function TabLayout() {
   // @ts-ignore
   let activeColors = colors[theme.mode];
 
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   return (
     <Tabs
       initialRouteName="home/index"

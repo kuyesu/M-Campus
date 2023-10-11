@@ -15,12 +15,11 @@ import StyledMenuItem from "@/components/Menu/StyledMenuItem";
 import StyledText from "@/components/Text/StyledText";
 import { router } from "expo-router";
 
-const MoreApps = ({ handleOnPress }) => {
+const MoreApps = ({ handleOnPress }: any) => {
   const [open, setOpen] = useState<boolean>();
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-
 
   return (
     <View
@@ -37,9 +36,9 @@ const MoreApps = ({ handleOnPress }) => {
         }}
       >
         <StyledText
+          bold
           style={{
-            fontWeight: "900",
-            fontSize: "16",
+            fontSize: 20,
           }}
         >
           More Functionalities
@@ -87,7 +86,7 @@ const MoreApps = ({ handleOnPress }) => {
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/post")}
+          onPress={() => handleOnPress("/feed")}
         >
           <LinearGradient
             colors={["#C6E2FF", "#C6E2FF"]}
@@ -392,7 +391,7 @@ const styles = StyleSheet.create({
     backgroundColor: "gray",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingVertical: 25
+    paddingVertical: 25,
   },
   contentContainer: {
     flex: 1,

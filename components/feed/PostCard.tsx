@@ -1,11 +1,10 @@
 import {
   View,
-  Text,
   TouchableOpacity,
   Modal,
   TouchableWithoutFeedback,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Image } from "react-native";
 import getTimeDuration from "@/common/TimeGenerator";
@@ -13,6 +12,12 @@ import { addLikes, getAllPosts, removeLikes } from "@/redux/actions/postAction";
 import axios from "axios";
 import { URI } from "@/redux/URI";
 import PostDetailsCard from "./PostDetailsCard";
+import { colors } from "@/constants/Colors";
+import { ThemeContext } from "@/context/themeContext";
+import StyledText from "../Text/StyledText";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import StyledView from "../View/StyledView";
+import { router } from "expo-router";
 
 type Props = {
   navigation: any;
@@ -88,8 +93,18 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
     }
   }, [users]);
 
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
+
   return (
-    <View className="p-[15px] border-b border-b-[#00000017]">
+    <View
+      className="p-[15px] border-b "
+      style={{
+        borderBottomColor: activeColors.grayAccent,
+        borderBottomWidth: 1,
+      }}
+    >
       <View className="relative">
         <View className="flex-row w-full">
           <View className="flex-row w-[85%] items-center">
@@ -106,9 +121,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                 className="flex-row items-center"
                 onPress={() => profileHandler(userInfo)}
               >
-                <Text className="text-black font-[500] text-[16px]">
-                  {userInfo?.name}
-                </Text>
+                <StyledText className="">{userInfo?.name}</StyledText>
                 {userInfo?.role === "Admin" && (
                   <Image
                     source={{
@@ -120,17 +133,15 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                   />
                 )}
               </TouchableOpacity>
-              <Text className="text-black font-[500] text-[13px]">
-                {item.title}
-              </Text>
+              <StyledText className="">{item.title}</StyledText>
             </View>
           </View>
           <View className="flex-row items-center">
-            <Text className="text-[#000000b6]">{formattedDuration}</Text>
+            <StyledText className="">{formattedDuration}</StyledText>
             <TouchableOpacity
               onPress={() => item.user._id === user._id && setOpenModal(true)}
             >
-              <Text className="text-[#000] pl-4 font-[700] mb-[8px]">...</Text>
+              <StyledText className=" pl-4  mb-[8px]">...</StyledText>
             </TouchableOpacity>
           </View>
         </View>
@@ -153,69 +164,44 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
             {item.likes.length > 0 ? (
               <>
                 {item.likes.find((i: any) => i.userId === user._id) ? (
-                  <Image
-                    source={{
-                      uri: "https://cdn-icons-png.flaticon.com/512/2589/2589175.png",
-                    }}
-                    width={30}
-                    height={30}
+                  <MaterialCommunityIcons
+                    name="heart"
+                    size={25}
+                    color={activeColors.accent}
                   />
                 ) : (
-                  <Image
-                    source={{
-                      uri: "https://cdn-icons-png.flaticon.com/512/2589/2589197.png",
-                    }}
-                    width={30}
-                    height={30}
+                  <MaterialCommunityIcons
+                    name="heart"
+                    size={25}
+                    color={activeColors.accent}
                   />
                 )}
               </>
             ) : (
-              <Image
-                source={{
-                  uri: "https://cdn-icons-png.flaticon.com/512/2589/2589197.png",
-                }}
-                width={30}
-                height={30}
+              <MaterialCommunityIcons
+                name="heart-outline"
+                size={25}
+                color={activeColors.accent}
               />
             )}
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("CreateReplies", {
-                item: item,
-                navigation: navigation,
-                postId: postId,
+              router.push({
+                pathname: "/post/CreateRepliesScreen",
+                params: {
+                  item: item,
+                  // navigation: navigation,
+                  postId: postId,
+                },
               });
             }}
+            className="ml-5"
           >
-            <Image
-              source={{
-                uri: "https://cdn-icons-png.flaticon.com/512/5948/5948565.png",
-              }}
-              width={22}
-              height={22}
-              className="ml-5"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={{
-                uri: "https://cdn-icons-png.flaticon.com/512/3905/3905866.png",
-              }}
-              width={25}
-              height={25}
-              className="ml-5"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={{
-                uri: "https://cdn-icons-png.flaticon.com/512/10863/10863770.png",
-              }}
-              width={25}
-              height={25}
-              className="ml-5"
+            <MaterialCommunityIcons
+              name="comment-outline"
+              size={25}
+              color={activeColors.accent}
             />
           </TouchableOpacity>
         </View>
@@ -228,10 +214,16 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                 })
               }
             >
-              <Text className="text-[16px[ text-[#0000009b]">
+              <StyledText
+                className=""
+                small
+                style={{
+                  color: activeColors.gray,
+                }}
+              >
                 {item?.replies?.length !== 0 &&
                   `${item?.replies?.length} replies ·`}{" "}
-              </Text>
+              </StyledText>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -242,9 +234,15 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                 })
               }
             >
-              <Text className="text-[16px[ text-[#0000009b]">
+              <StyledText
+                className=""
+                small
+                style={{
+                  color: activeColors.gray,
+                }}
+              >
                 {item.likes.length} {item.likes.length > 1 ? "likes" : "like"}
-              </Text>
+              </StyledText>
             </TouchableOpacity>
           </View>
         )}
@@ -275,16 +273,29 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
               <TouchableWithoutFeedback onPress={() => setOpenModal(false)}>
                 <View className="flex-[1] justify-end bg-[#00000059]">
                   <TouchableWithoutFeedback onPress={() => setOpenModal(true)}>
-                    <View className="w-full bg-[#fff] h-[120] rounded-[20px] p-[20px] items-center shadow-[#000] shadow-inner">
+                    <StyledView className="w-full  h-[200] rounded-[20px] p-[20px] items-center shadow-[#000] shadow-inner">
                       <TouchableOpacity
-                        className="w-full bg-[#00000010] h-[50px] rounded-[10px] items-center flex-row pl-5"
+                        className="w-full    items-center flex-row "
+                        style={{
+                          borderColor: activeColors.grayAccent,
+                          borderWidth: 1,
+                          paddingVertical: 15,
+                          borderRadius: 10,
+                          paddingHorizontal: 20,
+                        }}
                         onPress={() => deletePostHandler(item._id)}
                       >
-                        <Text className="text-[18px] font-[600] text-[#e24848]">
+                        <StyledText
+                          className="text-[18px] font-[600] "
+                          bold
+                          style={{
+                            color: activeColors.danger,
+                          }}
+                        >
                           Delete
-                        </Text>
+                        </StyledText>
                       </TouchableOpacity>
-                    </View>
+                    </StyledView>
                   </TouchableWithoutFeedback>
                 </View>
               </TouchableWithoutFeedback>

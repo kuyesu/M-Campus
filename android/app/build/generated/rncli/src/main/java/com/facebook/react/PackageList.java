@@ -31,8 +31,6 @@ import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 import org.linusu.RNGetRandomValuesPackage;
 // react-native-image-crop-picker
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
-// react-native-image-picker
-import com.imagepicker.ImagePickerPackage;
 // react-native-linear-gradient
 import com.BV.LinearGradient.LinearGradientPackage;
 // react-native-maps
@@ -100,7 +98,6 @@ public class PackageList {
       new RNGestureHandlerPackage(),
       new RNGetRandomValuesPackage(),
       new PickerPackage(),
-      new ImagePickerPackage(),
       new LinearGradientPackage(),
       new MapsPackage(),
       new ReanimatedPackage(),

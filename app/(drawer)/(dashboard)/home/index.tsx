@@ -139,13 +139,12 @@ export default function TabOneScreen() {
   }
 
   const handleAppOnPress = (route: any) => {
-    // setIsOpen(false);
-    // router.push(route);
-    // setIsOpen(false);
-    // bottomSheetModalRef.current?.close();
-    // setTimeout(() => {
-    //   setIsOpen(false);
-    // }, 100);
+    router.push(route);
+    setIsOpen(false);
+    bottomSheetModalRef.current?.close();
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 100);
   };
   return (
     <MainContainer

@@ -31,7 +31,13 @@ export const verifyEmail =
 
 // register user
 export const registerUser =
-  (name: string, email: string, phone: string, password) =>
+  (
+    name: string,
+    email: string,
+    phone: string,
+    password: string,
+    avatar: string
+  ) =>
   async (dispatch: Dispatch<any>) => {
     try {
       dispatch({
@@ -42,7 +48,7 @@ export const registerUser =
 
       const { data } = await axios.post(
         `${URI}/registration`,
-        { name, email, phone, password },
+        { name, email, phone, password, avatar },
         config
       );
       dispatch({

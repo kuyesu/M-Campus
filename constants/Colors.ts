@@ -31,6 +31,7 @@ export const colors = {
     tint: "#111827",
     gray: "#717680",
     backgroundColorOpacity: `rgba(255, 255, 255, 0.1)`,
+    danger: "#EF4444", //#e24848
   },
   dark: {
     primary: "#1f2937",
@@ -42,6 +43,7 @@ export const colors = {
     tint: "#f9fafb",
     gray: "rgba(252, 219, 220, 0.5)",
     backgroundColorOpacity: `rgba(255, 255, 255, 0.1)`,
+    danger: "#EF4444",
   },
   primary: "#f3f4f6",
   secondary: "#ffffff",

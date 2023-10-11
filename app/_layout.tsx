@@ -251,6 +251,23 @@ const RootLayoutNav = () => {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="EditProfile"
+            options={{
+              title: "Edit Profile",
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+            }}
+          />
         </Stack>
       </BottomSheetModalProvider>
     </ThemeContext.Provider>

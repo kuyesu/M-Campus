@@ -1,12 +1,13 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "jsx": "react-native",
+    "moduleResolution": "node",
     "module": "esnext",
     "strict": false,
     "allowJs": true,
     "noEmitOnError": false,
     "downlevelIteration": true,
-    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]

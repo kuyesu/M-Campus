@@ -63,13 +63,17 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
           data={jobTypes}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
+              // style={styles.tab(activeJobType, item)}
               onPress={() => {
                 setActiveJobType(item);
                 router.push(`/search/${item}`);
               }}
             >
-              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+              <Text
+              // style={styles.tabText(activeJobType, item)}
+              >
+                {item}
+              </Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item}
