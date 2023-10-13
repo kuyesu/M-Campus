@@ -730,6 +730,28 @@ export default function TabLayout() {
           // headerShown: false,
           href: null,
           title: "Hostel",
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() => router.push("/inquiries")}
+            >
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
+          ),
           headerRight: () => (
             <View
               style={[
@@ -753,7 +775,7 @@ export default function TabLayout() {
                 >
                   {({ pressed }) => (
                     <MaterialCommunityIcons
-                      name="sort-variant"
+                      name="bell-ring"
                       // name="view-dashboard-outline"
                       size={25}
                       color={activeColors.tint}
@@ -761,32 +783,6 @@ export default function TabLayout() {
                   )}
                 </Pressable>
               </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
             </View>
           ),
         }}
@@ -997,7 +993,29 @@ export default function TabLayout() {
         options={{
           // headerShown: false,
           href: null,
-          title: "Details",
+          title: "Hostel Details",
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() => router.push("/hostels")}
+            >
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
+          ),
           headerRight: () => (
             <View
               style={[
@@ -1021,7 +1039,7 @@ export default function TabLayout() {
                 >
                   {({ pressed }) => (
                     <MaterialCommunityIcons
-                      name="sort-variant"
+                      name="bell-ring"
                       // name="view-dashboard-outline"
                       size={25}
                       color={activeColors.tint}
@@ -1029,32 +1047,6 @@ export default function TabLayout() {
                   )}
                 </Pressable>
               </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
             </View>
           ),
         }}

@@ -26,13 +26,13 @@ import {
 } from "react-native-heroicons/outline";
 import Barcode from "@kichiyaki/react-native-barcode-generator";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import getTimeDuration from "@/common/TimeGenerator";
 
-const TimelineItem = ({ date, tickets, ticketId, ...props }: any) => {
+const TimelineItem = ({ tickets }: any) => {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
   const bottomSheetModalRefAccount = useRef(null);
-  const [activeId, setActiveId] = useState("");
 
   const snapPoints = ["35%", "55%", "80%"];
 
@@ -67,24 +67,12 @@ const TimelineItem = ({ date, tickets, ticketId, ...props }: any) => {
       // }}
       onPress={() => {
         bottomSheetModalRefAccount.current?.present();
-        setActiveId(ticketId);
+
         setTimeout(() => {
           setIsOpen(true);
         }, 100);
       }}
     >
-      <View className=" items-center space-x-2 flex flex-row ">
-        <TouchableOpacity
-          // onPress={handlePresentModal}
-          // style={{
-          //   borderBottomColor: activeColors.accent,
-          // }}
-          className={` flex relative  items-center   justify-center  py-2 font-bold`}
-        >
-          <StyledText bold>{date}</StyledText>
-        </TouchableOpacity>
-      </View>
-
       <View
         style={{
           flexDirection: "column",
@@ -95,9 +83,12 @@ const TimelineItem = ({ date, tickets, ticketId, ...props }: any) => {
             key={index}
             style={[
               styles.ticketContainer,
-              ticket.status === "answered" && styles.ticketAnswered,
-              ticket.status === "pending" && styles.ticketPending,
-              ticket.status === "unanswered" && styles.ticketUnanswered,
+              ticket.status === "reviewing" && styles.ticketAnswered,
+              ticket.status === "closed" && [
+                styles.ticketPending,
+                { borderLeftColor: activeColors.accent },
+              ],
+              ticket.status === "in-progress" && styles.ticketUnanswered,
             ]}
             className="relative "
           >
@@ -113,63 +104,77 @@ const TimelineItem = ({ date, tickets, ticketId, ...props }: any) => {
             >
               <View style={styles.ticketStatusIndicator} />
               <View className="flex   flex-row justify-between w-full items-center">
-                <StyledText
-                  style={{ color: activeColors.tint }}
-                  className="font-semibold text-base"
-                >
+                <StyledText style={{ color: activeColors.tint }}>
                   {ticket.title}
                 </StyledText>
                 <View className=" relative ">
                   <Text
                     style={{
-                      color:
-                        ticket.status === "answered"
-                          ? "#6a6fc5"
-                          : ticket.status === "unanswered"
-                          ? "#D32F2F"
-                          : "#F9A825",
+                      color: activeColors.tint,
                     }}
                     className=" font-semibold"
                   >
-                    {ticket.time}
+                    {getTimeDuration(ticket.createdAt)}
                   </Text>
                 </View>
               </View>
-              <View className="">
-                <Text
+              <View
+                style={{
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  paddingVertical: 10,
+                }}
+              >
+                <View
                   style={{
-                    color: activeColors.tertiary,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                    // gap: 5,
                   }}
-                  className=" truncate overflow-hidden font-medium "
+                  className="  space-x-2 "
                 >
-                  {ticket.aiResponse}
-                </Text>
+                  <MaterialCommunityIcons
+                    name="account"
+                    size={15}
+                    color={activeColors.tertiary}
+                  />
+                  <StyledText>{ticket.assignedToUser.name}</StyledText>
+                </View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                  }}
+                  className="  space-x-2 "
+                >
+                  <MaterialCommunityIcons
+                    name="card-text-outline"
+                    size={15}
+                    color={activeColors.tertiary}
+                  />
+                  <StyledText>{ticket.assignedToUser.role.position}</StyledText>
+                </View>
               </View>
               <View className="flex   flex-row justify-between w-full items-center ">
                 <Text
                   style={{
-                    color:
-                      ticket.status === "answered"
-                        ? "#6a6fc5"
-                        : ticket.status === "unanswered"
-                        ? "#D32F2F"
-                        : "#F9A825",
+                    color: activeColors.tint,
                   }}
                   className=" font-semibold "
                 >
-                  AI: {ticket.ai ? "True" : "False"}
+                  Mi ID: {ticket._id}
                 </Text>
-                {ticket.ai ? (
-                  <Image
-                    source={require("@/assets/chats/bot.gif")}
-                    className="h-10 w-10 rounded-full"
-                  />
-                ) : (
-                  <Image
-                    source={require("@/assets/avatar/1.jpeg")}
-                    className="h-10 w-10 rounded-full"
-                  />
-                )}
+
+                <Image
+                  source={{ uri: ticket.assignedToUser.avatar.url }}
+                  style={{
+                    borderRadius: 50,
+                    height: 60,
+                    width: 60,
+                  }}
+                />
               </View>
             </View>
             <BottomSheetModal
@@ -234,11 +239,11 @@ const TimelineItem = ({ date, tickets, ticketId, ...props }: any) => {
                     <TouchableOpacity
                       onPress={() => {
                         bottomSheetModalRefAccount.current?.close();
-                        setActiveId(ticketId);
+
                         setTimeout(() => {
                           setIsOpen(false);
                         }, 100);
-                        router.push(`/inquiries/${ticketId}`);
+                        router.push(`/inquiries/${ticket.id}`);
                       }}
                       style={{
                         backgroundColor: activeColors.accent,
@@ -348,14 +353,7 @@ const Timeline = ({ data }: any) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} bounces>
       <View style={styles.timelineContainer}>
-        {data.map((item: any, index: any) => (
-          <TimelineItem
-            key={index}
-            date={item.date}
-            tickets={item.tickets}
-            ticketId={item.id}
-          />
-        ))}
+        <TimelineItem tickets={data} />
       </View>
     </ScrollView>
   );

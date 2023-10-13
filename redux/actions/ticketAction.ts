@@ -59,7 +59,7 @@ export const getAllTickets = () => async (dispatch: Dispatch<any>) => {
 
     dispatch({
       type: "getAllTicketsSuccess",
-      payload: data.posts,
+      payload: data.ticekt,
     });
   } catch (error: any) {
     dispatch({

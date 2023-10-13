@@ -213,7 +213,7 @@ const style = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
     alignItems: "center",
-    height: 350,
+    height: 250,
   },
   backgroundImage: {
     height: "100%",
@@ -252,7 +252,7 @@ const style = StyleSheet.create({
   },
   interiorImage: {
     width: width / 3 - 20,
-    height: 80,
+    height: 100,
     marginRight: 10,
     borderRadius: 2,
   },
@@ -264,7 +264,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginVertical: 10,
+    marginBottom: 10,
   },
   bookNowBtn: {
     height: 50,

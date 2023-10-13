@@ -5,7 +5,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TimelineComponent from "@/components/chat/itmeline";
 
 import TicketListingScreen from "@/components/ticket";
@@ -17,12 +17,27 @@ import MainContainer from "@/components/container/MainContainer";
 import StyledView from "@/components/View/StyledView";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SubmitButton from "@/components/ticket/submitButton";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function index() {
+  const { tickets, isLoadingTicket } = useSelector(
+    (state: any) => state.ticket
+  );
+  const [data, setData] = useState([]);
+  const { user } = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
 
+  useEffect(() => {
+    if (tickets && user) {
+      const myPosts = tickets.filter(
+        (tcikect: any) => tcikect.user._id === user._id
+      );
+      setData(myPosts);
+    }
+  }, [tickets, user]);
   const tabs = [
     {
       name: "Mi Inquiries",
@@ -171,60 +186,7 @@ export default function index() {
   };
 
   // tab content for recent inquiries, asnwered pending AND AI
-  const data = [
-    {
-      date: "June 20, 2023",
-      tickets: [
-        {
-          title: "Missing Marks",
-          status: "answered",
-          ai: true,
-          time: "10:00AM",
-          aiResponse: "This is a response from AI",
-        },
-        {
-          title: "Payment",
-          status: "unanswered",
-          ai: false,
-          time: "11:00AM",
-          aiResponse: "This is a response from AI",
-        },
-        {
-          title: "Login credential",
-          status: "pending",
-          ai: true,
-          time: "04:00PM",
-          aiResponse: "This is a response from AI",
-        },
-      ],
-    },
-    {
-      date: "2023-07-11",
-      tickets: [
-        {
-          title: "Lesson",
-          status: "answered",
-          ai: true,
-          time: "10:00AM",
-          aiResponse: "This is a response from AI",
-        },
-      ],
-    },
-    {
-      date: "2023-07-11",
-      tickets: [
-        { title: "Lecture room", status: "pending" },
-        {
-          title: "Map around",
-          status: "unanswered",
-          ai: true,
-          time: "10:00AM",
-          aiResponse: "This is a response from AI",
-        },
-      ],
-    },
-    // Add more dates and tickets as needed
-  ];
+
   const renderTabContent = () => {
     return (
       <View>
@@ -233,7 +195,7 @@ export default function index() {
             className="  w-full"
             style={{ backgroundColor: activeColors.primary, borderRadius: 5 }}
           >
-            <TimelineComponent data={data} />
+            <TicketListingScreen />
           </StyledView>
         )}
         {activeTab === 1 && (
@@ -241,10 +203,11 @@ export default function index() {
             style={{
               flex: 1,
               // paddingTop: 50,
-              backgroundColor: "#FFFFFF",
+              backgroundColor: activeColors.primary,
+              borderRadius: 5,
             }}
           >
-            <TicketListingScreen />
+            <TimelineComponent data={data} />
           </StyledView>
         )}
         {activeTab === 2 && (

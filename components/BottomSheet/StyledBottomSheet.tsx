@@ -27,7 +27,7 @@ const StyledBottomSheet = ({
         backgroundColor: activeColors.accent,
       }}
       backdropComponent={({ style }) => (
-        <View style={[style, { backgroundColor: "rgba(0, 0, 0, 0.9)" }]} />
+        <View style={[style, { backgroundColor: "rgba(0, 0, 0, 0.4)" }]} />
       )}
       {...props}
     >

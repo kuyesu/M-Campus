@@ -26,6 +26,9 @@ import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import StyledText from "@/components/Text/StyledText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 const HomeScreen = () => {
+  const { theme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
   const optionsList = [
     { title: "Tank Hill", img: require("@/assets/houses/house1.jpg"), id: 1 },
     { title: "Tripple B", img: require("@/assets/houses/house2.jpg"), id: 2 },
@@ -158,7 +161,7 @@ const HomeScreen = () => {
                     color={activeColors.accent}
                     size={18}
                   />
-                  <StyledTextText>500m from campus</StyledTextText>
+                  <StyledText>500m far</StyledText>
                 </View>
               </View>
             </View>
@@ -167,9 +170,6 @@ const HomeScreen = () => {
       </Link>
     );
   };
-  const { theme } = useContext(ThemeContext);
-  // @ts-ignore
-  let activeColors = colors[theme.mode];
 
   return (
     <MainContainer style={{ flex: 1 }}>

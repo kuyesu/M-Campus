@@ -23,6 +23,8 @@ const TicketListingScreen = () => {
   const { tickets, isLoadingTicket } = useSelector(
     (state: any) => state.ticket
   );
+  const [data, setData] = useState([]);
+  const { user } = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   const [offsetY, setOffsetY] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -68,6 +70,14 @@ const TicketListingScreen = () => {
       }, 3000);
     }
   }
+  useEffect(() => {
+    if (tickets && user) {
+      const myPosts = tickets.filter(
+        (tcikect: any) => tcikect.user._id === user._id
+      );
+      setData(myPosts);
+    }
+  }, [tickets, user]);
 
   useEffect(() => {
     getAllTickets()(dispatch);
@@ -96,7 +106,23 @@ const TicketListingScreen = () => {
     return <Loader />;
   }
 
-  console.log("tickets", tickets);
+  // get time for a single ticket
+  const getTimeDuration = (time: any) => {
+    const today = new Date();
+    const date = new Date(time);
+    const diff = today.getTime() - date.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    if (days > 0) {
+      return `${days} days ago`;
+    } else if (hours > 0) {
+      return `${hours} hours ago`;
+    } else {
+      return "Just now";
+    }
+  };
+
+  // const formattedDuration = getTimeDuration(time);
 
   return (
     <>
@@ -105,7 +131,7 @@ const TicketListingScreen = () => {
       >
         {Platform.OS === "ios" ? (
           <FlatList
-            data={tickets}
+            data={data}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -126,12 +152,13 @@ const TicketListingScreen = () => {
                         name="calendar-month-outline"
                       />
                       <StyledText>
-                        {new Date().toLocaleDateString("en-US", {
+                        {/* {new Date().toLocaleDateString("en-US", {
                           weekday: "long",
                           year: "numeric",
                           month: "long",
                           day: "numeric",
-                        })}
+                        })} */}
+                        {getTimeDuration(item.createdAt)}
                       </StyledText>
                     </View>
                   </View>
@@ -158,7 +185,7 @@ const TicketListingScreen = () => {
                     >
                       <View />
                       <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-                        <StyledText bold>{item.user.name}</StyledText>
+                        <StyledText bold>{item.assignedToUser.name}</StyledText>
                         <MaterialCommunityIcons
                           size={20}
                           strokeWidth={2}
@@ -173,7 +200,7 @@ const TicketListingScreen = () => {
                             color: activeColors.accent,
                           }}
                         >
-                          {item.subject}
+                          {item.title}
                         </Text>
                       </View>
                     </View>
@@ -203,22 +230,6 @@ const TicketListingScreen = () => {
                             size={15}
                             strokeWidth={2}
                             color={activeColors.gray}
-                            name="phone"
-                          />
-                          <Text
-                            className="text-xs "
-                            style={{
-                              color: activeColors.gray,
-                            }}
-                          >
-                            PHONE
-                          </Text>
-                        </View>
-                        <View className=" items-center space-x-2 flex flex-row">
-                          <MaterialCommunityIcons
-                            size={15}
-                            strokeWidth={2}
-                            color={activeColors.gray}
                             name="email"
                           />
                           <Text
@@ -227,7 +238,23 @@ const TicketListingScreen = () => {
                               color: activeColors.gray,
                             }}
                           >
-                            EMAIL
+                            {item.assignedToUser.email}
+                          </Text>
+                        </View>
+                        <View className=" items-center space-x-2 flex flex-row">
+                          <MaterialCommunityIcons
+                            size={15}
+                            strokeWidth={2}
+                            color={activeColors.gray}
+                            name="account"
+                          />
+                          <Text
+                            className="text-xs "
+                            style={{
+                              color: activeColors.gray,
+                            }}
+                          >
+                            {item.assignedToUser.role.position}
                           </Text>
                         </View>
                       </View>
@@ -237,15 +264,15 @@ const TicketListingScreen = () => {
                             size={15}
                             strokeWidth={2}
                             color={activeColors.gray}
-                            name="identifier"
+                            name="check-circle-outline"
                           />
                           <Text
-                            className=" font-medium"
+                            className=" font-medium capitalize"
                             style={{
                               color: activeColors.gray,
                             }}
                           >
-                            Student ID
+                            {item.status}
                           </Text>
                         </View>
                       </View>
@@ -267,7 +294,7 @@ const TicketListingScreen = () => {
           />
         ) : (
           <FlatList
-            data={tickets}
+            data={data}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -288,12 +315,13 @@ const TicketListingScreen = () => {
                         name="calendar-month-outline"
                       />
                       <StyledText>
-                        {new Date().toLocaleDateString("en-US", {
+                        {/* {new Date().toLocaleDateString("en-US", {
                           weekday: "long",
                           year: "numeric",
                           month: "long",
                           day: "numeric",
-                        })}
+                        })} */}
+                        {getTimeDuration(item.createdAt)}
                       </StyledText>
                     </View>
                   </View>
@@ -320,7 +348,7 @@ const TicketListingScreen = () => {
                     >
                       <View />
                       <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-                        <StyledText bold>Kuyeso Roges</StyledText>
+                        <StyledText bold>{item.assignedToUser.name}</StyledText>
                         <MaterialCommunityIcons
                           size={20}
                           strokeWidth={2}
@@ -335,7 +363,7 @@ const TicketListingScreen = () => {
                             color: activeColors.accent,
                           }}
                         >
-                          {item.subject}
+                          {item.title}
                         </Text>
                       </View>
                     </View>
@@ -365,22 +393,6 @@ const TicketListingScreen = () => {
                             size={15}
                             strokeWidth={2}
                             color={activeColors.gray}
-                            name="phone"
-                          />
-                          <Text
-                            className="text-xs "
-                            style={{
-                              color: activeColors.gray,
-                            }}
-                          >
-                            PHONE
-                          </Text>
-                        </View>
-                        <View className=" items-center space-x-2 flex flex-row">
-                          <MaterialCommunityIcons
-                            size={15}
-                            strokeWidth={2}
-                            color={activeColors.gray}
                             name="email"
                           />
                           <Text
@@ -389,7 +401,23 @@ const TicketListingScreen = () => {
                               color: activeColors.gray,
                             }}
                           >
-                            EMAIL
+                            {item.assignedToUser.email}
+                          </Text>
+                        </View>
+                        <View className=" items-center space-x-2 flex flex-row">
+                          <MaterialCommunityIcons
+                            size={15}
+                            strokeWidth={2}
+                            color={activeColors.gray}
+                            name="account"
+                          />
+                          <Text
+                            className="text-xs "
+                            style={{
+                              color: activeColors.gray,
+                            }}
+                          >
+                            {item.assignedToUser.role.position}
                           </Text>
                         </View>
                       </View>
@@ -399,15 +427,15 @@ const TicketListingScreen = () => {
                             size={15}
                             strokeWidth={2}
                             color={activeColors.gray}
-                            name="identifier"
+                            name="check-circle-outline"
                           />
                           <Text
-                            className=" font-medium"
+                            className=" font-medium capitalize"
                             style={{
                               color: activeColors.gray,
                             }}
                           >
-                            Student ID
+                            {item.status}
                           </Text>
                         </View>
                       </View>
