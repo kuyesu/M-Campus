@@ -156,6 +156,8 @@ export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
+    console.log("Data is : ", data);
+
     dispatch({
       type: "getUsersSuccess",
       payload: data.users,

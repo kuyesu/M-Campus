@@ -12,8 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import getTimeDuration from "@/common/TimeGenerator";
 import axios from "axios";
-import { URI } from "../../redux/URI";
-import { getAllPosts } from "../../redux/actions/postAction";
+import { URI } from "@/redux/URI";
+import { getAllPosts } from "@/redux/actions/postAction";
+import MainContainer from "@/components/container/MainContainer";
 
 type Props = {
   item: any;
@@ -100,7 +101,7 @@ const CreateRepliesScreen = ({ navigation, route }: Props) => {
     }
   };
   return (
-    <SafeAreaView>
+    <MainContainer>
       <View className="flex-row items-center p-3">
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
@@ -221,7 +222,7 @@ const CreateRepliesScreen = ({ navigation, route }: Props) => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </MainContainer>
   );
 };
 

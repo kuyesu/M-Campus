@@ -37,7 +37,9 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
     avatar: {
       url: "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png",
     },
-    role: "",
+    role: {
+      name: "",
+    },
   });
   const time = item?.createdAt;
   const formattedDuration = getTimeDuration(time);
@@ -99,7 +101,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
 
   return (
     <View
-      className="p-[15px] border-b "
+      className="p-[15px] border-b py-8 "
       style={{
         borderBottomColor: activeColors.grayAccent,
         borderBottomWidth: 1,
@@ -107,7 +109,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
     >
       <View className="relative">
         <View className="flex-row w-full">
-          <View className="flex-row w-[85%] items-center">
+          <View className="flex-row w-[85%] items-start">
             <TouchableOpacity onPress={() => profileHandler(item.user)}>
               <Image
                 source={{ uri: userInfo?.avatar?.url }}
@@ -116,13 +118,21 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                 borderRadius={100}
               />
             </TouchableOpacity>
-            <View className="pl-3 w-[70%]">
+            <View className="pl-3 w-[100%]">
               <TouchableOpacity
                 className="flex-row items-center"
                 onPress={() => profileHandler(userInfo)}
               >
-                <StyledText className="">{userInfo?.name}</StyledText>
-                {userInfo?.role === "Admin" && (
+                <StyledText
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                  className=""
+                  bold
+                >
+                  {userInfo?.name}
+                </StyledText>
+                {userInfo?.role.name != "user" && (
                   <Image
                     source={{
                       uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",
@@ -136,7 +146,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
               <StyledText className="">{item.title}</StyledText>
             </View>
           </View>
-          <View className="flex-row items-center">
+          <View className="flex-row items-start">
             <StyledText className="">{formattedDuration}</StyledText>
             <TouchableOpacity
               onPress={() => item.user._id === user._id && setOpenModal(true)}
@@ -155,9 +165,19 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
           )}
         </View>
         {item.image ? (
-          <View className="absolute top-12 left-5 h-[90%] w-[1px] bg-[#00000017]" />
+          <View
+            className="absolute top-12 left-5 h-[90%] w-[1px] "
+            style={{
+              backgroundColor: activeColors.postBorder,
+            }}
+          />
         ) : (
-          <View className="absolute top-12 left-5 h-[60%] w-[1px] bg-[#00000017]" />
+          <View
+            className="absolute top-12 left-5 h-[60%] w-[1px] "
+            style={{
+              backgroundColor: activeColors.postBorder,
+            }}
+          />
         )}
         <View className="flex-row items-center left-[50px] top-[5px]">
           <TouchableOpacity onPress={() => reactsHandler(item)}>
@@ -186,20 +206,37 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
             )}
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {
+            onPress={() =>
               router.push({
-                pathname: "/post/CreateRepliesScreen",
+                pathname: "/post/create-replies",
                 params: {
-                  item: item,
-                  // navigation: navigation,
-                  postId: postId,
+                  post: item,
+                  postId: postId ? postId : item._id,
                 },
-              });
-            }}
+              })
+            }
             className="ml-5"
           >
             <MaterialCommunityIcons
               name="comment-outline"
+              size={25}
+              color={activeColors.accent}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/post/create-replies",
+                params: {
+                  post: item,
+                  postId: postId ? postId : item._id,
+                },
+              })
+            }
+            className="ml-5"
+          >
+            <MaterialCommunityIcons
+              name="dots-horizontal"
               size={25}
               color={activeColors.accent}
             />

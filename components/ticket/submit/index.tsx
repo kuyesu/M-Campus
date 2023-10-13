@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import Indicators from "./Indicators";
 import Slide from "./Slide";
@@ -19,7 +20,7 @@ import MainContainer from "@/components/container/MainContainer";
 import StyledText from "@/components/Text/StyledText";
 import { StatusBar } from "expo-status-bar";
 
-const SubmitTicket = ({ slides = [], onDone }) => {
+const SubmitTicket = ({ slides = [], onDone, isLoadingTicket }) => {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
@@ -145,14 +146,20 @@ const SubmitTicket = ({ slides = [], onDone }) => {
           <TouchableOpacity
             onPress={onDone}
             style={{
-              backgroundColor: activeColors.accent,
+              backgroundColor: isLoadingTicket
+                ? activeColors.grayAccent
+                : activeColors.accent,
               paddingVertical: 10,
               borderRadius: 10,
             }}
             className="  items-center flex-1 justify-center  font-bold  "
           >
             <StyledText className="font-semibold text-black text-lg">
-              Submit
+              {isLoadingTicket ? (
+                <ActivityIndicator size={20} color={activeColors.accent} />
+              ) : (
+                "Submit"
+              )}
             </StyledText>
           </TouchableOpacity>
         )}

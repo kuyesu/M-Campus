@@ -14,19 +14,28 @@ const StyledMenuItem = ({ name, icon, style, ...props }: any) => {
     <TouchableOpacity
       style={[
         {
-          alignItems: "center",
-          width: "15%",
-          gap: 10,
+          // alignItems: "center",
+          // width: "15%",
+          // justifyContent: "center",
+          // padding: 10,
         },
+
         style,
       ]}
       {...props}
+      className=" items-center justify-center"
     >
       <MaterialCommunityIcons
         name={icon}
         // name="view-dashboard-outline"
-        size={30}
-        color={activeColors.accent}
+        size={20}
+        style={{
+          marginBottom: 5,
+          backgroundColor: activeColors.backgroundColorOpacity,
+          borderRadius: 50,
+          padding: 10,
+        }}
+        color={activeColors.tint}
       />
       <StyledText style={{ fontSize: 12 }}>{name}</StyledText>
     </TouchableOpacity>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Animated, {
   interpolate,
@@ -6,7 +6,8 @@ import Animated, {
   useDerivedValue,
 } from "react-native-reanimated";
 import { ReText, Vector, round } from "react-native-redash";
-
+import { ThemeContext } from "@/context/themeContext";
+import { colors } from "@/constants/Colors";
 import ETH from "./components/eth";
 import { graphs, SIZE, GraphIndex } from "./model";
 import { Entypo } from "@expo/vector-icons";
@@ -36,6 +37,9 @@ interface HeaderProps {
 }
 
 const Header = ({ translation, index }: HeaderProps) => {
+  const { theme, updateTheme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
   const data = useDerivedValue(() => graphs[index.value].data);
   const price = useDerivedValue(() => {
     const p = interpolate(
@@ -55,20 +59,27 @@ const Header = ({ translation, index }: HeaderProps) => {
     color: data.value.percentChange > 0 ? "green" : "red",
   }));
   return (
-    <View style={styles.container} className=" border-b border-gray-200">
+    <View
+      style={[
+        styles.container,
+        {
+          borderColor: activeColors.grayAccent,
+        },
+      ]}
+      className=" border-b "
+    >
       <View style={styles.values}>
         <ArrowTrendingUpIcon
           size={20}
-          color={"#031435"}
+          color={activeColors.tint}
           strokeWidth={1}
-
         />
         <View>
           {/* <ReText style={style} text={percentChange} /> */}
           <ReText
-            style={styles.label}
+            style={[styles.label, { color: activeColors.gray }]}
             text={label}
-            className=" font-semibold text-gray-500"
+            className=" font-semibold "
           />
         </View>
       </View>

@@ -1,4 +1,11 @@
-import { StyleSheet, TouchableOpacity, View, Share } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Share,
+  Platform,
+  Dimensions,
+} from "react-native";
 
 // components
 import MainContainer from "@/components/container/MainContainer";
@@ -20,6 +27,11 @@ import StyledBottomSheet from "@/components/BottomSheet/StyledBottomSheet";
 import UpdateCarousal from "@/components/home/update";
 import ClassLocation from "@/components/home/class";
 import { router } from "expo-router";
+import { Image } from "react-native";
+import StyledText from "@/components/Text/StyledText";
+import { ImageBackground } from "react-native";
+import StyledView from "@/components/View/StyledView";
+import { Text } from "react-native";
 
 export default function TabOneScreen() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -31,80 +43,8 @@ export default function TabOneScreen() {
     updateTheme();
     setIsActivate((previousState) => !previousState);
   };
-  const [modalVisible, setModalVisible] = useState(false);
-
-  // const { user } = useSelector((state: any) => state.user);
-  // const { isSuccess, isLoading } = useSelector((state: any) => state.post);
-
-  // const [userData, setUserData] = useState({
-  //   user,
-  // });
-
-  const [tickets, setTickets] = useState([
-    {
-      id: "CYM0972",
-      subject: "Network Connectivity Issue",
-      status: "Resolved",
-      priority: "High",
-      date: "2023-07-15",
-      toWhom: "AR office",
-      description: "Personal access or OAuth tokens will ",
-    },
-    {
-      id: "CYM09342",
-      subject: "Network Connectivity Issue",
-      status: "Withdrawn",
-      priority: "High",
-      date: "2023-07-15",
-      toWhom: "AR office",
-      description: "Personal access or OAuth tokens will ",
-    },
-    {
-      id: "CYM09753",
-      subject: "Software Installation Request",
-      status: "Pending",
-      priority: "Medium",
-      date: "2023-07-14",
-      toWhom: "Software Department",
-      description: "Personal access or OAuth tokens will  ",
-    },
-    {
-      id: "CYM097",
-      subject: "Printer Not Working",
-      status: "Resolved",
-      priority: "High",
-      date: "2023-07-13",
-      toWhom: "Solomon Agum",
-      description: "Personal access or OAuth tokens will ",
-    },
-    // Add more ticket data here
-  ]);
-
-  const [ticketId, setTicketId] = useState("");
-
-  const withdrawn = data.map((item, index) => {
-    item.tickets.filter((item, index) => {
-      item.status === "unanswered";
-    });
-  });
-
-  const pending = data.map((item, index) => {
-    item.tickets.filter((item, index) => {
-      item.status === "pending";
-    });
-  });
-
-  const answered = data.map((item, index) => {
-    item.tickets.filter((item, index) => {
-      item.status === "answered";
-    });
-  });
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const [activeId, setActiveId] = useState("");
-
-  const ticket = tickets.find((item) => item.id === activeId);
 
   const url =
     "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US";
@@ -148,56 +88,148 @@ export default function TabOneScreen() {
   };
   return (
     <MainContainer
-      style={[styles.container]}
-      contentContainerStyle={{ flexGrow: 1, gap: 40 }}
+      style={[
+        styles.container,
+        { flexGrow: 1, paddingHorizontal: 20, paddingVertical: 0 },
+      ]}
     >
       <View
         style={{
-          paddingTop: 0,
-          height: 90,
-          width: "110%",
-          position: "relative",
-          left: -20,
+          paddingVertical: 15,
+          // backgroundColor: activeColors.secondary,
+
+          // borderTopColor: activeColors.grayAccent,
+          // borderTopWidth: 1,
+          width: "100%",
+          // borderBottomEndRadius: 20,
+          // borderBottomStartRadius: 20,
+          // position: "relative",
+          // left: -20,
         }}
       >
-        <UpdateCarousal />
+        <View
+          style={{}}
+          className="pt-4 items-center justify-between w-full flex flex-row"
+        >
+          {/* split name and take first name*/}
+
+          <View className="flex flex-row gap-2">
+            {/* <MaterialCommunityIcons
+              name="collage"
+              size={16}
+              color={activeColors.tint}
+            /> */}
+            <StyledText small>Hello, Good Morning </StyledText>
+          </View>
+        </View>
+        <View style={{}} className="pt-2 items-start ">
+          {/* split name and take first name*/}
+
+          {/* <StyledText bold>Hi, {user?.name.split(" ")[1]} </StyledText> */}
+          <StyledText bold>{user?.name} </StyledText>
+        </View>
+        {/* <View
+          style={{
+            paddingHorizontal: 20,
+          }}
+          className=" items-center justify-between w-full flex flex-row"
+        > */}
+        {/* split name and take first name*/}
+
+        {/* <StyledWeatherView />
+        </View> */}
+
+        {/* <View
+          style={{
+            paddingHorizontal: 20,
+          }}
+          className=" flex flex-row items-center justify-start gap-2"
+        >
+          <Image
+            source={require("@/assets/images/must.png")}
+            style={{ height: 60, width: 60 }}
+          />
+          <View className=" flex " style={{}}>
+            <StyledText small>
+              Mbarara University of Science & Technology
+            </StyledText>
+            <StyledText>Succeed We Must</StyledText>
+          </View> */}
+        {/* </View> */}
+        <View className="pt-4 items-center justify-start gap-2">
+          {/* <View
+            style={{
+              height: 100,
+              width: "100%",
+              position: "relative",
+              borderRadius: 0,
+            }}
+          >
+            <Image
+              source={require("@/assets/images/fast.jpeg")}
+              style={{ height: 100, width: "100%", borderRadius: 0 }}
+              resizeMode="cover"
+            />
+          </View> */}
+          {/* <View className="flex items-center justify-center gap-4">
+            <Image
+              source={{ uri: user?.avatar.url }}
+              style={{
+                height: 80,
+                width: 80,
+                borderRadius: 50,
+                borderColor: activeColors.grayAccent,
+                borderWidth: 1,
+              }}
+              resizeMode="cover"
+              className="rounded-full  "
+            />
+          </View> */}
+        </View>
       </View>
-      <View style={{}} className="h-full space-y-8">
+      <View
+        style={{
+          paddingHorizontal: 0,
+        }}
+        className="h-full "
+      >
         {/* top landing */}
         <View
           style={{
-            height: "15%",
+            // height: "1%",
+            paddingVertical: 25,
             // backgroundColor: "steelblue",
-            gap: 20,
+            paddingHorizontal: 10,
           }}
         >
           <View
             style={{
-              height: "40%",
+              // height: "40%",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
             }}
           >
-            <StyledWeatherView />
+            {/* <StyledWeatherView /> */}
 
             <View
               style={{
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "baseline",
-                justifyContent: "center",
-                gap: 20,
+                justifyContent: "space-between",
+                // paddingHorizontal: 5,
               }}
+              className=" justify-between w-full"
             >
-              <StyledMenuItem icon="timetable" />
-              <StyledMenuItem icon="update" />
-              <StyledMenuItem icon="database-search" />
+              <StyledMenuItem icon="calendar" name="Schedule" />
+              <StyledMenuItem icon="hexagon-multiple-outline" name="Hostels" />
+              <StyledMenuItem icon="selection-multiple" name="Career" />
               <View
                 style={{
-                  borderRadius: 50,
-                  backgroundColor: activeColors.accent,
-                  padding: 10,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 {/* here is the modal bottomsheet */}
@@ -209,39 +241,266 @@ export default function TabOneScreen() {
                 >
                   <MoreApps handleOnPress={handleAppOnPress} />
                 </StyledBottomSheet>
-                <TouchableOpacity onPress={handlePresentModal}>
+                <TouchableOpacity
+                  style={{
+                    alignItems: "center",
+
+                    justifyContent: "center",
+                  }}
+                  onPress={handlePresentModal}
+                >
                   <MaterialCommunityIcons
                     name={"apps"}
                     // name="view-dashboard-outline"
-                    size={30}
-                    color={activeColors.secondary}
+                    size={20}
+                    style={{
+                      marginBottom: 5,
+                      backgroundColor: activeColors.backgroundColorOpacity,
+                      borderRadius: 50,
+                      padding: 10,
+                    }}
+                    color={activeColors.tint}
                   />
+                  <StyledText style={{ fontSize: 12 }}>More</StyledText>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
+        </View>
+        <TouchableOpacity
+          style={[
+            styles.ticketItem,
+            {
+              backgroundColor: activeColors.secondary,
+              borderRadius: 10,
+              // borderTopEndRadius: 20,
+            },
+          ]}
+          className="    "
+          // onPress={() => router.push(`/inquiries/${item.id}`)}
+        >
           <View
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingVertical: 20,
+              paddingHorizontal: 20,
             }}
+            className=" flex-1 rounded-3xl py-4 w-full "
           >
-            <ClassLocation />
-          </View>
-        </View>
+            <View className="flex flex-row pb-4 justify-between items-center ">
+              <View className=" items-center space-x-2 flex flex-row">
+                <MaterialCommunityIcons
+                  size={20}
+                  strokeWidth={2}
+                  color={activeColors.accent}
+                  name="calendar-month-outline"
+                />
+                <StyledText>
+                  {new Date().toLocaleDateString("en-US", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </StyledText>
+              </View>
+            </View>
 
-        {/* <View
+            <StyledView
+              className="    w-full "
+              style={{ borderColor: activeColors.grayAccent }}
+            >
+              <View
+                style={[
+                  {
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
+                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
+                    // borderRadius: 5,
+                    marginRight: 0,
+                    marginTop: 10,
+                  },
+                  { borderWidth: 0, borderLeftWidth: 5 },
+                  { borderColor: activeColors.accent },
+                ]}
+                className="py-4 "
+              >
+                <View />
+                <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
+                  <StyledText bold>Important Update</StyledText>
+                  <MaterialCommunityIcons
+                    size={20}
+                    strokeWidth={2}
+                    color={activeColors.accent}
+                    name="piston"
+                  />
+                </View>
+                <View className="flex px-4 flex-row justify-between items-center w-full">
+                  <Text
+                    className=" font-semibold"
+                    style={{
+                      color: activeColors.accent,
+                    }}
+                  >
+                    Registration for Semester 1 2021/2022
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  {
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
+                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
+                    // borderRadius: 5,
+                    marginRight: 0,
+                    marginTop: 10,
+                  },
+                  {
+                    borderColor: "#041633",
+                    borderWidth: 0,
+                    borderLeftWidth: 5,
+                  },
+                ]}
+                className="py-4  "
+              >
+                <View />
+                <View className="flex pb-2 flex-row justify-between items-center px-4 space-x-5 ">
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <MaterialCommunityIcons
+                      size={15}
+                      strokeWidth={2}
+                      color={activeColors.gray}
+                      name="phone"
+                    />
+                    <Text
+                      className="text-xs "
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      PHONE
+                    </Text>
+                  </View>
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <MaterialCommunityIcons
+                      size={15}
+                      strokeWidth={2}
+                      color={activeColors.gray}
+                      name="email"
+                    />
+                    <Text
+                      className="text-xs "
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      EMAIL
+                    </Text>
+                  </View>
+                </View>
+                <View className="flex flex-row justify-between items-center px-4">
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <MaterialCommunityIcons
+                      size={15}
+                      strokeWidth={2}
+                      color={activeColors.gray}
+                      name="identifier"
+                    />
+                    <Text
+                      className=" font-medium"
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      Student ID
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </StyledView>
+          </View>
+        </TouchableOpacity>
+        {/* <View style={{}}>
+          <TimelineComponent data={data} />
+        </View> */}
+        <View
           style={{
-            height: "20%",
+            display: "flex",
+            flexDirection: "row",
           }}
         >
-          <StyledCharts />
-        </View> */}
-        <View style={{ flex: 1 }}>
-          <TimelineComponent data={data} />
+          <View
+            style={{
+              flexDirection: "column",
+            }}
+          >
+            <View
+              style={[
+                styles.ticketContainer,
+                // styles.ticketAnswered,
+                styles.ticketPending,
+                // styles.ticketUnanswered,
+              ]}
+              className="relative "
+            >
+              <View
+                style={[
+                  styles.ticketItem,
+                  {
+                    // backgroundColor: activeColors.secondary,
+                    // borderColor: activeColors.primary,
+                  },
+                ]}
+                className="  "
+              >
+                <View style={styles.ticketStatusIndicator} />
+                <View className="flex   flex-row justify-between  items-center">
+                  <StyledText
+                    style={{ color: activeColors.tint }}
+                    className="font-semibold text-base"
+                  >
+                    Title
+                  </StyledText>
+                  <View className=" relative ">
+                    <Text
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                      className=" font-semibold"
+                    >
+                      time
+                    </Text>
+                  </View>
+                </View>
+                <View className="">
+                  <Text
+                    style={{
+                      color: activeColors.tertiary,
+                    }}
+                    className=" truncate overflow-hidden font-medium "
+                  >
+                    Response
+                  </Text>
+                </View>
+                <View className="flex   flex-row justify-between w-full items-center ">
+                  <Text
+                    style={{
+                      color: activeColors.tint,
+                    }}
+                    className=" font-semibold "
+                  >
+                    AI:
+                  </Text>
+
+                  <Image
+                    source={require("@/assets/chats/bot.gif")}
+                    className="h-20 w-20 rounded-full"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </MainContainer>
@@ -250,7 +509,7 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 15,
     flex: 1,
   },
   centeredView: {
@@ -297,5 +556,53 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  ticketItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+  },
+  ticketContainer: {
+    width: Dimensions.get("window").width - 20,
+    flexDirection: "column",
+    // alignItems: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    // borderRadius: 5,
+    marginRight: 10,
+    marginTop: 30,
+    justifyContent: "center",
+  },
+  ticketAnswered: {
+    // backgroundColor: "#eff0fb",
+    borderColor: "#6a6fc5",
+    borderWidth: 0,
+    borderLeftWidth: 5,
+  },
+  ticketPending: {
+    // backgroundColor: "#fff5e9",
+    borderLeftColor: "#F9A825",
+    borderWidth: 0,
+    borderLeftWidth: 5,
+  },
+  ticketUnanswered: {
+    // backgroundColor: "#ffeeef",
+    borderColor: "#D32F2F",
+    borderWidth: 0,
+    borderLeftWidth: 5,
+  },
+  ticketItemRight: {
+    marginLeft: 0,
+    alignItems: "flex-end",
+  },
+  ticketStatusIndicator: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 5,
   },
 });

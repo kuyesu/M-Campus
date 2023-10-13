@@ -11,7 +11,9 @@
           "Information Technology",
           "Medicine & Surgery"
         ],
-        "placeholder": "Select Program (Required)"
+        "placeholder": "Select Program (Required)",
+        "required": true,
+        "isPerson": false
       },
       {
         "type": "select",
@@ -22,25 +24,34 @@
           "Software Engineering",
           "Software Testing"
         ],
-        "placeholder": "Select Course (Required)"
+        "placeholder": "Select Course (Required)",
+        "required": true,
+        "isPerson": false
       },
       {
         "type": "select",
         "question": "Which lecturer is responsible for the course?",
         "options": ["Lecturer X", "Lecturer Y"],
-        "placeholder": "Select Lecturer (Optional)"
+        "placeholder": "Select Lecturer (Optional)",
+        "required": true,
+        "isPerson": true,
+        "role": "lecturer"
       },
       {
         "type": "select",
         "question": "Select Year",
         "options": ["Year 1", "Year 2"],
-        "placeholder": "Select Year (Required)"
+        "placeholder": "Select Year (Required)",
+        "required": true,
+        "isPerson": false
       },
       {
         "type": "select",
         "question": "Select Semester",
         "options": ["Semester 1", "Semester 2"],
-        "placeholder": "Select Semester (Required)"
+        "placeholder": "Select Semester (Required)",
+        "required": true,
+        "isPerson": false
       }
     ]
   },
@@ -56,7 +67,9 @@
           "Information Technology",
           "Medicine & Surgery"
         ],
-        "placeholder": "Select Program (Required)"
+        "placeholder": "Select Program (Required)",
+        "required": true,
+        "isPerson": false
       },
       {
         "type": "select",
@@ -67,12 +80,26 @@
           "Software Engineering",
           "Software Testing"
         ],
-        "placeholder": "Select Course (Required)"
+        "placeholder": "Select Course (Required)",
+        "required": true,
+        "isPerson": false
       },
+
       {
         "type": "text",
         "question": "Write to the AR (Additional Remarks)",
-        "placeholder": "Write to the AR (Optional)"
+        "placeholder": "Write to the AR (Optional)",
+        "required": true,
+        "isPerson": false
+      },
+      {
+        "type": "select",
+        "question": "Pick the person below to send you ticket?",
+        "options": ["AR eMAIL"],
+        "placeholder": "Select person (Required)",
+        "required": true,
+        "isPerson": true,
+        "role": "ar"
       }
     ]
   },
@@ -82,7 +109,18 @@
       {
         "type": "text",
         "question": "You need to describe your problem/inquiry or issue/s here  ",
-        "placeholder": " Describe your problem here (Required)"
+        "placeholder": " Describe your problem here (Required)",
+        "required": true,
+        "isPerson": false
+      },
+      {
+        "type": "select",
+        "question": "Pick the person below to send you ticket?",
+        "options": ["AR eMAIL"],
+        "placeholder": "Select person (Required)",
+        "required": true,
+        "isPerson": true,
+        "role": "helpdesk"
       }
     ]
   }

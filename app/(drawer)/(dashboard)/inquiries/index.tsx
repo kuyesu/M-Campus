@@ -25,17 +25,19 @@ export default function index() {
 
   const tabs = [
     {
-      name: "Iquiries",
+      name: "Mi Inquiries",
       icon: (
         <MaterialCommunityIcons
           name="sort-variant"
           color={activeColors.tint}
+          // check if is active
+
           size={20}
         />
       ),
     },
     {
-      name: "Tickets",
+      name: "Replies",
       icon: (
         <MaterialCommunityIcons
           name="ticket-outline"
@@ -101,7 +103,55 @@ export default function index() {
             }}
             className="flex justify-start items-center flex-row space-x-1 pr-3 rounded-3xl  "
           >
-            {tab.icon}
+            {activeTab === index ? (
+              <>
+                {tab.name === "Mi Inquiries" && (
+                  <MaterialCommunityIcons
+                    name="content-duplicate"
+                    size={20}
+                    color={activeColors.accent}
+                  />
+                )}
+                {tab.name === "Replies" && (
+                  <MaterialCommunityIcons
+                    name="source-commit"
+                    size={20}
+                    color={activeColors.accent}
+                  />
+                )}
+                {tab.name === "Insight" && (
+                  <MaterialCommunityIcons
+                    name="google-analytics"
+                    size={20}
+                    color={activeColors.accent}
+                  />
+                )}
+              </>
+            ) : (
+              <>
+                {tab.name === "Mi Inquiries" && (
+                  <MaterialCommunityIcons
+                    name="content-duplicate"
+                    size={20}
+                    color={activeColors.tint}
+                  />
+                )}
+                {tab.name === "Replies" && (
+                  <MaterialCommunityIcons
+                    name="source-commit"
+                    size={20}
+                    color={activeColors.tint}
+                  />
+                )}
+                {tab.name === "Insight" && (
+                  <MaterialCommunityIcons
+                    name="google-analytics"
+                    size={20}
+                    color={activeColors.tint}
+                  />
+                )}
+              </>
+            )}
 
             <Text
               style={{
@@ -113,15 +163,6 @@ export default function index() {
               // className=" font-semibold"
             >
               {tab.name}
-              {activeTab === index ? (
-                <MaterialCommunityIcons
-                  name="arrow-left-bottom"
-                  size={20}
-                  color={activeColors.accent}
-                />
-              ) : (
-                <></>
-              )}
             </Text>
           </View>
         </Pressable>

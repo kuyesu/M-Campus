@@ -9,10 +9,6 @@ import {
   Platform,
   Alert,
 } from "react-native";
-import { ToastProvider } from "react-native-toast-notifications";
-import { useToast } from "react-native-toast-notifications";
-
-import AuthPages from "@/components/auth";
 import MainContainer from "@/components/container/MainContainer";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
@@ -86,114 +82,112 @@ export default function Phone() {
   };
 
   return (
-    <ToastProvider>
-      <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
-        <MainContainer
-          // className="flex-1"
+    <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
+      <MainContainer
+        // className="flex-1"
+        style={{
+          width: Dimensions.get("window").width,
+        }}
+      >
+        <View
           style={{
-            width: Dimensions.get("window").width,
+            flex: 1,
+            height:
+              Platform.OS === "android"
+                ? Dimensions.get("window").height
+                : Dimensions.get("window").height - 100,
+            width: "100%",
+            display: "flex",
+            // backgroundColor: activeColors.tint,
+
+            justifyContent: "space-between",
+            paddingHorizontal: 25,
+            paddingVertical: 25,
+            paddingTop: Platform.OS === "android" ? 90 : 50,
           }}
         >
-          <View
-            style={{
-              flex: 1,
-              height:
-                Platform.OS === "android"
-                  ? Dimensions.get("window").height
-                  : Dimensions.get("window").height - 100,
-              width: "100%",
-              display: "flex",
-              // backgroundColor: activeColors.tint,
-
-              justifyContent: "space-between",
-              paddingHorizontal: 25,
-              paddingVertical: 25,
-              paddingTop: Platform.OS === "android" ? 90 : 50,
-            }}
-          >
-            <View className="gap-10  ">
-              <View>
-                <StyledText bold>Provide a valid phone number</StyledText>
-              </View>
-              <View>
-                <PhoneInput
-                  ref={phoneInput}
-                  defaultValue={value}
-                  defaultCode="UG"
-                  layout="first"
-                  textInputStyle={{
-                    width: "100%",
-                    shadowOpacity: 0,
-                    fontSize: 20,
-                    fontWeight: "bold",
-                    color: activeColors.tint,
-                    backgroundColor: activeColors.primary,
-                    borderColor: activeColors.primary,
-                  }}
-                  textInputProps={{
-                    placeholderTextColor: activeColors.gray,
-                    placeholder: "772 2820 840",
-                    keyboardType: "numeric",
-                    textContentType: "telephoneNumber",
-                    className: "w-full border border-black",
-                  }}
-                  onChangeText={(text) => {
-                    setValue(text);
-                  }}
-                  onChangeFormattedText={(text) => {
-                    setPhone(text);
-                  }}
-                  // withDarkTheme
-                  // withShadow
-                  // autoFocus
-                  containerStyle={{
-                    width: "100%",
-                    shadowOpacity: 0,
-                    backgroundColor: activeColors.primary,
-                    borderColor: activeColors.primary,
-                  }}
-                  codeTextStyle={{
-                    borderColor: "black",
-                    fontSize: 20,
-                    fontWeight: "bold",
-                    color: activeColors.tint,
-                  }}
-                  textContainerStyle={{
-                    backgroundColor: activeColors.primary,
-                    borderColor: activeColors.primary,
-                  }}
-                />
-              </View>
+          <View className="gap-10  ">
+            <View>
+              <StyledText bold>Provide a valid phone number</StyledText>
             </View>
-
-            <View className="gap-10">
-              <Text
-                className="text-base pr-1"
-                style={{
-                  color: activeColors.gray,
+            <View>
+              <PhoneInput
+                ref={phoneInput}
+                defaultValue={value}
+                defaultCode="UG"
+                layout="first"
+                textInputStyle={{
+                  width: "100%",
+                  shadowOpacity: 0,
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: activeColors.tint,
+                  backgroundColor: activeColors.primary,
+                  borderColor: activeColors.primary,
                 }}
-              >
-                By continuing, you agree to our Privacy Policy and Terms of use
-              </Text>
-              <StyledTouchableOpacity
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
+                textInputProps={{
+                  placeholderTextColor: activeColors.gray,
+                  placeholder: "772 2820 840",
+                  keyboardType: "numeric",
+                  textContentType: "telephoneNumber",
+                  className: "w-full border border-black",
                 }}
-                onPress={handleNext}
-              >
-                continue
-              </StyledTouchableOpacity>
+                onChangeText={(text) => {
+                  setValue(text);
+                }}
+                onChangeFormattedText={(text) => {
+                  setPhone(text);
+                }}
+                // withDarkTheme
+                // withShadow
+                // autoFocus
+                containerStyle={{
+                  width: "100%",
+                  shadowOpacity: 0,
+                  backgroundColor: activeColors.primary,
+                  borderColor: activeColors.primary,
+                }}
+                codeTextStyle={{
+                  borderColor: "black",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: activeColors.tint,
+                }}
+                textContainerStyle={{
+                  backgroundColor: activeColors.primary,
+                  borderColor: activeColors.primary,
+                }}
+              />
             </View>
           </View>
 
-          <StatusBar
-            // backgroundColor={activeColors.primary}
-            style={theme.mode === "dark" ? "light" : "dark"}
-          />
-        </MainContainer>
-      </View>
-    </ToastProvider>
+          <View className="gap-10">
+            <Text
+              className="text-base pr-1"
+              style={{
+                color: activeColors.gray,
+              }}
+            >
+              By continuing, you agree to our Privacy Policy and Terms of use
+            </Text>
+            <StyledTouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={handleNext}
+            >
+              continue
+            </StyledTouchableOpacity>
+          </View>
+        </View>
+
+        <StatusBar
+          // backgroundColor={activeColors.primary}
+          style={theme.mode === "dark" ? "light" : "dark"}
+        />
+      </MainContainer>
+    </View>
   );
 }
 

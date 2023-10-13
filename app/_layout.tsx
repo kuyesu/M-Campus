@@ -107,12 +107,7 @@ const RootLayoutNav = () => {
   }, []);
 
   const { isAuthenticated, loading } = useSelector((state: any) => state.user);
-  useEffect(() => {
-    Store.dispatch(loadUser());
-  }, []);
-  if (isAuthenticated) {
-    router.push("/home");
-  }
+
   // if (loading)
   //   return (
   //     <View
@@ -240,7 +235,80 @@ const RootLayoutNav = () => {
               headerShown: false,
             }}
           />
-
+          <Stack.Screen
+            name="auth/registration-number"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="auth/set-password"
+            options={{
+              title: "Set Password",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="inquiries/[id]"
+            options={{
+              title: "Set Password",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="auth/avatar"
+            options={{
+              title: "Set Your Avatar",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="post/create-post"
+            options={{
+              title: "Create New Post",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+            }}
+          />
           <Stack.Screen
             name="(drawer)"
             options={{ headerShown: false, gestureEnabled: false }}

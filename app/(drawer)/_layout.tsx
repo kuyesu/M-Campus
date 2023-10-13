@@ -96,7 +96,7 @@ function CustomDrawerContent(props: any) {
           >
             <Image
               source={{
-                uri: user?.avatar.url,
+                uri: user?.avatar?.url,
               }}
               style={[
                 {
@@ -109,7 +109,7 @@ function CustomDrawerContent(props: any) {
             />
             <TouchableOpacity onPress={logoutHandler}>
               <MaterialCommunityIcons
-                name="logout-variant"
+                name="power"
                 // name="view-dashboard-outline"
                 size={25}
                 color={activeColors?.tint}

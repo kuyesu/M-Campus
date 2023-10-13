@@ -35,7 +35,11 @@ export default function Welcome() {
     Store.dispatch(loadUser());
   }, []);
   //   if (loading) return null;
-
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/home");
+    }
+  }, [isAuthenticated]);
   if (loading)
     return (
       <View
@@ -94,7 +98,7 @@ export default function Welcome() {
     );
 
   //github.com/shahriarsajeeb/threads-clone/blob/master/client/App.tsx
-  // if (isAuthenticated) router.push("/home");
+  // if (isAuthenticated) router.replace("/home");
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
       <MainContainer

@@ -14,17 +14,19 @@ import getTimeDuration from "@/common/TimeGenerator";
 import axios from "axios";
 import { URI } from "../../redux/URI";
 import { getAllPosts } from "../../redux/actions/postAction";
+import { router, useLocalSearchParams } from "expo-router";
 
 type Props = {
   item: any;
-  navigation: any;
   route: any;
   postId: string;
 };
 
-const CreateRepliesScreen = ({ navigation, route }: Props) => {
-  const post = route.params.item;
-  const postId = route.params.postId;
+const CreateRepliesScreen = ({ route }: Props) => {
+  const params = useLocalSearchParams();
+  const { post, postId }: any = params;
+  const objectString = JSON.stringify(post);
+  console.warn(objectString);
   const { user, token } = useSelector((state: any) => state.user);
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -65,15 +67,17 @@ const CreateRepliesScreen = ({ navigation, route }: Props) => {
         )
         .then((res: any) => {
           getAllPosts()(dispatch);
-          navigation.navigate("PostDetails", {
-            data: res.data.post,
-            navigation: navigation,
+          router.push({
+            pathname: "/post/post-details",
+            params: {
+              data: res.data.post,
+              postId: postId,
+            },
           });
           setTitle("");
           setImage("");
         });
     } else {
-      console.log(postId, post._id);
       await axios
         .put(
           `${URI}/add-reply`,
@@ -90,19 +94,23 @@ const CreateRepliesScreen = ({ navigation, route }: Props) => {
           }
         )
         .then((res: any) => {
-          navigation.navigate("PostDetails", {
-            data: res.data.post,
-            navigation: navigation,
+          router.push({
+            pathname: "/post/post-details",
+            params: {
+              data: res.data.post,
+              postId: postId,
+            },
           });
           setTitle("");
           setImage("");
         });
     }
   };
+
   return (
     <SafeAreaView>
       <View className="flex-row items-center p-3">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => router.back()}>
           <Image
             source={{
               uri: "https://cdn-icons-png.flaticon.com/512/2961/2961937.png",

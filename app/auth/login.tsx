@@ -58,15 +58,13 @@ export default function Login() {
       loadUser()(dispatch);
       if (Platform.OS === "android") {
         ToastAndroid.show("Login successful!", ToastAndroid.LONG);
+        router.replace("/home");
       } else {
         Alert.alert("Login successful!");
       }
     }
   }, [isAuthenticated, error, loading]);
 
-  if (isAuthenticated) {
-    router.push("/home");
-  }
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
       <MainContainer

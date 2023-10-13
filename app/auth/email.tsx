@@ -29,11 +29,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Email() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassowrd] = useState("");
-  const [avatar, setAvatar] = useState(
-    "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png"
-  );
+
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -42,47 +38,8 @@ export default function Email() {
   let activeColors = colors[theme.mode];
   const params = useLocalSearchParams();
   const { name, phone }: any = params;
-  const dispatch = useDispatch();
 
-  const { error, isAuthenticated, loading } = useSelector(
-    (state: any) => state.user
-  );
-
-  useEffect(() => {
-    setIsLoading(true);
-    if (error) {
-      if (Platform.OS === "android") {
-        ToastAndroid.show(error, ToastAndroid.LONG);
-      } else {
-        Alert.alert(error);
-      }
-    }
-    if (isAuthenticated) {
-      loadUser()(dispatch);
-      router.push({
-        pathname: "/(drawer)/(dashboard)/home",
-        params: { email: email },
-      });
-    }
-    // console.warn(error);
-    setIsLoading(false);
-  }, [error, isAuthenticated, loading]);
-
-  const uploadImage = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-      compressImageQuality: 0.8,
-      includeBase64: true,
-    }).then((image: ImageOrVideo | null) => {
-      if (image) {
-        setAvatar("data:image/jpeg;base64," + image.data);
-      }
-    });
-  };
-
-  const submitHandler = (e: any) => {
+  const handleNext = (e: any) => {
     e.preventDefault();
     setMessage("");
     setIsLoading(true);
@@ -99,46 +56,22 @@ export default function Email() {
       } else {
         Alert.alert("Email is not valid!");
       }
-    } else if (password != confirmPassword || password === "") {
-      if (Platform.OS === "android") {
-        ToastAndroid.show("Passwords do not match!", ToastAndroid.LONG);
-      } else {
-        Alert.alert("Passwords do not match!");
-      }
     } else {
-      // @ts-ignore
-      registerUser(name, email, phone, password, avatar)(dispatch);
-      setIsSuccess(true);
-      setIsLoading(false);
+      router.push({
+        pathname: "/auth/avatar",
+        params: { name: name, phone: phone, email: email },
+      });
     }
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: activeColors.primary,
-        height: "100%",
-        display: "flex",
-      }}
-    >
+    <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
       <MainContainer
         // className="flex-1"
         style={{
-          flex: 1,
           width: Dimensions.get("window").width,
-          height: "100%",
-          display: "flex",
         }}
       >
-        {/* <Formik initialValues={{ name: name, phone: phone, email: "" }}>
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              isSubmitting,
-            }) => ( */}
         <View
           style={{
             flex: 1,
@@ -156,84 +89,26 @@ export default function Email() {
             paddingTop: Platform.OS === "android" ? 90 : 50,
           }}
         >
-          <View className="gap-10   ">
+          <View className="gap-10  ">
             <View>
               <StyledText bold>
                 You are almost there, {name}! <Text>🎉</Text>
               </StyledText>
             </View>
-            <View
-              style={{
-                marginTop: 20,
-                paddingTop: 30,
-                // alignItems: "center",
-                // justifyContent: "center",
-              }}
-            >
-              <StyledView
-                style={{
-                  borderdColor: activeColors.grayAccent,
-                  borderWidth: 2,
-                  height: 100,
-                  width: 100,
-                  borderRadius: 50,
-                  marginTop: 10,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <TouchableOpacity onPress={uploadImage}>
-                  <Image
-                    source={{ uri: avatar }}
-                    style={{
-                      height: 100,
-                      width: 100,
-                      // tintColor: activeColors.primary,
-                      borderRadius: 50,
-                      resizeMode: "contain",
-                    }}
-                  />
-                  <View
-                    className="absolute bottom-0 right-0"
-                    style={{
-                      borderColor: activeColors.secondary,
-                      backgroundColor: activeColors.secondary,
-                      borderWidth: 2,
-                      height: 25,
-                      width: 25,
-                      borderRadius: 50,
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <MaterialCommunityIcons
-                      name="camera-account"
-                      size={20}
-                      color={activeColors.accent}
-                    />
-                  </View>
-                </TouchableOpacity>
-              </StyledView>
-            </View>
-            <View
-              style={{
-                marginTop: 20,
-                paddingTop: 20,
-              }}
-            >
+            <View>
               <StyledTextInput
+                bold
                 style={{
                   backgroundColor: activeColors.primary,
-                  fontSize: 16,
-                  borderBottomWidth: 2,
-                  borderColor: activeColors.grayAccent,
+                  // fontSize: 16,
+                  // borderBottomWidth: 2,
+                  // borderColor: activeColors.grayAccent,
                   width: "100%",
                   borderRadius: 0,
                   borderWidth: 0,
                 }}
                 // onChangeText={(text) => setName(text)}
                 className=" w-full px-0"
-                bold
                 // autoFocus
                 autoCapitalize="none"
                 inputMode="email"
@@ -246,97 +121,20 @@ export default function Email() {
                 // value={values.email}
               />
             </View>
-            <View
-              style={{
-                marginTop: 20,
-                // paddingTop: 80,
-              }}
-            >
-              <StyledText small>
-                Choose a strong password to protect your account
-              </StyledText>
-
-              <StyledTextInput
-                style={{
-                  backgroundColor: activeColors.primary,
-                  fontSize: 16,
-                  borderBottomWidth: 2,
-                  borderColor: activeColors.grayAccent,
-                  width: "100%",
-                  borderRadius: 0,
-                  borderWidth: 0,
-                }}
-                // onChangeText={(text) => setName(text)}
-                className=" w-full px-0 my-8"
-                bold
-                // autoFocus
-                autoCapitalize="none"
-                inputMode="text"
-                secureTextEntry
-                placeholder="Password"
-                placeholderTextColor={activeColors.gray}
-                cursorColor={activeColors.tint}
-                // value={email}
-                onChangeText={(text) => setPassword(text)}
-                // onBlur={handleBlur("email")}
-                // value={values.email}
-              />
-
-              <StyledTextInput
-                style={{
-                  backgroundColor: activeColors.primary,
-                  fontSize: 16,
-                  borderBottomWidth: 2,
-                  borderColor: activeColors.grayAccent,
-                  width: "100%",
-                  borderRadius: 0,
-                  borderWidth: 0,
-                }}
-                // onChangeText={(text) => setName(text)}
-                className=" w-full px-0"
-                bold
-                // autoFocus
-                autoCapitalize="none"
-                inputMode="text"
-                secureTextEntry
-                placeholder="Confirm Password"
-                placeholderTextColor={activeColors.gray}
-                cursorColor={activeColors.tint}
-                // value={email}
-                onChangeText={(text) => setConfirmPassowrd(text)}
-                // onBlur={handleBlur("email")}
-                // value={values.email}
-              />
-            </View>
           </View>
 
           <View className="gap-10">
-            {loading ? (
-              <StyledTouchableOpacity
-                disabled={true}
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <ActivityIndicator size="small" color={activeColors.primary} />
-              </StyledTouchableOpacity>
-            ) : (
-              <StyledTouchableOpacity
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: activeColors.grayAccent,
-                }}
-                onPress={submitHandler}
-              >
-                Send
-              </StyledTouchableOpacity>
-            )}
+            <StyledTouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={handleNext}
+            >
+              continue
+            </StyledTouchableOpacity>
           </View>
         </View>
-        {/* )}
-          </Formik> */}
 
         <StatusBar
           // backgroundColor={activeColors.primary}

@@ -17,6 +17,9 @@ import Cursor from "./cursor";
 import { LockClosedIcon } from "react-native-heroicons/outline";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
+import StyledText from "../Text/StyledText";
+import MainContainer from "../container/MainContainer";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width } = Dimensions.get("window");
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -71,14 +74,8 @@ const Graph = () => {
     transform: [{ translateX: withTiming(BUTTON_WIDTH * current.value) }],
   }));
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: activeColors.primary,
-          // borderRadius: 15,
-        },
-      ]}
+    <MainContainer
+      style={{ flexGrow: 1, backgroundColor: activeColors.primary }}
     >
       <Header translation={translation} index={current} />
       <View className="py-4">
@@ -86,7 +83,7 @@ const Graph = () => {
           <AnimatedPath
             animatedProps={animatedProps}
             fill="transparent"
-            stroke="#86e63b"
+            stroke={activeColors.accent}
             strokeWidth={3}
           />
         </Svg>
@@ -94,7 +91,18 @@ const Graph = () => {
       </View>
       <View style={styles.selection}>
         <View style={StyleSheet.absoluteFill}>
-          <Animated.View style={[styles.backgroundSelection, style]} />
+          <Animated.View
+            style={[
+              styles.backgroundSelection,
+              style,
+              {
+                backgroundColor: activeColors.secondary,
+                borderRadius: 5,
+                borderColor: activeColors.grayAccent,
+                borderWidth: 1,
+              },
+            ]}
+          />
         </View>
         {graphs.map((graph, index) => {
           return (
@@ -107,137 +115,37 @@ const Graph = () => {
                 transition.value = withTiming(1);
               }}
             >
-              <Animated.View style={[styles.labelContainer]}>
-                <Text style={styles.label}>{graph.label}</Text>
+              <Animated.View style={[styles.labelContainer, {}]}>
+                <StyledText small>{graph.label}</StyledText>
               </Animated.View>
             </TouchableWithoutFeedback>
           );
         })}
       </View>
-      <Animated.View className="flex w-full pt-8">
-        <Animated.View className="flex flex-row w-full justify-between items-center ">
-          <View className="flex flex-row w-[45%]">
-            <View className="flex flex-col w-full">
-              <View className="flex   flex-row   w-full">
-                <View
-                  className={`  rounded-sm flex-col items-center justify-center  p-2 px-4 bg-[#eff0fb] w-full`}
-                  style={{
-                    paddingVertical: 6,
-                    // paddingHorizontal: SIZES.small,
-                    // borderRadius: SIZES.large,
-                    // rerColor: COLORS.secondary, //COLORS.gray2,
-                  }}
-                >
-                  <View className="flex flex-row items-center justify-between w-full">
-                    <Text className="text-2xl text-center items-center font-extrabold text-[#6a6fc5]">
-                      20
-                    </Text>
-                    <LockClosedIcon
-                      color={"#6a6fc5"}
-                      size={20}
-                      strokeWidth={2}
-                    />
-                  </View>
-                  <View className="flex  w-full">
-                    <Text className="text-sm text-right justify-end  font-medium text-[#041633]">
-                      Resolved
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View className="flex absolute -z-20 left-0.5 top-1   flex-row  pt-2 w-full ">
-                <View
-                  className={`   rounded-sm flex-col items-center justify-center   py-1 bg-[#6a6fc5] w-full`}
-                  style={{
-                    paddingVertical: 6,
-                    paddingHorizontal: 12,
-                    // borderRadius: SIZES.large,
-                    // borderWidth: 1,
-                    // borderColor: COLORS.secondary, //COLORS.gray2,
-                  }}
-                >
-                  <View className="flex flex-row items-center justify-between w-full">
-                    <Text className="text-2xl text-center items-center font-extrabold text-[#6a6fc5]">
-                      20
-                    </Text>
-                    <LockClosedIcon
-                      color={"#D32F2F"}
-                      size={20}
-                      strokeWidth={2}
-                    />
-                  </View>
-                  <View className="flex  w-full">
-                    <Text className="text-sm text-right justify-end  font-bold text-[#041633]">
-                      Resolved
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
+      {/* <View className="flex  justify-between   divide-y">
+        <View className="flex flex-row justify-start items-center">
+          <View>
+            <MaterialCommunityIcons
+              name=""
+              size={25}
+              color={activeColors.accent}
+            />
           </View>
-          {/* Pending */}
-          <View className="flex flex-row w-[45%]">
-            <View className="flex flex-col w-full">
-              <View className="flex relative  flex-row   w-full">
-                <View
-                  className={` relative rounded-sm flex-col items-center justify-center  m-1 p-2 px-4 bg-[#fff5e9] w-full`}
-                  style={{
-                    paddingVertical: 6,
-                    paddingHorizontal: 12,
-                    // borderRadius: SIZES.large,
-                    // rerColor: COLORS.secondary, //COLORS.gray2,
-                  }}
-                >
-                  <View className="flex flex-row items-center justify-between w-full">
-                    <Text className="text-2xl text-center items-center font-extrabold text-[#F9A825]">
-                      20
-                    </Text>
-                    <LockClosedIcon
-                      color={"#F9A825"}
-                      size={20}
-                      strokeWidth={2}
-                    />
-                  </View>
-                  <View className="flex  w-full">
-                    <Text className="text-sm text-right justify-end  font-medium text-[#041633]">
-                      Pending
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View className="flex absolute -z-20 left-0.5 top-1   flex-row  pt-2 w-full ">
-                <View
-                  className={` relative rounded-sm flex-col items-center justify-center  m-1 py-1 bg-[#F9A825] w-full`}
-                  style={{
-                    paddingVertical: 6,
-                    paddingHorizontal: 12,
-                    // borderRadius: SIZES.large,
-                    // borderWidth: 1,
-                    // borderColor: COLORS.secondary, //COLORS.gray2,
-                  }}
-                >
-                  <View className="flex flex-row items-center justify-between w-full">
-                    <Text className="text-2xl text-center items-center font-extrabold text-[#F9A825]">
-                      20
-                    </Text>
-                    <LockClosedIcon
-                      color={"#D32F2F"}
-                      size={20}
-                      strokeWidth={2}
-                    />
-                  </View>
-                  <View className="flex  w-full">
-                    <Text className="text-sm text-right justify-end  font-medium text-[#041633]">
-                      Pending
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </Animated.View>
-      </Animated.View>
-    </View>
+          <StyledText small></StyledText>
+        </View>
+        <View className="flex flex-row justify-start items-center">
+          <LockClosedIcon size={20} color={activeColors.accent} />
+          <StyledText small>Locked</StyledText>
+        </View>
+      </View> */}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: activeColors.primary,
+          height: 300,
+        }}
+      ></View>
+    </MainContainer>
   );
 };
 

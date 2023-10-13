@@ -8,10 +8,8 @@ import {
   ToastAndroid,
   Platform,
   Alert,
-
 } from "react-native";
 import { ToastProvider } from "react-native-toast-notifications";
-
 
 import MainContainer from "@/components/container/MainContainer";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
@@ -21,9 +19,7 @@ import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
 
 import StyledText from "@/components/Text/StyledText";
-import {
-  StyledTouchableOpacity,
-} from "@/components/buttons/StyledTouchableOpacity";
+import { StyledTouchableOpacity } from "@/components/buttons/StyledTouchableOpacity";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -67,10 +63,7 @@ export default function Register() {
     // check if name contains numbers
     else if (/\d/.test(name)) {
       if (Platform.OS === "android") {
-        ToastAndroid.show(
-          "Name cannot contain numbers!",
-          ToastAndroid.LONG
-        );
+        ToastAndroid.show("Name cannot contain numbers!", ToastAndroid.LONG);
       } else {
         Alert.alert("Name cannot contain numbers!");
       }
@@ -86,7 +79,7 @@ export default function Register() {
         Alert.alert("Name cannot contain special characters!");
       }
     }
-      // check if is a full name (both names must be provided)
+    // check if is a full name (both names must be provided)
     else if (name.split(" ").length < 2) {
       if (Platform.OS === "android") {
         ToastAndroid.show("Please provide your full name!", ToastAndroid.LONG);
@@ -101,7 +94,7 @@ export default function Register() {
         params: { name: name },
       });
     }
-  }
+  };
   return (
     <ToastProvider>
       <View style={{ flex: 1, backgroundColor: activeColors.primary }}>

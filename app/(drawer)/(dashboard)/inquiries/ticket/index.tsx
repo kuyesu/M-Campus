@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import SubmitTicket from "@/components/ticket/submit";
 
-import RNPickerSelect from "react-native-picker-select";
+import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import Svg, { Path } from "react-native-svg";
@@ -32,10 +32,13 @@ import concernsData from "@/data/concernsData.json";
 import StyledView from "@/components/View/StyledView";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
-import * as ImagePicker from "expo-image-picker";
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Stack } from "expo-router";
+import { Stack, router, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "@/redux/actions/userAction";
+import { createTicketAction } from "@/redux/actions/ticketAction";
 
 const SlideDetails = ({
   currentStepData,
@@ -61,97 +64,6 @@ const SlideDetails = ({
       }}
     >
       <View className="flex flex-col  pr-2 items-center space-y-0 ">
-        {/* <RNPickerSelect
-          onValueChange={(value) => console.log(value)}
-          items={[
-            { label: "Issues with marks", value: "marks" },
-            { label: "I want to inquire about dead year", value: "dead year" },
-            { label: "Issues with my Id car", value: "hockey" },
-          ]}
-          placeholder={{
-            label: "What is your concern?",
-          }}
-          style={{
-            inputIOS: {
-              borderWidth: 1,
-              paddingVertical: 14,
-              paddingHorizontal: 12,
-              borderRadius: 12,
-              borderColor: activeColors.secondary,
-              color: activeColors.tint,
-            },
-            inputAndroid: {
-              borderWidth: 1,
-              borderRadius: 12,
-              borderColor: activeColors.secondary,
-              color: activeColors.tint,
-            },
-            viewContainer: {
-              backgroundColor: activeColors.secondary,
-              borderRadius: 12,
-              borderColor: activeColors.grayAccent,
-              borderWidth: 1,
-            },
-            inputIOSContainer: {
-              backgroundColor: activeColors.secondary,
-            },
-            inputAndroidContainer: {
-              backgroundColor: activeColors.secondary,
-              borderWidth: 1,
-              borderRadius: 5,
-              borderColor: activeColors.grayAccent,
-            },
-            modalViewBottom: {
-              backgroundColor: activeColors.secondary,
-            },
-            modalViewMiddle: {
-              backgroundColor: activeColors.secondary,
-              //   borderRadius: 20,
-              borderBottomColor: activeColors.grayAccent,
-              borderBottomWidth: 1,
-            },
-            modalViewTop: {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              //   opacity: 0.2,
-            },
-            done: {
-              color: activeColors.tint,
-              backgroundColor: activeColors.secondary,
-              borderColor: "#041633",
-              padding: 7,
-              paddingLeft: 15,
-              paddingRight: 12,
-              paddingTop: 8,
-              borderWidth: 1,
-              borderRadius: 2,
-            },
-            chevronDown: {
-              borderColor: activeColors.grayAccent,
-              height: 10,
-              width: 10,
-            },
-            chevronUp: {
-              borderColor: activeColors.grayAccent,
-              height: 10,
-              width: 10,
-            },
-            chevron: {
-              alignItems: "center",
-            },
-            headlessAndroidContainer: {
-              borderWidth: 1,
-              paddingVertical: 14,
-              paddingHorizontal: 12,
-              borderRadius: 5,
-              borderColor: activeColors.grayAccent,
-            },
-            headlessAndroidPicker: {
-              borderWidth: 1,
-              borderRadius: 5,
-              borderColor: activeColors.grayAccent,
-            },
-          }}
-        /> */}
         <DropdownSelect
           placeholder="Select your issue/concern"
           options={[
@@ -192,7 +104,7 @@ const SlideDetails = ({
             fontWeight: "500",
           }}
           dropdownIcon={
-            users && (
+            selectedConcern ? (
               <StyledView
                 style={{
                   borderRadius: 30 / 2,
@@ -206,18 +118,26 @@ const SlideDetails = ({
               >
                 <View
                   style={{
-                    width: 15,
-                    height: 15,
+                    width: 10,
+                    height: 10,
                     borderRadius: 15 / 2,
                     backgroundColor: activeColors.accent,
                     margin: 5,
                   }}
                 />
               </StyledView>
+            ) : (
+              <View>
+                <MaterialCommunityIcons
+                  name="chevron-down"
+                  color={activeColors.tint}
+                  size={20}
+                />
+              </View>
             )
           }
           dropdownIconStyle={
-            users && {
+            selectedConcern && {
               top: 20,
               right: 15,
             }
@@ -325,12 +245,28 @@ const SlideDetails = ({
             {currentStepData.type === "select" ? (
               <DropdownSelect
                 placeholder={currentStepData.placeholder}
-                options={[
-                  ...currentStepData.options.map((option) => ({
-                    label: option,
-                    value: option,
-                  })),
-                ]}
+                options={
+                  currentStepData.isPerson === true
+                    ? users.filter(
+                        (user) => user.role.name === currentStepData.role
+                      ).length > 0
+                      ? users
+                          .filter(
+                            (user) => user.role.name === currentStepData.role
+                          )
+                          .map((user) => ({
+                            label: user.name,
+                            value: user._id,
+                          }))
+                      : currentStepData.options.map((option) => ({
+                          label: option,
+                          value: option,
+                        }))
+                    : currentStepData.options.map((option) => ({
+                        label: option,
+                        value: option,
+                      }))
+                }
                 modalOptionsContainerStyle={{
                   backgroundColor: activeColors.primary,
                 }}
@@ -363,7 +299,7 @@ const SlideDetails = ({
                   fontWeight: "500",
                 }}
                 dropdownIcon={
-                  users && (
+                  formData[currentStep] ? (
                     <StyledView
                       style={{
                         borderRadius: 30 / 2,
@@ -377,18 +313,26 @@ const SlideDetails = ({
                     >
                       <View
                         style={{
-                          width: 15,
-                          height: 15,
+                          width: 10,
+                          height: 10,
                           borderRadius: 15 / 2,
                           backgroundColor: activeColors.accent,
                           margin: 5,
                         }}
                       />
                     </StyledView>
+                  ) : (
+                    <View>
+                      <MaterialCommunityIcons
+                        name="chevron-down"
+                        color={activeColors.tint}
+                        size={20}
+                      />
+                    </View>
                   )
                 }
                 dropdownIconStyle={
-                  users && {
+                  formData[currentStep] && {
                     top: 20,
                     right: 15,
                   }
@@ -476,19 +420,31 @@ const SlideAttachments = ({ image, setImage }) => {
   let activeColors = colors[theme.mode];
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      compressImageQuality: 0.8,
+      includeBase64: true,
+    }).then((image: ImageOrVideo | null) => {
+      if (image) {
+        // @ts-ignore
+        setImage("data:image/jpeg;base64," + image.data);
+      }
     });
+    // No permissions request is necessary for launching the image library
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   aspect: [4, 3],
+    //   quality: 1,
+    // });
 
-    console.log(result);
+    // console.log(result);
 
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
+    // if (!result.canceled) {
+    //   setImage(result.assets[0].uri);
+    // }
   };
 
   return (
@@ -517,9 +473,9 @@ const SlideAttachments = ({ image, setImage }) => {
             onPress={pickImage}
           >
             <View className="flex flex-col items-center justify-center pt-5 pb-6">
-              <CloudIcon color={activeColors.gray} size={80} />
-              <StyledText className="mb-2 text-sm  ">
-                Click to upload or drag and drop
+              <CloudIcon color={activeColors.accent} size={90} />
+              <StyledText className="my-2 text-sm  ">
+                Press to upload or drag and drop
               </StyledText>
               <StyledText className="text-xs ">
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
@@ -527,14 +483,16 @@ const SlideAttachments = ({ image, setImage }) => {
             </View>
           </Pressable>
         </View>
-        <StyledText
-          className="items-center  justify-center pt-4 font-bold  "
-          style={{
-            color: activeColors.gray,
-          }}
-        >
-          Uploaded documents
-        </StyledText>
+        {image && (
+          <StyledText
+            className="items-center  justify-center pt-4 font-bold  "
+            style={{
+              color: activeColors.tint,
+            }}
+          >
+            Uploaded documents
+          </StyledText>
+        )}
         <View className="w-full pt-2">
           {image && (
             <Image
@@ -570,18 +528,77 @@ export default function App() {
   // concern
   const [selectedConcern, setSelectedConcern] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({});
-  const [users, setUsers] = useState<any>("");
+  const [selectedUser, setSelectedUser] = useState("");
+  const [assignedToUser, setAssignedToUser] = useState({
+    name: "",
+    userName: "",
+    avatar: { url: "" },
+    role: {
+      name: "",
+      position: "",
+    },
+    email: "",
+    _id: "",
+    phone: "",
+  });
+  const { users, user, isLoading } = useSelector((state: any) => state.user);
+  const [formData, setFormData] = useState({
+    // ...concernsData,
+    // selectedUser: "",
+  });
+
   const [completedSteps, setCompletedSteps] = useState([]);
   const handleConcernChange = (value) => {
     setSelectedConcern(value);
     setCurrentStep(0);
-    setFormData({});
+    setFormData({
+      // ...concernsData,
+      // selectedUser: "",
+    });
     setCompletedSteps([]);
   };
 
+  // Person to submit ticket
+
+  const [person, setPerson] = useState({
+    name: "",
+    userName: "",
+    avatar: { url: "" },
+    role: {
+      name: "",
+      position: "",
+    },
+    email: "",
+    _id: "",
+    phone: "",
+  });
   const handleStepChange = (value) => {
-    const updatedFormData = { ...formData, [currentStep]: value };
+    // get user id of the selected user from the form data
+    if (currentStepData?.isPerson === true) {
+      const selectedUser = users.filter((user) => user._id === value)[0];
+      setAssignedToUser({
+        name: selectedUser.name,
+        userName: selectedUser.userName,
+        avatar: selectedUser.avatar,
+        role: selectedUser.role,
+        email: selectedUser.email,
+        _id: selectedUser._id,
+        phone: selectedUser.phone,
+      });
+      setSelectedUser(selectedUser._id);
+      setPerson(selectedUser);
+    }
+
+    // update form data
+
+    const updatedFormData = {
+      ...formData,
+      studentID,
+      name,
+      email,
+      [currentStep]: value,
+    };
+
     setFormData(updatedFormData);
 
     if (!completedSteps.includes(currentStep)) {
@@ -595,25 +612,58 @@ export default function App() {
 
   const currentConcern = concernsData[selectedConcern];
   const currentStepData = currentConcern?.steps[currentStep];
+  const dispatch = useDispatch();
 
+  const [replies, setReplies] = useState([
+    {
+      title: "",
+      image: "",
+      user,
+    },
+  ]);
   // console.warn(email, name, studentID, phoneNumber);
   var tempEmail = "";
   var tempName = "";
   var tempStudentID = "";
   var tempPhoneNumber = "";
-  var temDescription = "";
 
   // useEffect(() => {
 
   // }, []);
+  const [data, setData] = useState([
+    {
+      name: "",
+      userName: "",
+      avatar: { url: "" },
+      role: {
+        name: "",
+      },
+      email: "",
+      _id: "",
+    },
+  ]);
+
+  // get all users from redux
+  useEffect(() => {
+    getAllUsers()(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (users) {
+      setData(users);
+    }
+  }, [users]);
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setStudentID(user.regno);
+      setPhoneNumber(user.phone);
+    }
+  }, [user]);
 
   const Slide1 = () => {
-    const [name1, setName11] = useState("");
-    // const [studentID1, setStudentID1] = useState("");
-    const [email1, setEmail1] = useState("");
-    // const [phoneNumber1, setPhoneNumber1] = useState("");
-    // const [category, setCategory] = useState("");
-
     return (
       <KeyboardAwareScrollView>
         <View className="flex flex-col  pr-2 items-center space-y-4 ">
@@ -709,25 +759,6 @@ export default function App() {
       </KeyboardAwareScrollView>
     );
   };
-
-  // documents and attachments
-
-  //   useEffect(() => {
-  //     console.log(JSON.stringify(result, null, 2));
-  //   }, [result]);
-
-  //   const handleError = (err: unknown) => {
-  //     if (isCancel(err)) {
-  //       console.warn("cancelled");
-  //       // User cancelled the picker, exit any dialogs or menus and move on
-  //     } else if (isInProgress(err)) {
-  //       console.warn(
-  //         "multiple pickers were opened, only the last will be considered"
-  //       );
-  //     } else {
-  //       throw err;
-  //     }
-  //   };
 
   const SlideAdditional = () => {
     return (
@@ -874,6 +905,49 @@ export default function App() {
                   maxHeight: Dimensions.get("screen").height - 680,
                 }}
               >
+                <View>
+                  <View className="flex  pb-2 flex-row justify-between items-center w-full">
+                    <StyledText bold>{person.name}</StyledText>
+                  </View>
+                  <View className="flex flex-row justify-between items-center w-full">
+                    <Text
+                      className=" font-semibold"
+                      style={{
+                        color: activeColors.accent,
+                      }}
+                    >
+                      {person.role.position}
+                    </Text>
+                  </View>
+                </View>
+                <View className="flex pb-4 pt-2 flex-row justify-between items-center px-4 space-x-5 ">
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <PhoneArrowUpRightIcon
+                      size={15}
+                      strokeWidth={2}
+                      color={"gray"}
+                    />
+                    <Text
+                      className="text-xs "
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      {person.phone || "null"}
+                    </Text>
+                  </View>
+                  <View className=" items-center space-x-2 flex flex-row">
+                    <EnvelopeIcon size={15} color={"gray"} strokeWidth={2} />
+                    <Text
+                      className="text-xs "
+                      style={{
+                        color: activeColors.gray,
+                      }}
+                    >
+                      {person.email || "null"}
+                    </Text>
+                  </View>
+                </View>
                 <Text
                   className=" font-semibold  "
                   style={{
@@ -973,7 +1047,7 @@ export default function App() {
           currentStepData={currentStepData}
           selectedConcern={selectedConcern}
           handleConcernChange={handleConcernChange}
-          users={users}
+          users={data}
           currentConcern={currentConcern}
           handleStepChange={handleStepChange}
           completedSteps={completedSteps}
@@ -997,7 +1071,12 @@ export default function App() {
       component: <SlideAdditional />,
     },
   ];
+
+  const { isSuccess } = useSelector((state: any) => state.ticket);
+  const [isLoadingTicket, setIsLoadingTicket] = useState(false);
+  const router = useRouter();
   const handleDone = () => {
+    setIsLoadingTicket(true);
     if (
       name === "" ||
       null ||
@@ -1017,7 +1096,71 @@ export default function App() {
         );
       }
       return;
+    } else if (selectedConcern === "" || null) {
+      if (Platform.OS === "ios") {
+        alert("Please select a concern to continue");
+      } else {
+        ToastAndroid.show("Please select a concern to continue", 1000);
+      }
+      return;
+    } else if (Object.keys(formData).length < currentConcern.steps.length) {
+      if (Platform.OS === "ios") {
+        alert("Please fill in all the required fields to continue");
+      } else {
+        ToastAndroid.show(
+          "Please fill in all the required fields",
+          ToastAndroid.LONG
+        );
+      }
+      return;
+    } else {
+      setIsCompleted(true);
+      const title = selectedConcern;
+      const descriptionData = {
+        ...Object.keys(formData).map((obj, i) => {
+          return {
+            [obj]: formData[obj],
+          };
+        }),
+      };
+
+      const description = formData;
+
+      createTicketAction(
+        title,
+        image,
+        user,
+        description,
+        assignedToUser,
+        replies
+      )(dispatch);
     }
+
+    // if (isSuccess) {
+    setIsCompleted(false);
+    setSelectedConcern("");
+    setCurrentStep(0);
+    setSelectedUser("");
+    setAssignedToUser({
+      name: "",
+      userName: "",
+      avatar: { url: "" },
+      role: {
+        name: "",
+        position: "",
+      },
+      email: "",
+      _id: "",
+      phone: "",
+    });
+
+    setCompletedSteps([]);
+
+    setImage(null);
+    // navigation.navigate("Home");
+    setIsLoadingTicket(false);
+    router.replace("/inquiries");
+    // }
   };
   //   if (loading) return null;
 
@@ -1029,7 +1172,11 @@ export default function App() {
       }}
     >
       {/* <StatusBar hidden /> */}
-      <SubmitTicket onDone={handleDone} slides={slides} />
+      <SubmitTicket
+        onDone={handleDone}
+        isLoadingTicket={isLoadingTicket}
+        slides={slides}
+      />
       <StatusBar
         // backgroundColor={activeColors.primary}
         style={theme.mode === "dark" ? "light" : "dark"}

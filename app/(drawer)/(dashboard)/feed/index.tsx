@@ -1,6 +1,12 @@
-import { FlatList, Animated, Easing, RefreshControl } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { SafeAreaView } from "react-native";
+import {
+  FlatList,
+  Animated,
+  Easing,
+  RefreshControl,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "@/redux/actions/postAction";
 import PostCard from "@/components/feed/PostCard";
@@ -9,13 +15,18 @@ import Lottie from "lottie-react-native";
 import { getAllUsers } from "@/redux/actions/userAction";
 import { Platform } from "react-native";
 import MainContainer from "@/components/container/MainContainer";
+
+import { ThemeContext } from "@/context/themeContext";
+import { colors } from "@/constants/Colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 const loader = require("@/assets/animation_lkbqh8co.json");
 
 type Props = {
   navigation: any;
 };
 
-const HomeScreen = (props: Props) => {
+export default function PostScreen(props: Props) {
   const { posts, isLoading } = useSelector((state: any) => state.post);
   const dispatch = useDispatch();
   const [offsetY, setOffsetY] = useState(0);
@@ -24,6 +35,10 @@ const HomeScreen = (props: Props) => {
   const [extraPaddingTop] = useState(new Animated.Value(0));
   const refreshingHeight = 100;
   const lottieViewRef = useRef<Lottie>(null);
+
+  const { theme, updateTheme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
 
   let progress = 0;
   if (offsetY < 0 && !isRefreshing) {
@@ -87,7 +102,16 @@ const HomeScreen = (props: Props) => {
   }, [isRefreshing]);
 
   return (
-    <>
+    <View
+      style={{
+        flex: 1,
+        height: "100%",
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: activeColors.primary,
+      }}
+    >
       {isLoading ? (
         <Loader />
       ) : (
@@ -101,6 +125,7 @@ const HomeScreen = (props: Props) => {
               top: 15,
               left: 0,
               right: 0,
+              backgroundColor: activeColors.primary,
             }}
             loop={false}
             source={loader}
@@ -157,10 +182,19 @@ const HomeScreen = (props: Props) => {
               }
             />
           )}
+          {/* add post button */}
         </MainContainer>
       )}
-    </>
+      <View className="absolute bottom-0 right-0 " style={{ zIndex: 1111 }}>
+        <TouchableOpacity onPress={() => router.push("/post/create-post")}>
+          <MaterialCommunityIcons
+            name="pencil-plus-outline"
+            size={30}
+            color={activeColors.accent}
+            style={{ width: 50, height: 50 }}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-};
-
-export default HomeScreen;
+}

@@ -1,5 +1,5 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs, useNavigation } from "expo-router";
+import { Link, Tabs, router, useNavigation } from "expo-router";
 import {
   Image,
   Platform,
@@ -166,7 +166,7 @@ export default function TabLayout() {
         name="inquiries/index"
         options={{
           tabBarLabel: "Ask",
-          title: "Interactions",
+          title: "Submissions and Inquiries",
           // headerShown: false,
 
           tabBarLabelStyle: {
@@ -186,6 +186,56 @@ export default function TabLayout() {
                 )}
               </Pressable>
             </View>
+          ),
+          headerRight: () => (
+            <Link href="/modal" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <View
+                    className={`items-center  justify-center flex-row `}
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  >
+                    <MaterialCommunityIcons
+                      size={35}
+                      name="notification-clear-all"
+                      color={activeColors.tint}
+                      fill="#86e63b"
+                      stroke="#041633"
+                      strokeWidth={2}
+                    />
+                    <View
+                      style={{
+                        position: "absolute",
+                        right: -2,
+                        top: 4,
+                      }}
+                    >
+                      <View
+                        style={{
+                          borderColor: activeColors.secondary,
+                          backgroundColor: activeColors.accent,
+                          borderWidth: 2,
+                          borderRadius: 50,
+                          padding: 2,
+                          display: "flex",
+                          height: 18,
+                          width: 18,
+                          alignItems: "center",
+                          // justifyContent: "center",
+                        }}
+                      >
+                        <StyledText
+                          style={{ fontSize: 8, color: "black" }}
+                          bold
+                        >
+                          3
+                        </StyledText>
+                      </View>
+                    </View>
+                  </View>
+                )}
+              </Pressable>
+            </Link>
           ),
         }}
       />
@@ -521,7 +571,33 @@ export default function TabLayout() {
         name="inquiries/[id]"
         options={{
           href: null,
-          title: "Status",
+          // goback arrow
+
+          title: "Submission Details",
+          headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+          // presentation: "fullScreenModal",
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() => router.push("/inquiries")}
+            >
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
+          ),
           headerRight: () => (
             <View
               style={[
@@ -545,7 +621,7 @@ export default function TabLayout() {
                 >
                   {({ pressed }) => (
                     <MaterialCommunityIcons
-                      name="sort-variant"
+                      name="bell-ring"
                       // name="view-dashboard-outline"
                       size={25}
                       color={activeColors.tint}

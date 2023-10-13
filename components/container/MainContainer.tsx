@@ -15,7 +15,7 @@ const MainContainer = ({ children, style, ...props }: any) => {
   return (
     <SafeAreaView style={[styles.container]}>
       <ScrollView
-        style={[
+        contentContainerStyle={[
           {
             backgroundColor: activeColors.primary,
           },
