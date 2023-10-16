@@ -185,13 +185,32 @@ export default function PostScreen(props: Props) {
           {/* add post button */}
         </MainContainer>
       )}
-      <View className="absolute bottom-0 right-0 " style={{ zIndex: 1111 }}>
-        <TouchableOpacity onPress={() => router.push("/post/create-post")}>
+      <View
+        className="absolute bottom-2 right-2 "
+        style={{
+          zIndex: 1111,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            backgroundColor: activeColors.primary,
+            borderRadius: 50,
+            alignItems: "center",
+            justifyContent: "center",
+            width: 50,
+            height: 50,
+          }}
+          onPress={() => router.push("/post/create-post")}
+        >
           <MaterialCommunityIcons
             name="pencil-plus-outline"
             size={30}
+            lineBreakStrategyIOS="hangul-word"
             color={activeColors.accent}
-            style={{ width: 50, height: 50 }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           />
         </TouchableOpacity>
       </View>

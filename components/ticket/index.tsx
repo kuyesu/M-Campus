@@ -73,7 +73,9 @@ const TicketListingScreen = () => {
   useEffect(() => {
     if (tickets && user) {
       const myPosts = tickets.filter(
-        (tcikect: any) => tcikect.user._id === user._id
+        (tcikect: any) =>
+          tcikect.user._id === user._id ||
+          tcikect.assignedToUser._id === user._id
       );
       setData(myPosts);
     }
@@ -125,22 +127,67 @@ const TicketListingScreen = () => {
   // const formattedDuration = getTimeDuration(time);
 
   return (
-    <>
+    <View
+      style={{
+        backgroundColor: activeColors.primary,
+        flex: 1,
+        height: "100%",
+      }}
+    >
       <View
-        style={[styles.container, { backgroundColor: activeColors.primary }]}
+        style={[
+          styles.container,
+          { backgroundColor: activeColors.primary, flex: 1, height: "100%" },
+        ]}
       >
+        {data.length === 0 && (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              top: -80,
+              height: 600,
+              gap: 20,
+            }}
+          >
+            <TouchableOpacity onPress={() => router.push("/inquiries/ticket/")}>
+              <MaterialCommunityIcons
+                name="notebook-plus-outline"
+                size={50}
+                color={activeColors.tint}
+              />
+            </TouchableOpacity>
+            <StyledText bold>You have no ticket yet!</StyledText>
+          </View>
+        )}
         {Platform.OS === "ios" ? (
           <FlatList
             data={data}
+            style={{ flex: 1, backgroundColor: activeColors.primary }}
+            scrollEnabled={false}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={[
                   styles.ticketItem,
-                  { backgroundColor: activeColors.secondary },
+                  {
+                    backgroundColor: activeColors.secondary,
+                    borderColor: activeColors.grayAccent,
+                    borderWidth: 1,
+                  },
                 ]}
                 className="    "
-                onPress={() => router.push(`/inquiries/${item.id}`)}
+                onPress={() => {
+                  // console.log("Id of the ticket is ", item._id);
+                  router.push({
+                    pathname: `/inquiries/${item._id}`,
+                    params: {
+                      ticketId: item._id,
+                    },
+                  });
+                }}
+                // onPress={() => router.push(`/inquiries/${item._id}`)}
               >
                 <View style={{}} className=" flex-1 rounded-3xl py-4 w-full ">
                   <View className="flex flex-row pb-4 justify-between items-center ">
@@ -185,7 +232,11 @@ const TicketListingScreen = () => {
                     >
                       <View />
                       <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-                        <StyledText bold>{item.assignedToUser.name}</StyledText>
+                        <StyledText bold>
+                          {user?._id === item?.user._id
+                            ? `${item.assignedToUser.name}`
+                            : `${item.user.name}`}
+                        </StyledText>
                         <MaterialCommunityIcons
                           size={20}
                           strokeWidth={2}
@@ -238,7 +289,9 @@ const TicketListingScreen = () => {
                               color: activeColors.gray,
                             }}
                           >
-                            {item.assignedToUser.email}
+                            {user?._id === item?.user._id
+                              ? `${item.assignedToUser.email}`
+                              : `${item.user.email}`}
                           </Text>
                         </View>
                         <View className=" items-center space-x-2 flex flex-row">
@@ -246,7 +299,7 @@ const TicketListingScreen = () => {
                             size={15}
                             strokeWidth={2}
                             color={activeColors.gray}
-                            name="account"
+                            name="identifier"
                           />
                           <Text
                             className="text-xs "
@@ -254,7 +307,9 @@ const TicketListingScreen = () => {
                               color: activeColors.gray,
                             }}
                           >
-                            {item.assignedToUser.role.position}
+                            {user?._id === item?.user._id
+                              ? `${item.assignedToUser.role.position}`
+                              : `${item.description.studentID}`}
                           </Text>
                         </View>
                       </View>
@@ -294,16 +349,30 @@ const TicketListingScreen = () => {
           />
         ) : (
           <FlatList
+            scrollEnabled={false}
             data={data}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={[
                   styles.ticketItem,
-                  { backgroundColor: activeColors.secondary },
+                  {
+                    backgroundColor: activeColors.secondary,
+                    borderColor: activeColors.grayAccent,
+                    borderWidth: 1,
+                  },
                 ]}
                 className="    "
-                onPress={() => router.push(`/inquiries/${item.id}`)}
+                onPress={() => {
+                  // console.log("Id of the ticket is ", item._id);
+                  router.push({
+                    pathname: `/inquiries/${item._id}`,
+                    params: {
+                      ticketId: item._id,
+                    },
+                  });
+                }}
+                // onPress={() => router.push(`/inquiries/${item._id}`)}
               >
                 <View style={{}} className=" flex-1 rounded-3xl py-4 w-full ">
                   <View className="flex flex-row pb-4 justify-between items-center ">
@@ -348,7 +417,11 @@ const TicketListingScreen = () => {
                     >
                       <View />
                       <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-                        <StyledText bold>{item.assignedToUser.name}</StyledText>
+                        <StyledText bold>
+                          {user?._id === item?.user._id
+                            ? `${item.assignedToUser.name}`
+                            : `${item.user.name}`}
+                        </StyledText>
                         <MaterialCommunityIcons
                           size={20}
                           strokeWidth={2}
@@ -401,7 +474,9 @@ const TicketListingScreen = () => {
                               color: activeColors.gray,
                             }}
                           >
-                            {item.assignedToUser.email}
+                            {user?._id === item?.user._id
+                              ? `${item.assignedToUser.email}`
+                              : `${item.user.email}`}
                           </Text>
                         </View>
                         <View className=" items-center space-x-2 flex flex-row">
@@ -409,7 +484,7 @@ const TicketListingScreen = () => {
                             size={15}
                             strokeWidth={2}
                             color={activeColors.gray}
-                            name="account"
+                            name="identifier"
                           />
                           <Text
                             className="text-xs "
@@ -417,7 +492,9 @@ const TicketListingScreen = () => {
                               color: activeColors.gray,
                             }}
                           >
-                            {item.assignedToUser.role.position}
+                            {user?._id === item?.user._id
+                              ? `${item.assignedToUser.role.position}`
+                              : `${item.description.studentID}`}
                           </Text>
                         </View>
                       </View>
@@ -470,7 +547,7 @@ const TicketListingScreen = () => {
           />
         )}
       </View>
-    </>
+    </View>
   );
 };
 

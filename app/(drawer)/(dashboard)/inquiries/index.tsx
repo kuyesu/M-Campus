@@ -18,6 +18,7 @@ import StyledView from "@/components/View/StyledView";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SubmitButton from "@/components/ticket/submitButton";
 import { useDispatch, useSelector } from "react-redux";
+import StyledText from "@/components/Text/StyledText";
 
 export default function index() {
   const { tickets, isLoadingTicket } = useSelector(
@@ -89,21 +90,6 @@ export default function index() {
           <View
             key={index}
             style={{
-              // shadowColor: "#000",
-              // shadowOffset: {
-              //   width: 0,
-              //   height: 1,
-              // },
-              // shadowOpacity: 0.18,
-              // shadowRadius: 1.0,
-
-              // elevation: 1,
-              // borderBottomColor:
-              //   activeTab === index
-              //     ? activeColors.secondary
-              //     : activeColors.secondary,
-              // borderBottomWidth: 1,
-              // borderBottomWidth: activeTab === index ? 2 : 1,
               paddingHorizontal: 15,
               paddingVertical: 6,
               // borderRadius: 5,
@@ -168,7 +154,7 @@ export default function index() {
               </>
             )}
 
-            <Text
+            <StyledText
               style={{
                 color:
                   activeTab === index ? activeColors.accent : activeColors.tint,
@@ -178,7 +164,7 @@ export default function index() {
               // className=" font-semibold"
             >
               {tab.name}
-            </Text>
+            </StyledText>
           </View>
         </Pressable>
       );
@@ -189,11 +175,20 @@ export default function index() {
 
   const renderTabContent = () => {
     return (
-      <View>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: activeColors.primary,
+        }}
+      >
         {activeTab === 0 && (
           <StyledView
-            className="  w-full"
-            style={{ backgroundColor: activeColors.primary, borderRadius: 5 }}
+            className="h-full  w-full"
+            style={{
+              backgroundColor: activeColors.primary,
+              borderRadius: 5,
+              flex: 1,
+            }}
           >
             <TicketListingScreen />
           </StyledView>
@@ -215,7 +210,7 @@ export default function index() {
             style={{
               flex: 1,
               // paddingTop: 50,
-              backgroundColor: "#FFFFFF",
+              backgroundColor: activeColors.primary,
             }}
             showsVerticalScrollIndicator={false}
             bounces
@@ -228,15 +223,16 @@ export default function index() {
   };
 
   return (
-    <MainContainer style={{ paddingHorizontal: 20 }}>
+    <MainContainer style={{ paddingHorizontal: 20, flex: 1 }}>
       {/* tabs for recent inquiries, asnwered pending AND AI */}
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          borderBottomColor: activeColors.grayAccent,
-          borderBottomWidth: 2,
+
+          // borderBottomColor: activeColors.grayAccent,
+          // borderBottomWidth: 1,
           marginBottom: 10,
           // paddingHorizontal: 8,
           // backgroundColor: "white"
@@ -250,6 +246,7 @@ export default function index() {
       <View
         style={{
           flex: 1,
+          backgroundColor: activeColors.primary,
         }}
       >
         {renderTabContent()}

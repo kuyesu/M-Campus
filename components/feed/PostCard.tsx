@@ -101,7 +101,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
 
   return (
     <View
-      className="p-[15px] border-b py-8 "
+      className="p-[15px] border-b pb-8 "
       style={{
         borderBottomColor: activeColors.grayAccent,
         borderBottomWidth: 1,
@@ -110,7 +110,14 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
       <View className="relative">
         <View className="flex-row w-full">
           <View className="flex-row w-[85%] items-start">
-            <TouchableOpacity onPress={() => profileHandler(item.user)}>
+            <TouchableOpacity
+              onPress={() =>
+                router.replace({
+                  pathname: `/user/${item.user._id}`,
+                  params: { userId: item.user._id },
+                })
+              }
+            >
               <Image
                 source={{ uri: userInfo?.avatar?.url }}
                 width={40}
@@ -121,11 +128,16 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
             <View className="pl-3 w-[100%]">
               <TouchableOpacity
                 className="flex-row items-center"
-                onPress={() => profileHandler(userInfo)}
+                onPress={() =>
+                  router.replace({
+                    pathname: `/user/${item.user._id}`,
+                    params: { userId: item.user._id },
+                  })
+                }
               >
                 <StyledText
                   style={{
-                    color: activeColors.gray,
+                    color: activeColors.tint,
                   }}
                   className=""
                   bold
@@ -143,7 +155,18 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                   />
                 )}
               </TouchableOpacity>
-              <StyledText className="">{item.title}</StyledText>
+              <TouchableOpacity
+                onPress={() =>
+                  router.push({
+                    pathname: `/post/${item._id}`,
+                    params: {
+                      postId: item._id,
+                    },
+                  })
+                }
+              >
+                <StyledText className="">{item.title}</StyledText>
+              </TouchableOpacity>
             </View>
           </View>
           <View className="flex-row items-start">
@@ -151,11 +174,27 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
             <TouchableOpacity
               onPress={() => item.user._id === user._id && setOpenModal(true)}
             >
-              <StyledText className=" pl-4  mb-[8px]">...</StyledText>
+              <StyledText className=" pl-4  mb-[8px]">
+                <MaterialCommunityIcons
+                  name="dots-horizontal"
+                  size={25}
+                  color={activeColors.accent}
+                />
+              </StyledText>
             </TouchableOpacity>
           </View>
         </View>
-        <View className="ml-[50px] my-3">
+        <TouchableOpacity
+          onPress={() =>
+            router.push({
+              pathname: `/post/${item._id}`,
+              params: {
+                postId: item._id,
+              },
+            })
+          }
+          className="ml-[50px] my-3"
+        >
           {item.image && (
             <Image
               source={{ uri: item.image.url }}
@@ -163,7 +202,7 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
               resizeMode="contain"
             />
           )}
-        </View>
+        </TouchableOpacity>
         {item.image ? (
           <View
             className="absolute top-12 left-5 h-[90%] w-[1px] "
@@ -186,13 +225,13 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
                 {item.likes.find((i: any) => i.userId === user._id) ? (
                   <MaterialCommunityIcons
                     name="heart"
-                    size={25}
+                    size={30}
                     color={activeColors.accent}
                   />
                 ) : (
                   <MaterialCommunityIcons
                     name="heart"
-                    size={25}
+                    size={30}
                     color={activeColors.accent}
                   />
                 )}
@@ -200,8 +239,8 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
             ) : (
               <MaterialCommunityIcons
                 name="heart-outline"
-                size={25}
-                color={activeColors.accent}
+                size={30}
+                color={activeColors.tint}
               />
             )}
           </TouchableOpacity>
@@ -217,10 +256,13 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
             }
             className="ml-5"
           >
-            <MaterialCommunityIcons
-              name="comment-outline"
-              size={25}
-              color={activeColors.accent}
+            <Image
+              source={{
+                uri: "https://cdn-icons-png.flaticon.com/512/5948/5948565.png",
+              }}
+              width={20}
+              height={20}
+              className="ml-5"
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -246,8 +288,11 @@ const PostCard = ({ item, isReply, navigation, postId, replies }: Props) => {
           <View className="pl-[50px] pt-4 flex-row">
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("PostDetails", {
-                  data: item,
+                router.push({
+                  pathname: `/post/${postId}`,
+                  params: {
+                    postId: postId,
+                  },
                 })
               }
             >

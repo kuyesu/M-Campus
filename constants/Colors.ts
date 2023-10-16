@@ -33,6 +33,7 @@ export const colors = {
     backgroundColorOpacity: `rgba(255, 255, 255, 0.9)`,
     danger: "#EF4444", //#e24848
     postBorder: "#00000017",
+    purple: "#5a49d6",
   },
   dark: {
     primary: "#1f2937",
@@ -46,6 +47,7 @@ export const colors = {
     backgroundColorOpacity: `rgba(255, 255, 255, 0.1)`,
     danger: "#EF4444",
     postBorder: "#374151",
+    purple: "#5a49d6",
   },
   primary: "#f3f4f6",
   secondary: "#ffffff",

@@ -114,17 +114,17 @@ export default function TabOneScreen() {
           <MaterialCommunityIcons
             name="logout-variant"
             // name="view-dashboard-outline"
-            size={25}
+            size={20}
             color={activeColors.tint}
           />
         </TouchableOpacity>
         <StyledText
-          big
+          bold
           style={{
             color: activeColors.tint,
           }}
         >
-          Logout
+          Sign out
         </StyledText>
       </View>
     </MainContainer>
@@ -134,6 +134,7 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 25,
+    flex: 1,
   },
   setting: {
     alignItems: "center",

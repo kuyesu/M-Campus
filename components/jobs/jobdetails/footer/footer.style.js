@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: SIZES.small,
-    backgroundColor: "#FFF",
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   },
   applyBtn: {
     flex: 1,
-    backgroundColor: "#FE7654",
+
     height: "100%",
     justifyContent: "center",
     alignItems: "center",

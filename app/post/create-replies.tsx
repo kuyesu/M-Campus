@@ -6,15 +6,21 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import * as ImagePicker from "expo-image-picker";
+import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
 import getTimeDuration from "@/common/TimeGenerator";
 import axios from "axios";
 import { URI } from "../../redux/URI";
 import { getAllPosts } from "../../redux/actions/postAction";
 import { router, useLocalSearchParams } from "expo-router";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import StyledText from "@/components/Text/StyledText";
+import { ThemeContext } from "@/context/themeContext";
+import { colors } from "@/constants/Colors";
+import StyledTextInput from "@/components/TextInput/StyledTextInput";
+import MainContainer from "@/components/container/MainContainer";
 
 type Props = {
   item: any;
@@ -23,27 +29,38 @@ type Props = {
 };
 
 const CreateRepliesScreen = ({ route }: Props) => {
+  const { theme, updateTheme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
   const params = useLocalSearchParams();
-  const { post, postId }: any = params;
-  const objectString = JSON.stringify(post);
-  console.warn(objectString);
+  const { postId }: any = params;
+  const { posts, isLoading } = useSelector((state: any) => state.post);
   const { user, token } = useSelector((state: any) => state.user);
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
-
-  const ImageUpload = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-      base64: true,
-    });
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
+  const [data, setData] = useState({});
+  useEffect(() => {
+    if (posts && user) {
+      const myPosts = posts.find((ticket: any) => ticket._id === postId);
+      setData(myPosts);
     }
+    // console.log(tickets);
+  }, [posts]);
+  const post = posts.find((post: any) => post._id === postId);
+  const ImageUpload = async () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      compressImageQuality: 0.8,
+      includeBase64: true,
+    }).then((image: ImageOrVideo | null) => {
+      if (image) {
+        // @ts-ignore
+        setImage("data:image/jpeg;base64," + image.data);
+      }
+    });
   };
 
   const time = post.createdAt;
@@ -53,7 +70,7 @@ const CreateRepliesScreen = ({ route }: Props) => {
     if (!postId) {
       await axios
         .put(
-          `${URI}/add-replies`,
+          `${URI}/add-reply`,
           {
             postId: post._id,
             title,
@@ -68,7 +85,7 @@ const CreateRepliesScreen = ({ route }: Props) => {
         .then((res: any) => {
           getAllPosts()(dispatch);
           router.push({
-            pathname: "/post/post-details",
+            pathname: `/post/${postId}`,
             params: {
               data: res.data.post,
               postId: postId,
@@ -80,7 +97,7 @@ const CreateRepliesScreen = ({ route }: Props) => {
     } else {
       await axios
         .put(
-          `${URI}/add-reply`,
+          `${URI}/add-replies`,
           {
             postId,
             replyId: post._id,
@@ -95,7 +112,7 @@ const CreateRepliesScreen = ({ route }: Props) => {
         )
         .then((res: any) => {
           router.push({
-            pathname: "/post/post-details",
+            pathname: `/post/${postId}`,
             params: {
               data: res.data.post,
               postId: postId,
@@ -108,51 +125,52 @@ const CreateRepliesScreen = ({ route }: Props) => {
   };
 
   return (
-    <SafeAreaView>
+    <MainContainer>
       <View className="flex-row items-center p-3">
         <TouchableOpacity onPress={() => router.back()}>
-          <Image
-            source={{
-              uri: "https://cdn-icons-png.flaticon.com/512/2961/2961937.png",
-            }}
-            width={25}
-            height={25}
+          <MaterialCommunityIcons
+            name="close"
+            size={25}
+            color={activeColors.tint}
+            style={{ marginLeft: 5 }}
           />
         </TouchableOpacity>
-        <Text className="text-[20px] left-4 font-[600] text-[#000]">Reply</Text>
+        <StyledText bold className="text-[20px] left-4 font-[600] ">
+          Reply
+        </StyledText>
       </View>
       <View className="h-[88vh] justify-between flex-col">
         <ScrollView className="relative" showsVerticalScrollIndicator={false}>
           <View className="flex-row w-full justify-between p-3">
             <View className="flex-row items-center">
               <Image
-                source={{ uri: post.user.avatar.url }}
+                source={{ uri: post?.user?.avatar.url }}
                 width={40}
                 height={40}
                 borderRadius={100}
               />
               <View className="pl-3">
-                <Text className="text-black font-[500] text-[18px]">
-                  {post.user.name}
-                </Text>
-                <Text className="text-black font-[500] text-[16px]">
-                  {post.title}
-                </Text>
+                <StyledText className="font-[500] text-[18px]">
+                  {post?.user?.name}
+                </StyledText>
+                <StyledText className="font-[500] text-[16px]">
+                  {post?.title}
+                </StyledText>
               </View>
             </View>
             <View className="flex-row items-center">
-              <Text className="text-[#000000b6]">{formattedDuration}</Text>
+              <StyledText className="">{formattedDuration}</StyledText>
               <TouchableOpacity>
-                <Text className="text-[#000] pl-4 font-[700] mb-[8px]">
+                <StyledText className=" pl-4 font-[700] mb-[8px]">
                   ...
-                </Text>
+                </StyledText>
               </TouchableOpacity>
             </View>
           </View>
           <View className="ml-[50px] my-3">
-            {post.image && (
+            {post?.image && (
               <Image
-                source={{ uri: post.image.url }}
+                source={{ uri: post?.image?.url }}
                 style={{
                   width: "90%",
                   aspectRatio: 1,
@@ -163,40 +181,65 @@ const CreateRepliesScreen = ({ route }: Props) => {
               />
             )}
           </View>
-          {post.image ? (
-            <View className="absolute top-[125] left-8 h-[75%] w-[1px] bg-[#00000017]" />
+          {post?.image ? (
+            <View
+              style={{
+                backgroundColor: activeColors.postBorder,
+              }}
+              className="absolute top-[125] left-8 h-[75%] w-[1px] "
+            />
           ) : (
-            <View className="absolute top-12 left-5 h-[60%] w-[1px] bg-[#00000017]" />
+            <View
+              style={{
+                backgroundColor: activeColors.postBorder,
+              }}
+              className="absolute top-12 left-5 h-[60%] w-[1px] "
+            />
           )}
 
           <View className="p-3">
-            <View className="flex-row">
+            <View className="flex-row ">
               <Image
-                source={{ uri: user.avatar.url }}
+                source={{ uri: user?.avatar?.url }}
                 width={40}
                 height={40}
                 borderRadius={100}
               />
-              <View className="pl-3">
-                <Text className="text-black font-[500] text-[18px]">
+              <View
+                className="pl-3"
+                style={{
+                  width: "80%",
+                }}
+              >
+                <StyledText className=" font-[500] text-[18px] pb-4">
                   {user.name}
-                </Text>
-                <TextInput
-                  placeholder={`Reply to ${post.user.name}...`}
-                  placeholderTextColor={"#666"}
-                  className="mt-[-5px] ml-1 text-black"
+                </StyledText>
+                <StyledTextInput
+                  placeholder={`Reply to ${post?.user?.name}...`}
+                  placeholderTextColor={activeColors.gray}
+                  className="mt-[-5px] ml-1"
                   value={title}
                   onChangeText={setTitle}
+                  textAlignVertical="top"
+                  multiline
+                  rows={4}
+                  style={{
+                    width: "100%",
+                    color: activeColors.tint,
+                    borderRadius: 10,
+                    padding: 5,
+                    paddingHorizontal: 0,
+                    paddingLeft: 0,
+                    backgroundColor: activeColors.primary,
+                  }}
                 />
+
                 <TouchableOpacity className="mt-2" onPress={ImageUpload}>
-                  <Image
-                    source={{
-                      uri: "https://cdn-icons-png.flaticon.com/512/10857/10857463.png",
-                    }}
-                    style={{
-                      width: 20,
-                      height: 20,
-                    }}
+                  <MaterialCommunityIcons
+                    name="image-plus"
+                    size={30}
+                    color={activeColors.tint}
+                    style={{ marginLeft: 5 }}
                   />
                 </TouchableOpacity>
               </View>
@@ -219,17 +262,40 @@ const CreateRepliesScreen = ({ route }: Props) => {
           </View>
         </ScrollView>
         <View>
-          <View className="p-2">
-            <View className="w-full flex-row justify-between">
-              <Text className="left-3 text-[#000]">Anyone can reply</Text>
-              <TouchableOpacity onPress={createReplies}>
-                <Text className="text-[#1977f2] mr-[10px]">Post</Text>
-              </TouchableOpacity>
-            </View>
+          <View className="w-full flex-row justify-between pt-5 ">
+            <StyledText className="left-3 ">Anyone can reply</StyledText>
+            <TouchableOpacity
+              style={{
+                backgroundColor: activeColors.secondary,
+                borderRadius: 25,
+                padding: 10,
+                paddingHorizontal: 20,
+                marginRight: 10,
+                borderColor: activeColors.grayAccent,
+                borderWidth: 1,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={createReplies}
+            >
+              <StyledText className=" mr-[5px]" bold>
+                Post
+              </StyledText>
+              <MaterialCommunityIcons
+                name="reply"
+                size={20}
+                color={activeColors.accent}
+                style={{
+                  // rotate: "180deg",
+                  transform: [{ rotateX: "180deg" }, { rotateZ: "180deg" }],
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </MainContainer>
   );
 };
 

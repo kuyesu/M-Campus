@@ -21,6 +21,7 @@ import {
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import useFetch from "@/hooks/useFetch";
+import MainContainer from "@/components/container/MainContainer";
 
 const tabs = ["About", "Qualifications", "Responsibilites"];
 
@@ -74,7 +75,7 @@ export default function JobDeatils() {
   };
 
   return (
-    <SafeAreaView>
+    <MainContainer>
       {/* <Stack.Screen
                 options={{
                     headerStyle: { backgroundColor: COLORS.lightWhite },
@@ -127,14 +128,25 @@ export default function JobDeatils() {
         </ScrollView>
 
         {!isLoading ? (
-          <JobFooter
-            url={
-              data[0]?.job_google_link ??
-              "https://careers.google.com/jobs/results/"
-            }
-          />
+          <View
+            style={{
+              position: "fixed",
+              bottom: 0,
+              width: "100%",
+              backgroundColor: activeColors.secondary,
+              borderTopColor: activeColors.grayAccent,
+              borderTopWidth: 2,
+            }}
+          >
+            <JobFooter
+              url={
+                data[0]?.job_google_link ??
+                "https://careers.google.com/jobs/results/"
+              }
+            />
+          </View>
         ) : null}
       </>
-    </SafeAreaView>
+    </MainContainer>
   );
 }

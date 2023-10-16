@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { URI } from "../../redux/URI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 type Props = {
   navigation: any;
@@ -44,7 +45,7 @@ const PostDetailsCard = ({
 
   const time = item?.createdAt;
   const formattedDuration = getTimeDuration(time);
-
+  const router = useRouter();
   const profileHandler = async (e: any) => {
     await axios
       .get(`${URI}/get-user/${e._id}`, {
@@ -52,8 +53,9 @@ const PostDetailsCard = ({
       })
       .then((res) => {
         if (res.data.user._id !== user._id) {
-          navigation.navigate("UserProfile", {
-            item: res.data.user,
+          router.replace({
+            pathname: `/user/${res.data.user._id}`,
+            params: { data: res.data.user, userId: res.data.user._id },
           });
         } else {
           navigation.navigate("Profile");
@@ -163,7 +165,14 @@ const PostDetailsCard = ({
       <View className="relative">
         <View className="flex-row w-full justify-between">
           <View className="flex-row items-center">
-            <TouchableOpacity onPress={() => profileHandler(userInfo)}>
+            <TouchableOpacity
+              onPress={() =>
+                router.replace({
+                  pathname: `/user/${item.user._id}`,
+                  params: { userId: item.user._id },
+                })
+              }
+            >
               <Image
                 source={{ uri: userInfo.avatar.url }}
                 width={40}
@@ -177,7 +186,7 @@ const PostDetailsCard = ({
                   <Text className="text-black font-[500] text-[16px]">
                     {userInfo.name}
                   </Text>
-                  {item.role === "Admin" && (
+                  {item.user.role.name != "user" && (
                     <Image
                       source={{
                         uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",
@@ -214,7 +223,12 @@ const PostDetailsCard = ({
           )}
         </View>
         {item.image ? (
-          <View className="absolute top-14 left-5 h-[90%] w-[1px] bg-[#00000017]" />
+          <View
+            className="absolute top-14 left-5 h-[90%] w-[1px] "
+            style={{
+              backgroundColor: "#00000017",
+            }}
+          />
         ) : (
           <View className="absolute top-12 left-5 h-[60%] w-[1px] bg-[#00000017]" />
         )}

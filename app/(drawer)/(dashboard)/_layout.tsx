@@ -1,5 +1,11 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs, router, useNavigation } from "expo-router";
+import {
+  Link,
+  Tabs,
+  useLocalSearchParams,
+  useNavigation,
+  useRouter,
+} from "expo-router";
 import {
   Image,
   Platform,
@@ -14,9 +20,9 @@ import { BlurView } from "expo-blur";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { MapPinIcon } from "react-native-heroicons/outline";
-import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import StyledText from "@/components/Text/StyledText";
+import { useDispatch, useSelector } from "react-redux";
+import SplashScreen from "@/components/SplashScreen";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -31,12 +37,80 @@ export default function TabLayout() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-
+  const { user, isAuthenticated, loading } = useSelector(
+    (state: any) => state.user
+  );
+  const router = useRouter();
   const navigation: any = useNavigation();
+
+  if (loading) return <SplashScreen />;
+  if (!isAuthenticated) router.replace("/");
   return (
     <Tabs
       initialRouteName="home/index"
       screenOptions={({ route }) => ({
+        headerLeft: () => (
+          <View style={styles.header}>
+            <Pressable onPress={() => navigation.openDrawer()}>
+              {({ pressed }) => (
+                <Image
+                  source={{
+                    uri: user?.avatar?.url || "https://picsum.photos/200/300",
+                  }}
+                  style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+                />
+              )}
+            </Pressable>
+          </View>
+        ),
+        headerRight: () => (
+          <Link href="/modal" asChild>
+            <Pressable>
+              {({ pressed }) => (
+                <View
+                  className={`items-center  justify-center flex-row `}
+                  style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                >
+                  <MaterialCommunityIcons
+                    size={35}
+                    name="notification-clear-all"
+                    color={activeColors.tint}
+                    fill="#86e63b"
+                    stroke="#041633"
+                    strokeWidth={2}
+                  />
+                  <View
+                    style={{
+                      position: "absolute",
+                      right: -2,
+                      top: 4,
+                    }}
+                  >
+                    <View
+                      style={{
+                        borderColor: activeColors.secondary,
+                        backgroundColor: activeColors.accent,
+                        borderWidth: 2,
+                        borderRadius: 50,
+                        padding: 2,
+                        display: "flex",
+                        height: 18,
+                        width: 18,
+                        alignItems: "center",
+                        // justifyContent: "center",
+                      }}
+                    >
+                      <StyledText style={{ fontSize: 8, color: "black" }} bold>
+                        3
+                      </StyledText>
+                    </View>
+                  </View>
+                </View>
+              )}
+            </Pressable>
+          </Link>
+        ),
+        tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
         headerLeftContainerStyle: {
           justifyContent: "center",
@@ -61,7 +135,7 @@ export default function TabLayout() {
 
           // You can return any component that you like here!
           return (
-            <View className="pb-0">
+            <View className="pb-0 ">
               <MaterialCommunityIcons
                 name={iconName}
                 // name="view-dashboard-outline"
@@ -79,7 +153,6 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: activeColors.secondary,
         },
-        tabBarShowLabel: false,
         headerTitleAlign: "left",
         headerTitleStyle: {
           paddingHorizontal: 10,
@@ -96,154 +169,37 @@ export default function TabLayout() {
           // headerShown: false,
           title: "",
           // href: null,
-          headerLeft: () => (
-            <View style={styles.header}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <View
-                    className={`items-center  justify-center flex-row `}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  >
-                    <MaterialCommunityIcons
-                      size={35}
-                      name="notification-clear-all"
-                      color={activeColors.tint}
-                      fill="#86e63b"
-                      stroke="#041633"
-                      strokeWidth={2}
-                    />
-                    <View
-                      style={{
-                        position: "absolute",
-                        right: -2,
-                        top: 4,
-                      }}
-                    >
-                      <View
-                        style={{
-                          borderColor: activeColors.secondary,
-                          backgroundColor: activeColors.accent,
-                          borderWidth: 2,
-                          borderRadius: 50,
-                          padding: 2,
-                          display: "flex",
-                          height: 18,
-                          width: 18,
-                          alignItems: "center",
-                          // justifyContent: "center",
-                        }}
-                      >
-                        <StyledText
-                          style={{ fontSize: 8, color: "black" }}
-                          bold
-                        >
-                          3
-                        </StyledText>
-                      </View>
-                    </View>
-                  </View>
-                )}
-              </Pressable>
-            </Link>
-          ),
         }}
       />
       <Tabs.Screen
         name="inquiries/index"
         options={{
           tabBarLabel: "Ask",
-          title: "Submissions and Inquiries",
+          // title: "Submissions and Inquiries",
+          title: "",
           // headerShown: false,
 
           tabBarLabelStyle: {
             fontSize: 12,
             fontWeight: "700",
           },
-          headerLeft: () => (
-            <View style={styles.header}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <View
-                    className={`items-center  justify-center flex-row `}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  >
-                    <MaterialCommunityIcons
-                      size={35}
-                      name="notification-clear-all"
-                      color={activeColors.tint}
-                      fill="#86e63b"
-                      stroke="#041633"
-                      strokeWidth={2}
-                    />
-                    <View
-                      style={{
-                        position: "absolute",
-                        right: -2,
-                        top: 4,
-                      }}
-                    >
-                      <View
-                        style={{
-                          borderColor: activeColors.secondary,
-                          backgroundColor: activeColors.accent,
-                          borderWidth: 2,
-                          borderRadius: 50,
-                          padding: 2,
-                          display: "flex",
-                          height: 18,
-                          width: 18,
-                          alignItems: "center",
-                          // justifyContent: "center",
-                        }}
-                      >
-                        <StyledText
-                          style={{ fontSize: 8, color: "black" }}
-                          bold
-                        >
-                          3
-                        </StyledText>
-                      </View>
-                    </View>
-                  </View>
-                )}
-              </Pressable>
-            </Link>
-          ),
         }}
       />
       <Tabs.Screen
         name="map/index"
         options={{
+          title: "",
+          href: null,
+          // headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="feed/index"
+        options={{
           tabBarLabel: "",
-          title: "Maps and Locations",
+
+          // title: "Maps and Locations",
+          title: "",
           tabBarLabelStyle: {
             fontSize: 12,
             fontWeight: "700",
@@ -253,63 +209,45 @@ export default function TabLayout() {
           tabBarIcon: ({ focused, color, size }) => (
             <View className={`items-center  justify-center  `}>
               <View
-                className={`items-center -z-50 top-[1px] left-1 absolute  bg-[#041633] p-2 font-bold  `}
+                style={{
+                  // borderRadius: 50,
+                  backgroundColor: activeColors.grayAccent,
+                }}
+                className={`items-center rounded-md -z-50 top-[1px] left-1 absolute   p-2 font-bold  `}
               >
                 <MaterialCommunityIcons
-                  size={35}
-                  name="map-marker"
-                  color={
-                    theme.mode === "dark" ? "#041633" : activeColors.primary
-                  }
-                  fill="#86e63b"
-                  stroke="#041633"
-                  strokeWidth={2}
+                  size={30}
+                  name="credit-card-edit-outline"
+                  color={activeColors.secondary}
+                  stroke={activeColors.secondary}
+                  strokeWidth={0.5}
                 />
               </View>
               <View
-                className="flex  p-2 "
+                className="flex  p-2  rounded-md"
                 style={{
                   backgroundColor: activeColors.accent,
+                  // borderRadius: 50,
                 }}
               >
                 {focused ? (
                   <MaterialCommunityIcons
-                    size={35}
-                    name="map-marker"
-                    color={
-                      theme.mode === "dark" ? "#041633" : activeColors.primary
-                    }
-                    fill="#86e63b"
-                    stroke="#041633"
-                    strokeWidth={2}
+                    size={30}
+                    name="credit-card-edit-outline"
+                    color={activeColors.secondary}
+                    stroke={activeColors.secondary}
+                    strokeWidth={0.5}
                   />
                 ) : (
                   <MaterialCommunityIcons
-                    size={35}
-                    name="map-marker"
-                    color={
-                      theme.mode === "dark" ? "#041633" : activeColors.primary
-                    }
-                    fill="#86e63b"
-                    stroke="#041633"
-                    strokeWidth={2}
+                    size={30}
+                    name="credit-card-edit-outline"
+                    color={activeColors.secondary}
+                    stroke={activeColors.secondary}
+                    strokeWidth={0.5}
                   />
                 )}
               </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View style={styles.header}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
             </View>
           ),
         }}
@@ -321,124 +259,20 @@ export default function TabLayout() {
           title: "",
           tabBarLabel: "Chats",
           // headerShown: false,
+
           // tabBarActiveTintColor: "#041633",
           tabBarLabelStyle: {
             fontSize: 12,
             fontWeight: "700",
           },
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
         }}
       />
       <Tabs.Screen
         name="assistant/index"
         options={{
-          tabBarLabel: "Notification",
-          title: "Ask Assistant",
-          headerLeft: () => (
-            <View style={styles.header}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
+          tabBarLabel: "Mi bot",
+          // title: "Ask Mi Assistant",
+          title: "",
         }}
       />
       <Tabs.Screen
@@ -489,34 +323,6 @@ export default function TabLayout() {
               </View>
             </View>
           ),
-          headerLeft: () => (
-            <View style={styles.header}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
-          headerRight: () => (
-            <View style={[styles.header, { marginRight: 15 }]}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <MaterialCommunityIcons
-                    name="cog-outline"
-                    // name="view-dashboard-outline"
-                    size={25}
-                    color={activeColors.tint}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
         }}
       />
       {/*
@@ -531,38 +337,19 @@ export default function TabLayout() {
         options={{
           href: null,
           title: "Messages",
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() => router.push("/messages/userchats")}
             >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
           ),
         }}
       />
@@ -598,138 +385,16 @@ export default function TabLayout() {
               />
             </Pressable>
           ),
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="bell-ring"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
         }}
       />
-
       <Tabs.Screen
-        name="feed/index"
+        name="inquiries/reply"
         options={{
-          title: "Feed",
+          href: null,
           // headerShown: false,
-          href: null,
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
-        }}
-      />
+          title: "Reply",
+          headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
 
-      <Tabs.Screen
-        name="settings/two"
-        options={{
-          headerShown: false,
-          href: null,
-        }}
-      />
-      <Tabs.Screen
-        name="inquiries/ticket/index"
-        options={{
-          headerShown: false,
-          href: null,
-        }}
-      />
-
-      <Tabs.Screen
-        name="feed/[id]"
-        options={{
-          headerShown: false,
-          href: null,
-        }}
-      />
-      <Tabs.Screen
-        name="hostels/[id]"
-        options={{
-          // headerShown: false,
-          href: null,
-          title: "Hostel",
           headerBackground: () => (
             <View
               style={{
@@ -738,6 +403,69 @@ export default function TabLayout() {
               }}
             />
           ),
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() =>
+                router.push({
+                  pathname: `/inquiries`,
+                })
+              }
+            >
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings/two"
+        options={{
+          headerShown: false,
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="user/[id]"
+        options={{
+          title: "User Profile",
+          headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+          href: null,
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() => router.push("/feed")}
+            >
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
+          ),
+          headerRight: () => <></>,
+        }}
+      />
+      <Tabs.Screen
+        name="inquiries/ticket/index"
+        options={{
+          headerShown: false,
+          href: null,
           headerLeft: () => (
             <Pressable
               style={{
@@ -752,106 +480,15 @@ export default function TabLayout() {
               />
             </Pressable>
           ),
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="bell-ring"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
         }}
       />
+
       <Tabs.Screen
         name="jobs/index"
         options={{
           // headerShown: false,
           href: null,
           title: "Jobs",
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
         }}
       />
       <Tabs.Screen
@@ -860,65 +497,6 @@ export default function TabLayout() {
           // headerShown: false,
           href: null,
           title: "Hostels",
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
         }}
       />
       <Tabs.Screen
@@ -926,65 +504,20 @@ export default function TabLayout() {
         options={{
           // headerShown: false,
           href: null,
-          title: "Details",
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => navigation.openDrawer()}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
+          title: "Direction",
           headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
+            <Pressable
+              style={{
+                paddingLeft: 15,
+              }}
+              onPress={() => router.push("/hostels")}
             >
-              <Pressable onPress={() => navigation.openDrawer()} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: "https://avatars.githubusercontent.com/u/69388140?s=400&u=6a8b6906808767b2865f22a0c11609b6dcf84d80&v=4",
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
           ),
         }}
       />
@@ -1039,7 +572,7 @@ export default function TabLayout() {
                 >
                   {({ pressed }) => (
                     <MaterialCommunityIcons
-                      name="bell-ring"
+                      name="bell-ring-outline"
                       // name="view-dashboard-outline"
                       size={25}
                       color={activeColors.tint}

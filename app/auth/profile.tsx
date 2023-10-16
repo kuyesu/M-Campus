@@ -126,7 +126,7 @@ export default function Profile() {
                   ) : (
                     <View>
                       <Image
-                        source={require("@/assets/avatar/1.jpeg")}
+                        source={{ uri: "https://placehold.co/600x400.png" }}
                         className="w-[80px] h-[80px] rounded-full"
                       />
                       {/* <StyledText

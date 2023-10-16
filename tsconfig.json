@@ -8,6 +8,8 @@
     "allowJs": true,
     "noEmitOnError": false,
     "downlevelIteration": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
@@ -21,6 +23,7 @@
     "context/themeContext.js",
     "app/index.jsx",
     "components/jobs/common/cards/popular/PopularJobCard.jsx",
-    "components/jobs/home/popular/Popularjobs.jsx"
+    "components/jobs/home/popular/Popularjobs.jsx",
+    "app/(drawer)/(dashboard)/inquiries/[id].jsx"
   ]
 }

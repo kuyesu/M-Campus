@@ -13,8 +13,9 @@ import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 
 import styles from "./popularjobs.style";
 import { ThemeContext } from "@/context/themeContext";
-import { colors } from "react-native-elements";
+
 import StyledText from "@/components/Text/StyledText";
+import { colors } from "@/constants/Colors";
 
 const Popularjobs = () => {
   const router = useRouter();
@@ -36,8 +37,8 @@ const Popularjobs = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <StyledText className="text-lg text-left font-semibold mt-2 ">
+      <View style={styles.header} className=" text-center justify-center pt-10">
+        <StyledText bold className=" text-left  mt-2 ">
           On-campus Jobs
         </StyledText>
         <TouchableOpacity>
@@ -49,7 +50,7 @@ const Popularjobs = () => {
         {isLoading ? (
           <ActivityIndicator size={"large"} color={"black"} />
         ) : error ? (
-          <Text>Something went wrong...</Text>
+          <StyledText>Something went wrong...</StyledText>
         ) : (
           <FlatList
             data={data}
@@ -61,7 +62,9 @@ const Popularjobs = () => {
               />
             )}
             keyExtractor={(item) => item?.job_id}
-            contentContainerStyle={{ columnGap: 30 }}
+            contentContainerStyle={{
+              columnGap: 30,
+            }}
             horizontal
           />
         )}

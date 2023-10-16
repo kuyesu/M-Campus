@@ -13,7 +13,7 @@ import "@/styles/global.css";
 import { colors } from "@/constants/Colors";
 import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "@/context/themeContext";
-import { Stack, router, useNavigation, withLayoutContext } from "expo-router";
+import { Stack, router, withLayoutContext } from "expo-router";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -34,6 +34,9 @@ import { useDispatch, useSelector } from "react-redux";
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notification
 
 const DrawerNavigator = createDrawerNavigator().Navigator;
 
@@ -61,7 +64,9 @@ function CustomDrawerContent(props: any) {
     setIsActivate((previousState) => !previousState);
   };
 
-  const { user, isAuthenticated } = useSelector((state: any) => state.user);
+  const { user, isAuthenticated, loading } = useSelector(
+    (state: any) => state.user
+  );
 
   const dispatch = useDispatch();
   const logoutHandler = async () => {
@@ -301,9 +306,8 @@ export default function DrawerLayout() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-  const navigation = useNavigation();
 
-  const { user } = useSelector((state: any) => state.user);
+  // const { user } = useSelector((state: any) => state.user);
 
   return (
     <Drawer
@@ -381,65 +385,6 @@ export default function DrawerLayout() {
             backgroundColor: activeColors.secondary,
           },
           headerTintColor: activeColors.tint,
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => router.push("/home")}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => router.push("/settings")} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: user?.avatar.url,
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
         }}
       />
       <Drawer.Screen
@@ -464,75 +409,8 @@ export default function DrawerLayout() {
             backgroundColor: activeColors.secondary,
           },
           headerTintColor: activeColors.tint,
-          headerRight: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <View style={[{ marginRight: 20 }]}>
-                <Pressable
-                  onPress={() => router.push("/home")}
-                  style={{
-                    transform: [{ rotateY: "180deg" }],
-                  }}
-                >
-                  {({ pressed }) => (
-                    <MaterialCommunityIcons
-                      name="sort-variant"
-                      // name="view-dashboard-outline"
-                      size={25}
-                      color={activeColors.tint}
-                    />
-                  )}
-                </Pressable>
-              </View>
-            </View>
-          ),
-          headerLeft: () => (
-            <View
-              style={[
-                styles.header,
-                {
-                  display: "flex",
-                  flex: 1,
-                  // gap: 20,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // marginRight: 5,
-                },
-              ]}
-            >
-              <Pressable onPress={() => router.push("/profile")} style={{}}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: user?.avatar.url,
-                    }}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-          ),
         }}
       />
-      {/* <Drawer.Screen
-        name=""
-        options={{
-          headerShown: false,
-          title: "",
-          href: false,
-        }}
-      /> */}
     </Drawer>
   );
 }

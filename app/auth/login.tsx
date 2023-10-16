@@ -44,9 +44,24 @@ export default function Login() {
   const dispatch = useDispatch();
   const submitHandler = (e: any) => {
     loginUser(email, password)(dispatch);
+    // wait for 2 seconds
+    setTimeout(() => {
+      if (error) {
+        if (Platform.OS === "android") {
+          ToastAndroid.show(error, ToastAndroid.LONG);
+        } else {
+          Alert.alert("Email and password not matching!");
+        }
+      }
+      if (isAuthenticated) {
+        loadUser()(dispatch);
+        router.replace("/home");
+      }
+    }, 2000);
   };
 
   useEffect(() => {
+    loadUser()(dispatch);
     if (error) {
       if (Platform.OS === "android") {
         ToastAndroid.show(error, ToastAndroid.LONG);
@@ -56,14 +71,9 @@ export default function Login() {
     }
     if (isAuthenticated) {
       loadUser()(dispatch);
-      if (Platform.OS === "android") {
-        ToastAndroid.show("Login successful!", ToastAndroid.LONG);
-        router.replace("/home");
-      } else {
-        Alert.alert("Login successful!");
-      }
+      router.replace("/home");
     }
-  }, [isAuthenticated, error, loading]);
+  }, [error]);
 
   return (
     <View style={{ flex: 1, backgroundColor: activeColors.primary }}>

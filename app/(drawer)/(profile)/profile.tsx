@@ -20,6 +20,10 @@ import { ThemeContext } from "@/context/themeContext";
 import { Link, router } from "expo-router";
 import StyledText from "@/components/Text/StyledText";
 import StyledView from "@/components/View/StyledView";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
+import axios from "axios";
+import { URI } from "@/redux/URI";
 
 const { width } = Dimensions.get("window");
 
@@ -35,9 +39,10 @@ export default function TabOneScreen() {
   };
 
   const [active, setActive] = useState(0);
-  const { user } = useSelector((state: any) => state.user);
+  const { user, token } = useSelector((state: any) => state.user);
   const { posts } = useSelector((state: any) => state.post);
   const [data, setData] = useState([]);
+  const [avatar, setAvatar] = useState();
   const [repliesData, setRepliesData] = useState([]);
   const dispatch = useDispatch();
   const logoutHandler = async () => {
@@ -59,22 +64,96 @@ export default function TabOneScreen() {
       setRepliesData(myReplies.filter((post: any) => post.replies.length > 0));
     }
   }, [posts, user]);
+
+  const uploadImage = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      compressImageQuality: 0.8,
+      includeBase64: true,
+    }).then((image: ImageOrVideo | null) => {
+      if (image) {
+        // @ts-ignore
+        setAvatar("data:image/jpeg;base64," + image.data);
+      }
+      axios
+        .put(
+          `${URI}/update-avatar`,
+          {
+            avatar: avatar,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res: any) => {
+          loadUser()(dispatch);
+          console.log(res.data);
+        });
+    });
+  };
+
   return (
     <MainContainer style={styles.container}>
       <View
         style={{
           width: "100%",
-          borderBottomColor: activeColors.grayAccent,
-          borderBottomWidth: 1,
+          // borderBottomColor: activeColors.grayAccent,
+          // borderBottomWidth: 1,
         }}
       >
         <View
-          className="flex-row justify-between"
+          className="flex-col justify-center items-center"
           style={{ width: "100%", padding: 10 }}
         >
-          <View>
+          <TouchableOpacity onPress={uploadImage} className="relative pt-5">
+            <Image
+              source={{ uri: avatar || user?.avatar.url }}
+              style={{
+                width: 120,
+                height: 120,
+                borderRadius: 150 / 2,
+                backgroundColor: activeColors.secondary,
+              }}
+            />
+            <View
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                backgroundColor: activeColors.secondary,
+                width: 35,
+                height: 35,
+                borderRadius: 20,
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 3,
+                borderColor: activeColors.primary,
+              }}
+            >
+              <MaterialCommunityIcons
+                name="pencil"
+                size={20}
+                color={activeColors.tint}
+              />
+            </View>
+          </TouchableOpacity>
+          <View className="pt-10 items-center">
             <StyledText big bold>
-              {user?.name}
+              {user?.name}{" "}
+              {user.role.name === "user" && (
+                <Image
+                  source={{
+                    uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",
+                  }}
+                  width={18}
+                  height={18}
+                  className="ml-2 absolute bottom-0 left-0"
+                />
+              )}
             </StyledText>
             <StyledText
               style={{
@@ -86,163 +165,65 @@ export default function TabOneScreen() {
               @{user?.userName}
             </StyledText>
           </View>
-
-          <View className="relative">
-            <Image
-              source={{ uri: user?.avatar.url }}
-              height={80}
-              width={80}
-              borderRadius={100}
-            />
-            {user.role === "Admin" && (
-              <Image
-                source={{
-                  uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",
-                }}
-                width={18}
-                height={18}
-                className="ml-2 absolute bottom-0 left-0"
-              />
-            )}
-          </View>
         </View>
-        <StyledText>{user?.bio}</StyledText>
-        <View className="p-3">
+        {/* <StyledText>{user?.bio}</StyledText> */}
+        <View className=" items-center justify-center">
           <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("FollowerCard", {
-          //     followers: user?.followers,
-          //     following: user?.following,
-          //   })
-          // }
+            onPress={logoutHandler}
+            style={{
+              flexDirection: "row",
+              height: 52,
+              width: "45%",
+              borderRadius: 26,
+              alignItems: "center",
+              justifyContent: "center",
+              paddingHorizontal: 26,
+              backgroundColor: activeColors.secondary,
+              marginTop: 40,
+            }}
           >
-            {/* <StyledText style={{}}>Update your profile info</StyledText> */}
-          </TouchableOpacity>
-        </View>
-        <StyledView
-          className="px-4 py-5 my-5 flex-row w-full items-center justify-between rounded-none"
-          style={{
-            borderColor: activeColors.grayAccent,
-            borderWidth: 1,
-          }}
-        >
-          <Link href="/EditProfile" asChild>
-            <Pressable>
-              {({ pressed }) => (
-                <StyledText
-                  className="w-[100] pt-2 text-center h-[40px]"
-                  style={{
-                    backgroundColor: activeColors.accent,
-                    borderColor: activeColors.accent,
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    color: activeColors.accentGray,
-                    textAlign: "center",
-                  }}
-                  bold
-                >
-                  Edit Profile
-                </StyledText>
-              )}
-            </Pressable>
-          </Link>
-
-          <TouchableOpacity className="ml-5" onPress={logoutHandler}>
-            <StyledText
-              className="w-[100] pt-2 text-center h-[40px] "
+            <MaterialCommunityIcons
+              name="logout-variant"
+              size={20}
+              color={activeColors.tint}
+              style={{ marginRight: 12 }}
+            />
+            <Text
               style={{
-                borderColor: activeColors.grayAccent,
-                borderWidth: 1,
-                borderRadius: 5,
-                textAlign: "center",
+                fontWeight: "bold",
+                color: activeColors.tint,
               }}
-              bold
             >
-              Log Out
-            </StyledText>
+              Logout
+            </Text>
           </TouchableOpacity>
-        </StyledView>
-        <View
-          className=" px-4 py-3"
-          style={{
-            width: "100%",
-            borderBottomColor: activeColors.grayAccent,
-            borderBottomWidth: 1,
-          }}
-        >
-          <View className="w-[80%] m-auto flex-row justify-between">
-            <TouchableOpacity onPress={() => setActive(1)}>
-              <StyledText bold style={{ opacity: active === 1 ? 1 : 0.6 }}>
-                Replies
-              </StyledText>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setActive(0)}>
-              <StyledText bold style={{ opacity: active === 0 ? 1 : 0.6 }}>
-                Posts
-              </StyledText>
-            </TouchableOpacity>
-          </View>
         </View>
-        {active === 0 ? (
-          <View
-            className="w-[50%] absolute h-[1px]  left-[-10px] bottom-0"
-            style={{
-              backgroundColor: activeColors.grayAccent,
-              borderBottomWidth: 2,
-            }}
-          />
-        ) : (
-          <View
-            className="w-[50%] absolute h-[1px]  right-[-10px] bottom-0"
-            style={{
-              backgroundColor: activeColors.grayAccent,
-              borderBottomWidth: 2,
-            }}
-          />
-        )}
-      </View>
-      {active === 0 && (
-        <>
-          {data &&
-            data.map((item: any) => (
-              <PostCard navigation={router} key={item._id} item={item} />
-            ))}
-        </>
-      )}
-
-      {active === 1 && (
-        <>
-          {repliesData &&
-            repliesData.map((item: any) => (
-              <PostCard
-                navigation={router}
-                key={item._id}
-                item={item}
-                replies={true}
+        <StyledView className="absolute top-10 right-5">
+          <Link href="/EditProfile" asChild>
+            <View
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                backgroundColor: activeColors.secondary,
+                width: 35,
+                height: 35,
+                borderRadius: 20,
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 3,
+                borderColor: activeColors.primary,
+              }}
+            >
+              <MaterialCommunityIcons
+                name="square-edit-outline"
+                size={20}
+                color={activeColors.tint}
               />
-            ))}
-        </>
-      )}
-
-      {active === 0 && (
-        <>
-          {data.length === 0 && (
-            <StyledText className="  mt-8 text-center">
-              There are no posts yet!
-            </StyledText>
-          )}
-        </>
-      )}
-
-      {active === 1 && (
-        <>
-          {repliesData.length === 0 && (
-            <StyledText className="  mt-8 text-center">
-              You have no reply yet!
-            </StyledText>
-          )}
-        </>
-      )}
+            </View>
+          </Link>
+        </StyledView>
+      </View>
     </MainContainer>
   );
 }
@@ -251,5 +232,6 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 25,
     paddingHorizontal: 10,
+    flex: 1,
   },
 });

@@ -32,6 +32,36 @@ export const ticketReducer = createReducer(intialState, {
     state.isLoadingTicket = false;
     state.error = action.payload;
   },
+  ticketUpdateRequest: (state) => {
+    state.isLoadingTicket = true;
+  },
+  ticketUpdateSuccess: (state, action) => {
+    state.isLoadingTicket = false;
+    state.ticket = action.payload;
+    state.isSuccess = true;
+  },
+  ticketUpdateFailed: (state, action) => {
+    state.isLoadingTicket = false;
+    state.error = action.payload;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});
+
+export const ticketUpdateReducer = createReducer(intialState, {
+  ticketUpdateRequest: (state) => {
+    state.isLoadingTicket = true;
+  },
+  ticketUpdateSuccess: (state, action) => {
+    state.isLoadingTicket = false;
+    state.ticket = action.payload;
+    state.isSuccess = true;
+  },
+  ticketUpdateFailed: (state, action) => {
+    state.isLoadingTicket = false;
+    state.error = action.payload;
+  },
   clearErrors: (state) => {
     state.error = null;
   },

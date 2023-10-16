@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     marginTop: SIZES.large,
-    height: 40,
+    height: 50,
     marginBottom: 5,
   },
   searchWrapper: {
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     tintColor: "#86e63b",
   },
   tabsContainer: {
-    width: "100%",
     marginTop: SIZES.medium,
   },
   tab: (activeJobType, item) => ({

@@ -2,18 +2,17 @@ import { View, TouchableOpacity } from "react-native";
 import React, { useState, useContext } from "react";
 import { Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
 import axios from "axios";
+import ImageCropPicker, { ImageOrVideo } from "react-native-image-crop-picker";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { URI } from "@/redux/URI";
 import { loadUser } from "@/redux/actions/userAction";
 import MainContainer from "@/components/container/MainContainer";
 import StyledText from "@/components/Text/StyledText";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
-import { router } from "expo-router";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
-import ImageCropPicker, { ImageOrVideo } from "react-native-image-crop-picker";
 
 type Props = {
   navigation: any;

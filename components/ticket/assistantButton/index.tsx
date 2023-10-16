@@ -1,17 +1,11 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-
-} from "react-native";
-import React, { useContext} from "react";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import React, { useContext } from "react";
 
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
-
+import StyledText from "@/components/Text/StyledText";
 
 type Props = {};
 
@@ -26,93 +20,51 @@ const AssistantButton = (props: Props) => {
         style.footer,
         {
           backgroundColor: activeColors.secondary,
-          borderColor: activeColors.primary,
-          borderWidth: 1,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1.0,
+          borderColor: activeColors.grayAccent,
+          borderWidth: 2,
+          borderRadius: 5,
+          // shadowColor: "#000",
+          // shadowOffset: {
+          //   width: 0,
+          //   height: 1,
+          // },
+          // shadowOpacity: 0.18,
+          // shadowRadius: 1.0,
 
-          elevation: 1,
+          // elevation: 1,
         },
       ]}
     >
       <View>
-        <Text
+        <View
+          className={` flex  right-0.5 items-center   justify-center  p-2.5   `}
+          style={{}}
+        >
+          <MaterialCommunityIcons
+            name="robot-outline"
+            size={25}
+            color={activeColors.tint}
+          />
+        </View>
+      </View>
+
+      <View>
+        <StyledText
           style={{
             color: activeColors.tint,
-            fontWeight: "bold",
-            fontSize: 16,
           }}
+          bold
         >
-          Ask AI Assistant
-        </Text>
-        <Text
+          Inquire from Mi Assistant
+        </StyledText>
+        <StyledText
           style={{
             fontSize: 12,
             color: activeColors.tertiary,
-            fontWeight: "bold",
           }}
         >
-          Did you know you can just ask AI?
-        </Text>
-      </View>
-      <View className="flex">
-        <View className="flex relative w-full flex-col space-y-3  ">
-          <View>
-            <View
-              className={` flex  right-0.5 items-center  w-full justify-center  p-2.5 font-bold rounded-full  `}
-              style={{
-                shadowColor: "#000",
-                backgroundColor: activeColors.accent,
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-
-                elevation: 5,
-                borderColor: "#041633",
-                borderWidth: 1,
-              }}
-            >
-              <MaterialCommunityIcons
-                name="robot"
-                size={20}
-                color={activeColors.grayAccent}
-              />
-            </View>
-
-            {/* <Link href={"/chat"} asChild> */}
-            <View
-              className={` flex absolute -z-10  top-0.5 items-center  w-full justify-center bg-[#041633] p-2.5 font-bold rounded-full  `}
-              style={{
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-
-                elevation: 5,
-                borderColor: "#041633",
-                borderWidth: 1,
-              }}
-            >
-              <MaterialCommunityIcons
-                name="robot"
-                size={20}
-                color={activeColors.grayAccent}
-              />
-            </View>
-            {/* </Link> */}
-          </View>
-        </View>
+          Get instant response from Mi assistant
+        </StyledText>
       </View>
     </Pressable>
   );
@@ -127,7 +79,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 10,
     alignItems: "center",
     flexDirection: "row",
-    justifyContent: "space-between",
+
     marginVertical: 10,
   },
 });

@@ -6,6 +6,7 @@ import styles from "./nearbyjobs.style";
 import { COLORS } from "@/constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
 import useFetch from "@/hooks/useFetch";
+import StyledText from "@/components/Text/StyledText";
 
 const Nearbyjobs = () => {
   const router = useRouter();
@@ -16,17 +17,12 @@ const Nearbyjobs = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text
-          className="text-lg text-left font-semibold mt-2 "
-          style={{
-            color: COLORS.primary,
-          }}
-        >
+      <View style={styles.header} className="justify-center pt-10 items-center">
+        <StyledText className=" text-left    " bold>
           Find your perfect Job
-        </Text>
+        </StyledText>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <StyledText style={styles.headerBtn}>Show all</StyledText>
         </TouchableOpacity>
       </View>
 
@@ -34,7 +30,7 @@ const Nearbyjobs = () => {
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
-          <Text>Something went wrong</Text>
+          <StyledText>Something went wrong</StyledText>
         ) : (
           data?.map((job) => (
             <NearbyJobCard

@@ -4,10 +4,25 @@ import { View, Text, Image } from "react-native";
 import styles from "./company.style";
 
 import { checkImageURL } from "@/utils";
+import StyledText from "@/components/Text/StyledText";
+import { ThemeContext } from "@/context/themeContext";
+import { colors } from "@/constants/Colors";
+import StyledTextInput from "@/components/TextInput/StyledTextInput";
+import { useContext } from "react";
 
 const Company = ({ companyLogo, jobTitle, companyName, location }) => {
+  const { theme, updateTheme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: activeColors.primary,
+        },
+      ]}
+    >
       <View style={styles.logoBox}>
         <Image
           source={{
@@ -20,18 +35,25 @@ const Company = ({ companyLogo, jobTitle, companyName, location }) => {
       </View>
 
       <View style={styles.jobTitleBox}>
-        <Text style={styles.jobTitle}>{jobTitle}</Text>
+        <StyledText
+          style={{
+            paddingVertical: 5,
+          }}
+          big
+        >
+          {jobTitle}
+        </StyledText>
       </View>
 
       <View style={styles.companyInfoBox}>
-        <Text style={styles.companyName}>{companyName} / </Text>
+        <StyledText bold>{companyName} / </StyledText>
         <View style={styles.locationBox}>
           {/* <Image
             source={icons.location}
             resizeMode='contain'
             style={styles.locationImage}
           /> */}
-          <Text style={styles.locationName}>{location}</Text>
+          <StyledText>{location}</StyledText>
         </View>
       </View>
     </View>

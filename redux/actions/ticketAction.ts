@@ -69,24 +69,107 @@ export const getAllTickets = () => async (dispatch: Dispatch<any>) => {
   }
 };
 
+interface ReplyParams {
+  ticketId?: string | null;
+  tickets: any;
+  user: any;
+  replyId?: string | null;
+  title?: string;
+  image?: string;
+  singleReplyId?: string;
+}
+
+// add reply
+export const addReply =
+  (
+    ticketId: string,
+    replyId: string,
+    title: string,
+    image: string,
+    user: Object,
+    tickets: any
+  ) =>
+  async (dispatch: Dispatch<any>) => {
+    try {
+      dispatch({
+        type: "ticketUpdateRequest",
+      });
+
+      const token = await AsyncStorage.getItem("token");
+
+      const updatedTicket = tickets.map((ticket: any) =>
+        ticket._id === ticketId
+          ? {
+              ...ticket,
+              replies: [
+                ...ticket.replies,
+                {
+                  title,
+                  image,
+                  user,
+                  reply: [],
+                  likes: [],
+                },
+              ],
+            }
+          : ticket
+      );
+
+      dispatch({
+        type: "getAllTicketsSuccess",
+        payload: updatedTicket,
+      });
+
+      const { data } = await axios.post(
+        `${URI}/add-replies-to-ticket`,
+        { ticketId, replyId, title, image, user },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch({
+        type: "ticketUpdateSuccess",
+        payload: data.ticket,
+      });
+
+      // try {
+      //   await axios.put(
+      //     `${URI}/add-reply-to-ticket`,
+      //     { ticketId, replyId, title, image, user },
+      //     {
+      //       headers: {
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //     }
+      //   );
+      //   console.log("reply added");
+      // } catch (error) {
+      //   console.log(error, "error");
+      // }
+    } catch (error: any) {
+      console.log(error, "error");
+    }
+  };
+
+// add likes
 interface LikesParams {
-  postId?: string | null;
-  posts: any;
+  ticketId?: string | null;
+  tickets: any;
   user: any;
   replyId?: string | null;
   title?: string;
   singleReplyId?: string;
 }
-
-// add likes
 export const addLikes =
-  ({ postId, posts, user }: LikesParams) =>
+  ({ ticketId, tickets, user }: LikesParams) =>
   async (dispatch: Dispatch<any>) => {
     try {
       const token = await AsyncStorage.getItem("token");
 
-      const updatedPosts = posts.map((userObj: any) =>
-        userObj._id === postId
+      const updatedTickets = tickets.map((userObj: any) =>
+        userObj._id === ticketId
           ? {
               ...userObj,
               likes: [
@@ -95,7 +178,7 @@ export const addLikes =
                   userName: user.name,
                   userId: user._id,
                   userAvatar: user.avatar.url,
-                  postId,
+                  ticketId,
                 },
               ],
             }
@@ -103,13 +186,13 @@ export const addLikes =
       );
 
       dispatch({
-        type: "getAllPostsSuccess",
-        payload: updatedPosts,
+        type: "getAllTicketsSuccess",
+        payload: updatedTickets,
       });
 
       await axios.put(
         `${URI}/update-likes`,
-        { postId },
+        { ticketId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -123,13 +206,13 @@ export const addLikes =
 
 // remove likes
 export const removeLikes =
-  ({ postId, posts, user }: LikesParams) =>
+  ({ ticketId, tickets, user }: LikesParams) =>
   async (dispatch: Dispatch<any>) => {
     try {
       const token = await AsyncStorage.getItem("token");
 
-      const updatedPosts = posts.map((userObj: any) =>
-        userObj._id === postId
+      const updatedTickets = tickets.map((userObj: any) =>
+        userObj._id === ticketId
           ? {
               ...userObj,
               likes: userObj.likes.filter(
@@ -139,13 +222,13 @@ export const removeLikes =
           : userObj
       );
       dispatch({
-        type: "getAllPostsSuccess",
-        payload: updatedPosts,
+        type: "getAllTicketsSuccess",
+        payload: updatedTickets,
       });
 
       await axios.put(
         `${URI}/update-likes`,
-        { postId },
+        { ticketId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -159,15 +242,15 @@ export const removeLikes =
 
 // add likes to reply
 export const addLikesToReply =
-  ({ postId, posts, user, replyId, title }: LikesParams) =>
+  ({ ticketId, tickets, user, replyId, title }: LikesParams) =>
   async (dispatch: Dispatch<any>) => {
     try {
       const token = await AsyncStorage.getItem("token");
-      const updatedPosts = posts.map((post: any) =>
-        post._id === postId
+      const updatedTickets = tickets.map((ticket: any) =>
+        ticket._id === ticketId
           ? {
-              ...post,
-              replies: post.replies.map((reply: any) =>
+              ...ticket,
+              replies: ticket.replies.map((reply: any) =>
                 reply._id === replyId
                   ? {
                       ...reply,
@@ -183,16 +266,16 @@ export const addLikesToReply =
                   : reply
               ),
             }
-          : post
+          : ticket
       );
       dispatch({
-        type: "getAllPostsSuccess",
-        payload: updatedPosts,
+        type: "getAllTicketsSuccess",
+        payload: updatedTickets,
       });
 
       await axios.put(
         `${URI}/update-replies-react`,
-        { postId, replyId, replyTitle: title },
+        { ticketId, replyId, replyTitle: title },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -206,16 +289,16 @@ export const addLikesToReply =
 
 // remove likes from reply
 export const removeLikesFromReply =
-  ({ postId, posts, user, replyId }: LikesParams) =>
+  ({ ticketId, tickets, user, replyId }: LikesParams) =>
   async (dispatch: Dispatch<any>) => {
     try {
       const token = await AsyncStorage.getItem("token");
 
-      const updatedPosts = posts.map((post: any) =>
-        post._id === postId
+      const updatedTickets = tickets.map((ticket: any) =>
+        ticket._id === ticketId
           ? {
-              ...post,
-              replies: post.replies.map((reply: any) =>
+              ...ticket,
+              replies: ticket.replies.map((reply: any) =>
                 reply._id === replyId
                   ? {
                       ...reply,
@@ -226,17 +309,17 @@ export const removeLikesFromReply =
                   : reply
               ),
             }
-          : post
+          : ticket
       );
 
       dispatch({
-        type: "getAllPostsSuccess",
-        payload: updatedPosts,
+        type: "getAllTicketsSuccess",
+        payload: updatedTickets,
       });
 
       await axios.put(
         `${URI}/update-replies-react`,
-        { postId, replyId },
+        { ticketId, replyId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -250,16 +333,16 @@ export const removeLikesFromReply =
 
 // add likes to replies > reply
 export const addLikesToRepliesReply =
-  ({ postId, posts, user, replyId, singleReplyId, title }: LikesParams) =>
+  ({ ticketId, tickets, user, replyId, singleReplyId, title }: LikesParams) =>
   async (dispatch: Dispatch<any>) => {
     try {
       const token = await AsyncStorage.getItem("token");
 
-      const updatedPosts = posts.map((post: any) =>
-        post._id === postId
+      const updatedTickets = tickets.map((ticket: any) =>
+        ticket._id === ticketId
           ? {
-              ...post,
-              replies: post.replies.map((r: any) =>
+              ...ticket,
+              replies: ticket.replies.map((r: any) =>
                 r._id === replyId
                   ? {
                       ...r,
@@ -282,16 +365,16 @@ export const addLikesToRepliesReply =
                   : r
               ),
             }
-          : post
+          : ticket
       );
 
       dispatch({
-        type: "getAllPostsSuccess",
-        payload: updatedPosts,
+        type: "getAllTicketsSuccess",
+        payload: updatedTickets,
       });
       await axios.put(
         `${URI}/update-reply-react`,
-        { postId, replyId, singleReplyId, replyTitle: title },
+        { ticketId, replyId, singleReplyId, replyTitle: title },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -305,16 +388,16 @@ export const addLikesToRepliesReply =
 
 // remove likes from replies > reply
 export const removeLikesFromRepliesReply =
-  ({ postId, posts, user, replyId, singleReplyId }: LikesParams) =>
+  ({ ticketId, tickets, user, replyId, singleReplyId }: LikesParams) =>
   async (dispatch: Dispatch<any>) => {
     try {
       const token = await AsyncStorage.getItem("token");
 
-      const updatedPosts = posts.map((post: any) =>
-        post._id === postId
+      const updatedTickets = tickets.map((ticket: any) =>
+        ticket._id === ticketId
           ? {
-              ...post,
-              replies: post.replies.map((r: any) =>
+              ...ticket,
+              replies: ticket.replies.map((r: any) =>
                 r._id === replyId
                   ? {
                       ...r,
@@ -332,17 +415,17 @@ export const removeLikesFromRepliesReply =
                   : r
               ),
             }
-          : post
+          : ticket
       );
 
       dispatch({
-        type: "getAllPostsSuccess",
-        payload: updatedPosts,
+        type: "getAllTicketsSuccess",
+        payload: updatedTickets,
       });
 
       await axios.put(
         `${URI}/update-reply-react`,
-        { postId, replyId, singleReplyId },
+        { ticketId, replyId, singleReplyId },
         {
           headers: {
             Authorization: `Bearer ${token}`,

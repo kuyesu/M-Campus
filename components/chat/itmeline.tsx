@@ -15,18 +15,10 @@ import {
 import StyledText from "../Text/StyledText";
 import { router } from "expo-router";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import {
-  ArrowTrendingUpIcon,
-  ClockIcon,
-  CursorArrowRaysIcon,
-  DevicePhoneMobileIcon,
-  ShareIcon,
-  UserIcon,
-  ViewfinderCircleIcon,
-} from "react-native-heroicons/outline";
+import { ShareIcon } from "react-native-heroicons/outline";
 import Barcode from "@kichiyaki/react-native-barcode-generator";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import getTimeDuration from "@/common/TimeGenerator";
+import getTimeDuration, { getLocaleDateString } from "@/common/TimeGenerator";
 
 const TimelineItem = ({ tickets }: any) => {
   const { theme } = useContext(ThemeContext);
@@ -38,7 +30,7 @@ const TimelineItem = ({ tickets }: any) => {
 
   // shareable link
   const url =
-    "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US";
+    "https://play.google.com/store/apps/details?id=com.micampus.android&hl=en_IN&gl=US";
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -97,7 +89,8 @@ const TimelineItem = ({ tickets }: any) => {
                 styles.ticketItem,
                 {
                   backgroundColor: activeColors.secondary,
-                  borderColor: activeColors.primary,
+                  borderColor: activeColors.grayAccent,
+                  borderWidth: 1,
                 },
               ]}
               className="  rounded-xl border "
@@ -160,7 +153,7 @@ const TimelineItem = ({ tickets }: any) => {
               <View className="flex   flex-row justify-between w-full items-center ">
                 <Text
                   style={{
-                    color: activeColors.tint,
+                    color: activeColors.gray,
                   }}
                   className=" font-semibold "
                 >
@@ -188,7 +181,7 @@ const TimelineItem = ({ tickets }: any) => {
               onDismiss={() => setIsOpen(false)}
               backdropComponent={({ style }) => (
                 <View
-                  style={[style, { backgroundColor: "rgba(0, 0, 0, 0.9)" }]}
+                  style={[style, { backgroundColor: "rgba(0, 0, 0, 0.4)" }]}
                 />
               )}
             >
@@ -197,11 +190,11 @@ const TimelineItem = ({ tickets }: any) => {
                 <View className="py-5">
                   <View className="py-2 flex flex-row space-x-1 items-center">
                     <MaterialCommunityIcons
-                      name="phone-dial"
+                      name="identifier"
                       size={20}
                       color={activeColors.accent}
                     />
-                    <StyledText>{ticket.id}</StyledText>
+                    <StyledText>{ticket._id}</StyledText>
                   </View>
                   <View className="py-2 flex flex-row space-x-1 items-center">
                     <MaterialCommunityIcons
@@ -217,7 +210,16 @@ const TimelineItem = ({ tickets }: any) => {
                       size={20}
                       color={activeColors.accent}
                     />
-                    <StyledText>08:00-23:00AM .Mon</StyledText>
+                    <StyledText>
+                      {/* {new Date().toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })} */}
+                      {/* convert ticket.createdAt to toLocaleDateString("en-US" formate */}
+                      {getLocaleDateString(ticket.createdAt)}
+                    </StyledText>
                   </View>
                   <View className="py-2 flex flex-row space-x-1 items-center">
                     <MaterialCommunityIcons
@@ -225,7 +227,7 @@ const TimelineItem = ({ tickets }: any) => {
                       size={20}
                       color={activeColors.accent}
                     />
-                    <StyledText>{ticket?.toWhom}</StyledText>
+                    <StyledText>{ticket.assignedToUser.name}</StyledText>
                   </View>
                   <View className="py-2 flex flex-row space-x-1 items-center">
                     <MaterialCommunityIcons
@@ -243,43 +245,50 @@ const TimelineItem = ({ tickets }: any) => {
                         setTimeout(() => {
                           setIsOpen(false);
                         }, 100);
-                        router.push(`/inquiries/${ticket.id}`);
+                        router.push(`/inquiries/${ticket._id}`);
                       }}
                       style={{
-                        backgroundColor: activeColors.accent,
+                        backgroundColor: activeColors.secondary,
+                        borderColor: activeColors.grayAccent,
+                        borderWidth: 1,
+                        borderRadius: 5,
                       }}
-                      className="py-2   px-4 flex flex-row space-x-1 items-center justify-end "
+                      className="py-2   px-4 flex flex-row space-x-1.5 items-center justify-end "
                     >
-                      <MaterialCommunityIcons
-                        name="eye-outline"
-                        size={20}
-                        color={activeColors.tint}
-                      />
                       <StyledText
                         style={{
                           color: activeColors.tint,
                         }}
                       >
-                        View
+                        View Detail
                       </StyledText>
+                      <MaterialCommunityIcons
+                        name="open-in-new"
+                        size={20}
+                        color={activeColors.tint}
+                      />
                     </TouchableOpacity>
                     <Pressable
-                      className="py-2 absolute  -z-10 top-5 px-4 flex flex-row space-x-1 items-center justify-end"
+                      className="py-2 absolute  -z-10 top-5 px-4 flex flex-row space-x-2 items-center justify-end"
                       style={{
                         backgroundColor: activeColors.primary,
+                        borderRadius: 5,
                       }}
                     >
+                      <StyledText>View Detail</StyledText>
                       <MaterialCommunityIcons
-                        name="eye-outline"
+                        name="open-in-new"
                         size={20}
-                        color={activeColors.grayAccent}
+                        color={activeColors.tint}
                       />
-                      <StyledText>View</StyledText>
                     </Pressable>
                     <TouchableOpacity
                       onPress={onShare}
                       style={{
-                        backgroundColor: activeColors.accent,
+                        backgroundColor: activeColors.secondary,
+                        borderColor: activeColors.grayAccent,
+                        borderWidth: 1,
+                        borderRadius: 5,
                       }}
                       className="py-2 relative right-2 px-4 flex flex-row space-x-1 items-center justify-end"
                     >
@@ -287,13 +296,18 @@ const TimelineItem = ({ tickets }: any) => {
                       <MaterialCommunityIcons
                         name="share-outline"
                         size={20}
-                        color={activeColors.tint}
+                        color={
+                          theme.mode === "dark"
+                            ? activeColors.tint
+                            : activeColors.tint
+                        }
                       />
                     </TouchableOpacity>
                     <View
                       className="py-2 absolute right-1  bottom-3 -z-10 px-4 flex flex-row space-x-1 items-center justify-end"
                       style={{
                         backgroundColor: activeColors.primary,
+                        borderRadius: 5,
                       }}
                     >
                       <StyledText>Share</StyledText>
@@ -302,11 +316,23 @@ const TimelineItem = ({ tickets }: any) => {
                   </View>
                   <View className="">
                     <Barcode
-                      format="CODE128B"
+                      format="CODE128A"
                       value="0000002021954Q"
                       text="0000002021954Q"
+                      lineColor={activeColors.tint}
                       maxWidth={(Dimensions.get("window").width * 2) / 1.6}
-                      height={70}
+                      height={50}
+                      textStyle={{
+                        color: activeColors.tint,
+                        fontSize: 15,
+                        fontWeight: "bold",
+                        paddingVertical: 10,
+                      }}
+                      style={{
+                        backgroundColor: activeColors.secondary,
+                        borderRadius: 5,
+                        paddingVertical: 15,
+                      }}
                     />
                   </View>
                 </View>
@@ -353,6 +379,27 @@ const Timeline = ({ data }: any) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} bounces>
       <View style={styles.timelineContainer}>
+        {data.length === 0 && (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              top: -80,
+              height: 600,
+              gap: 20,
+            }}
+          >
+            <TouchableOpacity onPress={() => router.push("/inquiries/ticket/")}>
+              <MaterialCommunityIcons
+                name="notebook-plus-outline"
+                size={50}
+                color={activeColors.tint}
+              />
+            </TouchableOpacity>
+            <StyledText bold>You have no ticket yet!</StyledText>
+          </View>
+        )}
         <TimelineItem tickets={data} />
       </View>
     </ScrollView>
