@@ -70,7 +70,6 @@ export default function Login() {
       }
     }
     if (isAuthenticated) {
-      loadUser()(dispatch);
       router.replace("/home");
     }
   }, [error]);

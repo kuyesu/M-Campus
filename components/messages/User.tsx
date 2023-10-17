@@ -2,20 +2,28 @@ import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import StyledText from "../Text/StyledText";
-
+import { URI } from "@/redux/URI";
+import { colors } from "@/constants/Colors";
+import { ThemeContext } from "@/context/themeContext";
+import axios from "axios";
 const User = ({ item }) => {
   const { user, token } = useSelector((state: any) => state.user);
   const userId = user._id;
 
+  const { theme, updateTheme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
+
   const [requestSent, setRequestSent] = useState(false);
   const [friendRequests, setFriendRequests] = useState([]);
   const [userFriends, setUserFriends] = useState([]);
+
   useEffect(() => {
     const fetchFriendRequests = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:8000/friend-requests/sent/${userId}`
-        );
+        const response = await fetch(`${URI}/friend-requests/sent/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         const data = await response.json();
         if (response.ok) {
@@ -23,6 +31,25 @@ const User = ({ item }) => {
         } else {
           console.log("error", response.status);
         }
+        // await axios
+        //   .get(`${URI}/friend-requests/sent/${userId}`, {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   })
+        //   .then((response) => {
+        //     const data = response.data;
+        //     setFriendRequests(data);
+        //   })
+        //   .catch((err) => {
+        //     console.log("error message", err);
+        //   });
+        // const response = await fetch(`${URI}/friend-requests/sent/${userId}`, {
+        //   headers: { Authorization: `Bearer ${token}` },
+        // });
+        // const response = await fetch(
+        //   `http://localhost:8000/friend-requests/sent/${userId}`
+        // );
       } catch (error) {
         console.log("error", error);
       }
@@ -34,15 +61,23 @@ const User = ({ item }) => {
   useEffect(() => {
     const fetchUserFriends = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/friends/${userId}`);
-
-        const data = await response.json();
-
-        if (response.ok) {
-          setUserFriends(data);
-        } else {
-          console.log("error retrieving user friends", response.status);
-        }
+        await axios
+          .get(`${URI}/friends/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            const data = response.data;
+            setUserFriends(data);
+          })
+          .catch((err) => {
+            console.log("error message", err);
+          });
+        // const response = await fetch(`${URI}/friends/${userId}`, {
+        //   headers: { Authorization: `Bearer ${token}` },
+        // });
+        // const response = await fetch(`http://localhost:8000/friends/${userId}`);
       } catch (error) {
         console.log("Error message", error);
       }
@@ -50,11 +85,14 @@ const User = ({ item }) => {
 
     fetchUserFriends();
   }, []);
-  const sendFriendRequest = async (currentUserId, selectedUserId) => {
+  const sendFriendRequest = async () => {
+    const currentUserId = userId;
+    const selectedUserId = item._id;
     try {
-      const response = await fetch("http://localhost:8000/friend-request", {
+      const response = await fetch(`${URI}/friend-request`, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ currentUserId, selectedUserId }),
@@ -63,15 +101,50 @@ const User = ({ item }) => {
       if (response.ok) {
         setRequestSent(true);
       }
+      console.log("friend requests sent", friendRequests);
+      console.log("user friends", userFriends);
+      // await axios
+      //   .post(`${URI}/friend-request`, {
+      //     currentUserId,
+      //     selectedUserId,
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     setRequestSent(true);
+      //   })
+      //   .catch((err) => {
+      //     console.log("error message", err);
+      //   });
+      // const response = await fetch(`${URI}/friend-request`, {
+      //   method: "POST",
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ currentUserId, selectedUserId }),
+      // });
+      // const response = await fetch("http://localhost:8000/friend-request", {
+      //   method: "POST",
+      //   headers: {
+      //   },
+      // });
     } catch (error) {
-      console.log("error message", error);
+      console.log("error", error);
     }
   };
-  console.log("friend requests sent", friendRequests);
-  console.log("user friends", userFriends);
+
   return (
     <Pressable
-      style={{ flexDirection: "row", alignItems: "center", marginVertical: 10 }}
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 10,
+        paddingBottom: 20,
+        // borderBottomColor: activeColors.grayAccent,
+        // borderBottomWidth: 1,
+      }}
     >
       <View>
         <Image
@@ -81,16 +154,17 @@ const User = ({ item }) => {
             borderRadius: 25,
             resizeMode: "cover",
           }}
-          source={{ uri: item.image }}
+          source={{ uri: item.avatar?.url }}
         />
       </View>
 
       <View style={{ marginLeft: 12, flex: 1 }}>
         <StyledText bold>{item?.name}</StyledText>
         <StyledText style={{ marginTop: 4, color: "gray" }}>
-          {item?.email}
+          {item?.userName}
         </StyledText>
       </View>
+
       {userFriends.includes(item._id) ? (
         <Pressable
           style={{
@@ -100,9 +174,7 @@ const User = ({ item }) => {
             borderRadius: 6,
           }}
         >
-          <StyledText style={{ textAlign: "center", color: "white" }}>
-            Friends
-          </StyledText>
+          <Text style={{ textAlign: "center", color: "white" }}>Friends</Text>
         </Pressable>
       ) : requestSent ||
         friendRequests.some((friend) => friend._id === item._id) ? (
@@ -120,17 +192,18 @@ const User = ({ item }) => {
         </Pressable>
       ) : (
         <Pressable
-          onPress={() => sendFriendRequest(userId, item._id)}
           style={{
-            backgroundColor: "#567189",
+            backgroundColor: activeColors.gray,
             padding: 10,
-            borderRadius: 6,
             width: 105,
+            borderRadius: 6,
           }}
         >
-          <Text style={{ textAlign: "center", color: "white", fontSize: 13 }}>
-            Add Friend
-          </Text>
+          <StyledText
+            style={{ textAlign: "center", color: "white", fontSize: 13 }}
+          >
+            Request Sent
+          </StyledText>
         </Pressable>
       )}
     </Pressable>

@@ -11,7 +11,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import "@/styles/global.css";
 import { colors } from "@/constants/Colors";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "@/context/themeContext";
 import { Stack, router, withLayoutContext } from "expo-router";
 import {
@@ -25,7 +25,7 @@ import Animated, { interpolate } from "react-native-reanimated";
 import StyledText from "@/components/Text/StyledText";
 import SettingsButton from "@/components/reuseable/Settings/SettingsButton";
 import SettingItem from "@/components/reuseable/Settings/SettingItem";
-import { loadUser, logoutUser } from "@/redux/actions/userAction";
+import { getAllUsers, loadUser, logoutUser } from "@/redux/actions/userAction";
 import {
   UserAccountStatus,
   AccountSettings,
@@ -63,12 +63,15 @@ function CustomDrawerContent(props: any) {
     updateTheme();
     setIsActivate((previousState) => !previousState);
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getAllUsers()(dispatch);
+  }, [dispatch]);
 
   const { user, isAuthenticated, loading } = useSelector(
     (state: any) => state.user
   );
 
-  const dispatch = useDispatch();
   const logoutHandler = async () => {
     logoutUser()(dispatch);
   };

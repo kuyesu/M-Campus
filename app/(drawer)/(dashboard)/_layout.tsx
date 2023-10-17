@@ -596,10 +596,17 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   image: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
+    width: 33,
+    height: 33,
+    borderRadius: 25,
     marginRight: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 5,
   },
   text: {
     fontWeight: "bold",

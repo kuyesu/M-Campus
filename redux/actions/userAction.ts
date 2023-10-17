@@ -156,7 +156,7 @@ export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    console.log("Data is : ", data);
+    // console.log("Data of user : ", data);
 
     dispatch({
       type: "getUsersSuccess",

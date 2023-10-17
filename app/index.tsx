@@ -29,15 +29,15 @@ export default function Welcome() {
   const { isAuthenticated, loading } = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    Store.dispatch(loadUser());
+    // Store.dispatch(loadUser());
   }, []);
 
   useEffect(() => {
+    loadUser()(dispatch);
     if (isAuthenticated) {
-      loadUser()(dispatch);
       router.replace("/home");
     }
-  }, []);
+  }, [dispatch]);
 
   const router = useRouter();
   return (

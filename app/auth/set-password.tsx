@@ -9,6 +9,7 @@ import {
   Alert,
   ActivityIndicator,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import ImagePicker, { ImageOrVideo } from "react-native-image-crop-picker";
 
@@ -17,7 +18,7 @@ import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
-import { router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 import StyledText from "@/components/Text/StyledText";
 import { StyledTouchableOpacity } from "@/components/buttons/StyledTouchableOpacity";
@@ -28,6 +29,7 @@ import { Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Email() {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassowrd] = useState("");
 
@@ -58,10 +60,11 @@ export default function Email() {
         Alert.alert(error);
       }
     }
+    loadUser()(dispatch);
     if (isAuthenticated) {
-      loadUser()(dispatch);
+      router.replace("/home");
     }
-  }, [error, isAuthenticated]);
+  }, [error, isAuthenticated, dispatch]);
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -95,146 +98,116 @@ export default function Email() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: activeColors.primary,
-        height: "100%",
-        display: "flex",
-      }}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+      style={{ flex: 1 }}
     >
       <MainContainer
-        // className="flex-1"
         style={{
           flex: 1,
           width: Dimensions.get("window").width,
           height: "100%",
           display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
         }}
       >
-        {/* <Formik initialValues={{ name: name, phone: phone, email: "" }}>
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              isSubmitting,
-            }) => ( */}
+        <View
+          style={{
+            width: "100%",
+          }}
+        >
+          <View
+            className="flex-col justify-center items-center"
+            style={{ width: "100%", padding: 10 }}
+          >
+            <View className="relative pt-5">
+              <Image
+                source={{ uri: avatar }}
+                style={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: 150 / 2,
+                  backgroundColor: activeColors.secondary,
+                }}
+              />
+            </View>
+            <View className="pt-10 items-center">
+              <StyledText big bold>
+                {name}{" "}
+                <Image
+                  source={{
+                    uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",
+                  }}
+                  width={18}
+                  height={18}
+                  className="ml-2 absolute bottom-0 left-0"
+                />
+              </StyledText>
+              <StyledText
+                style={{
+                  color: activeColors.gray,
+                  textTransform: "none",
+                  fontStyle: "italic",
+                }}
+              >
+                {email}
+              </StyledText>
+            </View>
+          </View>
+          {/* <StyledText>{user?.bio}</StyledText> */}
+          <View className=" items-center justify-center">
+            <TouchableOpacity
+              style={{
+                flexDirection: "row",
+                height: 52,
+                width: "55%",
+                borderRadius: 26,
+                alignItems: "center",
+                justifyContent: "center",
+                paddingHorizontal: 26,
+                backgroundColor: activeColors.secondary,
+                marginTop: 40,
+              }}
+            >
+              <MaterialCommunityIcons
+                name="phone-dial-outline"
+                size={20}
+                color={activeColors.tint}
+                style={{ marginRight: 12 }}
+              />
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: activeColors.tint,
+                }}
+              >
+                {phone}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <View
           style={{
             flex: 1,
-            // height:
-            //   Platform.OS === "android"
-            //     ? Dimensions.get("window").height
-            //     : Dimensions.get("window").height - 100,
             width: "100%",
             display: "flex",
-            // backgroundColor: activeColors.tint,
-
             justifyContent: "space-between",
+
             paddingHorizontal: 25,
-            paddingVertical: 25,
-            paddingTop: Platform.OS === "android" ? 40 : 40,
+            paddingVertical: 35,
+            paddingTop: Platform.OS === "android" ? 0 : 0,
           }}
         >
           <View className="gap-10   ">
             <View
-              style={{
-                marginBottom: 20,
-              }}
-            >
-              <StyledText bold>
-                You are almost there, {name}! <Text>🎉</Text>
-              </StyledText>
-            </View>
-            <StyledView
-              style={{
-                padding: 15,
-                paddingVertical: 25,
-                borderColor: activeColors.grayAccent,
-                borderWidth: 1,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-              }}
-            >
-              <StyledView
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <TouchableOpacity>
-                  <Image
-                    source={{ uri: avatar }}
-                    style={{
-                      height: 80,
-                      width: 80,
-                      borderColor: activeColors.grayAccent,
-                      borderWidth: 3,
-                      // tintColor: activeColors.primary,
-                      borderRadius: 50,
-                      resizeMode: "contain",
-                    }}
-                  />
-                </TouchableOpacity>
-              </StyledView>
-              <View
-                style={{
-                  gap: 5,
-                }}
-              >
-                <StyledText
-                  style={{
-                    // color: activeColors.gray,
-                    textAlign: "right",
-                  }}
-                  bold
-                >
-                  {name}
-                  {"  "}
-                  <MaterialCommunityIcons
-                    name="account"
-                    size={20}
-                    color={activeColors.accent}
-                  />
-                </StyledText>
-                <StyledText
-                  style={{
-                    color: activeColors.gray,
-                    textAlign: "right",
-                  }}
-                >
-                  {email}
-                  {"  "}
-                  <MaterialCommunityIcons
-                    name="email"
-                    size={20}
-                    color={activeColors.accent}
-                  />
-                </StyledText>
-                <StyledText
-                  style={{
-                    color: activeColors.gray,
-                    textAlign: "right",
-                  }}
-                >
-                  {phone}
-                  {"  "}
-                  <MaterialCommunityIcons
-                    name="phone"
-                    size={20}
-                    color={activeColors.accent}
-                  />
-                </StyledText>
-              </View>
-            </StyledView>
-            <View
-              style={{
-                marginTop: 20,
-                // paddingTop: 80,
-              }}
+              style={
+                {
+                  // paddingTop: 80,
+                }
+              }
             >
               <StyledTextInput
                 style={{
@@ -332,7 +305,7 @@ export default function Email() {
           style={theme.mode === "dark" ? "light" : "dark"}
         />
       </MainContainer>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

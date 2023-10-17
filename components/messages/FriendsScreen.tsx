@@ -10,6 +10,7 @@ import { colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
 import StyledText from "../Text/StyledText";
 import { TextInput } from "react-native";
+import { URI } from "@/redux/URI";
 
 const FriendsScreen = () => {
   const { user, token } = useSelector((state: any) => state.user);
@@ -22,9 +23,14 @@ const FriendsScreen = () => {
 
   const fetchFriendRequests = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:8000/friend-request/${userId}`
-      );
+      // const response = await axios.get(
+      //   `http://localhost:8000/friend-request/${userId}`
+      // );
+      const response = await axios.get(`${URI}/friend-request/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data: any = await response.data;
+
       if (response.status === 200) {
         const friendRequestsData = response.data.map((friendRequest) => ({
           _id: friendRequest._id,
@@ -42,8 +48,6 @@ const FriendsScreen = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-
-  console.log(friendRequests);
   return (
     <View style={{ padding: 10, flex: 1, gap: 20 }}>
       <View
@@ -75,9 +79,7 @@ const FriendsScreen = () => {
           }}
         />
       </View>
-      {friendRequests && (
-        <StyledText bold>Mi Friend Connection Requests</StyledText>
-      )}
+      {friendRequests && <StyledText bold>Mi Friend Connection</StyledText>}
 
       {friendRequests.map((item, index) => (
         <FriendRequest

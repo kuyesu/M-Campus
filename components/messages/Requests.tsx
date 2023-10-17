@@ -1,68 +1,58 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect, useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
 import User from "./User";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import StyledTextInput from "../TextInput/StyledTextInput";
+import { AntDesign } from "@expo/vector-icons";
+import { colors } from "@/constants/Colors";
+import { ThemeContext } from "@/context/themeContext";
 import StyledText from "../Text/StyledText";
+import { getAllUsers } from "@/redux/actions/userAction";
 const RequestScreen = () => {
   const navigation = useNavigation();
-  const { user, token } = useSelector((state: any) => state.user);
-  const userId = user._id;
+  const { user, token, users } = useSelector((state: any) => state.user);
 
-  const [users, setUsers] = useState([]);
-  //   useLayoutEffect(() => {
-  //     navigation.setOptions({
-  //       headerTitle: "",
-  //       headerLeft: () => <StyledText bold>Mi Chat</StyledText>,
-  //       headerRight: () => (
-  //         <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-  //           <Ionicons
-  //             // onPress={() => navigation.navigate("Chats")}
-  //             name="chatbox-ellipses-outline"
-  //             size={24}
-  //             color="black"
-  //           />
-  //           <MaterialIcons
-  //             // onPress={() => navigation.navigate("Friends")}
-  //             name="people-outline"
-  //             size={24}
-  //             color="black"
-  //           />
-  //         </View>
-  //       ),
-  //     });
-  //   }, []);
   //medium.com/@WynneTran/sending-files-through-react-native-gifted-chat-cddd9b1be0a0
-  https: useEffect(() => {
-    const fetchUsers = async () => {
-      const { user, token } = useSelector((state: any) => state.user);
-      const userId = user._id;
-      // const decodedToken = jwt_decode(token);
-      // const userId = decodedToken.userId;
-      // setUserId(userId);
 
-      axios
-        .get(`http://localhost:8000/users/${userId}`)
-        .then((response) => {
-          setUsers(response.data);
-        })
-        .catch((error) => {
-          console.log("error retrieving users", error);
-        });
-    };
+  const { theme, updateTheme } = useContext(ThemeContext);
+  // @ts-ignore
+  let activeColors = colors[theme.mode];
 
-    fetchUsers();
-  }, []);
-
-  console.log("users", users);
   return (
-    <View>
-      <View style={{ padding: 10 }}>
+    <View style={{ padding: 10, flex: 1, gap: 20 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          paddingTop: 10,
+        }}
+      >
+        <StyledTextInput
+          small
+          bigPadding
+          inlineImageLeft="search_icon"
+          placeholder="Search for a friend"
+          placeholderTextColor={activeColors.gray}
+          style={{
+            width: "100%",
+            padding: Platform.OS === "ios" ? 6 : 6,
+          }}
+        />
+
+        <AntDesign
+          name="search1"
+          size={20}
+          color={activeColors.gray}
+          style={{
+            position: "relative",
+            right: 35,
+            top: 10,
+          }}
+        />
+      </View>
+
+      <StyledText bold>Mi Friend Connection Requests</StyledText>
+      <View style={{ paddingVertical: 10 }}>
         {users.map((item, index) => (
           <User key={index} item={item} />
         ))}
