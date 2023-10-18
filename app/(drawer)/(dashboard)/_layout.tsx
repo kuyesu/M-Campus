@@ -88,7 +88,7 @@ export default function TabLayout() {
                   >
                     <View
                       style={{
-                        borderColor: activeColors.secondary,
+                        borderColor: activeColors.primary,
                         backgroundColor: activeColors.accent,
                         borderWidth: 2,
                         borderRadius: 50,
@@ -116,6 +116,7 @@ export default function TabLayout() {
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
+          borderBottomColor: activeColors.gray,
         },
         headerShadowVisible: false,
         // headerShown: false,
@@ -151,15 +152,108 @@ export default function TabLayout() {
         // tabBarBackground: activeColors.secondary,
         backBehavior: "history",
         tabBarStyle: {
-          backgroundColor: activeColors.secondary,
+          backgroundColor: activeColors.primary,
+          borderTopColor: activeColors.gray,
+          paddingBottom: Platform.OS === "ios" ? 20 : 0,
+          height: 80,
         },
         headerTitleAlign: "left",
         headerTitleStyle: {
           paddingHorizontal: 10,
         },
         headerStyle: {
-          backgroundColor: activeColors.secondary,
+          backgroundColor: activeColors.primary,
+          borderBottomColor: activeColors.gray,
+          borderBottomWidth: 1,
         },
+        header: () => (
+          <View
+            style={{
+              backgroundColor: activeColors.primary,
+              // borderBottomColor: activeColors.grayAccent,
+              // borderBottomWidth: 1,
+              marginTop: Platform.OS === "ios" ? 20 : 0,
+              paddingVertical: 10,
+              paddingTop: Platform.OS === "ios" ? 0 : 45,
+              paddingHorizontal: 5,
+              justifyContent: "space-between",
+              flexDirection: "row",
+              alignItems: "center",
+              shadowColor: activeColors.gray,
+              shadowOffset: {
+                width: 0,
+                height: 3,
+              },
+              shadowOpacity: 0.6,
+              shadowRadius: 2,
+
+              elevation: 2,
+            }}
+          >
+            <View style={styles.header}>
+              <Pressable onPress={() => navigation.openDrawer()}>
+                {({ pressed }) => (
+                  <Image
+                    source={{
+                      uri: user?.avatar?.url || "https://picsum.photos/200/300",
+                    }}
+                    height={40}
+                    width={40}
+                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+                  />
+                )}
+              </Pressable>
+            </View>
+            <Link href="/modal" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <View
+                    className={`items-center  justify-center flex-row `}
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  >
+                    <MaterialCommunityIcons
+                      size={35}
+                      name="notification-clear-all"
+                      color={activeColors.tint}
+                      fill="#86e63b"
+                      stroke="#041633"
+                      strokeWidth={2}
+                    />
+                    <View
+                      style={{
+                        position: "absolute",
+                        right: -2,
+                        top: 4,
+                      }}
+                    >
+                      <View
+                        style={{
+                          borderColor: activeColors.primary,
+                          backgroundColor: activeColors.accent,
+                          borderWidth: 2,
+                          borderRadius: 50,
+                          padding: 2,
+                          display: "flex",
+                          height: 18,
+                          width: 18,
+                          alignItems: "center",
+                          // justifyContent: "center",
+                        }}
+                      >
+                        <StyledText
+                          style={{ fontSize: 8, color: "black" }}
+                          bold
+                        >
+                          3
+                        </StyledText>
+                      </View>
+                    </View>
+                  </View>
+                )}
+              </Pressable>
+            </Link>
+          </View>
+        ),
         headerTintColor: activeColors.tint,
       })}
     >
@@ -336,11 +430,12 @@ export default function TabLayout() {
         name="messages/[id]"
         options={{
           href: null,
+
           title: "Messages",
           headerLeft: () => (
             <Pressable
               style={{
-                paddingLeft: 15,
+                paddingLeft: 10,
               }}
               onPress={() => router.push("/messages/userchats")}
             >

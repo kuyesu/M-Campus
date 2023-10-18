@@ -163,7 +163,7 @@ function CustomDrawerContent(props: any) {
               borderTopColor: "transparent",
               borderRightColor: "transparent",
               borderLeftColor: "transparent",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.grayAccent,
               borderWidth: 1,
               paddingTop: 10,
             }}
@@ -182,7 +182,7 @@ function CustomDrawerContent(props: any) {
               borderTopColor: "transparent",
               borderRightColor: "transparent",
               borderLeftColor: "transparent",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.grayAccent,
               borderWidth: 1,
               paddingTop: 10,
             }}
@@ -207,7 +207,12 @@ function CustomDrawerContent(props: any) {
             ]}
             className=" w-full"
           >
-            <SettingItem label="Dark Mode">
+            <SettingItem
+              style={{
+                backgroundColor: activeColors.primary,
+              }}
+              label="Dark Mode"
+            >
               <Switch
                 value={isActive}
                 onChange={handleSwitch}
@@ -320,7 +325,7 @@ export default function DrawerLayout() {
         headerShown: false,
         swipeEdgeWidth: 100,
         drawerStyle: {
-          backgroundColor: activeColors.secondary,
+          backgroundColor: activeColors.primary,
           width: "95%",
         },
         drawerItemStyle: {
@@ -332,7 +337,7 @@ export default function DrawerLayout() {
           fontWeight: "bold",
         },
         drawerType: "front",
-        drawerActiveBackgroundColor: activeColors.secondary,
+        drawerActiveBackgroundColor: activeColors.primary,
         drawerActiveTintColor: activeColors.accent,
         drawerInactiveTintColor: activeColors.tertiary,
         drawerIcon: ({ focused, color, size }) => {
@@ -368,6 +373,27 @@ export default function DrawerLayout() {
         }}
       />
       <Drawer.Screen
+        name="messages/[id]"
+        options={{
+          title: "Messages",
+          headerShown: true,
+          headerLeft: () => (
+            <Pressable
+              style={{
+                paddingLeft: 10,
+              }}
+              onPress={() => router.push("/messages/userchats")}
+            >
+              <MaterialCommunityIcons
+                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                name="arrow-left"
+                size={25}
+              />
+            </Pressable>
+          ),
+        }}
+      />
+      <Drawer.Screen
         name="(profile)/profile"
         options={{
           headerShown: true,
@@ -377,7 +403,7 @@ export default function DrawerLayout() {
           // tabBarBackground: activeColors.secondary,
           backBehavior: "history",
           tabBarStyle: {
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
           },
           tabBarShowLabel: false,
           headerTitleAlign: "left",
@@ -385,7 +411,7 @@ export default function DrawerLayout() {
             paddingHorizontal: 10,
           },
           headerStyle: {
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
           },
           headerTintColor: activeColors.tint,
         }}
@@ -401,7 +427,7 @@ export default function DrawerLayout() {
           // tabBarBackground: activeColors.secondary,
           backBehavior: "history",
           tabBarStyle: {
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
           },
           tabBarShowLabel: false,
           headerTitleAlign: "left",
@@ -409,7 +435,7 @@ export default function DrawerLayout() {
             paddingHorizontal: 10,
           },
           headerStyle: {
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
           },
           headerTintColor: activeColors.tint,
         }}

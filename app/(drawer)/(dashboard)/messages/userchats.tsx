@@ -23,6 +23,7 @@ import { TouchableOpacity } from "react-native";
 import StyledView from "@/components/View/StyledView";
 import FriendsScreen from "@/components/messages/FriendsScreen";
 import RequestScreen from "@/components/messages/Requests";
+import ChatsListing from "@/components/messages/ChatsListing";
 
 export default function userchats() {
   const { theme } = useContext(ThemeContext);
@@ -172,95 +173,14 @@ export default function userchats() {
           <View
             style={{
               paddingVertical: 0,
+              paddingTop: 20,
             }}
           >
-            <FlatList
-              data={chats}
-              scrollEnabled={false}
-              initialNumToRender={5}
-              //   estimatedItemSize={100}
-              showsVerticalScrollIndicator={false}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() =>
-                    router.push({
-                      pathname: `/messages/${item.id}`,
-                      params: {
-                        id: item.id,
-                      },
-                    })
-                  }
-                >
-                  <View
-                    style={{
-                      flex: 1,
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      //   justifyContent: "center",
-
-                      gap: 15,
-                      marginTop: 25,
-                    }}
-                  >
-                    <View>
-                      <Pressable
-                        onPress={() =>
-                          router.push({
-                            pathname: `/messages/${item.id}`,
-                            params: {
-                              id: item.id,
-                            },
-                          })
-                        }
-                      >
-                        {({ pressed }) => (
-                          <Image
-                            source={{
-                              uri: item.user.image,
-                            }}
-                            style={[
-                              styles.image,
-                              {
-                                opacity: pressed ? 0.5 : 1,
-                                borderColor: activeColors.accent,
-                                borderWidth: 0.5,
-                              },
-                            ]}
-                          />
-                        )}
-                      </Pressable>
-                    </View>
-                    <View>
-                      <StyledText bold>{item.user.name}</StyledText>
-                      <View
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          gap: 20,
-                        }}
-                      >
-                        <StyledText numberOfLines={1} small>
-                          {item.content.substring(0, 32)}...
-                        </StyledText>
-                        <StyledText
-                          small
-                          style={{
-                            color: activeColors.tertiary,
-                          }}
-                        >
-                          {item.createdAt.substring(0, 10)}
-                        </StyledText>
-                      </View>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              )}
-            />
+            <ChatsListing />
           </View>
         )}
-        {activeTab === 1 && <FriendsScreen />}
-        {activeTab === 2 && <RequestScreen />}
+        {activeTab === 1 && <RequestScreen />}
+        {activeTab === 2 && <FriendsScreen />}
       </ScrollView>
     );
   };
@@ -272,7 +192,7 @@ export default function userchats() {
           position: "fixed",
           backgroundColor: activeColors.primary,
           paddingHorizontal: 20,
-          paddingVertical: 10,
+          paddingVertical: 20,
         }}
       >
         <View>

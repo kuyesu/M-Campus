@@ -119,14 +119,14 @@ export default function TabOneScreen() {
               size={16}
               color={activeColors.tint}
             /> */}
-            <StyledText small>Hello, Good Morning </StyledText>
+            <StyledText>Hi! Good Morning </StyledText>
           </View>
         </View>
         <View style={{}} className="pt-2 items-start ">
           {/* split name and take first name*/}
 
           {/* <StyledText bold>Hi, {user?.name.split(" ")[1]} </StyledText> */}
-          <StyledText bold>{user?.name} </StyledText>
+          <StyledText big>{user?.name} </StyledText>
         </View>
         {/* <View
           style={{
@@ -217,7 +217,8 @@ export default function TabOneScreen() {
                 flexDirection: "row",
                 alignItems: "baseline",
                 justifyContent: "space-between",
-                // paddingHorizontal: 5,
+                paddingHorizontal: 20,
+                paddingBottom: 10,
               }}
               className=" justify-between w-full"
             >
@@ -273,6 +274,8 @@ export default function TabOneScreen() {
             {
               backgroundColor: activeColors.secondary,
               borderRadius: 10,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
               // borderTopEndRadius: 20,
             },
           ]}

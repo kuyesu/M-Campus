@@ -51,7 +51,9 @@ export default function TabOneScreen() {
 
   useEffect(() => {
     if (posts && user) {
-      const myPosts = posts.filter((post: any) => post.user._id === user._id);
+      const myPosts = posts.filter(
+        (post: any) => post?.user?._id === user?._id
+      );
       setData(myPosts);
     }
   }, [posts, user]);
@@ -59,9 +61,9 @@ export default function TabOneScreen() {
   useEffect(() => {
     if (posts && user) {
       const myReplies = posts.filter((post: any) =>
-        post.replies.some((reply: any) => reply.user._id === user._id)
+        post.replies.some((reply: any) => reply?.user?._id === user?._id)
       );
-      setRepliesData(myReplies.filter((post: any) => post.replies.length > 0));
+      setRepliesData(myReplies.filter((post: any) => post?.replies.length > 0));
     }
   }, [posts, user]);
 
@@ -111,7 +113,7 @@ export default function TabOneScreen() {
         >
           <TouchableOpacity onPress={uploadImage} className="relative pt-5">
             <Image
-              source={{ uri: avatar || user?.avatar.url }}
+              source={{ uri: avatar || user?.avatar?.url }}
               style={{
                 width: 120,
                 height: 120,
@@ -144,7 +146,7 @@ export default function TabOneScreen() {
           <View className="pt-10 items-center">
             <StyledText big bold>
               {user?.name}{" "}
-              {user.role.name === "user" && (
+              {user?.role?.name === "user" && (
                 <Image
                   source={{
                     uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",

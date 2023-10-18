@@ -154,11 +154,10 @@ export default function Login() {
                     paddingLeft: 20,
                     borderWidth: 2,
 
-                    borderColor: activeColors.gray,
+                    borderColor: activeColors.grayAccent,
                   }}
                   autoCapitalize="none"
                   className=" w-full px-0"
-                  bold
                   value={email}
                   onChangeText={(text) => setEmail(text)}
                   placeholder="username or email"
@@ -167,15 +166,15 @@ export default function Login() {
                 />
               </View>
               <MaterialCommunityIcons
-                name="email"
+                name="account-outline"
                 type="material"
-                color={activeColors.accent}
+                color={activeColors.tint}
                 size={30}
                 style={{
                   textAlign: "right",
                   position: "absolute",
                   right: 20,
-                  top: 15,
+                  top: 20,
                 }}
               />
             </View>
@@ -195,11 +194,10 @@ export default function Login() {
                     borderRadius: 15,
                     paddingLeft: 20,
                     borderWidth: 2,
-                    borderColor: activeColors.gray,
+                    borderColor: activeColors.grayAccent,
                   }}
                   // onChangeText={(text) => setName(text)}
                   className=" w-full px-0"
-                  bold
                   value={password}
                   onChangeText={(text) => setPassword(text)}
                   secureTextEntry={secure}
@@ -210,15 +208,15 @@ export default function Login() {
               </View>
 
               <MaterialCommunityIcons
-                name="eye"
+                name={secure ? "eye-outline" : "eye-off-outline"}
                 type="ant-design"
                 color={activeColors.tint}
-                size={35}
+                size={30}
                 style={{
                   textAlign: "right",
                   position: "absolute",
                   right: 20,
-                  top: 15,
+                  top: 20,
                 }}
                 onPress={() => {
                   setSecure(!secure);

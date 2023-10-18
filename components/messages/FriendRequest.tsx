@@ -40,6 +40,7 @@ const FriendRequest = ({ item, friendRequests, setFriendRequests }) => {
             setFriendRequests(
               friendRequests.filter((request) => request._id !== item._id)
             );
+            // router.replace(`"Chats"`);
           }
         })
         .catch((err) => {

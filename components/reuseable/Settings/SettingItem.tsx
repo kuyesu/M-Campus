@@ -13,7 +13,7 @@ const SettingItem = ({ children, label }: any) => {
     <View
       style={[
         {
-          backgroundColor: activeColors.secondary,
+          backgroundColor: activeColors.primary,
         },
         styles.setting,
       ]}

@@ -6,6 +6,8 @@ import { URI } from "@/redux/URI";
 import { colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
 import axios from "axios";
+import { TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 const User = ({ item }) => {
   const { user, token } = useSelector((state: any) => state.user);
   const userId = user._id;
@@ -134,7 +136,7 @@ const User = ({ item }) => {
       console.log("error", error);
     }
   };
-
+  const router = useRouter();
   return (
     <Pressable
       style={{
@@ -146,65 +148,120 @@ const User = ({ item }) => {
         // borderBottomWidth: 1,
       }}
     >
-      <View>
-        <Image
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: 25,
-            resizeMode: "cover",
-          }}
-          source={{ uri: item.avatar?.url }}
-        />
-      </View>
-
-      <View style={{ marginLeft: 12, flex: 1 }}>
-        <StyledText bold>{item?.name}</StyledText>
-        <StyledText style={{ marginTop: 4, color: "gray" }}>
-          {item?.userName}
-        </StyledText>
-      </View>
-
       {userFriends.includes(item._id) ? (
-        <Pressable
-          style={{
-            backgroundColor: "#82CD47",
-            padding: 10,
-            width: 105,
-            borderRadius: 6,
-          }}
-        >
-          <Text style={{ textAlign: "center", color: "white" }}>Friends</Text>
-        </Pressable>
+        <>
+          <TouchableOpacity onPress={() => router.push(`/user/${item._id}`)}>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                resizeMode: "cover",
+              }}
+              source={{ uri: item.avatar?.url }}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => router.replace(`/messages/${item._id}`)}
+            style={{ marginLeft: 12, flex: 1 }}
+          >
+            <StyledText bold>{item?.name}</StyledText>
+            <StyledText style={{ marginTop: 4, color: "gray" }}>
+              {item?.userName}
+            </StyledText>
+          </TouchableOpacity>
+          <Pressable
+            style={{
+              backgroundColor: "#82CD47",
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+              padding: 10,
+              width: 105,
+              borderRadius: 25,
+            }}
+          >
+            <Text style={{ textAlign: "center", color: "white" }}>Friends</Text>
+          </Pressable>
+        </>
       ) : requestSent ||
         friendRequests.some((friend) => friend._id === item._id) ? (
-        <Pressable
-          style={{
-            backgroundColor: "gray",
-            padding: 10,
-            width: 105,
-            borderRadius: 6,
-          }}
-        >
-          <Text style={{ textAlign: "center", color: "white", fontSize: 13 }}>
-            Request Sent
-          </Text>
-        </Pressable>
-      ) : (
-        <Pressable
-          style={{
-            backgroundColor: activeColors.gray,
-            padding: 10,
-            width: 105,
-            borderRadius: 6,
-          }}
-        >
-          <StyledText
-            style={{ textAlign: "center", color: "white", fontSize: 13 }}
+        <>
+          <View>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                resizeMode: "cover",
+              }}
+              source={{ uri: item.avatar?.url }}
+            />
+          </View>
+
+          <View style={{ marginLeft: 12, flex: 1 }}>
+            <StyledText bold>{item?.name}</StyledText>
+            <StyledText style={{ marginTop: 4, color: "gray" }}>
+              {item?.userName}
+            </StyledText>
+          </View>
+          <Pressable
+            style={{
+              backgroundColor: "gray",
+              padding: 10,
+              width: 105,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+              borderRadius: 25,
+            }}
           >
-            Request Sent
-          </StyledText>
-        </Pressable>
+            <Text style={{ textAlign: "center", color: "white", fontSize: 13 }}>
+              Request Sent
+            </Text>
+          </Pressable>
+        </>
+      ) : (
+        <>
+          <View>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                resizeMode: "cover",
+              }}
+              source={{ uri: item.avatar?.url }}
+            />
+          </View>
+
+          <View style={{ marginLeft: 12, flex: 1 }}>
+            <StyledText bold>{item?.name}</StyledText>
+            <StyledText style={{ marginTop: 4, color: "gray" }}>
+              {item?.userName}
+            </StyledText>
+          </View>
+          <Pressable
+            onPress={sendFriendRequest}
+            style={{
+              backgroundColor: activeColors.secondary,
+              borderColor: activeColors.grayAccent,
+              borderWidth: 1,
+              padding: 10,
+              borderRadius: 25,
+              width: 105,
+            }}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: activeColors.tint,
+                fontSize: 13,
+              }}
+            >
+              Add Friend
+            </Text>
+          </Pressable>
+        </>
       )}
     </Pressable>
   );
