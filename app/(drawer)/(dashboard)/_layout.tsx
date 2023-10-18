@@ -43,8 +43,8 @@ export default function TabLayout() {
   const router = useRouter();
   const navigation: any = useNavigation();
 
-  if (loading) return <SplashScreen />;
-  if (!isAuthenticated) router.replace("/");
+  // if (loading) return <SplashScreen />;
+  // if (!isAuthenticated) router.replace("/");
   return (
     <Tabs
       initialRouteName="home/index"
@@ -166,94 +166,94 @@ export default function TabLayout() {
           borderBottomColor: activeColors.gray,
           borderBottomWidth: 1,
         },
-        header: () => (
-          <View
-            style={{
-              backgroundColor: activeColors.primary,
-              // borderBottomColor: activeColors.grayAccent,
-              // borderBottomWidth: 1,
-              marginTop: Platform.OS === "ios" ? 20 : 0,
-              paddingVertical: 10,
-              paddingTop: Platform.OS === "ios" ? 0 : 45,
-              paddingHorizontal: 5,
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-              shadowColor: activeColors.gray,
-              shadowOffset: {
-                width: 0,
-                height: 3,
-              },
-              shadowOpacity: 0.6,
-              shadowRadius: 2,
+        // header: () => (
+        //   <View
+        //     style={{
+        //       backgroundColor: activeColors.primary,
+        //       // borderBottomColor: activeColors.grayAccent,
+        //       // borderBottomWidth: 1,
+        //       marginTop: Platform.OS === "ios" ? 20 : 0,
+        //       paddingVertical: 10,
+        //       paddingTop: Platform.OS === "ios" ? 0 : 45,
+        //       paddingHorizontal: 5,
+        //       justifyContent: "space-between",
+        //       flexDirection: "row",
+        //       alignItems: "center",
+        //       shadowColor: activeColors.gray,
+        //       shadowOffset: {
+        //         width: 0,
+        //         height: 3,
+        //       },
+        //       shadowOpacity: 0.6,
+        //       shadowRadius: 2,
 
-              elevation: 2,
-            }}
-          >
-            <View style={styles.header}>
-              <Pressable onPress={() => navigation.openDrawer()}>
-                {({ pressed }) => (
-                  <Image
-                    source={{
-                      uri: user?.avatar?.url || "https://picsum.photos/200/300",
-                    }}
-                    height={40}
-                    width={40}
-                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
-                  />
-                )}
-              </Pressable>
-            </View>
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <View
-                    className={`items-center  justify-center flex-row `}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  >
-                    <MaterialCommunityIcons
-                      size={35}
-                      name="notification-clear-all"
-                      color={activeColors.tint}
-                      fill="#86e63b"
-                      stroke="#041633"
-                      strokeWidth={2}
-                    />
-                    <View
-                      style={{
-                        position: "absolute",
-                        right: -2,
-                        top: 4,
-                      }}
-                    >
-                      <View
-                        style={{
-                          borderColor: activeColors.primary,
-                          backgroundColor: activeColors.accent,
-                          borderWidth: 2,
-                          borderRadius: 50,
-                          padding: 2,
-                          display: "flex",
-                          height: 18,
-                          width: 18,
-                          alignItems: "center",
-                          // justifyContent: "center",
-                        }}
-                      >
-                        <StyledText
-                          style={{ fontSize: 8, color: "black" }}
-                          bold
-                        >
-                          3
-                        </StyledText>
-                      </View>
-                    </View>
-                  </View>
-                )}
-              </Pressable>
-            </Link>
-          </View>
-        ),
+        //       elevation: 2,
+        //     }}
+        //   >
+        //     <View style={styles.header}>
+        //       <Pressable onPress={() => navigation.openDrawer()}>
+        //         {({ pressed }) => (
+        //           <Image
+        //             source={{
+        //               uri: user?.avatar?.url || "https://picsum.photos/200/300",
+        //             }}
+        //             height={40}
+        //             width={40}
+        //             style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+        //           />
+        //         )}
+        //       </Pressable>
+        //     </View>
+        //     <Link href="/modal" asChild>
+        //       <Pressable>
+        //         {({ pressed }) => (
+        //           <View
+        //             className={`items-center  justify-center flex-row `}
+        //             style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+        //           >
+        //             <MaterialCommunityIcons
+        //               size={35}
+        //               name="notification-clear-all"
+        //               color={activeColors.tint}
+        //               fill="#86e63b"
+        //               stroke="#041633"
+        //               strokeWidth={2}
+        //             />
+        //             <View
+        //               style={{
+        //                 position: "absolute",
+        //                 right: -2,
+        //                 top: 4,
+        //               }}
+        //             >
+        //               <View
+        //                 style={{
+        //                   borderColor: activeColors.primary,
+        //                   backgroundColor: activeColors.accent,
+        //                   borderWidth: 2,
+        //                   borderRadius: 50,
+        //                   padding: 2,
+        //                   display: "flex",
+        //                   height: 18,
+        //                   width: 18,
+        //                   alignItems: "center",
+        //                   // justifyContent: "center",
+        //                 }}
+        //               >
+        //                 <StyledText
+        //                   style={{ fontSize: 8, color: "black" }}
+        //                   bold
+        //                 >
+        //                   3
+        //                 </StyledText>
+        //               </View>
+        //             </View>
+        //           </View>
+        //         )}
+        //       </Pressable>
+        //     </Link>
+        //   </View>
+        // ),
         headerTintColor: activeColors.tint,
       })}
     >
@@ -430,21 +430,52 @@ export default function TabLayout() {
         name="messages/[id]"
         options={{
           href: null,
-
-          title: "Messages",
-          headerLeft: () => (
-            <Pressable
+          tabBarStyle: {
+            backgroundColor: activeColors.primary,
+            borderTopColor: activeColors.gray,
+            paddingBottom: Platform.OS === "ios" ? 20 : 0,
+            height: 0,
+            top: 30,
+          },
+          headerShown: true,
+          title: "",
+          headerBackground: () => (
+            <View
               style={{
-                paddingLeft: 10,
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
               }}
-              onPress={() => router.push("/messages/userchats")}
+            />
+          ),
+          headerLeft: () => (
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                paddingLeft: 15,
+                paddingRight: 0,
+                marginRight: 0,
+                gap: 15,
+              }}
             >
-              <MaterialCommunityIcons
-                color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
-                name="arrow-left"
-                size={25}
-              />
-            </Pressable>
+              <Pressable onPress={() => router.replace("/messages/userchats")}>
+                <MaterialCommunityIcons
+                  color={theme.mode === "dark" ? "#f9fafb" : "#111827"}
+                  name="arrow-left"
+                  size={25}
+                />
+              </Pressable>
+              <Pressable onPress={() => navigation.openDrawer()}>
+                {({ pressed }) => (
+                  <Image
+                    source={{
+                      uri: user?.avatar?.url || "https://picsum.photos/200/300",
+                    }}
+                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+                  />
+                )}
+              </Pressable>
+            </View>
           ),
         }}
       />

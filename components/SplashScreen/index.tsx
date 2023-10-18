@@ -17,25 +17,27 @@ import StyledText from "../Text/StyledText";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
+import { useRouter } from "expo-router";
 
 type Props = {};
 
 const SplashScreen = (props: Props) => {
   const [name, setName] = useState("");
+  const router = useRouter();
   useEffect(() => {
     retrieveData();
     setTimeout(() => {
       if (name === "") {
-        //   navigation.navigate("LoginPage");
+        // router.replace("/auth/login");
       } else {
-        //   navigation.navigate("MainScreen");
+        // router.replace("/(drawer)/(dashboard)/home");
       }
     }, 3000);
   }, []);
 
   const retrieveData = async () => {
     try {
-      const value = await AsyncStorage.getItem("name");
+      const value = await AsyncStorage.getItem("token");
       if (value !== null) {
         console.log(value);
         setName(value);
@@ -88,21 +90,22 @@ const SplashScreen = (props: Props) => {
             width: "100%",
             justifyContent: "flex-start",
             alignItems: "flex-start",
-            paddingTop: "20%",
-            paddingLeft: 25,
+            paddingTop: "15%",
+            paddingHorizontal: 25,
+            paddingRight: "20%",
           }}
         >
           <StyledText
             style={{
               fontFamily: "H",
-              fontSize: 30,
+              fontSize: 45,
               color: activeColors.tint,
             }}
           >
             <StyledText
               // bold
               style={{
-                fontSize: 30,
+                fontSize: 45,
                 color: activeColors.accent,
                 fontFamily: "H",
               }}
@@ -115,7 +118,8 @@ const SplashScreen = (props: Props) => {
             style={{
               fontFamily: "B",
               fontSize: 18,
-              width: "80%",
+              width: "60%",
+              paddingTop: 20,
               color: activeColors.tint,
             }}
           >
@@ -147,6 +151,7 @@ const SplashScreen = (props: Props) => {
         </View>
         <StatusBar
           // backgroundColor={activeColors.primary}
+          // backgroundColor={theme.mode === "dark" ? "dark" : "light"}
           style={theme.mode === "dark" ? "light" : "dark"}
         />
       </ImageBackground>

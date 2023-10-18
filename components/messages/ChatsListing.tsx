@@ -33,7 +33,6 @@ const ChatsListing = () => {
 
     acceptedFriendsList();
   }, []);
-  console.log("friends", acceptedFriends);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Pressable>

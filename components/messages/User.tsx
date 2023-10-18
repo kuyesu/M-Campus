@@ -103,8 +103,7 @@ const User = ({ item }) => {
       if (response.ok) {
         setRequestSent(true);
       }
-      console.log("friend requests sent", friendRequests);
-      console.log("user friends", userFriends);
+
       // await axios
       //   .post(`${URI}/friend-request`, {
       //     currentUserId,
@@ -163,7 +162,7 @@ const User = ({ item }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => router.replace(`/messages/${item._id}`)}
+            onPress={() => router.push(`/messages/${item._id}`)}
             style={{ marginLeft: 12, flex: 1 }}
           >
             <StyledText bold>{item?.name}</StyledText>

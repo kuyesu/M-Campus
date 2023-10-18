@@ -54,25 +54,9 @@ const ChatMessagesScreen = () => {
 
   const userId = user._id;
   const recepientId = id.toString();
-
   useEffect(() => {
     scrollToBottom();
   }, []);
-
-  const scrollToBottom = () => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollToEnd({ animated: false });
-    }
-  };
-
-  const handleContentSizeChange = () => {
-    scrollToBottom();
-  };
-
-  const handleEmojiPress = () => {
-    setShowEmojiSelector(!showEmojiSelector);
-  };
-
   const fetchMessages = async () => {
     try {
       const response = await fetch(`${URI}/messages/${userId}/${recepientId}`, {
@@ -92,9 +76,20 @@ const ChatMessagesScreen = () => {
     }
   };
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
+  const scrollToBottom = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: false });
+    }
+  };
+
+  const handleContentSizeChange = () => {
+    scrollToBottom();
+  };
+
+  const handleEmojiPress = () => {
+    setShowEmojiSelector(!showEmojiSelector);
+  };
+  fetchMessages();
 
   useEffect(() => {
     const fetchRecepientData = async () => {
@@ -123,7 +118,7 @@ const ChatMessagesScreen = () => {
       //if the message type id image or a normal text
       if (messageType === "image") {
         formData.append("messageType", "image");
-        formData.append("imageFile", imageMessage);
+        formData.append("imageMessage", imageMessage);
       } else {
         formData.append("messageType", "text");
         formData.append("messageText", message);
@@ -195,7 +190,32 @@ const ChatMessagesScreen = () => {
       if (image) {
         // @ts-ignore
         setImageMessage("data:image/jpeg;base64," + image.data);
-        handleSend("image", imageMessage);
+        // console.log("image", imageMessage);
+        // handleSend("image", imageMessage);
+        const config = {
+          senderId: userId,
+          recepientId: recepientId,
+          messageType: "image",
+          // messageText: message,
+          // @ts-ignore
+          imageMessage: "data:image/jpeg;base64," + image.data,
+        };
+        axios
+          .post(`${URI}/messages`, config, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res: any) => {
+            if (res.status.ok) {
+              setMessage("");
+              setSelectedImage("");
+              fetchMessages();
+            }
+          })
+          .catch((err: any) => {
+            console.log("err", err);
+          });
       }
     });
   };
@@ -408,12 +428,14 @@ const ChatMessagesScreen = () => {
                     ]}
                   >
                     <View>
-                      <Image
-                        source={{
-                          uri: item?.imageUrl || item?.imageUrl || imageMessage,
-                        }}
-                        style={{ width: 200, height: 200, borderRadius: 7 }}
-                      />
+                      {item?.imageUrl && (
+                        <Image
+                          source={{
+                            uri: item?.imageUrl,
+                          }}
+                          style={{ width: 200, height: 200, borderRadius: 7 }}
+                        />
+                      )}
                       <Text
                         style={{
                           textAlign: "right",

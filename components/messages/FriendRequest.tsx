@@ -47,7 +47,6 @@ const FriendRequest = ({ item, friendRequests, setFriendRequests }) => {
           console.log("error accepting the friend request", err);
         });
 
-      console.log(senderId, recepientId);
       // const response = await fetch(`${URI}/friend-request/accept`, {
       //   method: "POST",
       //   headers: {

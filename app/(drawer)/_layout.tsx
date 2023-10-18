@@ -372,7 +372,7 @@ export default function DrawerLayout() {
           title: "My Home",
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="messages/[id]"
         options={{
           title: "Messages",
@@ -392,7 +392,7 @@ export default function DrawerLayout() {
             </Pressable>
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="(profile)/profile"
         options={{
