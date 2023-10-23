@@ -92,153 +92,189 @@ export default function TabOneScreen() {
     <MainContainer
       style={[
         styles.container,
-        { flexGrow: 1, paddingHorizontal: 20, paddingVertical: 0 },
+        {
+          flexGrow: 1,
+          paddingHorizontal: 20,
+          paddingVertical: 0,
+        },
       ]}
     >
-      <View
+      <ScrollView
         style={{
-          paddingVertical: 15,
+          flexGrow: 1,
           width: "100%",
         }}
+        showsVerticalScrollIndicator={false}
       >
         <View
           style={{
-            paddingHorizontal: 20,
-          }}
-          className=" pt-4 flex-row justify-between w-full items-center"
-        >
-          <View>
-            <View
-              style={{}}
-              className="items-center justify-between w-full flex flex-row"
-            >
-              <View className="flex flex-row gap-2">
-                <StyledText>Hi! Good Evening </StyledText>
-              </View>
-            </View>
-            <View style={{}} className="pt-2 items-start ">
-              <StyledText big>{user?.name} </StyledText>
-            </View>
-          </View>
-          <View>
-            <StyledWeatherView />
-          </View>
-        </View>
-        <View className="pt-4 items-center justify-start gap-2"></View>
-      </View>
-      <View
-        style={{
-          paddingHorizontal: 0,
-        }}
-        className="h-full "
-      >
-        {/* top landing */}
-        <View
-          style={{
-            // height: "1%",
-            paddingVertical: 25,
-            // backgroundColor: "steelblue",
-            paddingHorizontal: 10,
+            paddingVertical: 15,
+            width: "100%",
           }}
         >
           <View
             style={{
-              // height: "40%",
-              flexDirection: "row",
-              alignItems: "center",
+              paddingHorizontal: 20,
+            }}
+            className=" pt-4 flex-row justify-between w-full items-center"
+          >
+            <View>
+              <View
+                style={{}}
+                className="items-center justify-between w-full flex flex-row"
+              >
+                <View className="flex flex-row gap-2">
+                  <StyledText>Hi! Good Evening </StyledText>
+                </View>
+              </View>
+              <View style={{}} className="pt-2 items-start ">
+                <StyledText big>{user?.name} </StyledText>
+              </View>
+            </View>
+            <View>
+              <StyledWeatherView />
+            </View>
+          </View>
+          <View className="pt-4 items-center justify-start gap-2"></View>
+        </View>
+        <View
+          style={{
+            paddingHorizontal: 0,
+          }}
+          className="h-full "
+        >
+          {/* top landing */}
+          <View
+            style={{
+              // height: "1%",
+              paddingVertical: 25,
+              // backgroundColor: "steelblue",
+              paddingHorizontal: 10,
             }}
           >
-            {/* <StyledWeatherView /> */}
-
             <View
               style={{
-                display: "flex",
+                // height: "40%",
                 flexDirection: "row",
-                alignItems: "baseline",
-                justifyContent: "space-between",
-                paddingHorizontal: 20,
-                paddingBottom: 10,
+                alignItems: "center",
               }}
-              className=" justify-between w-full"
             >
-              <StyledMenuItem
-                icon="calendar"
-                name="Schedule"
-                onPress={() => router.push("/timetable")}
-              />
-              <StyledMenuItem
-                icon="hexagon-multiple-outline"
-                name="Hostels"
-                onPress={() => router.push("/hostels")}
-              />
-              <StyledMenuItem
-                icon="selection-multiple"
-                name="Career"
-                onPress={() => router.push("/jobs")}
-              />
+              {/* <StyledWeatherView /> */}
+
               <View
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  paddingHorizontal: 20,
+                  paddingBottom: 10,
                 }}
+                className=" justify-between w-full"
               >
-                {/* here is the modal bottomsheet */}
-
-                <StyledBottomSheet
-                  // setIsOpen={setIsOpen(false)}
-                  index={1}
+                <StyledMenuItem
+                  icon="calendar"
+                  name="Schedule"
+                  onPress={() => router.push("/timetable")}
+                />
+                <StyledMenuItem
+                  icon="hexagon-multiple-outline"
+                  name="Helpdesk"
+                  onPress={() => router.push("/hostels")}
+                />
+                <StyledMenuItem
+                  icon="selection-multiple"
+                  name="Career"
+                  onPress={() => router.push("/jobs")}
+                />
+                <View
                   style={{
-                    backgroundColor: activeColors.secondary,
-                    borderTopColor: activeColors.grayAccent,
-                    borderTopWidth: 1,
-                    width: "100%",
-                    borderBottomEndRadius: 20,
-                    borderBottomStartRadius: 20,
-                    position: "relative",
-                    left: -20,
-                  }}
-                  bottomSheetModalRef={bottomSheetModalRef}
-                  snapPoints={snapPoints}
-                >
-                  <MoreApps handleOnPress={handleAppOnPress} />
-                </StyledBottomSheet>
-                <TouchableOpacity
-                  style={{
+                    display: "flex",
+                    flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
-                  onPress={handlePresentModal}
                 >
-                  <MaterialCommunityIcons
-                    name={"apps"}
-                    // name="view-dashboard-outline"
-                    size={25}
+                  {/* here is the modal bottomsheet */}
+
+                  <StyledBottomSheet
+                    // setIsOpen={setIsOpen(false)}
+                    index={1}
                     style={{
-                      marginBottom: 5,
-                      backgroundColor: activeColors.backgroundColorOpacity,
-                      borderRadius: 50,
-                      padding: 10,
-                      borderColor: activeColors.grayAccent,
-                      borderWidth: 1,
+                      backgroundColor: activeColors.secondary,
+                      borderTopColor: activeColors.grayAccent,
+                      borderTopWidth: 1,
+                      width: "100%",
+                      borderBottomEndRadius: 20,
+                      borderBottomStartRadius: 20,
+                      position: "relative",
+                      left: -20,
+                    }}
+                    bottomSheetModalRef={bottomSheetModalRef}
+                    snapPoints={snapPoints}
+                  >
+                    <MoreApps handleOnPress={handleAppOnPress} />
+                  </StyledBottomSheet>
+                  <TouchableOpacity
+                    style={{
                       alignItems: "center",
                       justifyContent: "center",
-                      textAlign: "center",
                     }}
-                    color={activeColors.tint}
-                  />
-                  <StyledText style={{ fontSize: 12 }}>More</StyledText>
-                </TouchableOpacity>
+                    onPress={handlePresentModal}
+                  >
+                    <MaterialCommunityIcons
+                      name={"apps"}
+                      // name="view-dashboard-outline"
+                      size={25}
+                      style={{
+                        marginBottom: 5,
+                        backgroundColor: activeColors.backgroundColorOpacity,
+                        borderRadius: 50,
+                        padding: 10,
+                        borderColor: activeColors.grayAccent,
+                        borderWidth: 1,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                      }}
+                      color={activeColors.tint}
+                    />
+                    <StyledText style={{ fontSize: 12 }}>More</StyledText>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-        <View
-          style={{
-            width: "100%",
-          }}
-        >
+          <View
+            style={{
+              width: "100%",
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => router.push("/notifications/update")}
+              >
+                <StyledText
+                  small
+                  style={{ marginBottom: 10, color: activeColors.gray }}
+                  className=" italic"
+                >
+                  show all{" "}
+                  <MaterialCommunityIcons
+                    color={activeColors.gray}
+                    name="arrow-right"
+                  />
+                </StyledText>
+              </TouchableOpacity>
+            </View>
+            <ImportantUpdates />
+          </View>
           <View
             style={{
               flexDirection: "row",
@@ -246,15 +282,13 @@ export default function TabOneScreen() {
               alignItems: "flex-end",
             }}
           >
-            <TouchableOpacity
-              onPress={() => router.push("/notifications/update")}
-            >
+            <TouchableOpacity onPress={() => router.push("/feed")}>
               <StyledText
                 small
-                style={{ marginBottom: 10, color: activeColors.gray }}
+                style={{ marginTop: 25, color: activeColors.gray }}
                 className=" italic"
               >
-                show all{" "}
+                show all trending{" "}
                 <MaterialCommunityIcons
                   color={activeColors.gray}
                   name="arrow-right"
@@ -262,146 +296,44 @@ export default function TabOneScreen() {
               </StyledText>
             </TouchableOpacity>
           </View>
-          <ImportantUpdates />
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-          }}
-        >
-          <TouchableOpacity onPress={() => router.push("/feed")}>
-            <StyledText
-              small
-              style={{ marginTop: 25, color: activeColors.gray }}
-              className=" italic"
-            >
-              show all trending{" "}
-              <MaterialCommunityIcons
-                color={activeColors.gray}
-                name="arrow-right"
-              />
-            </StyledText>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.optionListsContainer}>
-          <ScrollView horizontal className=" flex-row ">
-            {posts.slice(0, 6).map((item, index) => (
-              <Link
-                key={index}
-                href="/feed"
-                className=" items-start justify-center flex-row"
-              >
-                <View>
-                  <View style={styles.optionsCard}>
-                    {/* House image */}
-                    <Image
-                      source={{ uri: item?.image?.url }}
-                      style={styles.optionsCardImage}
-                    />
+          <View style={[styles.optionListsContainer, { paddingBottom: 40 }]}>
+            <ScrollView horizontal className=" flex-row ">
+              {posts.slice(0, 6).map((item, index) => (
+                <Link
+                  key={index}
+                  href="/feed"
+                  className=" items-start justify-center flex-row"
+                >
+                  <View>
+                    <View style={styles.optionsCard}>
+                      {/* House image */}
+                      <Image
+                        source={{ uri: item?.image?.url }}
+                        style={styles.optionsCardImage}
+                        resizeMode="contain"
+                      />
 
-                    {/* Option title */}
+                      {/* Option title */}
+                    </View>
+                    <View className="w-44 px-4">
+                      <StyledText
+                        style={{
+                          marginTop: 5,
+                        }}
+                        className="text-start  text-ellipsis whitespace-nowrap"
+                        numberOfLines={1}
+                        small
+                      >
+                        {item.title}
+                      </StyledText>
+                    </View>
                   </View>
-                  <View className="w-44 px-4">
-                    <StyledText
-                      style={{
-                        marginTop: 5,
-                      }}
-                      className="text-start  text-ellipsis whitespace-nowrap"
-                      numberOfLines={1}
-                      small
-                    >
-                      {item.title}
-                    </StyledText>
-                  </View>
-                </View>
-              </Link>
-            ))}
-          </ScrollView>
-        </View>
-        {/* <View style={{}}>
-          <TimelineComponent data={data} />
-        </View> */}
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "column",
-            }}
-          >
-            <View
-              style={[
-                styles.ticketContainer,
-                // styles.ticketAnswered,
-                styles.ticketPending,
-                // styles.ticketUnanswered,
-              ]}
-              className="relative "
-            >
-              <View
-                style={[
-                  styles.ticketItem,
-                  {
-                    // backgroundColor: activeColors.secondary,
-                    // borderColor: activeColors.primary,
-                  },
-                ]}
-                className="  "
-              >
-                <View style={styles.ticketStatusIndicator} />
-                <View className="flex   flex-row justify-between  items-center">
-                  <StyledText
-                    style={{ color: activeColors.tint }}
-                    className="font-semibold text-base"
-                  >
-                    Title
-                  </StyledText>
-                  <View className=" relative ">
-                    <Text
-                      style={{
-                        color: activeColors.gray,
-                      }}
-                      className=" font-semibold"
-                    >
-                      time
-                    </Text>
-                  </View>
-                </View>
-                <View className="">
-                  <Text
-                    style={{
-                      color: activeColors.tertiary,
-                    }}
-                    className=" truncate overflow-hidden font-medium "
-                  >
-                    Response
-                  </Text>
-                </View>
-                <View className="flex   flex-row justify-between w-full items-center ">
-                  <Text
-                    style={{
-                      color: activeColors.tint,
-                    }}
-                    className=" font-semibold "
-                  >
-                    AI:
-                  </Text>
-
-                  <Image
-                    source={require("@/assets/chats/bot.gif")}
-                    className="h-20 w-20 rounded-full"
-                  />
-                </View>
-              </View>
-            </View>
+                </Link>
+              ))}
+            </ScrollView>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </MainContainer>
   );
 }

@@ -140,7 +140,7 @@ const MoreApps = ({ handleOnPress }: any) => {
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/jobs")}
+          onPress={() => router.push("/hostels")}
         >
           <View
             style={{
@@ -151,13 +151,13 @@ const MoreApps = ({ handleOnPress }: any) => {
             }}
           >
             <MaterialCommunityIcons
-              name="earth"
+              name="home-assistant"
               size={25}
               color={activeColors.tint}
             />
           </View>
 
-          <StyledText style={{ fontSize: 16 }}>Health</StyledText>
+          <StyledText style={{ fontSize: 16 }}>Hostels</StyledText>
         </TouchableOpacity>
       </View>
     </View>

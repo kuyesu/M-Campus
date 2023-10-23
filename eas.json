@@ -13,6 +13,16 @@
         "buildConfiguration": "Debug"
       }
     },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
     "preview": {
       "distribution": "internal"
     },

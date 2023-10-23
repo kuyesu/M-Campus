@@ -133,7 +133,7 @@ export default function TabLayout() {
           backgroundColor: activeColors.primary,
           borderTopColor: activeColors.grayAccent,
           paddingBottom: Platform.OS === "ios" ? 20 : 0,
-          height: 70,
+          height: 60,
         },
         headerTitleAlign: "left",
         headerTitleStyle: {
@@ -446,6 +446,29 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="notifications/important-update"
+        options={{
+          href: null,
+          tabBarStyle: {
+            backgroundColor: activeColors.primary,
+            borderTopColor: activeColors.gray,
+            paddingBottom: Platform.OS === "ios" ? 20 : 0,
+            height: 0,
+            top: 30,
+          },
+          headerShown: true,
+          title: "",
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
+        }}
+      />
 
       {/*
       **disabled tabs**
@@ -507,7 +530,44 @@ export default function TabLayout() {
           ),
         }}
       />
-
+      <Tabs.Screen
+        name="timetable/index"
+        options={{
+          href: null,
+          tabBarStyle: {
+            backgroundColor: activeColors.primary,
+            borderTopColor: activeColors.gray,
+            // paddingBottom: Platform.OS === "ios" ? 20 : 0,
+            // height: 0,
+            // top: 30,
+          },
+          headerShown: true,
+          title: "",
+          headerLeft: () => (
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                paddingLeft: 15,
+                paddingRight: 0,
+                marginRight: 0,
+                gap: 15,
+              }}
+            >
+              <Pressable onPress={() => navigation.openDrawer()}>
+                {({ pressed }) => (
+                  <Image
+                    source={{
+                      uri: user?.avatar?.url || "https://picsum.photos/200/300",
+                    }}
+                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+                  />
+                )}
+              </Pressable>
+            </View>
+          ),
+        }}
+      />
       <Tabs.Screen
         name="inquiries/[id]"
         options={{

@@ -30,7 +30,7 @@ const ImportantUpdates = (props: Props) => {
         },
       ]}
       className="    "
-      onPress={() => router.push(`/post/important-update`)}
+      onPress={() => router.push(`/notifications/important-update`)}
     >
       <View
         style={{
@@ -79,7 +79,7 @@ const ImportantUpdates = (props: Props) => {
           >
             <View />
             <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-              <StyledText bold>Important Update</StyledText>
+              <StyledText bold>Important Notice</StyledText>
               <MaterialCommunityIcons
                 size={20}
                 strokeWidth={2}
@@ -94,7 +94,7 @@ const ImportantUpdates = (props: Props) => {
                   color: activeColors.accent,
                 }}
               >
-                Registration for Semester 1 2021/2022
+                Registration for Semester 1 2022/2023
               </Text>
             </View>
           </View>
@@ -135,15 +135,14 @@ const ImportantUpdates = (props: Props) => {
                   }}
                   className=" text-ellipsis whitespace-nowrap text-justify"
                 >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing
+                  This is to inform all students that the University will open
+                  for the first semester 2022/2023 academic year on 30th August
+                  2021. All students are expected to report on this date and
+                  register for the semester. The semester will start on 6th
+                  September 2021. All students are advised to pay tuition and
+                  functional fees before reporting to the University. Students
+                  are also advised to observe the COVID-19 Standard Operating
+                  Procedures (SOPs) as they report to the University.
                 </StyledText>
               </View>
             </View>

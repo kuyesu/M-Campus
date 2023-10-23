@@ -368,23 +368,6 @@ const RootLayoutNav = () => {
               presentation: "fullScreenModal",
             }}
           />
-          <Stack.Screen
-            name="timetable/index"
-            options={{
-              title: "Timetable",
-              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
-              presentation: "fullScreenModal",
-              headerBackground: () => (
-                <View
-                  style={{
-                    backgroundColor:
-                      theme.mode === "dark" ? "#111827" : "#ffffff",
-                    flex: 1,
-                  }}
-                />
-              ),
-            }}
-          />
         </Stack>
       </BottomSheetModalProvider>
     </ThemeContext.Provider>

@@ -43,6 +43,7 @@ export const colors = {
     tertiary: "#d1d5db",
     border: "#e5e7eb",
     accent: "#86e63b",
+    // accent: "#2e78b7",
     grayAccent: "#374151",
     tint: "#f9fafb",
     // gray: "rgba(252, 219, 220, 0.5)",

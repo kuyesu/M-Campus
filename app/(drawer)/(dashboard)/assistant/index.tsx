@@ -18,12 +18,13 @@ import StyledView from "@/components/View/StyledView";
 import { RadixIcon } from "radix-ui-react-native-icons";
 import axios from "axios";
 import fetch from "isomorphic-fetch";
+import { useSelector } from "react-redux";
 
 export default function TabOneScreen() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-
+  const { user, isAuthenticated } = useSelector((state: any) => state.user);
   const [messages, setMessages] = useState([]);
   const [chatFaceColor, setChatFaceColor] = useState();
   const [query, setQuery] = useState("");
@@ -239,7 +240,9 @@ export default function TabOneScreen() {
             borderRadius: 10,
           }}
         >
-          <StyledText style={{ color: activeColors.tint }}>Send</StyledText>
+          <StyledText style={{ color: activeColors.secondary }}>
+            Send
+          </StyledText>
         </View>
       </Send>
     );
@@ -301,10 +304,9 @@ export default function TabOneScreen() {
                     borderWidth: 1,
                   }}
                 >
-                  <RadixIcon
-                    name="person"
-                    size={16}
-                    color={activeColors.tint}
+                  <Image
+                    source={{ uri: user?.avatar?.url }}
+                    className="h-8 w-8 "
                   />
                 </StyledView>
               );

@@ -68,7 +68,7 @@ const SplashScreen = (props: Props) => {
         }),
       ])
     ).start();
-  }, []);
+  }, [translateY]);
 
   return (
     <MainContainer style={styles.container}>
@@ -135,6 +135,17 @@ const SplashScreen = (props: Props) => {
               >
                 ⚡ Supercharged with AI and AR
               </Animated.Text>
+              {/* <Animated.View
+                style={{
+                  paddingTop: 20,
+                  transform: [{ translateY }],
+                }}
+              >
+                <Image
+                  source={require("@/assets/images/logo.png")}
+                  style={{ height: 100, width: 100, left: -20 }}
+                />
+              </Animated.View> */}
             </View>
           </View>
         </View>

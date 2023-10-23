@@ -20,6 +20,7 @@ import Store from "@/redux/Store";
 import { loadUser } from "@/redux/actions/userAction";
 import SplashScreen from "@/components/SplashScreen";
 import { useRouter } from "expo-router";
+import { Image } from "react-native";
 
 export default function Welcome() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -76,7 +77,20 @@ export default function Welcome() {
                       flex: 1,
                     }}
                   >
-                    <View style={{ marginTop: "60%" }}></View>
+                    <View
+                      style={{
+                        marginTop: "40%",
+                        marginBottom: "8%",
+                        left: -15,
+                      }}
+                    >
+                      <View>
+                        <Image
+                          source={require("@/assets/images/logo.png")}
+                          style={{ height: 80, width: 80 }}
+                        ></Image>
+                      </View>
+                    </View>
 
                     <StyledText
                       style={{
