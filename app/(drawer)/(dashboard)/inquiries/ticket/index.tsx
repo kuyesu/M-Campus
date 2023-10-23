@@ -39,6 +39,7 @@ import { StatusBar } from "expo-status-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "@/redux/actions/userAction";
 import { createTicketAction } from "@/redux/actions/ticketAction";
+import { TouchableOpacity } from "react-native";
 
 const SlideDetails = ({
   currentStepData,
@@ -54,6 +55,7 @@ const SlideDetails = ({
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
+
   return (
     <ScrollView
       bounces
@@ -368,6 +370,30 @@ const SlideDetails = ({
               />
             ) : (
               <View className="w-full py-4">
+                {/* check if there are still more steps left */}
+                {/* {currentStep < currentConcern.steps.length - 1 && (
+                  <TouchableOpacity
+                    onPress={handleStepChange}
+                    className="flex flex-row justify-between items-center"
+                  >
+                    <View></View>
+                    <View className="pb-2 items-center flex-row justify-center ">
+                      <StyledText
+                        className="text-sm  pr-2 items-center justify-center text-center"
+                        style={{
+                          color: activeColors.tint,
+                        }}
+                      >
+                        Next
+                      </StyledText>
+                      <MaterialCommunityIcons
+                        name="arrow-right"
+                        color={activeColors.tint}
+                        size={25}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                )} */}
                 <StyledTextInput
                   style={{
                     borderRadius: 15,
@@ -381,8 +407,11 @@ const SlideDetails = ({
                   className=" text-justify"
                   rows={5}
                   multiline={true}
-                  value={formData[currentStep] || ""}
-                  onChangeText={handleStepChange}
+                  // value={formData[currentStep] || ""}
+                  onChangeText={(text) => (formData[currentStep] = text)}
+                  value={formData[currentStep]}
+                  // onChangeText={(v) => setCurrentValue(v)}
+                  onEndEditing={() => handleStepChange(formData[currentStep])}
                   placeholder={currentStepData.placeholder}
                   placeholderTextColor={activeColors.gray}
                 />
@@ -644,9 +673,7 @@ export default function App() {
   ]);
 
   // get all users from redux
-  useEffect(() => {
-    getAllUsers()(dispatch);
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   useEffect(() => {
     if (users) {

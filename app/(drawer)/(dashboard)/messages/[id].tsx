@@ -46,14 +46,17 @@ const ChatMessagesScreen = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const route = useRoute();
   const { id } = useLocalSearchParams();
-
+  // const [recepientId, setRecepientId] = useState("");
   const [imageMessage, setImageMessage] = useState("");
   const [message, setMessage] = useState("");
   const { user, token, users } = useSelector((state: any) => state.user);
   const scrollViewRef = useRef(null);
 
   const userId = user._id;
-  const recepientId = id.toString();
+  const stringId = id.toString();
+  const recepientId = stringId;
+  const [isTyping, setIsTyping] = useState(false);
+
   useEffect(() => {
     scrollToBottom();
   }, []);
@@ -89,6 +92,7 @@ const ChatMessagesScreen = () => {
   const handleEmojiPress = () => {
     setShowEmojiSelector(!showEmojiSelector);
   };
+
   fetchMessages();
 
   useEffect(() => {

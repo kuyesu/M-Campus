@@ -1596,6 +1596,11 @@
   dependencies:
     html-entities "^2.3.2"
 
+"@freakycoder/react-native-bounceable@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@freakycoder/react-native-bounceable/-/react-native-bounceable-1.0.3.tgz#79de6fa99fb8357a5e52cc095ecdb1786f4b1514"
+  integrity sha512-+iMq2tnqxCwFjitbPUz9nZ+VfJ8OU9waIlDJAAsoq1229QEwCmERCNy5zVtDsz75q3i4FLXX/n7fimdMzmP21A==
+
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
@@ -7620,6 +7625,11 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-native-animated-component@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-animated-component/-/react-native-animated-component-0.2.0.tgz#b0f94475060a37876c68f61835110ddd24439bb9"
+  integrity sha512-j4No+yTPEX9Dw6r6N4N0VjESeYlfVLRsLrx+WdOoepDIHjFksxCyOneYOegjvUfTFqjPpkK4d+hgI4V+o/vgMg==
+
 react-native-calendar-timetable@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-native-calendar-timetable/-/react-native-calendar-timetable-1.0.6.tgz#79290a20b0bde39b04c1527fc3a1b68a680cbd5b"
@@ -7707,10 +7717,10 @@ react-native-get-random-values@^1.9.0:
   dependencies:
     fast-base64-decode "^1.0.0"
 
-react-native-gifted-charts@^1.3.2:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/react-native-gifted-charts/-/react-native-gifted-charts-1.3.5.tgz#03fea9acca0b34ecae86869cd147a41978d98fcb"
-  integrity sha512-Uh+CReBNFWBxLFSwcERQrJ+U6vSSz82xCe5hnzDLtM/oTH/Z0Bj7U8nBcyk52lDo+m+G99ScW4USX9TRGqlyXA==
+react-native-gifted-charts@^1.3.11:
+  version "1.3.11"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-charts/-/react-native-gifted-charts-1.3.11.tgz#2eae8344ea3a1004d6bd83c778bed0b0bb606648"
+  integrity sha512-P3TrTD1B0q48EIm18L6ZahcERV0YLDzzxUo8ji90L25BtRxwD/DI1DIsOpySdPG8K7QkPIcAeyDJxA4vq2XXeA==
 
 react-native-gifted-chat@^2.4.0:
   version "2.4.0"
@@ -7766,7 +7776,7 @@ react-native-lightbox-v2@0.9.0:
   resolved "https://registry.yarnpkg.com/react-native-lightbox-v2/-/react-native-lightbox-v2-0.9.0.tgz#b97be4d892ebb959069c451948b11da390bc46d8"
   integrity sha512-Fc5VFHFj2vokS+OegyTsANKb1CYoUlOtAv+EBH5wtpJn1b5cey6jVXH7136G5+8OC9JmKWSgKHc5thFwOoZTUg==
 
-react-native-linear-gradient@^2.8.1:
+react-native-linear-gradient@^2.8.3:
   version "2.8.3"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
@@ -7815,6 +7825,11 @@ react-native-picker-select@^8.0.4:
   dependencies:
     "@react-native-picker/picker" "^1.8.3"
     lodash.isequal "^4.5.0"
+
+react-native-poll@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-poll/-/react-native-poll-1.0.0.tgz#1fd5e3cbfc7acf19e091d60c9a68ffedf652d97e"
+  integrity sha512-AT+SCXGpcdAlgJWta1aXymmQDKr+HJnTKNUvvGkVJ/E/SvJ6kXIBj9u++077fwVHdxqQ36nbr0rz+ZZz+SiJQQ==
 
 react-native-polyfill-globals@^3.1.0:
   version "3.1.0"
@@ -7877,10 +7892,10 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
-react-native-svg@13.9.0:
-  version "13.9.0"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.9.0.tgz#8df8a690dd00362601f074dec5d3a86dd0f99c7f"
-  integrity sha512-Ey18POH0dA0ob/QiwCBVrxIiwflhYuw0P0hBlOHeY4J5cdbs8ngdKHeWC/Kt9+ryP6fNoEQ1PUgPYw2Bs/rp5Q==
+react-native-svg@^13.14.0:
+  version "13.14.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.14.0.tgz#879930cfe10e877e51ebb77dfcc2cd65fc6b0d21"
+  integrity sha512-27ZnxUkHgWICimhuj6MuqBkISN53lVvgWJB7pIypjXysAyM+nqgQBPh4vXg+7MbqLBoYvR4PiBgKfwwGAqVxHg==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"

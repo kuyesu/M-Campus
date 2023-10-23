@@ -392,12 +392,12 @@ const Timeline = ({ data }: any) => {
           >
             <TouchableOpacity onPress={() => router.push("/inquiries/ticket/")}>
               <MaterialCommunityIcons
-                name="notebook-plus-outline"
+                name="microsoft-xbox-controller-battery-empty"
                 size={50}
                 color={activeColors.tint}
               />
             </TouchableOpacity>
-            <StyledText bold>You have no ticket yet!</StyledText>
+            <StyledText bold>You have no reply yet!</StyledText>
           </View>
         )}
         <TimelineItem tickets={data} />

@@ -24,7 +24,9 @@ type Props = {
 
 const CreatePost = ({ navigation }: Props) => {
   const { user } = useSelector((state: any) => state.user);
-  const { isSuccess, isLoading } = useSelector((state: any) => state.post);
+  const { isSuccess, isLoading, posts } = useSelector(
+    (state: any) => state.post
+  );
   const [activeIndex, setActiveIndex] = useState(0);
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
@@ -136,23 +138,24 @@ const CreatePost = ({ navigation }: Props) => {
       createPostAction(title, image, user, replies)(dispatch);
     }
     if (isSuccess) {
-      router.back();
+      const post = posts.find((post: any) => post.user._id === user._id);
+      console.log(post._id);
+      if (post) {
+        // wait for 1 second
+        setTimeout(() => {
+          router.push({
+            pathname: `/post/${post._id}`,
+            params: {
+              postId: post._id,
+            },
+          });
+        }, 1000);
+      }
     }
   };
 
   return (
     <MainContainer className="flex-1">
-      <View className="w-full flex-row items-center m-3">
-        <TouchableOpacity onPress={() => router.canGoBack()}>
-          <MaterialCommunityIcons
-            name="arrow-left"
-            size={24}
-            color={activeColors.tint}
-            style={{ width: 30, height: 30 }}
-          />
-        </TouchableOpacity>
-        <StyledText className="pl-4 ">New Post</StyledText>
-      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="m-3 flex-[1] justify-between">
           <View>
@@ -164,7 +167,7 @@ const CreatePost = ({ navigation }: Props) => {
                 borderRadius={100}
               />
               <View className="pl-3">
-                <View className="w-[78%] flex-row justify-between">
+                <View className="w-[75%] flex-row justify-between">
                   <StyledText className=" ">{user?.name}</StyledText>
                   <TouchableOpacity>
                     <MaterialCommunityIcons
@@ -205,17 +208,22 @@ const CreatePost = ({ navigation }: Props) => {
                 </TouchableOpacity>
               </View>
             </View>
+
             {image && (
-              <View className="m-2">
+              <View className="m-2 ">
                 <Image
                   source={{ uri: image }}
                   width={350}
                   height={300}
                   resizeMethod="auto"
+                  style={{
+                    borderRadius: 10,
+                  }}
                   alt=""
                 />
               </View>
             )}
+
             {replies.length === 0 && (
               <View className="flex-row m-3 w-full items-start mt-5 opacity-7">
                 <Image

@@ -157,8 +157,8 @@ const PostDetailsCard = ({
   useEffect(() => {
     if (users) {
       const updatedUsers = [...users, user];
-      const userData = updatedUsers.find(
-        (user: any) => user._id === item.user._id
+      const userData = updatedUsers?.find(
+        (user: any) => user?._id === item?.user?._id
       );
       setUserInfo(userData);
     }
@@ -181,13 +181,13 @@ const PostDetailsCard = ({
             <TouchableOpacity
               onPress={() =>
                 router.replace({
-                  pathname: `/user/${item.user._id}`,
-                  params: { userId: item.user._id },
+                  pathname: `/user/${item?.user?._id}`,
+                  params: { userId: item?.user?._id },
                 })
               }
             >
               <Image
-                source={{ uri: userInfo.avatar.url }}
+                source={{ uri: userInfo?.avatar?.url }}
                 width={40}
                 height={40}
                 borderRadius={100}
@@ -197,16 +197,16 @@ const PostDetailsCard = ({
               <TouchableOpacity
                 onPress={() =>
                   router.replace({
-                    pathname: `/user/${item.user._id}`,
-                    params: { userId: item.user._id },
+                    pathname: `/user/${item?.user?._id}`,
+                    params: { userId: item?.user?._id },
                   })
                 }
               >
                 <View className=" flex-row items-center justify-start">
                   <StyledText className=" font-[500] text-[16px]">
-                    {userInfo.name}
+                    {userInfo?.name}
                   </StyledText>
-                  {item.user.role.name != "user" && (
+                  {item?.user?.role?.name != "user" && (
                     <Image
                       source={{
                         uri: "https://cdn-icons-png.flaticon.com/128/1828/1828640.png",
@@ -242,19 +242,19 @@ const PostDetailsCard = ({
             className=" font-[500]  text-[13px]
               "
           >
-            {item.title}
+            {item?.title}
           </StyledText>
         </View>
         <View className="ml-[50px] my-4">
-          {item.image && (
+          {item?.image && (
             <Image
-              source={{ uri: item.image.url }}
+              source={{ uri: item?.image?.url }}
               style={{ aspectRatio: 1, borderRadius: 10, zIndex: 1111 }}
               resizeMode="contain"
             />
           )}
         </View>
-        {item.image ? (
+        {item?.image ? (
           <View
             className="absolute top-14 left-5 h-[90%] w-[1px] "
             style={{
@@ -279,9 +279,9 @@ const PostDetailsCard = ({
                 : repliesReplyReactHandler(item)
             }
           >
-            {item.likes.length > 0 ? (
+            {item?.likes?.length > 0 ? (
               <>
-                {item.likes.find((i: any) => i.userId === user._id) ? (
+                {item?.likes.find((i: any) => i?.userId === user?._id) ? (
                   <MaterialCommunityIcons
                     name="heart"
                     size={30}
@@ -314,7 +314,7 @@ const PostDetailsCard = ({
                 pathname: "/post/create-replies",
                 params: {
                   post: item,
-                  postId: postId ? postId : item._id,
+                  postId: postId ? postId : item?._id,
                 },
               });
             }}
@@ -359,21 +359,21 @@ const PostDetailsCard = ({
             }
           ></TouchableOpacity>
           <StyledText className="text-[16px[ ">
-            {item.likes.length} {item.likes.length > 1 ? "likes" : "like"}
+            {item?.likes?.length} {item?.likes?.length > 1 ? "likes" : "like"}
           </StyledText>
         </View>
 
         {isRepliesReply && (
           <View className="pl-[50px] pt-4 flex-row">
             <StyledText className="text-[16px[ ">
-              {item.likes.length} {item.likes.length > 1 ? "likes" : "like"}
+              {item?.likes?.length} {item?.likes?.length > 1 ? "likes" : "like"}
             </StyledText>
           </View>
         )}
       </View>
-      {item.reply && (
+      {item?.reply && (
         <>
-          {item.reply.length !== 0 && (
+          {item?.reply?.length !== 0 && (
             <>
               <View className="flex-row items-center">
                 <TouchableOpacity onPress={() => handlePress(item)}>
@@ -383,18 +383,18 @@ const PostDetailsCard = ({
                 </TouchableOpacity>
                 <TouchableOpacity>
                   <StyledText className="ml-[10px] mt-[20px] text-[16px]">
-                    {item.likes.length}{" "}
-                    {item.likes.length > 1 ? "likes" : "like"}
+                    {item?.likes?.length}{" "}
+                    {item?.likes?.length > 1 ? "likes" : "like"}
                   </StyledText>
                 </TouchableOpacity>
               </View>
               {active && (
                 <>
-                  {item.reply.map((i: any) => (
+                  {item?.reply?.map((i: any) => (
                     <PostDetailsCard
                       navigation={navigation}
                       item={i}
-                      key={i._id}
+                      key={i?._id}
                       isReply={true}
                       postId={postId}
                       isRepliesReply={true}

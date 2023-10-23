@@ -80,7 +80,6 @@ export default function PostScreen(props: Props) {
 
   useEffect(() => {
     getAllPosts()(dispatch);
-    getAllUsers()(dispatch);
   }, [dispatch]);
 
   useEffect(() => {

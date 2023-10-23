@@ -20,6 +20,7 @@ import { colors } from "@/constants/Colors";
 import StyledText from "../Text/StyledText";
 import MainContainer from "../container/MainContainer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Bar from "./bar";
 
 const { width } = Dimensions.get("window");
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -77,52 +78,62 @@ const Graph = () => {
     <MainContainer
       style={{ flexGrow: 1, backgroundColor: activeColors.primary }}
     >
-      <Header translation={translation} index={current} />
-      <View className="py-4">
-        <Svg width={SIZE + 130} height={SIZE - 80}>
-          <AnimatedPath
-            animatedProps={animatedProps}
-            fill="transparent"
-            stroke={activeColors.accent}
-            strokeWidth={3}
-          />
-        </Svg>
-        <Cursor translation={translation} index={current} />
-      </View>
-      <View style={styles.selection}>
-        <View style={StyleSheet.absoluteFill}>
-          <Animated.View
-            style={[
-              styles.backgroundSelection,
-              style,
-              {
-                backgroundColor: activeColors.secondary,
-                borderRadius: 5,
-                borderColor: activeColors.grayAccent,
-                borderWidth: 1,
-              },
-            ]}
-          />
+      <View>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: activeColors.primary,
+            height: 250,
+          }}
+        >
+          <Bar />
         </View>
-        {graphs.map((graph, index) => {
-          return (
-            <TouchableWithoutFeedback
-              key={graph.label}
-              onPress={() => {
-                previous.value = current.value;
-                transition.value = 0;
-                current.value = index as GraphIndex;
-                transition.value = withTiming(1);
-              }}
-            >
-              <Animated.View style={[styles.labelContainer, {}]}>
-                <StyledText small>{graph.label}</StyledText>
-              </Animated.View>
-            </TouchableWithoutFeedback>
-          );
-        })}
-      </View>
-      {/* <View className="flex  justify-between   divide-y">
+        <Header translation={translation} index={current} />
+        <View className="py-4">
+          <Svg width={SIZE + 130} height={SIZE - 80}>
+            <AnimatedPath
+              animatedProps={animatedProps}
+              fill="transparent"
+              stroke={activeColors.accent}
+              strokeWidth={3}
+            />
+          </Svg>
+          <Cursor translation={translation} index={current} />
+        </View>
+        <View style={styles.selection}>
+          <View style={StyleSheet.absoluteFill}>
+            <Animated.View
+              style={[
+                styles.backgroundSelection,
+                style,
+                {
+                  backgroundColor: activeColors.secondary,
+                  borderRadius: 5,
+                  borderColor: activeColors.grayAccent,
+                  borderWidth: 1,
+                },
+              ]}
+            />
+          </View>
+          {graphs.map((graph, index) => {
+            return (
+              <TouchableWithoutFeedback
+                key={graph.label}
+                onPress={() => {
+                  previous.value = current.value;
+                  transition.value = 0;
+                  current.value = index as GraphIndex;
+                  transition.value = withTiming(1);
+                }}
+              >
+                <Animated.View style={[styles.labelContainer, {}]}>
+                  <StyledText small>{graph.label}</StyledText>
+                </Animated.View>
+              </TouchableWithoutFeedback>
+            );
+          })}
+        </View>
+        {/* <View className="flex  justify-between   divide-y">
         <View className="flex flex-row justify-start items-center">
           <View>
             <MaterialCommunityIcons
@@ -138,13 +149,7 @@ const Graph = () => {
           <StyledText small>Locked</StyledText>
         </View>
       </View> */}
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: activeColors.primary,
-          height: 300,
-        }}
-      ></View>
+      </View>
     </MainContainer>
   );
 };

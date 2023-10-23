@@ -26,11 +26,11 @@ const PostDetailsScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     if (posts) {
-      const d = posts.find((i: any) => i._id === postId);
+      const d = posts.find((i: any) => i?._id === postId);
     }
   }, [posts]);
 
-  const post = posts.find((post: any) => post._id === postId);
+  const post = posts.find((post: any) => post?._id === postId);
   const { theme, updateTheme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
@@ -46,7 +46,7 @@ const PostDetailsScreen = ({ navigation, route }: Props) => {
             <PostDetailsCard
               navigation={navigation}
               item={post}
-              postId={post._id}
+              postId={post?._id}
             />
             <View>
               {post?.replies?.map((i: any, index: number) => {
@@ -56,7 +56,7 @@ const PostDetailsScreen = ({ navigation, route }: Props) => {
                     item={i}
                     key={index}
                     isReply={true}
-                    postId={post._id}
+                    postId={post?._id}
                   />
                 );
               })}
@@ -87,7 +87,7 @@ const PostDetailsScreen = ({ navigation, route }: Props) => {
               className="ml-3 mr-3"
             />
             <StyledText className="text-[16px] ">
-              Reply to {post.user.name}
+              Reply to {post?.user?.name}
             </StyledText>
           </TouchableOpacity>
         </View>

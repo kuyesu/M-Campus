@@ -26,6 +26,7 @@ const MoreApps = ({ handleOnPress }: any) => {
       style={[
         styles.container,
         {
+          // backgroundColor: "rgba(0,0,0,0.5)",
           backgroundColor: activeColors.primary,
         },
       ]}
@@ -33,350 +34,130 @@ const MoreApps = ({ handleOnPress }: any) => {
       <View
         style={{
           padding: 25,
+          paddingTop: 0,
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
         }}
+        className="flex flex-row w-full px-6"
       >
-        <StyledText
-          bold
-          style={{
-            fontSize: 20,
-          }}
-        >
+        <StyledText style={{}} className=" text-left">
           More Functionalities
         </StyledText>
       </View>
       <View
         style={{
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
         }}
-        className="flex flex-row "
+        className="flex flex-row  w-full px-6"
       >
         <TouchableOpacity
           style={[
             {
               alignItems: "center",
-              margin: 25,
+              margin: 10,
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/timetable")}
+          onPress={() => handleOnPress("/poll")}
         >
           <LinearGradient
-            colors={["#3f87a6", "#00B2EE"]}
+            colors={[activeColors.secondary, activeColors.secondary]}
             style={{
               padding: 15,
-              borderRadius: 10,
+              borderRadius: 50,
             }}
           >
-            <Image
-              source={require("@/assets/app/timetable.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
+            <MaterialCommunityIcons
+              name="poll"
+              size={25}
+              color={activeColors.tint}
             />
           </LinearGradient>
-          <StyledText style={{ fontSize: 16 }}>Timetable</StyledText>
+          <StyledText style={{ fontSize: 16 }}>Polls</StyledText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
             {
               alignItems: "center",
-              margin: 25,
-              gap: 10,
-            },
-          ]}
-          onPress={() => handleOnPress("/feed")}
-        >
-          <LinearGradient
-            colors={["#C6E2FF", "#C6E2FF"]}
-            style={{
-              padding: 15,
-              borderRadius: 10,
-            }}
-          >
-            <Image
-              source={require("@/assets/app/post.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
-            />
-          </LinearGradient>
-
-          <StyledText style={{ fontSize: 16 }}>Mi-Campus </StyledText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            {
-              alignItems: "center",
-              margin: 25,
-              gap: 10,
-            },
-          ]}
-          onPress={() => handleOnPress("/jobs")}
-        >
-          <LinearGradient
-            colors={["#8fd3f4", "#e2ebf0", "#f68084"]}
-            style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}
-          >
-            <Image
-              source={require("@/assets/app/career.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
-            />
-          </LinearGradient>
-
-          <StyledText style={{ fontSize: 16 }}>Career</StyledText>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        className="flex flex-row "
-      >
-        <TouchableOpacity
-          style={[
-            {
-              alignItems: "center",
-              margin: 25,
-              gap: 10,
-            },
-          ]}
-          onPress={() => handleOnPress("/health")}
-        >
-          <LinearGradient
-            colors={["#009ACD", "#44107A"]}
-            style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}
-          >
-            <Image
-              source={require("@/assets/app/health.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
-            />
-          </LinearGradient>
-          <StyledText style={{ fontSize: 16 }}>Health</StyledText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            {
-              alignItems: "center",
-              margin: 25,
+              margin: 10,
               gap: 10,
             },
           ]}
           onPress={() => handleOnPress("/map")}
         >
-          <LinearGradient
-            colors={["#f68084", "#8fd3f4"]}
+          <View
+            // colors={["#C6E2FF", "#C6E2FF"]}
             style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
+              backgroundColor: activeColors.secondary,
 
-              elevation: 5,
+              padding: 15,
+              borderRadius: 50,
             }}
           >
-            <Image
-              source={require("@/assets/app/map.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
+            <MaterialCommunityIcons
+              name="map-marker"
+              size={25}
+              color={activeColors.tint}
             />
-          </LinearGradient>
+          </View>
 
-          <StyledText style={{ fontSize: 16 }}>Locations</StyledText>
+          <StyledText style={{ fontSize: 16 }}>Maps</StyledText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
             {
               alignItems: "center",
-              margin: 25,
+              margin: 10,
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/green")}
+          onPress={() => handleOnPress("/jobs")}
         >
-          <LinearGradient
-            colors={["#E0EEEE", "#E0EEEE"]}
+          <View
             style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
+              backgroundColor: activeColors.secondary,
 
-              elevation: 5,
+              padding: 15,
+              borderRadius: 50,
             }}
           >
-            <Image
-              source={require("@/assets/app/eco.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
+            <MaterialCommunityIcons
+              name="run-fast"
+              size={25}
+              color={activeColors.tint}
             />
-          </LinearGradient>
+          </View>
 
-          <StyledText style={{ fontSize: 16 }}>Green</StyledText>
+          <StyledText style={{ fontSize: 16 }}>Health</StyledText>
         </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        className="flex flex-row "
-      >
+
         <TouchableOpacity
           style={[
             {
               alignItems: "center",
-              margin: 25,
+              margin: 10,
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/hostels")}
+          onPress={() => handleOnPress("/jobs")}
         >
-          <LinearGradient
-            colors={["#ADEAEA", "#D1EEEE"]}
+          <View
             style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
+              backgroundColor: activeColors.secondary,
 
-              elevation: 5,
+              padding: 15,
+              borderRadius: 50,
             }}
           >
-            <Image
-              source={require("@/assets/app/hostel.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
+            <MaterialCommunityIcons
+              name="earth"
+              size={25}
+              color={activeColors.tint}
             />
-          </LinearGradient>
-          <StyledText style={{ fontSize: 16 }}>Hostel</StyledText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            {
-              alignItems: "center",
-              margin: 25,
-              gap: 10,
-            },
-          ]}
-          onPress={() => handleOnPress("/inquiries")}
-        >
-          <LinearGradient
-            colors={["#C1F0F6", "#C1F0F6"]}
-            style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
+          </View>
 
-              elevation: 5,
-            }}
-          >
-            <Image
-              source={require("@/assets/app/inquire.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
-            />
-          </LinearGradient>
-
-          <StyledText style={{ fontSize: 16 }}>Inquiries</StyledText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            {
-              alignItems: "center",
-              margin: 25,
-              gap: 10,
-            },
-          ]}
-          onPress={() => handleOnPress("/assistant")}
-        >
-          <LinearGradient
-            colors={["#BBFFFF", "#3f87a6"]}
-            style={{
-              padding: 15,
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}
-          >
-            <Image
-              source={require("@/assets/app/bot.png")}
-              style={{
-                width: 40,
-                height: 40,
-              }}
-            />
-          </LinearGradient>
-          <StyledText style={{ fontSize: 16 }}>Assistant</StyledText>
+          <StyledText style={{ fontSize: 16 }}>Health</StyledText>
         </TouchableOpacity>
       </View>
     </View>

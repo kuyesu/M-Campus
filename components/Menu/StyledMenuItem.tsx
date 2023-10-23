@@ -27,6 +27,7 @@ const StyledMenuItem = ({ name, icon, style, ...props }: any) => {
     >
       <MaterialCommunityIcons
         name={icon}
+        className=" rounded-full"
         // name="view-dashboard-outline"
         size={20}
         style={{
@@ -34,6 +35,11 @@ const StyledMenuItem = ({ name, icon, style, ...props }: any) => {
           backgroundColor: activeColors.backgroundColorOpacity,
           borderRadius: 50,
           padding: 10,
+          borderColor: activeColors.grayAccent,
+          borderWidth: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
         }}
         color={activeColors.tint}
       />

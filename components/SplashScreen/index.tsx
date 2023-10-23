@@ -84,56 +84,61 @@ const SplashScreen = (props: Props) => {
           top: 10,
         }}
       >
-        <View
-          style={{
-            height: "15%",
-            width: "100%",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            paddingTop: "15%",
-            paddingHorizontal: 25,
-            paddingRight: "20%",
-          }}
-        >
-          <StyledText
+        <View style={styles.logoContainer}>
+          <View
             style={{
-              fontFamily: "H",
-              fontSize: 45,
-              color: activeColors.tint,
+              height: "55%",
+              width: "100%",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              paddingTop: "0%",
+              paddingHorizontal: 25,
             }}
           >
             <StyledText
-              // bold
               style={{
-                fontSize: 45,
-                color: activeColors.accent,
                 fontFamily: "H",
+                fontSize: 45,
+                color: activeColors.tint,
+                textAlign: "center",
               }}
             >
-              Mi
+              <StyledText
+                // bold
+                style={{
+                  fontSize: 45,
+                  color: activeColors.accent,
+                  fontFamily: "H",
+                  textAlign: "center",
+                }}
+              >
+                Mi
+              </StyledText>
+              campus
             </StyledText>
-            Campus
-          </StyledText>
-          <Text
-            style={{
-              fontFamily: "B",
-              fontSize: 18,
-              width: "60%",
-              paddingTop: 20,
-              color: activeColors.tint,
-            }}
-          >
-            Supercharged with AI and AR
-          </Text>
+
+            <View
+              style={{
+                width: "60%",
+              }}
+            >
+              <Animated.Text
+                style={{
+                  fontFamily: "B",
+                  fontSize: 18,
+                  width: "100%",
+                  paddingTop: 20,
+                  color: activeColors.tint,
+                  textAlign: "center",
+                  transform: [{ translateY }],
+                }}
+              >
+                ⚡ Supercharged with AI and AR
+              </Animated.Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.logoContainer}>
-          <Animated.View style={[{ transform: [{ translateY }] }]}>
-            <Image
-              style={styles.logo}
-              source={require("@/assets/light-logo.png")}
-            />
-          </Animated.View>
-        </View>
+
         <View style={[styles.intro, { gap: 10 }]}>
           <StyledText
             small
@@ -145,7 +150,7 @@ const SplashScreen = (props: Props) => {
           </StyledText>
           <Image
             source={require("@/assets/images/must.png")}
-            style={{ height: 30, width: 30 }}
+            style={{ height: 45, width: 45 }}
           ></Image>
           <StyledText style={styles.subtitleFb}>MBARARA UNIVERSITY</StyledText>
         </View>
@@ -286,7 +291,7 @@ const styles = StyleSheet.create({
   subtitleFb: {
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 16,
     letterSpacing: 2,
   },
   subtitleLogo: {

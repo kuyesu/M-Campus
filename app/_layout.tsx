@@ -251,6 +251,42 @@ const RootLayoutNav = () => {
             }}
           />
           <Stack.Screen
+            name="post/create-poll"
+            options={{
+              title: "Create New Poll",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              gestureEnabled: true,
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="post/important-update"
+            options={{
+              title: "More Details",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              gestureEnabled: true,
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                    flex: 1,
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
             name="post/[id]"
             options={{
               title: "Post Details",

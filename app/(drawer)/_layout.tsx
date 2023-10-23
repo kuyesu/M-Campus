@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   Pressable,
   View,
@@ -35,6 +34,8 @@ import { useDispatch, useSelector } from "react-redux";
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 import { LogBox } from "react-native";
+import { useRouter } from "expo-router";
+import { useNavigation } from "expo-router";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notification
 
@@ -314,14 +315,30 @@ export default function DrawerLayout() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
+  const dispatch = useDispatch();
 
-  // const { user } = useSelector((state: any) => state.user);
-
+  const { user } = useSelector((state: any) => state.user);
+  const router = useRouter();
+  const navigation: any = useNavigation();
   return (
     <Drawer
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       backBehavior="history"
       screenOptions={({ route }) => ({
+        headerLeft: () => (
+          <View style={styles.header}>
+            <Pressable onPress={() => router.push("/home")}>
+              {({ pressed }) => (
+                <Image
+                  source={{
+                    uri: user?.avatar?.url || "https://picsum.photos/200/300",
+                  }}
+                  style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+                />
+              )}
+            </Pressable>
+          </View>
+        ),
         headerShown: false,
         swipeEdgeWidth: 100,
         drawerStyle: {
@@ -349,6 +366,8 @@ export default function DrawerLayout() {
             iconName = "account-outline";
           } else if (route.name === "(settings)/settings") {
             iconName = "cogs";
+          } else if (route.name === "poll/poll") {
+            iconName = "poll";
           }
 
           return (
@@ -422,6 +441,29 @@ export default function DrawerLayout() {
           headerShown: true,
           title: "Settings",
 
+          tabBarActiveTintColor: activeColors.accent,
+          tabBarInactiveTintColor: activeColors.tertiary,
+          // tabBarBackground: activeColors.secondary,
+          backBehavior: "history",
+          tabBarStyle: {
+            backgroundColor: activeColors.primary,
+          },
+          tabBarShowLabel: false,
+          headerTitleAlign: "left",
+          headerTitleStyle: {
+            paddingHorizontal: 10,
+          },
+          headerStyle: {
+            backgroundColor: activeColors.primary,
+          },
+          headerTintColor: activeColors.tint,
+        }}
+      />
+      <Drawer.Screen
+        name="poll/poll"
+        options={{
+          headerShown: true,
+          title: "Polls",
           tabBarActiveTintColor: activeColors.accent,
           tabBarInactiveTintColor: activeColors.tertiary,
           // tabBarBackground: activeColors.secondary,

@@ -19,7 +19,7 @@ import { BlurView } from "expo-blur";
 
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import StyledText from "@/components/Text/StyledText";
 import { useDispatch, useSelector } from "react-redux";
 import SplashScreen from "@/components/SplashScreen";
@@ -51,7 +51,7 @@ export default function TabLayout() {
       screenOptions={({ route }) => ({
         headerLeft: () => (
           <View style={styles.header}>
-            <Pressable onPress={() => navigation.openDrawer()}>
+            <Pressable onPress={() => navigation?.openDrawer()}>
               {({ pressed }) => (
                 <Image
                   source={{
@@ -69,42 +69,20 @@ export default function TabLayout() {
               {({ pressed }) => (
                 <View
                   className={`items-center  justify-center flex-row `}
-                  style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  style={{ marginRight: 20, opacity: pressed ? 0.5 : 1 }}
                 >
                   <MaterialCommunityIcons
+                    name="dots-vertical"
+                    size={25}
+                    color={activeColors.tint}
+                  />
+                  {/* <MaterialCommunityIcons
                     size={35}
                     name="notification-clear-all"
-                    color={activeColors.tint}
                     fill="#86e63b"
                     stroke="#041633"
                     strokeWidth={2}
-                  />
-                  <View
-                    style={{
-                      position: "absolute",
-                      right: -2,
-                      top: 4,
-                    }}
-                  >
-                    <View
-                      style={{
-                        borderColor: activeColors.primary,
-                        backgroundColor: activeColors.accent,
-                        borderWidth: 2,
-                        borderRadius: 50,
-                        padding: 2,
-                        display: "flex",
-                        height: 18,
-                        width: 18,
-                        alignItems: "center",
-                        // justifyContent: "center",
-                      }}
-                    >
-                      <StyledText style={{ fontSize: 8, color: "black" }} bold>
-                        3
-                      </StyledText>
-                    </View>
-                  </View>
+                  /> */}
                 </View>
               )}
             </Pressable>
@@ -118,7 +96,7 @@ export default function TabLayout() {
           alignItems: "center",
           borderBottomColor: activeColors.gray,
         },
-        headerShadowVisible: false,
+
         // headerShown: false,
 
         tabBarIcon: ({ focused, color, size }) => {
@@ -140,7 +118,7 @@ export default function TabLayout() {
               <MaterialCommunityIcons
                 name={iconName}
                 // name="view-dashboard-outline"
-                size={30}
+                size={25}
                 color={color}
               />
             </View>
@@ -153,18 +131,20 @@ export default function TabLayout() {
         backBehavior: "history",
         tabBarStyle: {
           backgroundColor: activeColors.primary,
-          borderTopColor: activeColors.gray,
+          borderTopColor: activeColors.grayAccent,
           paddingBottom: Platform.OS === "ios" ? 20 : 0,
-          height: 80,
+          height: 70,
         },
         headerTitleAlign: "left",
         headerTitleStyle: {
           paddingHorizontal: 10,
         },
         headerStyle: {
+          elevation: 1,
+          shadowOpacity: 0.1,
+          borderBottomWidth: 0.1,
+          borderBottomColor: activeColors.grayAccent,
           backgroundColor: activeColors.primary,
-          borderBottomColor: activeColors.gray,
-          borderBottomWidth: 1,
         },
         // header: () => (
         //   <View
@@ -300,6 +280,7 @@ export default function TabLayout() {
           },
           // headerShown: false,
           // headerTitle: "Home",
+
           tabBarIcon: ({ focused, color, size }) => (
             <View className={`items-center  justify-center  `}>
               <View
@@ -419,6 +400,53 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="notifications/update"
+        options={{
+          href: null,
+          tabBarStyle: {
+            backgroundColor: activeColors.primary,
+            borderTopColor: activeColors.gray,
+            paddingBottom: Platform.OS === "ios" ? 20 : 0,
+            height: 0,
+            top: 30,
+          },
+          headerShown: true,
+          title: "",
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
+          headerLeft: () => (
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                paddingLeft: 15,
+                paddingRight: 0,
+                marginRight: 0,
+                gap: 15,
+              }}
+            >
+              <Pressable onPress={() => navigation.openDrawer()}>
+                {({ pressed }) => (
+                  <Image
+                    source={{
+                      uri: user?.avatar?.url || "https://picsum.photos/200/300",
+                    }}
+                    style={[styles.image, { opacity: pressed ? 0.5 : 1 }]}
+                  />
+                )}
+              </Pressable>
+            </View>
+          ),
+        }}
+      />
+
       {/*
       **disabled tabs**
       - messages/[id]

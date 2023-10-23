@@ -183,7 +183,7 @@ export default function index() {
       >
         {activeTab === 0 && (
           <StyledView
-            className="h-full  w-full"
+            className="h-full  w-full "
             style={{
               backgroundColor: activeColors.primary,
               borderRadius: 5,

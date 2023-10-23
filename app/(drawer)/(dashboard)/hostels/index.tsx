@@ -124,44 +124,45 @@ const HomeScreen = () => {
                 }}
               >
                 <StyledText bold>{house.title}</StyledText>
-                <StyledText
-                  style={{
-                    color: activeColors.gray,
-                  }}
-                >
-                  UGX {house.price}
-                </StyledText>
+                <StyledText style={{}}>UGX {house.price}</StyledText>
               </View>
 
               {/* Location text */}
 
-              <StyledText style={{ marginTop: 5 }}>{house.location}</StyledText>
+              <StyledText style={{ marginTop: 5, color: activeColors.gray }}>
+                {house.location}
+              </StyledText>
 
               {/* Facilities container */}
               <View style={{ marginTop: 10, flexDirection: "row" }}>
                 <View style={style.facility}>
                   <MaterialCommunityIcons
-                    name="room-service"
-                    color={activeColors.accent}
-                    size={18}
+                    name="bed-queen-outline"
+                    color={activeColors.gray}
+                    size={20}
                   />
-                  <StyledText>Double room</StyledText>
+                  <StyledText
+                    style={{
+                      color: activeColors.gray,
+                    }}
+                  >
+                    Double room
+                  </StyledText>
                 </View>
+
                 <View style={style.facility}>
                   <MaterialCommunityIcons
-                    name="bathtub"
-                    color={activeColors.accent}
-                    size={18}
+                    name="directions-fork"
+                    color={activeColors.gray}
+                    size={20}
                   />
-                  <StyledText>Self-contained</StyledText>
-                </View>
-                <View style={style.facility}>
-                  <MaterialCommunityIcons
-                    name="map"
-                    color={activeColors.accent}
-                    size={18}
-                  />
-                  <StyledText>500m far</StyledText>
+                  <StyledText
+                    style={{
+                      color: activeColors.gray,
+                    }}
+                  >
+                    500m far
+                  </StyledText>
                 </View>
               </View>
             </View>

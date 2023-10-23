@@ -83,7 +83,6 @@ const TicketListingScreen = () => {
 
   useEffect(() => {
     getAllTickets()(dispatch);
-    getAllUsers()(dispatch);
   }, [dispatch]);
 
   useEffect(() => {
@@ -146,7 +145,7 @@ const TicketListingScreen = () => {
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
-              top: -80,
+              top: 82,
               height: 600,
               gap: 20,
             }}

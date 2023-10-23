@@ -10,34 +10,35 @@ import {
 // components
 import MainContainer from "@/components/container/MainContainer";
 import { colors } from "@/constants/Colors";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "@/context/themeContext";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import StyledMenuItem from "@/components/Menu/StyledMenuItem";
 import StyledWeatherView from "@/components/weather/StyledWeatherView";
 
-import TimelineComponent from "@/components/chat/itmeline";
-
-import data from "@/data/inquiries";
-
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MoreApps from "@/components/home/apps";
 import StyledBottomSheet from "@/components/BottomSheet/StyledBottomSheet";
-import UpdateCarousal from "@/components/home/update";
-import ClassLocation from "@/components/home/class";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { Image } from "react-native";
 import StyledText from "@/components/Text/StyledText";
-import { ImageBackground } from "react-native";
-import StyledView from "@/components/View/StyledView";
 import { Text } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import axios from "axios";
+
+import { URI } from "@/redux/URI";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ImportantUpdates from "@/components/home/update/ImportantUpdates";
+const { width } = Dimensions.get("screen");
 
 export default function TabOneScreen() {
   const { theme, updateTheme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
-  const { user } = useSelector((state: any) => state.user);
+  const { user, toke } = useSelector((state: any) => state.user);
+  const [posts, setPosts] = useState([]);
+
   const [isActive, setIsActivate] = useState(theme.mode === "dark");
   const handleSwitch = () => {
     updateTheme();
@@ -46,30 +47,31 @@ export default function TabOneScreen() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const url =
-    "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US";
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message: "Instagram | A time wasting application" + "\n" + url,
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   getAllPosts()(dispatch);
+  // }, [dispatch]);
+  useEffect(() => {
+    // Some synchronous code.
+
+    (async () => {
+      const token = await AsyncStorage.getItem("token");
+      const { data } = await axios.get(`${URI}/get-all-posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+      setPosts(data.posts);
+    })();
+
+    return () => {
+      // Some synchronous cleanup code.
+    };
+  }, []);
 
   const bottomSheetModalRef = useRef(null);
 
-  const snapPoints = ["48%", "75%", "90%"];
+  const snapPoints = ["25%", "30%", "55%"];
 
   function handlePresentModal() {
     bottomSheetModalRef.current?.present();
@@ -96,96 +98,33 @@ export default function TabOneScreen() {
       <View
         style={{
           paddingVertical: 15,
-          // backgroundColor: activeColors.secondary,
-
-          // borderTopColor: activeColors.grayAccent,
-          // borderTopWidth: 1,
           width: "100%",
-          // borderBottomEndRadius: 20,
-          // borderBottomStartRadius: 20,
-          // position: "relative",
-          // left: -20,
         }}
       >
         <View
-          style={{}}
-          className="pt-4 items-center justify-between w-full flex flex-row"
+          style={{
+            paddingHorizontal: 20,
+          }}
+          className=" pt-4 flex-row justify-between w-full items-center"
         >
-          {/* split name and take first name*/}
-
-          <View className="flex flex-row gap-2">
-            {/* <MaterialCommunityIcons
-              name="collage"
-              size={16}
-              color={activeColors.tint}
-            /> */}
-            <StyledText>Hi! Good Morning </StyledText>
+          <View>
+            <View
+              style={{}}
+              className="items-center justify-between w-full flex flex-row"
+            >
+              <View className="flex flex-row gap-2">
+                <StyledText>Hi! Good Evening </StyledText>
+              </View>
+            </View>
+            <View style={{}} className="pt-2 items-start ">
+              <StyledText big>{user?.name} </StyledText>
+            </View>
+          </View>
+          <View>
+            <StyledWeatherView />
           </View>
         </View>
-        <View style={{}} className="pt-2 items-start ">
-          {/* split name and take first name*/}
-
-          {/* <StyledText bold>Hi, {user?.name.split(" ")[1]} </StyledText> */}
-          <StyledText big>{user?.name} </StyledText>
-        </View>
-        {/* <View
-          style={{
-            paddingHorizontal: 20,
-          }}
-          className=" items-center justify-between w-full flex flex-row"
-        > */}
-        {/* split name and take first name*/}
-
-        {/* <StyledWeatherView />
-        </View> */}
-
-        {/* <View
-          style={{
-            paddingHorizontal: 20,
-          }}
-          className=" flex flex-row items-center justify-start gap-2"
-        >
-          <Image
-            source={require("@/assets/images/must.png")}
-            style={{ height: 60, width: 60 }}
-          />
-          <View className=" flex " style={{}}>
-            <StyledText small>
-              Mbarara University of Science & Technology
-            </StyledText>
-            <StyledText>Succeed We Must</StyledText>
-          </View> */}
-        {/* </View> */}
-        <View className="pt-4 items-center justify-start gap-2">
-          {/* <View
-            style={{
-              height: 100,
-              width: "100%",
-              position: "relative",
-              borderRadius: 0,
-            }}
-          >
-            <Image
-              source={require("@/assets/images/fast.jpeg")}
-              style={{ height: 100, width: "100%", borderRadius: 0 }}
-              resizeMode="cover"
-            />
-          </View> */}
-          {/* <View className="flex items-center justify-center gap-4">
-            <Image
-              source={{ uri: user?.avatar.url }}
-              style={{
-                height: 80,
-                width: 80,
-                borderRadius: 50,
-                borderColor: activeColors.grayAccent,
-                borderWidth: 1,
-              }}
-              resizeMode="cover"
-              className="rounded-full  "
-            />
-          </View> */}
-        </View>
+        <View className="pt-4 items-center justify-start gap-2"></View>
       </View>
       <View
         style={{
@@ -222,9 +161,21 @@ export default function TabOneScreen() {
               }}
               className=" justify-between w-full"
             >
-              <StyledMenuItem icon="calendar" name="Schedule" />
-              <StyledMenuItem icon="hexagon-multiple-outline" name="Hostels" />
-              <StyledMenuItem icon="selection-multiple" name="Career" />
+              <StyledMenuItem
+                icon="calendar"
+                name="Schedule"
+                onPress={() => router.push("/timetable")}
+              />
+              <StyledMenuItem
+                icon="hexagon-multiple-outline"
+                name="Hostels"
+                onPress={() => router.push("/hostels")}
+              />
+              <StyledMenuItem
+                icon="selection-multiple"
+                name="Career"
+                onPress={() => router.push("/jobs")}
+              />
               <View
                 style={{
                   display: "flex",
@@ -234,9 +185,20 @@ export default function TabOneScreen() {
                 }}
               >
                 {/* here is the modal bottomsheet */}
+
                 <StyledBottomSheet
                   // setIsOpen={setIsOpen(false)}
                   index={1}
+                  style={{
+                    backgroundColor: activeColors.secondary,
+                    borderTopColor: activeColors.grayAccent,
+                    borderTopWidth: 1,
+                    width: "100%",
+                    borderBottomEndRadius: 20,
+                    borderBottomStartRadius: 20,
+                    position: "relative",
+                    left: -20,
+                  }}
                   bottomSheetModalRef={bottomSheetModalRef}
                   snapPoints={snapPoints}
                 >
@@ -245,7 +207,6 @@ export default function TabOneScreen() {
                 <TouchableOpacity
                   style={{
                     alignItems: "center",
-
                     justifyContent: "center",
                   }}
                   onPress={handlePresentModal}
@@ -253,12 +214,17 @@ export default function TabOneScreen() {
                   <MaterialCommunityIcons
                     name={"apps"}
                     // name="view-dashboard-outline"
-                    size={20}
+                    size={25}
                     style={{
                       marginBottom: 5,
                       backgroundColor: activeColors.backgroundColorOpacity,
                       borderRadius: 50,
                       padding: 10,
+                      borderColor: activeColors.grayAccent,
+                      borderWidth: 1,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
                     }}
                     color={activeColors.tint}
                   />
@@ -268,162 +234,92 @@ export default function TabOneScreen() {
             </View>
           </View>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.ticketItem,
-            {
-              backgroundColor: activeColors.secondary,
-              borderRadius: 10,
-              borderColor: activeColors.grayAccent,
-              borderWidth: 1,
-              // borderTopEndRadius: 20,
-            },
-          ]}
-          className="    "
-          // onPress={() => router.push(`/inquiries/${item.id}`)}
+        <View
+          style={{
+            width: "100%",
+          }}
         >
           <View
             style={{
-              paddingHorizontal: 20,
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
             }}
-            className=" flex-1 rounded-3xl py-4 w-full "
           >
-            <View className="flex flex-row pb-4 justify-between items-center ">
-              <View className=" items-center space-x-2 flex flex-row">
-                <MaterialCommunityIcons
-                  size={20}
-                  strokeWidth={2}
-                  color={activeColors.accent}
-                  name="calendar-month-outline"
-                />
-                <StyledText>
-                  {new Date().toLocaleDateString("en-US", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </StyledText>
-              </View>
-            </View>
-
-            <StyledView
-              className="    w-full "
-              style={{ borderColor: activeColors.grayAccent }}
+            <TouchableOpacity
+              onPress={() => router.push("/notifications/update")}
             >
-              <View
-                style={[
-                  {
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
-                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
-                    // borderRadius: 5,
-                    marginRight: 0,
-                    marginTop: 10,
-                  },
-                  { borderWidth: 0, borderLeftWidth: 5 },
-                  { borderColor: activeColors.accent },
-                ]}
-                className="py-4 "
+              <StyledText
+                small
+                style={{ marginBottom: 10, color: activeColors.gray }}
+                className=" italic"
               >
-                <View />
-                <View className="flex px-4 pb-2 flex-row justify-between items-center w-full">
-                  <StyledText bold>Important Update</StyledText>
-                  <MaterialCommunityIcons
-                    size={20}
-                    strokeWidth={2}
-                    color={activeColors.accent}
-                    name="piston"
-                  />
-                </View>
-                <View className="flex px-4 flex-row justify-between items-center w-full">
-                  <Text
-                    className=" font-semibold"
-                    style={{
-                      color: activeColors.accent,
-                    }}
-                  >
-                    Registration for Semester 1 2021/2022
-                  </Text>
-                </View>
-              </View>
-              <View
-                style={[
-                  {
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    paddingHorizontal: Platform.OS === "ios" ? 10 : 10,
-                    // paddingVertical: Platform.OS === "ios" ? 10 : 5,
-                    // borderRadius: 5,
-                    marginRight: 0,
-                    marginTop: 10,
-                  },
-                  {
-                    borderColor: "#041633",
-                    borderWidth: 0,
-                    borderLeftWidth: 5,
-                  },
-                ]}
-                className="py-4  "
-              >
-                <View />
-                <View className="flex pb-2 flex-row justify-between items-center px-4 space-x-5 ">
-                  <View className=" items-center space-x-2 flex flex-row">
-                    <MaterialCommunityIcons
-                      size={15}
-                      strokeWidth={2}
-                      color={activeColors.gray}
-                      name="phone"
-                    />
-                    <Text
-                      className="text-xs "
-                      style={{
-                        color: activeColors.gray,
-                      }}
-                    >
-                      PHONE
-                    </Text>
-                  </View>
-                  <View className=" items-center space-x-2 flex flex-row">
-                    <MaterialCommunityIcons
-                      size={15}
-                      strokeWidth={2}
-                      color={activeColors.gray}
-                      name="email"
-                    />
-                    <Text
-                      className="text-xs "
-                      style={{
-                        color: activeColors.gray,
-                      }}
-                    >
-                      EMAIL
-                    </Text>
-                  </View>
-                </View>
-                <View className="flex flex-row justify-between items-center px-4">
-                  <View className=" items-center space-x-2 flex flex-row">
-                    <MaterialCommunityIcons
-                      size={15}
-                      strokeWidth={2}
-                      color={activeColors.gray}
-                      name="identifier"
-                    />
-                    <Text
-                      className=" font-medium"
-                      style={{
-                        color: activeColors.gray,
-                      }}
-                    >
-                      Student ID
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </StyledView>
+                show all{" "}
+                <MaterialCommunityIcons
+                  color={activeColors.gray}
+                  name="arrow-right"
+                />
+              </StyledText>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+          <ImportantUpdates />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+          }}
+        >
+          <TouchableOpacity onPress={() => router.push("/feed")}>
+            <StyledText
+              small
+              style={{ marginTop: 25, color: activeColors.gray }}
+              className=" italic"
+            >
+              show all trending{" "}
+              <MaterialCommunityIcons
+                color={activeColors.gray}
+                name="arrow-right"
+              />
+            </StyledText>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.optionListsContainer}>
+          <ScrollView horizontal className=" flex-row ">
+            {posts.slice(0, 6).map((item, index) => (
+              <Link
+                key={index}
+                href="/feed"
+                className=" items-start justify-center flex-row"
+              >
+                <View>
+                  <View style={styles.optionsCard}>
+                    {/* House image */}
+                    <Image
+                      source={{ uri: item?.image?.url }}
+                      style={styles.optionsCardImage}
+                    />
+
+                    {/* Option title */}
+                  </View>
+                  <View className="w-44 px-4">
+                    <StyledText
+                      style={{
+                        marginTop: 5,
+                      }}
+                      className="text-start  text-ellipsis whitespace-nowrap"
+                      numberOfLines={1}
+                      small
+                    >
+                      {item.title}
+                    </StyledText>
+                  </View>
+                </View>
+              </Link>
+            ))}
+          </ScrollView>
+        </View>
         {/* <View style={{}}>
           <TimelineComponent data={data} />
         </View> */}
@@ -608,4 +504,52 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginRight: 5,
   },
+  optionsCard: {
+    height: Platform.OS === "ios" ? 90 : 90,
+    shadowColor: "none",
+    width: width / 2 - 30,
+    elevation: 15,
+    alignItems: "center",
+    // backgroundColor: COLORS.white,
+    paddingTop: 10,
+    paddingHorizontal: 10,
+  },
+  optionsCardImage: {
+    height: 75,
+    borderRadius: 5,
+    width: "100%",
+  },
+  optionListsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // marginTop: 20,
+    // paddingHorizontal: 20,
+  },
+
+  activeCategoryListText: {
+    borderBottomWidth: 1,
+    paddingBottom: 5,
+  },
+  categoryListContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 40,
+    paddingHorizontal: 40,
+  },
+  card: {
+    height: 500,
+    // backgroundColor: COLORS.white,
+    elevation: 10,
+    width: width - 40,
+    marginRight: 20,
+    padding: 15,
+    // borderRadius: 20,
+  },
+  cardImage: {
+    width: "100%",
+    height: 140,
+    borderRadius: 5,
+  },
+  facility: { flexDirection: "row", marginRight: 15 },
+  facilityText: { marginLeft: 5 },
 });
