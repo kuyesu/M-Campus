@@ -109,7 +109,10 @@ export default function TabOneScreen() {
       body: formdata,
     };
 
-    await fetch("http://127.0.0.1:5110/api/prompt_route", requestOptions)
+    await fetch(
+      "https://snipe-pumped-heron.ngrok-free.app/api/prompt_route",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log("++======================: ", result);

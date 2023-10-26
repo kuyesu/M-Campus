@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "expo-router";
 import { URI } from "@/redux/URI";
 import { getTimeDurationLong } from "@/common/TimeGenerator";
+import StyledText from "../Text/StyledText";
 
 const UserChat = ({ item }) => {
   const { user, token } = useSelector((state: any) => state.user);
@@ -89,12 +90,14 @@ const UserChat = ({ item }) => {
 
         <View style={{ flex: 1 }}>
           <View className=" justify-between flex-row">
-            <Text style={{ fontSize: 15, fontWeight: "500" }}>
+            <StyledText style={{ fontSize: 15, fontWeight: "500" }}>
               {item?.name}
-            </Text>
-            <Text style={{ fontSize: 11, fontWeight: "400", color: "#585858" }}>
+            </StyledText>
+            <StyledText
+              style={{ fontSize: 11, fontWeight: "400", color: "gray" }}
+            >
               {lastMessage && getTimeDurationLong(lastMessage?.timeStamp)}
-            </Text>
+            </StyledText>
           </View>
 
           {lastMessage && (

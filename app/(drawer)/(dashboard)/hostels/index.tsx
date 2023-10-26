@@ -183,9 +183,9 @@ const HomeScreen = () => {
       {/* Header container */}
       <View style={style.header}>
         <View>
-          <StyledText style={{ color: activeColors.gray }}>
+          {/* <StyledText style={{ color: activeColors.gray }}>
             Accommodations
-          </StyledText>
+          </StyledText> */}
           <StyledText bold>Hostels and Rentals</StyledText>
         </View>
         {/* <Image
@@ -197,49 +197,75 @@ const HomeScreen = () => {
         {/* Input and sort button container */}
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingHorizontal: 20,
+            flex: 1,
+            // paddingHorizontal: 20,
           }}
         >
           <View
             style={{
-              width: "80%",
+              paddingHorizontal: 20,
+              width: "100%",
             }}
           >
-            <StyledTextInput
+            <View
               style={{
-                borderRadius: 10,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                // paddingHorizontal: 20,
+                width: 350,
               }}
-              placeholderTextColor={activeColors.gray}
-              placeholder="Search with name, or location"
-            />
+            >
+              <View>
+                <View>
+                  <StyledTextInput
+                    style={{
+                      borderRadius: 50,
+                      paddingVertical: 8,
+                      borderColor: activeColors.grayAccent,
+                      borderWidth: 1,
+                    }}
+                    placeholderTextColor={activeColors.gray}
+                    placeholder="Search with name, or location"
+                  />
+                </View>
+              </View>
+
+              <View
+                style={{
+                  // paddingHorizontal: 20,
+                  // width: "20%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 10,
+                  paddingRight: 0,
+                }}
+              >
+                <MaterialCommunityIcons
+                  name="tune"
+                  color={activeColors.accent}
+                  size={25}
+                />
+              </View>
+            </View>
           </View>
 
-          <View style={style.sortBtn}>
-            <MaterialCommunityIcons
-              name="tune"
-              color={activeColors.accent}
-              size={25}
-            />
-          </View>
+          {/* Render list options */}
+          <ListOptions />
+
+          {/* Render categories */}
+          <ListCategories />
+
+          {/* Render Card */}
+          <FlatList
+            snapToInterval={width - 20}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingLeft: 20, paddingVertical: 20 }}
+            horizontal
+            data={houses}
+            renderItem={({ item }) => <Card house={item} />}
+          />
         </View>
-
-        {/* Render list options */}
-        <ListOptions />
-
-        {/* Render categories */}
-        <ListCategories />
-
-        {/* Render Card */}
-        <FlatList
-          snapToInterval={width - 20}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingLeft: 20, paddingVertical: 20 }}
-          horizontal
-          data={houses}
-          renderItem={({ item }) => <Card house={item} />}
-        />
       </ScrollView>
     </MainContainer>
   );

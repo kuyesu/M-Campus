@@ -84,7 +84,7 @@ const MoreApps = ({ handleOnPress }: any) => {
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/map")}
+          onPress={() => handleOnPress("/[...missing]")}
         >
           <View
             // colors={["#C6E2FF", "#C6E2FF"]}
@@ -112,7 +112,7 @@ const MoreApps = ({ handleOnPress }: any) => {
               gap: 10,
             },
           ]}
-          onPress={() => handleOnPress("/jobs")}
+          onPress={() => handleOnPress("/health")}
         >
           <View
             style={{

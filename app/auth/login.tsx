@@ -287,7 +287,7 @@ export default function Login() {
                     color: activeColors.tint,
                   }}
                 >
-                  register
+                  Register
                 </StyledText>
               </TouchableOpacity>
             </Link>

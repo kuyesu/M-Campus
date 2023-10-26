@@ -114,6 +114,7 @@ export default function Phone() {
               <PhoneInput
                 ref={phoneInput}
                 defaultValue={value}
+                autoFocus
                 defaultCode="UG"
                 layout="first"
                 textInputStyle={{
@@ -126,8 +127,9 @@ export default function Phone() {
                   borderColor: activeColors.primary,
                 }}
                 textInputProps={{
-                  placeholderTextColor: activeColors.gray,
-                  placeholder: "772 2820 840",
+                  cursorColor: activeColors.tint,
+                  placeholderTextColor: activeColors.grayAccent,
+                  placeholder: "000 000 000",
                   keyboardType: "numeric",
                   textContentType: "telephoneNumber",
                   className: "w-full border border-black",

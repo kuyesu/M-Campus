@@ -128,16 +128,21 @@ export default function Register() {
                 </StyledText>
               </View>
               <StyledTextInput
+                autoFocus={true}
                 style={{
                   backgroundColor: activeColors.primary,
                   fontSize: 20,
+                  paddingVertical: 10,
+                  // paddingHorizontal: 10,
+                  borderBottomColor: activeColors.grayAccent,
+                  borderBottomWidth: 1,
+                  color: activeColors.tint,
                 }}
                 // onChangeText={(text) => setName(text)}
-                className=" w-full px-0"
-                bold
+                className=" px-0 border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
                 // autoFocus
                 placeholder="Your name"
-                placeholderTextColor={activeColors.gray}
+                placeholderTextColor={activeColors.grayAccent}
                 cursorColor={activeColors.tint}
                 value={name}
                 onChangeText={(text) => setName(text)}

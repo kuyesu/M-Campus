@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ThemeContext } from "@/context/themeContext";
 import { colors } from "@/constants/Colors";
 import React, { useContext } from "react";
+import { Image } from "react-native";
 export default function NotFoundScreen() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
@@ -24,16 +25,28 @@ export default function NotFoundScreen() {
             backgroundColor: activeColors.primary,
           }}
         >
-          <MaterialCommunityIcons
-            name="emoticon-sad-outline"
-            size={100}
-            color={activeColors.tint}
+          <Image
+            source={require("@/assets/images/preview.png")}
+            height={10}
+            width={10}
+            style={{ height: 150, width: 150 }}
           />
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              paddingTop: 20,
+              backgroundColor: activeColors.primary,
+            }}
+          >
+            <StyledText bold>
+              We are working on it. Check again later!
+            </StyledText>
+            <Link href="/home" style={styles.link}>
+              <Text style={styles.linkText}>Go back!</Text>
+            </Link>
+          </View>
         </View>
-        <StyledText bold>This feature is unavailable.</StyledText>
-        <Link href="/home" style={styles.link}>
-          <Text style={styles.linkText}>Go to home screen!</Text>
-        </Link>
       </MainContainer>
     </>
   );

@@ -24,12 +24,17 @@ import StyledView from "@/components/View/StyledView";
 import FriendsScreen from "@/components/messages/FriendsScreen";
 import RequestScreen from "@/components/messages/Requests";
 import ChatsListing from "@/components/messages/ChatsListing";
+import { useSelector } from "react-redux";
+import { ActivityIndicator } from "react-native";
 
 export default function userchats() {
   const { theme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
 
+  const { user, token, users, isLoading } = useSelector(
+    (state: any) => state.user
+  );
   const tabs = [
     {
       name: "MiCahts",
@@ -184,99 +189,120 @@ export default function userchats() {
       </ScrollView>
     );
   };
+
+  // if (loading) return <Text>Loading...</Text>;
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View
-        style={{
-          display: "flex",
-          position: "fixed",
-          backgroundColor: activeColors.primary,
-          paddingHorizontal: 20,
-          paddingVertical: 20,
-        }}
-      >
-        <View>
-          <FlatList
-            data={chats}
-            horizontal
-            initialNumToRender={5}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <View
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginRight: 10,
-                  gap: 10,
-                }}
-              >
-                <View>
-                  <Pressable
-                    onPress={() =>
-                      router.push({
-                        pathname: `/messages/${item.id}`,
-                        params: {
-                          id: item.id,
-                        },
-                      })
-                    }
-                  >
-                    {({ pressed }) => (
-                      <Image
-                        source={{
-                          uri: item.user.image,
-                        }}
-                        style={[
-                          styles.image,
-                          {
-                            opacity: pressed ? 0.5 : 1,
-                            borderColor: activeColors.accent,
-                            borderWidth: 1,
-                            marginRight: 20,
-                          },
-                        ]}
-                      />
-                    )}
-                  </Pressable>
+      {isLoading ? (
+        <View
+          style={{
+            display: "flex",
+            position: "fixed",
+            backgroundColor: activeColors.primary,
+            paddingHorizontal: 20,
+            paddingVertical: 20,
+          }}
+        >
+          <StyledText>
+            <ActivityIndicator size="large" color={activeColors.accent} />
+          </StyledText>
+        </View>
+      ) : (
+        <>
+          <View
+            style={{
+              display: "flex",
+              position: "fixed",
+              backgroundColor: activeColors.primary,
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+            }}
+          >
+            <View>
+              <FlatList
+                data={users}
+                horizontal
+                initialNumToRender={5}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => (
                   <View
                     style={{
-                      backgroundColor: activeColors.accent,
-                      padding: 4,
-                      position: "absolute",
-                      right: 20,
-                      bottom: 0,
-                      borderColor: activeColors.secondary,
-                      borderWidth: 2,
-                      borderRadius: 50,
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 10,
+                      gap: 10,
                     }}
-                  />
-                </View>
-                <View>
-                  <StyledText small>{item.user.name}</StyledText>
-                </View>
-              </View>
-            )}
-          />
-        </View>
-      </View>
-      <View
-        style={{
-          backgroundColor: activeColors.primary,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottomColor: activeColors.grayAccent,
-          borderBottomWidth: 1,
-          paddingTop: 10,
-          paddingHorizontal: 30,
-        }}
-      >
-        {renderTabs()}
-      </View>
-      {renderTabContent()}
+                  >
+                    <View>
+                      <Pressable
+                        onPress={() =>
+                          router.push({
+                            pathname: `/messages/${item?.id}`,
+                            params: {
+                              id: item?._id,
+                              userId: item?._id,
+                            },
+                          })
+                        }
+                      >
+                        {({ pressed }) => (
+                          <Image
+                            source={{
+                              uri: item?.avatar?.url,
+                            }}
+                            style={[
+                              styles.image,
+                              {
+                                opacity: pressed ? 0.5 : 1,
+                                borderColor: activeColors.accent,
+                                borderWidth: 1,
+                                marginRight: 20,
+                              },
+                            ]}
+                          />
+                        )}
+                      </Pressable>
+                      <View
+                        style={{
+                          backgroundColor: activeColors.accent,
+                          padding: 4,
+                          position: "absolute",
+                          right: 20,
+                          bottom: 0,
+                          borderColor: activeColors.secondary,
+                          borderWidth: 2,
+                          borderRadius: 50,
+                        }}
+                      />
+                    </View>
+                    <View>
+                      <StyledText small>{item?.name?.split(" ")[0]}</StyledText>
+                    </View>
+                  </View>
+                )}
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              backgroundColor: activeColors.primary,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderBottomColor: activeColors.grayAccent,
+              borderBottomWidth: 1,
+              paddingTop: 10,
+              paddingHorizontal: 30,
+            }}
+          >
+            {renderTabs()}
+          </View>
+          {renderTabContent()}
+        </>
+      )}
     </SafeAreaView>
   );
 }

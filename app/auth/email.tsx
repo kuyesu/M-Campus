@@ -97,15 +97,15 @@ export default function Email() {
             </View>
             <View>
               <StyledTextInput
-                bold
+                autoFocus={true}
                 style={{
                   backgroundColor: activeColors.primary,
-                  // fontSize: 16,
-                  // borderBottomWidth: 2,
-                  // borderColor: activeColors.grayAccent,
-                  width: "100%",
-                  borderRadius: 0,
-                  borderWidth: 0,
+                  fontSize: 20,
+                  paddingVertical: 10,
+                  // paddingHorizontal: 10,
+                  borderBottomColor: activeColors.grayAccent,
+                  borderBottomWidth: 1,
+                  color: activeColors.tint,
                 }}
                 // onChangeText={(text) => setName(text)}
                 className=" w-full px-0"
@@ -113,7 +113,7 @@ export default function Email() {
                 autoCapitalize="none"
                 inputMode="email"
                 placeholder="Email address"
-                placeholderTextColor={activeColors.gray}
+                placeholderTextColor={activeColors.grayAccent}
                 cursorColor={activeColors.tint}
                 // value={email}
                 onChangeText={(text) => setEmail(text)}

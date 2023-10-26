@@ -2,6 +2,7 @@ import { TextInput } from "react-native";
 import React, { useContext } from "react";
 import { colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
+import { KeyboardAvoidingView } from "react-native";
 
 const StyledTextInput = ({
   style,
@@ -21,6 +22,7 @@ const StyledTextInput = ({
 
   return (
     <TextInput
+      keyboardAppearance={theme.mode}
       style={[
         {
           color: activeColors.tint,
@@ -41,7 +43,7 @@ const StyledTextInput = ({
         },
         style,
       ]}
-      placeholderTextColor={activeColors.primary}
+      placeholderTextColor={activeColors.gray}
       {...props}
     />
   );

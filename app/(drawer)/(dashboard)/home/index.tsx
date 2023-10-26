@@ -180,7 +180,7 @@ export default function TabOneScreen() {
                 <StyledMenuItem
                   icon="hexagon-multiple-outline"
                   name="Helpdesk"
-                  onPress={() => router.push("/hostels")}
+                  onPress={() => router.push("/inquiries")}
                 />
                 <StyledMenuItem
                   icon="selection-multiple"
@@ -285,7 +285,7 @@ export default function TabOneScreen() {
             <TouchableOpacity onPress={() => router.push("/feed")}>
               <StyledText
                 small
-                style={{ marginTop: 25, color: activeColors.gray }}
+                style={{ marginTop: 40, color: activeColors.gray }}
                 className=" italic"
               >
                 show all trending{" "}
@@ -307,6 +307,28 @@ export default function TabOneScreen() {
                   <View>
                     <View style={styles.optionsCard}>
                       {/* House image */}
+                      <View
+                        style={{
+                          position: "absolute",
+                          top: 15,
+                          left: 15,
+                          zIndex: 999,
+                        }}
+                      >
+                        <View
+                          style={{
+                            backgroundColor: activeColors.grayAccent,
+                            borderRadius: 50,
+                            padding: 5,
+                          }}
+                        >
+                          <MaterialCommunityIcons
+                            name="notification-clear-all"
+                            size={20}
+                            color={activeColors.gray}
+                          />
+                        </View>
+                      </View>
                       <Image
                         source={{ uri: item?.image?.url }}
                         style={styles.optionsCardImage}

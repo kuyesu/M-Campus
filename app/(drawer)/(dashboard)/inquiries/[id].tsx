@@ -41,7 +41,15 @@ export default function InquiryId({ navigation }) {
   const [data, setData] = useState({});
   const { user } = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
-
+  const setStatus = (id: string, status: string, dispatch: any) => {
+    dispatch({
+      type: "ticket/setStatus",
+      payload: {
+        id,
+        status,
+      },
+    });
+  };
   const pathname = usePathname();
   const id = pathname.split("/").slice(-1);
   const stringId = id.toString();
@@ -137,12 +145,7 @@ export default function InquiryId({ navigation }) {
               <>
                 <TouchableOpacity
                   className={` flex   items-center   justify-center  p-1 font-bold  px-1 `}
-                  onPress={() =>
-                    router.replace({
-                      pathname: "/inquiries/reply",
-                      params: { id: ticket?._id },
-                    })
-                  }
+                  onPress={() => setStatus(ticket?._id, "resolved", dispatch)}
                 >
                   <StyledText
                     style={{
@@ -150,7 +153,9 @@ export default function InquiryId({ navigation }) {
                     }}
                     className=" underline"
                   >
-                    Mark as resolved
+                    {ticket?.status === "resolved"
+                      ? "resolved"
+                      : "Mark as resolved"}
                   </StyledText>
                 </TouchableOpacity>
                 <TouchableOpacity

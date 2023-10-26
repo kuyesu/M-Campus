@@ -305,6 +305,23 @@ const RootLayoutNav = () => {
             }}
           />
           <Stack.Screen
+            name="[...missing]"
+            options={{
+              title: "Oops!",
+              headerTintColor: theme.mode === "dark" ? "#f9fafb" : "#111827",
+              presentation: "fullScreenModal",
+              gestureEnabled: false,
+              headerBackground: () => (
+                <View
+                  style={{
+                    backgroundColor:
+                      theme.mode === "dark" ? "#111827" : "#ffffff",
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
             name="post/create-replies"
             options={{
               title: "Create New Reply",

@@ -18,9 +18,10 @@ import StyledBottomSheet from "@/components/BottomSheet/StyledBottomSheet";
 import StyledText from "@/components/Text/StyledText";
 import { StyledTouchableOpacity } from "@/components/buttons/StyledTouchableOpacity";
 import StyledTextInput from "@/components/TextInput/StyledTextInput";
+import { KeyboardAvoidingView } from "react-native";
 
 export const WithdrawTicket = ({ bottomSheetModalRef, setIsOpen, zIndex }) => {
-  const snapPoints = ["35%", "70%", "100%"];
+  const snapPoints = ["35%", "72%", "100%"];
   const [name, setName] = useState("");
   const [device, setDevice] = useState("");
   const { width } = useWindowDimensions();
@@ -35,150 +36,182 @@ export const WithdrawTicket = ({ bottomSheetModalRef, setIsOpen, zIndex }) => {
       snapPoints={snapPoints}
       setIsOpen={setIsOpen(false)}
       index={1}
+      backgroundStyle={{
+        borderRadius: 0,
+        backgroundColor: activeColors.primary,
+        marginTop: 25,
+      }}
+      style={{
+        backgroundColor: activeColors.secondary,
+        borderTopColor: activeColors.grayAccent,
+        borderTopWidth: 1,
+        borderBottomEndRadius: 15,
+        borderBottomStartRadius: 15,
+
+        borderRadius: 15,
+      }}
     >
-      <View
-        className="flex-1 px-4 pt-4 z-50"
+      <ScrollView
+        className="flex-1 px-4 pt-8 z-50"
         style={{
           zIndex: zIndex,
+          height: "100%",
         }}
       >
-        <StyledText style={[{ marginBottom: 20 }]} className="">
-          Cancel this Ticket
-        </StyledText>
-        <ScrollView className="flex flex-col    space-y-4 pt-4 ">
-          <View className="flex  space-y-3 pb-4 flex-col  justify-between items-start w-full">
-            <Pressable
-              className="flex flex-row space-x-2 items-center"
-              onPress={() => setYear("1")}
-            >
-              {year === "1" ? (
-                <AntDesign name="checkcircle" size={24} color="#86e63b" />
-              ) : (
-                <Entypo name="circle" size={24} color="#041633" />
-              )}
+        <KeyboardAvoidingView>
+          <StyledText style={[{ marginBottom: 20 }]} className="">
+            Cancel this Ticket
+          </StyledText>
+          <ScrollView className="flex flex-col    space-y-4 pt-4 ">
+            <View className="flex  space-y-3 pb-4 flex-col  justify-between items-start w-full">
+              <Pressable
+                className="flex flex-row space-x-2 items-center"
+                onPress={() => setYear("1")}
+              >
+                {year === "1" ? (
+                  <AntDesign
+                    name="checkcircle"
+                    size={24}
+                    color={activeColors.accent}
+                  />
+                ) : (
+                  <Entypo name="circle" size={20} color={activeColors.gray} />
+                )}
+                <StyledText
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                  className=""
+                >
+                  I manage to figure it out
+                </StyledText>
+              </Pressable>
+              <Pressable
+                className="flex flex-row space-x-2 items-center"
+                onPress={() => setYear("2")}
+              >
+                {year === "2" ? (
+                  <AntDesign name="checkcircle" size={24} color="#86e63b" />
+                ) : (
+                  <Entypo name="circle" size={20} color={activeColors.gray} />
+                )}
+                <StyledText
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                  className=""
+                >
+                  My issues was resolved by an administrator
+                </StyledText>
+              </Pressable>
+              <Pressable
+                className="flex flex-row space-x-2 items-center"
+                onPress={() => setYear("3")}
+              >
+                {year === "3" ? (
+                  <AntDesign name="checkcircle" size={24} color="#86e63b" />
+                ) : (
+                  <Entypo name="circle" size={20} color={activeColors.gray} />
+                )}
+                <StyledText
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                  className=""
+                >
+                  I gave up, no one responded
+                </StyledText>
+              </Pressable>
+              <Pressable
+                className="flex flex-row space-x-2 items-center"
+                onPress={() => setYear("4")}
+              >
+                {year === "4" ? (
+                  <AntDesign name="checkcircle" size={24} color="#86e63b" />
+                ) : (
+                  <Entypo name="circle" size={20} color={activeColors.gray} />
+                )}
+                <StyledText
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                  className=""
+                >
+                  A friend assisted me
+                </StyledText>
+              </Pressable>
+              <Pressable
+                className="flex flex-row space-x-2 items-center"
+                onPress={() => setYear("5")}
+              >
+                {year === "5" ? (
+                  <AntDesign name="checkcircle" size={24} color="#86e63b" />
+                ) : (
+                  <Entypo name="circle" size={20} color={activeColors.gray} />
+                )}
+                <StyledText
+                  style={{
+                    color: activeColors.gray,
+                  }}
+                  className=""
+                >
+                  I just don{"'"}t want to handle it now
+                </StyledText>
+              </Pressable>
+            </View>
+            <View className=" items-start flex w-full justify-start">
               <StyledText
                 style={{
                   color: activeColors.gray,
                 }}
                 className=""
               >
-                I manage to figure it out
+                Reason for withdrawing (Optional)
               </StyledText>
-            </Pressable>
-            <Pressable
-              className="flex flex-row space-x-2 items-center"
-              onPress={() => setYear("2")}
-            >
-              {year === "2" ? (
-                <AntDesign name="checkcircle" size={24} color="#86e63b" />
-              ) : (
-                <Entypo name="circle" size={24} color="#041633" />
-              )}
-              <StyledText
-                style={{
-                  color: activeColors.gray,
-                }}
-                className=""
-              >
-                My issues was resolved by an administrator
-              </StyledText>
-            </Pressable>
-            <Pressable
-              className="flex flex-row space-x-2 items-center"
-              onPress={() => setYear("3")}
-            >
-              {year === "3" ? (
-                <AntDesign name="checkcircle" size={24} color="#86e63b" />
-              ) : (
-                <Entypo name="circle" size={24} color="#041633" />
-              )}
-              <StyledText
-                style={{
-                  color: activeColors.gray,
-                }}
-                className=""
-              >
-                I gave up, no one responded
-              </StyledText>
-            </Pressable>
-            <Pressable
-              className="flex flex-row space-x-2 items-center"
-              onPress={() => setYear("4")}
-            >
-              {year === "4" ? (
-                <AntDesign name="checkcircle" size={24} color="#86e63b" />
-              ) : (
-                <Entypo name="circle" size={24} color="#041633" />
-              )}
-              <StyledText
-                style={{
-                  color: activeColors.gray,
-                }}
-                className=""
-              >
-                A friend assisted me
-              </StyledText>
-            </Pressable>
-            <Pressable
-              className="flex flex-row space-x-2 items-center"
-              onPress={() => setYear("5")}
-            >
-              {year === "5" ? (
-                <AntDesign name="checkcircle" size={24} color="#86e63b" />
-              ) : (
-                <Entypo name="circle" size={24} color="#041633" />
-              )}
-              <StyledText
-                style={{
-                  color: activeColors.gray,
-                }}
-                className=""
-              >
-                I just don{"'"}t want to handle it now
-              </StyledText>
-            </Pressable>
-          </View>
-          <View className=" items-start flex w-full justify-start">
-            <StyledText
+            </View>
+            <TextInput allowFontScaling className="w-full" />
+            <StyledTextInput
+              value=""
+              defaultValue="Kuyeso Rogers"
+              onChangeText={(text) => setName(text)}
+              multiline
+              numberOfLines={5}
+              placeholder="Enter your reason here"
+              placeholderTextColor={activeColors.gray}
+              allowFontScaling
+              textAlignVertical="top"
+              className=" w-full"
               style={{
-                color: activeColors.gray,
-              }}
-              className=""
-            >
-              Reason for withdrawing (Optional)
-            </StyledText>
-          </View>
-          <StyledTextInput
-            value=""
-            defaultValue="Kuyeso Rogers"
-            onChangeText={(text) => setName(text)}
-            multiline
-            numberOfLines={5}
-            className=" w-full"
-            style={{
-              borderRadius: 5,
-              borderColor: activeColors.grayAccent,
-              borderWidth: 1,
-            }}
-          />
-
-          <View className="flex pt-4 w-full pr-1">
-            <StyledTouchableOpacity
-              // onPress={handleNext}
-              className="   w-full "
-              style={{
-                borderColor: activeColors.grayAccent,
-                borderWith: 1,
                 borderRadius: 5,
+                borderColor: activeColors.grayAccent,
+                borderWidth: 1,
               }}
-            >
-              <StyledText bold className=" up ">
-                Cancel Ticket
-              </StyledText>
-            </StyledTouchableOpacity>
-          </View>
-        </ScrollView>
-      </View>
+            />
+
+            <View className="flex pt-4 w-full pr-1">
+              <StyledTouchableOpacity
+                // onPress={handleNext}
+                className="   w-full "
+                style={{
+                  borderColor: activeColors.grayAccent,
+                  borderWith: 1,
+                  borderRadius: 5,
+                }}
+              >
+                <StyledText
+                  style={{
+                    color: activeColors.primary,
+                  }}
+                  bold
+                  className=" up "
+                >
+                  Cancel Ticket
+                </StyledText>
+              </StyledTouchableOpacity>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </StyledBottomSheet>
   );
 };
