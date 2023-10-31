@@ -29,6 +29,7 @@ import StyledTextInput from "@/components/TextInput/StyledTextInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser, loginUser } from "@/redux/actions/userAction";
 import { StyledTouchableOpacity } from "@/components/buttons/StyledTouchableOpacity";
+import Loader from "react-native-three-dots-loader";
 
 export default function Login() {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -153,7 +154,7 @@ export default function Login() {
                     borderRadius: 15,
                     paddingLeft: 20,
                     borderWidth: 2,
-
+                    
                     borderColor: activeColors.grayAccent,
                   }}
                   autoCapitalize="none"
@@ -226,18 +227,39 @@ export default function Login() {
 
             <View className="pt-16">
               {loading ? (
-                <StyledTouchableOpacity
-                  disabled={true}
-                  style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <ActivityIndicator
-                    size="small"
-                    color={activeColors.primary}
-                  />
-                </StyledTouchableOpacity>
+                <TouchableOpacity>
+                  <View
+                    style={[
+                      {
+                        borderColor: activeColors.accent,
+                        backgroundColor: activeColors.accent,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: 30,
+                      },
+                    ]}
+                  >
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <StyledText
+                        style={{
+                          fontFamily: "B",
+                          fontSize: 16,
+                          padding: 15,
+                          color: activeColors.gray,
+                        }}
+                        small
+                      >
+                        Waiting <Loader />
+                      </StyledText>
+                    </View>
+                  </View>
+                </TouchableOpacity>
               ) : (
                 <StyledTouchableOpacity
                   style={{

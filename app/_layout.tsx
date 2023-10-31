@@ -12,6 +12,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeContext } from "@/context/themeContext";
 import Store from "@/redux/Store";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,7 +51,9 @@ export default function RootLayout() {
 
   return (
     <Provider store={Store}>
-      <RootLayoutNav />
+      <ActionSheetProvider>
+        <RootLayoutNav />
+      </ActionSheetProvider>
     </Provider>
   );
 }

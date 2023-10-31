@@ -87,7 +87,7 @@ const SplashScreen = (props: Props) => {
         <View style={styles.logoContainer}>
           <View
             style={{
-              height: "55%",
+              height: "15%",
               width: "100%",
               justifyContent: "flex-start",
               alignItems: "center",

@@ -2,6 +2,7 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { IMessage, User, QuickReplies } from "react-native-gifted-chat";
 import { IRasaResponse } from "@/types";
+import { customAlphabet } from "nanoid";
 /**
  * Random id for each message
  */
@@ -117,3 +118,8 @@ export const checkImageURL = (url) => {
 };
 
 export { Display };
+
+export const nanoid = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  7
+); // 7-character random string

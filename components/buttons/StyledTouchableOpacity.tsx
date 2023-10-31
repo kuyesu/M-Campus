@@ -5,19 +5,24 @@ import { ThemeContext } from "@/context/themeContext";
 import StyledText from "../Text/StyledText";
 import { colors } from "@/constants/Colors";
 
-const StyledTouchableOpacity = ({ children, ...props }) => {
+const StyledTouchableOpacity = ({ children,  ...props }) => {
   const { theme, updateTheme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
 
   return (
     <TouchableOpacity {...props}>
-      <LinearGradient
+      <View
         // Button Linear Gradient
-        colors={[activeColors.accent, activeColors.accent]}
-        start={[1, -0.3]}
-        end={[1, 1]}
-        style={[styles.btn, { borderColor: activeColors.accent }]}
+        style={[
+          styles.btn,
+     
+          {
+            borderColor: activeColors.accent,
+            backgroundColor: activeColors.accent,
+          },
+        ]}
+
       >
         <View
           style={{
@@ -38,7 +43,7 @@ const StyledTouchableOpacity = ({ children, ...props }) => {
             {children}
           </StyledText>
         </View>
-      </LinearGradient>
+      </View>
     </TouchableOpacity>
   );
 };

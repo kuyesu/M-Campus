@@ -1,0 +1,463 @@
+[{
+  "_id": {
+    "$oid": "652ff2085af8de0d1b9ac198"
+  },
+  "title": "Missing Marks",
+  "image": {
+    "public_id": "tickets/t8mmvldfavvwlb3b9yer",
+    "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697640967/tickets/t8mmvldfavvwlb3b9yer.jpg"
+  },
+  "status": "reviewing",
+  "user": {
+    "role": {
+      "name": "user"
+    },
+    "avatar": {
+      "public_id": "avatars/niyfg1fj8uvrcag06a9i",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697541396/avatars/niyfg1fj8uvrcag06a9i.jpg"
+    },
+    "_id": "652e6d15f929f094451c1f88",
+    "name": "Angei Hellen",
+    "userName": "AngeiHellen664",
+    "email": "woojonam22@gmail.com",
+    "phone": "+256772820840",
+    "password": "$2a$10$CMhs5vxrlBS6OyMiqXQKPetqL4b.lgWVNl3mUiC6WJmng4lMNPx32",
+    "verified": false,
+    "notifications": [],
+    "freindRequests": [],
+    "friends": [
+      "652e7583f929f094451c2205",
+      "652f1996eed8e3a4c1d17255"
+    ],
+    "sentFriendRequests": [
+      "652f1996eed8e3a4c1d17255"
+    ],
+    "followers": [],
+    "following": [],
+    "createdAt": "2023-10-17T11:16:37.143Z",
+    "updatedAt": "2023-10-17T23:44:20.944Z",
+    "__v": 2
+  },
+  "assignedToUser": {
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman372",
+    "avatar": {
+      "public_id": "avatars/jw3wnuwk2qpibo7xrly3",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697585558/avatars/jw3wnuwk2qpibo7xrly3.jpg"
+    },
+    "role": {
+      "name": "lecturer"
+    },
+    "email": "kuyesu22@gmail.com",
+    "_id": "652f1996eed8e3a4c1d17255",
+    "phone": "+256772820840"
+  },
+  "description": {
+    "0": "Software Engineering",
+    "1": "Artificial Intelligence",
+    "2": "652f1996eed8e3a4c1d17255",
+    "3": "Year 1",
+    "4": "Semester 1",
+    "studentID": "2019/bse/031/ps",
+    "name": "Angei Hellen",
+    "email": "woojonam22@gmail.com"
+  },
+  "replies": [
+    {
+      "user": {
+        "role": {
+          "name": "user"
+        },
+        "avatar": {
+          "public_id": "avatars/niyfg1fj8uvrcag06a9i",
+          "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697541396/avatars/niyfg1fj8uvrcag06a9i.jpg"
+        },
+        "_id": "652e6d15f929f094451c1f88",
+        "name": "Angei Hellen",
+        "userName": "AngeiHellen664",
+        "email": "woojonam22@gmail.com",
+        "phone": "+256772820840",
+        "password": "$2a$10$CMhs5vxrlBS6OyMiqXQKPetqL4b.lgWVNl3mUiC6WJmng4lMNPx32",
+        "verified": false,
+        "notifications": [],
+        "freindRequests": [],
+        "friends": [
+          "652e7583f929f094451c2205",
+          "652f1996eed8e3a4c1d17255"
+        ],
+        "sentFriendRequests": [
+          "652f1996eed8e3a4c1d17255"
+        ],
+        "followers": [],
+        "following": [],
+        "createdAt": "2023-10-17T11:16:37.143Z",
+        "updatedAt": "2023-10-17T23:44:20.944Z",
+        "__v": 2
+      },
+      "title": "",
+      "_id": {
+        "$oid": "652ff2085af8de0d1b9ac199"
+      },
+      "createdAt": {
+        "$date": "2023-10-18T14:56:08.256Z"
+      },
+      "likes": [],
+      "reply": []
+    }
+  ],
+  "likes": [],
+  "createdAt": {
+    "$date": "2023-10-18T14:56:08.261Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-18T14:56:08.261Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65324dc7401c1a78764f22d3"
+  },
+  "title": "Missing Marks",
+  "image": {
+    "public_id": "tickets/jcfnf02jx20czkbkbh5d",
+    "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697795526/tickets/jcfnf02jx20czkbkbh5d.jpg"
+  },
+  "status": "reviewing",
+  "user": {
+    "role": {
+      "name": "lecturer"
+    },
+    "avatar": {
+      "public_id": "avatars/jw3wnuwk2qpibo7xrly3",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697585558/avatars/jw3wnuwk2qpibo7xrly3.jpg"
+    },
+    "_id": "652f1996eed8e3a4c1d17255",
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman372",
+    "email": "kuyesu22@gmail.com",
+    "phone": "+256772820840",
+    "password": "$2a$10$vHXnvryRpzdTXCHBLz9bE.eI8EpW4yu39xl8SoFzTESJ7VeaU18mq",
+    "verified": false,
+    "notifications": [],
+    "freindRequests": [],
+    "friends": [
+      "652e6d15f929f094451c1f88",
+      "652e7583f929f094451c2205"
+    ],
+    "sentFriendRequests": [
+      "652e7583f929f094451c2205"
+    ],
+    "followers": [],
+    "following": [],
+    "createdAt": "2023-10-17T23:32:38.343Z",
+    "updatedAt": "2023-10-17T23:45:34.054Z",
+    "__v": 2
+  },
+  "assignedToUser": {
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman962",
+    "avatar": {
+      "public_id": "avatars/k0yezw2tcou82pamzzrk",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697543555/avatars/k0yezw2tcou82pamzzrk.jpg"
+    },
+    "role": {
+      "name": "lecturer"
+    },
+    "email": "rogerskuyeso@gmail.com",
+    "_id": "652e7583f929f094451c2205",
+    "phone": "+256772820840"
+  },
+  "description": {
+    "0": "Software Engineering",
+    "1": "Artificial Intelligence",
+    "2": "652e7583f929f094451c2205",
+    "3": "Year 1",
+    "4": "Semester 1",
+    "studentID": "2019/bse/031/ps",
+    "name": "Rogers Goodman",
+    "email": "kuyesu22@gmail.com"
+  },
+  "replies": [
+    {
+      "user": {
+        "role": {
+          "name": "lecturer"
+        },
+        "avatar": {
+          "public_id": "avatars/jw3wnuwk2qpibo7xrly3",
+          "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697585558/avatars/jw3wnuwk2qpibo7xrly3.jpg"
+        },
+        "_id": "652f1996eed8e3a4c1d17255",
+        "name": "Rogers Goodman",
+        "userName": "RogersGoodman372",
+        "email": "kuyesu22@gmail.com",
+        "phone": "+256772820840",
+        "password": "$2a$10$vHXnvryRpzdTXCHBLz9bE.eI8EpW4yu39xl8SoFzTESJ7VeaU18mq",
+        "verified": false,
+        "notifications": [],
+        "freindRequests": [],
+        "friends": [
+          "652e6d15f929f094451c1f88",
+          "652e7583f929f094451c2205"
+        ],
+        "sentFriendRequests": [
+          "652e7583f929f094451c2205"
+        ],
+        "followers": [],
+        "following": [],
+        "createdAt": "2023-10-17T23:32:38.343Z",
+        "updatedAt": "2023-10-17T23:45:34.054Z",
+        "__v": 2
+      },
+      "title": "",
+      "_id": {
+        "$oid": "65324dc7401c1a78764f22d4"
+      },
+      "createdAt": {
+        "$date": "2023-10-20T09:52:07.040Z"
+      },
+      "likes": [],
+      "reply": []
+    }
+  ],
+  "likes": [],
+  "createdAt": {
+    "$date": "2023-10-20T09:52:07.044Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-20T09:52:07.044Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6532c5f2211b63dfc7722b57"
+  },
+  "title": "Missing Marks",
+  "image": {
+    "public_id": "tickets/m1bmtkvrjd0ufjzzgkcc",
+    "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697826290/tickets/m1bmtkvrjd0ufjzzgkcc.jpg"
+  },
+  "status": "reviewing",
+  "user": {
+    "role": {
+      "name": "lecturer"
+    },
+    "avatar": {
+      "public_id": "avatars/k0yezw2tcou82pamzzrk",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697543555/avatars/k0yezw2tcou82pamzzrk.jpg"
+    },
+    "_id": "652e7583f929f094451c2205",
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman962",
+    "email": "rogerskuyeso@gmail.com",
+    "phone": "+256772820840",
+    "password": "$2a$10$z48/foABuNONxgYBQkTC1.UvrX2Clz9MeUbs7EC3.//U.sjhPengy",
+    "verified": false,
+    "notifications": [],
+    "freindRequests": [],
+    "friends": [
+      "652e6d15f929f094451c1f88",
+      "652f1996eed8e3a4c1d17255"
+    ],
+    "sentFriendRequests": [
+      "652e6d15f929f094451c1f88",
+      "652e6d15f929f094451c1f88"
+    ],
+    "followers": [],
+    "following": [],
+    "createdAt": "2023-10-17T11:52:35.928Z",
+    "updatedAt": "2023-10-17T23:45:34.159Z",
+    "__v": 2
+  },
+  "assignedToUser": {
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman372",
+    "avatar": {
+      "public_id": "avatars/jw3wnuwk2qpibo7xrly3",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697585558/avatars/jw3wnuwk2qpibo7xrly3.jpg"
+    },
+    "role": {
+      "name": "lecturer"
+    },
+    "email": "kuyesu22@gmail.com",
+    "_id": "652f1996eed8e3a4c1d17255",
+    "phone": "+256772820840"
+  },
+  "description": {
+    "0": "Software Engineering",
+    "1": "Artificial Intelligence",
+    "2": "652f1996eed8e3a4c1d17255",
+    "3": "Year 1",
+    "4": "Semester 1",
+    "studentID": "2019bcejajksj aks",
+    "name": "Rogers Goodman",
+    "email": "rogerskuyeso@gmail.com"
+  },
+  "replies": [
+    {
+      "user": {
+        "role": {
+          "name": "lecturer"
+        },
+        "avatar": {
+          "public_id": "avatars/k0yezw2tcou82pamzzrk",
+          "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697543555/avatars/k0yezw2tcou82pamzzrk.jpg"
+        },
+        "_id": "652e7583f929f094451c2205",
+        "name": "Rogers Goodman",
+        "userName": "RogersGoodman962",
+        "email": "rogerskuyeso@gmail.com",
+        "phone": "+256772820840",
+        "password": "$2a$10$z48/foABuNONxgYBQkTC1.UvrX2Clz9MeUbs7EC3.//U.sjhPengy",
+        "verified": false,
+        "notifications": [],
+        "freindRequests": [],
+        "friends": [
+          "652e6d15f929f094451c1f88",
+          "652f1996eed8e3a4c1d17255"
+        ],
+        "sentFriendRequests": [
+          "652e6d15f929f094451c1f88",
+          "652e6d15f929f094451c1f88"
+        ],
+        "followers": [],
+        "following": [],
+        "createdAt": "2023-10-17T11:52:35.928Z",
+        "updatedAt": "2023-10-17T23:45:34.159Z",
+        "__v": 2
+      },
+      "title": "",
+      "_id": {
+        "$oid": "6532c5f2211b63dfc7722b58"
+      },
+      "createdAt": {
+        "$date": "2023-10-20T18:24:50.574Z"
+      },
+      "likes": [],
+      "reply": []
+    }
+  ],
+  "likes": [],
+  "createdAt": {
+    "$date": "2023-10-20T18:24:50.579Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-20T18:24:50.579Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653a2cda1ee6a5b06444cdac"
+  },
+  "title": "Missing Marks",
+  "status": "reviewing",
+  "user": {
+    "role": {
+      "name": "lecturer"
+    },
+    "avatar": {
+      "public_id": "avatars/k0yezw2tcou82pamzzrk",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697543555/avatars/k0yezw2tcou82pamzzrk.jpg"
+    },
+    "_id": "652e7583f929f094451c2205",
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman962",
+    "email": "rogerskuyeso@gmail.com",
+    "phone": "+256772820840",
+    "password": "$2a$10$z48/foABuNONxgYBQkTC1.UvrX2Clz9MeUbs7EC3.//U.sjhPengy",
+    "verified": false,
+    "notifications": [],
+    "freindRequests": [],
+    "friends": [
+      "652e6d15f929f094451c1f88",
+      "652f1996eed8e3a4c1d17255"
+    ],
+    "sentFriendRequests": [
+      "652e6d15f929f094451c1f88",
+      "652e6d15f929f094451c1f88"
+    ],
+    "followers": [],
+    "following": [],
+    "createdAt": "2023-10-17T11:52:35.928Z",
+    "updatedAt": "2023-10-17T23:45:34.159Z",
+    "__v": 2
+  },
+  "assignedToUser": {
+    "name": "Rogers Goodman",
+    "userName": "RogersGoodman372",
+    "avatar": {
+      "public_id": "avatars/jw3wnuwk2qpibo7xrly3",
+      "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697585558/avatars/jw3wnuwk2qpibo7xrly3.jpg"
+    },
+    "role": {
+      "name": "lecturer"
+    },
+    "email": "kuyesu22@gmail.com",
+    "_id": "652f1996eed8e3a4c1d17255",
+    "phone": "+256772820840"
+  },
+  "description": {
+    "0": "Software Engineering",
+    "1": "Artificial Intelligence",
+    "2": "652f1996eed8e3a4c1d17255",
+    "3": "Year 1",
+    "4": "Semester 1",
+    "name": "Rogers Goodman",
+    "email": "rogerskuyeso@gmail.com"
+  },
+  "replies": [
+    {
+      "user": {
+        "role": {
+          "name": "lecturer"
+        },
+        "avatar": {
+          "public_id": "avatars/k0yezw2tcou82pamzzrk",
+          "url": "https://res.cloudinary.com/dr7opid8w/image/upload/v1697543555/avatars/k0yezw2tcou82pamzzrk.jpg"
+        },
+        "_id": "652e7583f929f094451c2205",
+        "name": "Rogers Goodman",
+        "userName": "RogersGoodman962",
+        "email": "rogerskuyeso@gmail.com",
+        "phone": "+256772820840",
+        "password": "$2a$10$z48/foABuNONxgYBQkTC1.UvrX2Clz9MeUbs7EC3.//U.sjhPengy",
+        "verified": false,
+        "notifications": [],
+        "freindRequests": [],
+        "friends": [
+          "652e6d15f929f094451c1f88",
+          "652f1996eed8e3a4c1d17255"
+        ],
+        "sentFriendRequests": [
+          "652e6d15f929f094451c1f88",
+          "652e6d15f929f094451c1f88"
+        ],
+        "followers": [],
+        "following": [],
+        "createdAt": "2023-10-17T11:52:35.928Z",
+        "updatedAt": "2023-10-17T23:45:34.159Z",
+        "__v": 2
+      },
+      "title": "",
+      "_id": {
+        "$oid": "653a2cda1ee6a5b06444cdad"
+      },
+      "createdAt": {
+        "$date": "2023-10-26T09:09:46.130Z"
+      },
+      "likes": [],
+      "reply": []
+    }
+  ],
+  "likes": [],
+  "createdAt": {
+    "$date": "2023-10-26T09:09:46.134Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-26T09:09:46.134Z"
+  },
+  "__v": 0
+}]

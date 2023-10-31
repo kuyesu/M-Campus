@@ -348,6 +348,13 @@ export default function TabLayout() {
           tabBarLabel: "Mi bot",
           // title: "Ask Mi Assistant",
           title: "",
+          // tabBarStyle: {
+          //   backgroundColor: activeColors.primary,
+          //   borderTopColor: activeColors.gray,
+          //   paddingBottom: Platform.OS === "ios" ? 20 : 0,
+          //   height: 0,
+          //   bottom: -30,
+          // },
         }}
       />
       <Tabs.Screen
