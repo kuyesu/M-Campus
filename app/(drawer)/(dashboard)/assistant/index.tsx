@@ -1,6 +1,7 @@
 import {
   Alert,
   Image,
+  Keyboard,
   SafeAreaView,
   Share,
   StyleSheet,
@@ -214,6 +215,7 @@ export default function TabOneScreen() {
   };
 
   const onSend = useCallback((messages = []) => {
+    Keyboard.dismiss();
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
@@ -287,9 +289,15 @@ export default function TabOneScreen() {
       })
       .catch((error) => {
         setLoading(false);
-        Alert.alert(
-          "Sorry 🥺\nMi assistant ",
-          "is not available at the moment."
+
+        return (
+          <StyledText
+            style={{
+              color: activeColors.tint,
+            }}
+          >
+            Sorry 🥺. Mi assistant is not available at the moment."
+          </StyledText>
         );
       });
   };
@@ -653,7 +661,7 @@ export default function TabOneScreen() {
             {messages.length > 0 && currentTab != "Home" ? (
               <GiftedChat
                 messages={messages}
-                isTyping={loading}
+                // isTyping={loading}
                 // alwaysShowSend
                 renderLoading={() => (
                   <View
@@ -664,7 +672,7 @@ export default function TabOneScreen() {
                       width: "100%",
                       padding: 10,
                       height: "100%",
-                      transform: [{ scaleY: -1 }],
+                      // transform: [{ scaleY: -1 }],
                     }}
                   >
                     <StyledLoading />
@@ -675,7 +683,7 @@ export default function TabOneScreen() {
                     style={{
                       flexDirection: "row",
                       alignItems: "center",
-                      justifyContent: "space-between",
+                      justifyContent: "center",
                       marginTop: 10,
                       // borderColor: activeColors.grayAccent,
                       // borderWidth: 1,
@@ -686,17 +694,39 @@ export default function TabOneScreen() {
                     }}
                   >
                     {loading && (
-                      <StyledText
+                      <View
                         style={{
-                          fontFamily: "B",
-                          fontSize: 16,
-                          padding: 15,
-                          color: activeColors.gray,
+                          borderRadius: 5,
+                          backgroundColor: activeColors.secondary,
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          alignContent: "center",
+                          borderColor: activeColors.grayAccent,
+                          borderWidth: 1,
+                          marginVertical: 15,
+                          padding: 10,
+                          paddingVertical: 5,
+                          gap: 8,
                         }}
-                        small
                       >
-                        Mi is typing <Loader />
-                      </StyledText>
+                        <MaterialCommunityIcons
+                          name="stop-circle-outline"
+                          size={18}
+                          color={activeColors.tint}
+                        />
+
+                        <StyledText
+                          style={{
+                            fontFamily: "B",
+
+                            color: activeColors.tint,
+                          }}
+                          small
+                        >
+                          Mi is typing <Loader />
+                        </StyledText>
+                      </View>
                     )}
                   </View>
                 )}
@@ -795,6 +825,7 @@ export default function TabOneScreen() {
                     );
                   }
                 }}
+                keyboardShouldPersistTaps="never"
                 onSend={(messages) => onSend(messages)}
                 // renderBubble={renderBubble}
                 renderMessage={(props) => <CustomMessage {...props} />}
@@ -822,7 +853,7 @@ export default function TabOneScreen() {
                     <StyledLoading />
                   </View>
                 )}
-                inverted={false}
+                // inverted={false}
                 renderChatEmpty={() => (
                   <View
                     style={{
@@ -832,7 +863,12 @@ export default function TabOneScreen() {
                       width: "100%",
                       padding: 10,
                       height: "100%",
-                      transform: [{ scaleY: -1 }],
+                      transform: [
+                        { scaleY: -1 },
+                        {
+                          scaleX: -1,
+                        },
+                      ],
                     }}
                   >
                     <StyledText
@@ -870,7 +906,21 @@ export default function TabOneScreen() {
                         width: "100%",
                       }}
                     >
-                      <StyledView
+                      <TouchableOpacity
+                        onPress={() => {
+                          onSend([
+                            {
+                              _id: Math.random() * (9999999 - 1),
+                              text: "I want to generate a payment reference number for tuition fee",
+                              createdAt: new Date(),
+                              user: {
+                                _id: 1,
+                                name: "User",
+                                avatar: user?.avatar?.url,
+                              },
+                            },
+                          ]);
+                        }}
                         style={{
                           backgroundColor: activeColors.peimary,
                           borderRadius: 5,
@@ -900,8 +950,22 @@ export default function TabOneScreen() {
                           Example: I want to generate a payment reference number
                           for tuition fee
                         </StyledText>
-                      </StyledView>
-                      <StyledView
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          onSend([
+                            {
+                              _id: Math.random() * (9999999 - 1),
+                              text: "What happens if I fail an exam or a course?",
+                              createdAt: new Date(),
+                              user: {
+                                _id: 1,
+                                name: "User",
+                                avatar: user?.avatar?.url,
+                              },
+                            },
+                          ]);
+                        }}
                         style={{
                           backgroundColor: activeColors.peimary,
                           borderRadius: 5,
@@ -930,8 +994,22 @@ export default function TabOneScreen() {
                         >
                           Example: What happens if I fail an exam or a course?
                         </StyledText>
-                      </StyledView>
-                      <StyledView
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          onSend([
+                            {
+                              _id: Math.random() * (9999999 - 1),
+                              text: "What programs are offered at Mbarara university",
+                              createdAt: new Date(),
+                              user: {
+                                _id: 1,
+                                name: "User",
+                                avatar: user?.avatar?.url,
+                              },
+                            },
+                          ]);
+                        }}
                         style={{
                           backgroundColor: activeColors.peimary,
                           borderRadius: 5,
@@ -960,17 +1038,19 @@ export default function TabOneScreen() {
                         >
                           Example: What programs are offered in the university?
                         </StyledText>
-                      </StyledView>
+                      </TouchableOpacity>
                     </View>
                   </View>
                 )}
+                keyboardShouldPersistTaps="never"
                 renderChatFooter={() => (
                   <View
                     style={{
                       flexDirection: "row",
                       alignItems: "center",
-                      justifyContent: "space-between",
+                      justifyContent: "center",
                       marginTop: 10,
+                      marginBottom: 10,
                       // borderColor: activeColors.grayAccent,
                       // borderWidth: 1,
                       borderRadius: 0,
@@ -980,17 +1060,39 @@ export default function TabOneScreen() {
                     }}
                   >
                     {loading && (
-                      <StyledText
+                      <View
                         style={{
-                          fontFamily: "B",
-                          fontSize: 16,
-                          padding: 15,
-                          color: activeColors.gray,
+                          borderRadius: 5,
+                          backgroundColor: activeColors.secondary,
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          alignContent: "center",
+                          borderColor: activeColors.grayAccent,
+                          borderWidth: 1,
+                          marginVertical: 15,
+                          padding: 10,
+                          paddingVertical: 5,
+                          gap: 8,
                         }}
-                        small
                       >
-                        Mi is typing <Loader />
-                      </StyledText>
+                        <MaterialCommunityIcons
+                          name="stop-circle-outline"
+                          size={18}
+                          color={activeColors.tint}
+                        />
+
+                        <StyledText
+                          style={{
+                            fontFamily: "B",
+
+                            color: activeColors.tint,
+                          }}
+                          small
+                        >
+                          Mi is typing <Loader />
+                        </StyledText>
+                      </View>
                     )}
                   </View>
                 )}
