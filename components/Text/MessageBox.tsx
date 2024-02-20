@@ -1,4 +1,3 @@
-
 import { Text } from "react-native";
 import React, { useContext } from "react";
 import { colors } from "@/constants/Colors";

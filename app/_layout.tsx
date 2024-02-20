@@ -59,20 +59,20 @@ export default function RootLayout() {
 }
 
 const RootLayoutNav = () => {
-  const [theme, setTheme] = useState({ mode: "dark" });
+  const [theme, setTheme] = useState({ mode: "light", system: true });
 
   const updateTheme = (newTheme: any) => {
     let mode;
     if (!newTheme) {
       mode = theme.mode === "dark" ? "light" : "dark";
-      newTheme = { mode, system: false };
+      newTheme = { mode, system: true };
     } else {
       if (newTheme.system) {
         const systemColorScheme = Appearance.getColorScheme();
         mode = systemColorScheme === "dark" ? "dark" : "light";
         newTheme = { ...newTheme, mode };
       } else {
-        newTheme = { ...newTheme, system: false };
+        newTheme = { ...newTheme, system: true };
       }
     }
     setTheme(newTheme);

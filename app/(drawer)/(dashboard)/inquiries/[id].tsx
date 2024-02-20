@@ -316,11 +316,12 @@ export default function InquiryId({ navigation }) {
           {/* tab */}
           <View className="flex-row items-center my-3 justify-center w-full">
             <View
-              className=" w-full flex-row my-3  items-center justify-between px-1"
+              className=" w-full flex-row my-3  items-center justify-between "
               style={{
                 backgroundColor: activeColors.grayAccent,
                 height: 40,
-                borderRadius: 100,
+                borderRadius: 5,
+                paddingHorizontal: 1.5,
               }}
             >
               {labels.map((label, index) => (
@@ -338,7 +339,7 @@ export default function InquiryId({ navigation }) {
                                 : activeColors.grayAccent,
                             borderWidth: active === index ? 1 : 0,
                             borderColor: activeColors.grayAccent,
-                            borderRadius: 100,
+                            borderRadius: 5,
                             alignItems: "center",
                             justifyContent: "center",
                           }}

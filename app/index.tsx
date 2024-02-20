@@ -21,8 +21,9 @@ import { loadUser } from "@/redux/actions/userAction";
 import SplashScreen from "@/components/SplashScreen";
 import { useRouter } from "expo-router";
 import { Image } from "react-native";
+import Svg, { Path, Polygon } from "react-native-svg";
 
-export default function Welcome() {
+export default function Welcome({ props }) {
   const { theme, updateTheme } = useContext(ThemeContext);
   // @ts-ignore
   let activeColors = colors[theme.mode];
@@ -42,7 +43,7 @@ export default function Welcome() {
 
   const router = useRouter();
   return (
-    <>
+    <View style={{ flex: 1, height: "100%" }}>
       {loading ? (
         <SplashScreen />
       ) : (
@@ -50,181 +51,287 @@ export default function Welcome() {
           {isAuthenticated ? (
             router.replace("/home")
           ) : (
-            <View style={{ flex: 1, backgroundColor: activeColors.primary }}>
-              <MainContainer
-                // className="flex-1"
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: activeColors.primary,
+                height: "100%",
+              }}
+            >
+              <StatusBar
+                // backgroundColor={activeColors.primary}
+                style={theme.mode === "dark" ? "dark" : "light"}
+                backgroundColor="transparent"
+              />
+              <ImageBackground
+                source={require("../assets/bg.png")}
                 style={{
-                  width: Dimensions.get("window").width,
+                  flex: 1,
+                  height: "100%",
+                  width: "100%",
+                }}
+                imageStyle={{
+                  resizeMode: "cover",
+                  alignSelf: "flex-end",
+                  flex: 1,
                 }}
               >
-                <StatusBar
-                  // backgroundColor={activeColors.primary}
-                  style={theme.mode === "dark" ? "light" : "dark"}
-                />
-                <ImageBackground
-                  source={require("../assets/bg.png")}
-                  style={{ height: "89%", width: "100%" }}
-                  imageStyle={{
-                    resizeMode: "cover",
-                    alignSelf: "flex-end",
+                <View
+                  style={{
                     flex: 1,
+                    height: "100%",
+                    justifyContent: "flex-end",
                   }}
                 >
                   <View
                     style={{
-                      marginHorizontal: "7.5%",
-                      marginTop: "10%",
-                      flex: 1,
+                      alignItems: "flex-start",
+                      height: "50%",
+                      width: "100%",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
                     }}
                   >
                     <View
                       style={{
-                        marginTop: "40%",
-                        marginBottom: "8%",
-                        left: -15,
+                        position: "absolute",
+                        top: -90,
+                        left: 0,
+                        zIndex: 2,
+                        width: "100%",
+                        justifyContent: "center",
+                        height: "100%",
                       }}
                     >
-                      <View>
-                        <Image
-                          source={require("@/assets/images/logo.png")}
-                          style={{ height: 80, width: 80 }}
-                        ></Image>
+                      <Svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 9 6"
+                        fill="rgba(0,0,0,0.9)"
+                        {...props}
+                      >
+                        <Path d="M0 5l9 3V0H0v3" />
+                      </Svg>
+                      <View
+                        style={{
+                          position: "absolute",
+                          paddingHorizontal: "7.5%",
+                        }}
+                      >
+                        <StyledText
+                          // bold
+                          style={{
+                            fontSize: 35,
+                            color: activeColors.gray,
+                            fontFamily: "B",
+                            lineHeight: 35,
+                          }}
+                        >
+                          MBARARA UNIVERSITY
+                        </StyledText>
+                        <StyledText
+                          style={{
+                            color: activeColors.gray,
+
+                            fontFamily: "H",
+                            fontSize: 20,
+                          }}
+                        >
+                          of Science and Technology
+                        </StyledText>
+                        <View
+                          style={{
+                            borderColor: activeColors.gray,
+                            borderWidth: 1,
+                            width: "100%",
+                            height: 1,
+                            marginTop: 10,
+                          }}
+                        />
                       </View>
                     </View>
 
-                    <StyledText
+                    <Svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 8 6"
                       style={{
-                        fontFamily: "H",
-                        fontSize: 40,
-                        color: activeColors.tint,
+                        position: "absolute",
+                        top: 18,
+                        right: 1,
+                        zIndex: 2,
+                      }}
+                      fill={activeColors.warning}
+                      {...props}
+                    >
+                      <Path d="M0 3l9 3v-.409L.026 2.602 0 0" />
+                    </Svg>
+                    <View
+                      style={{
+                        position: "absolute",
+                        top: 225,
+                        alignItems: "flex-start",
+                        justifyContent: "flex-start",
+                        width: "100%",
+                        height: "100%",
                       }}
                     >
+                      <Svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 3 9 7.039"
+                        {...props}
+                        fill={activeColors.accent}
+                      >
+                        <Path d="M0 3l9 3v1.968L.008 9.039 0 3" />
+                      </Svg>
                       <StyledText
-                        // bold
                         style={{
-                          fontSize: 40,
-                          color: activeColors.accent,
-                          fontFamily: "H",
+                          fontFamily: "B",
+                          fontSize: 35,
+                          width: "100%",
+                          padding: "7.5%",
+                          paddingTop: "33%",
+                          position: "absolute",
+                          color: activeColors.primary,
                         }}
                       >
-                        Mi
+                        Micampus
                       </StyledText>
-                      Campus
-                    </StyledText>
-                    <Text
+                    </View>
+                  </View>
+
+                  <View
+                    style={{
+                      marginHorizontal: "7.5%",
+                      justifyContent: "flex-end",
+                      height: "100%",
+                    }}
+                  >
+                    <View
                       style={{
-                        fontFamily: "B",
-                        fontSize: 18,
-                        width: "50%",
-                        color: activeColors.tint,
+                        alignItems: "flex-start",
+                        height: "60%",
+                        width: "100%",
                       }}
-                    >
-                      Supercharged with AI and AR
-                    </Text>
-                    <View style={{ marginTop: "15%" }}></View>
-                    <TouchableOpacity
-                      onPress={() => router.push("/auth/login")}
-                    >
-                      {/* <TouchableOpacity onPress={() => router.push("/home")}> */}
-                      <LinearGradient
-                        // Button Linear Gradient
-                        colors={[activeColors.accent, activeColors.accent]}
-                        start={[1, -0.3]}
-                        end={[1, 1]}
-                        style={styles.btn}
+                    ></View>
+
+                    <View style={{ marginTop: "15%", gap: 20 }}>
+                      <TouchableOpacity
+                        onPress={() => router.push("/auth/login")}
                       >
                         <View
                           style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            alignItems: "center",
+                            borderColor: activeColors.tertiary,
+                            borderWidth: 1,
+                            borderRadius: 30,
+                            paddingVertical: "4%",
+                            width: "100%",
+                            backgroundColor: activeColors.primary,
+                            paddingLeft: "10%",
+                            paddingRight: "5%",
                           }}
                         >
-                          <StyledText
+                          <View
                             style={{
-                              fontFamily: "B",
-                              fontSize: 20,
-                              width: "70%",
-
-                              color: activeColors.primary,
+                              flexDirection: "row",
+                              justifyContent: "space-between",
+                              alignItems: "center",
                             }}
-                            bold
                           >
-                            Login
-                          </StyledText>
-                          <MaterialCommunityIcons
-                            name="chevron-right-circle"
-                            type="ant-design"
-                            color={activeColors.primary}
-                            style={{ textAlign: "right" }}
-                            size={24}
-                          />
+                            <StyledText
+                              style={[
+                                styles.btnlabel2,
+                                { color: activeColors.tertiary },
+                              ]}
+                            >
+                              Log In
+                            </StyledText>
+                            <MaterialCommunityIcons
+                              name="chevron-right-circle"
+                              type="ant-design"
+                              color={activeColors.tertiary}
+                              style={{ textAlign: "right" }}
+                              size={24}
+                            />
+                          </View>
                         </View>
-                      </LinearGradient>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      onPress={() => router.push("/auth/register")}
-                    >
-                      <View
-                        style={[
-                          styles.btn2,
-                          { borderColor: activeColors.gray },
-                        ]}
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => router.push("/auth/register")}
                       >
+                        {/* <TouchableOpacity onPress={() => router.push("/home")}> */}
                         <View
+                          // Button Linear Gradient
                           style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            alignItems: "center",
+                            borderColor: activeColors.grayAccent,
+                            borderWidth: 1,
+                            borderRadius: 30,
+                            paddingVertical: "4%",
+                            width: "100%",
+                            backgroundColor: activeColors.accent,
+                            paddingHorizontal: "10%",
                           }}
                         >
-                          <Text
-                            style={[
-                              styles.btnlabel2,
-                              { color: activeColors.tertiary },
-                            ]}
+                          <View
+                            style={{
+                              flexDirection: "row",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                            }}
                           >
-                            Sign up
-                          </Text>
-                          <MaterialCommunityIcons
-                            name="chevron-right-circle"
-                            type="ant-design"
-                            color={activeColors.tertiary}
-                            style={{ textAlign: "right" }}
-                            size={24}
-                          />
+                            <StyledText
+                              style={{
+                                fontFamily: "B",
+                                fontSize: 20,
+                                width: "100%",
+
+                                color: activeColors.primary,
+                              }}
+                              bold
+                            >
+                              Sign Up
+                            </StyledText>
+                            <MaterialCommunityIcons
+                              name="chevron-right-circle"
+                              type="ant-design"
+                              color={activeColors.primary}
+                              style={{ textAlign: "right" }}
+                              size={24}
+                            />
+                          </View>
                         </View>
-                      </View>
-                    </TouchableOpacity>
+                      </TouchableOpacity>
+                    </View>
+
                     <View
                       style={{
                         flex: 1,
                         width: "100%",
-                        paddingVertical: 70,
+                        paddingTop: 50,
                       }}
                     >
                       <Text
                         style={{
                           fontFamily: "B",
-                          fontSize: 18,
+                          fontSize: 16,
                           width: "100%",
                           color: activeColors.gray,
+                          textAlign: "center",
                         }}
                       >
-                        By continuing, you are agree to our Privacy Policy and
-                        Terms of use
+                        By continuing, you are agree to our privacy policy and
+                        terms of use
                       </Text>
                     </View>
                     <View style={{ marginBottom: "0%" }}></View>
                   </View>
-                </ImageBackground>
-              </MainContainer>
+                </View>
+              </ImageBackground>
             </View>
           )}
         </>
       )}
-    </>
+    </View>
   );
 }
 

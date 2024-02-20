@@ -43,6 +43,8 @@ import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
+// react-native-vision-camera
+import com.mrousavy.camera.CameraPackage;
 
 public class PackageList {
   private Application application;
@@ -103,7 +105,8 @@ public class PackageList {
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
-      new SvgPackage()
+      new SvgPackage(),
+      new CameraPackage()
     ));
   }
 }

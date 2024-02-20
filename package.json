@@ -94,6 +94,7 @@
     "react-native-three-dots-loader": "^1.0.1",
     "react-native-timetable": "^1.0.6",
     "react-native-toast-notifications": "^3.3.1",
+    "react-native-vision-camera": "^3.6.4",
     "react-native-web": "~0.19.6",
     "react-native-week-view": "^0.30.0",
     "react-redux": "^8.1.2",

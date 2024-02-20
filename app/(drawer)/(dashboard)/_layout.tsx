@@ -262,9 +262,24 @@ export default function TabLayout() {
       <Tabs.Screen
         name="map/index"
         options={{
-          title: "",
           href: null,
-          // headerShown: false,
+          tabBarStyle: {
+            backgroundColor: activeColors.primary,
+            borderTopColor: activeColors.gray,
+            paddingBottom: Platform.OS === "ios" ? 20 : 0,
+            height: 0,
+            top: 30,
+          },
+          headerShown: false,
+          title: "",
+          headerBackground: () => (
+            <View
+              style={{
+                backgroundColor: theme.mode === "dark" ? "#111827" : "#ffffff",
+                flex: 1,
+              }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
@@ -348,6 +363,13 @@ export default function TabLayout() {
           tabBarLabel: "Mi bot",
           // title: "Ask Mi Assistant",
           title: "",
+          // tabBarStyle: {
+          //   backgroundColor: activeColors.primary,
+          //   borderTopColor: activeColors.gray,
+          //   paddingBottom: Platform.OS === "ios" ? 20 : 0,
+          //   height: 0,
+          //   top: 30,
+          // },
           // tabBarStyle: {
           //   backgroundColor: activeColors.primary,
           //   borderTopColor: activeColors.gray,

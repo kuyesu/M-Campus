@@ -26,18 +26,120 @@ export const StyledLoading = () => {
         style={[styles.container, styles.padded]}
         animate={{ backgroundColor: activeColors.primary }}
       >
-        <Skeleton
-          backgroundColor={activeColors.secondary}
-          radius="round"
-          height={75}
-          width={75}
-        />
-        <Spacer />
-        <Skeleton backgroundColor={activeColors.secondary} width={250} />
-        <Spacer height={8} />
-        <Skeleton backgroundColor={activeColors.secondary} width={"100%"} />
-        <Spacer height={8} />
-        <Skeleton backgroundColor={activeColors.secondary} width={"100%"} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+
+            width: "100%",
+            gap: 16,
+          }}
+        >
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            radius={5}
+            height={35}
+            width={35}
+          />
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            height={100}
+            width={"93%"}
+          />
+        </View>
+        <Spacer height={30} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+
+            width: "100%",
+            gap: 16,
+          }}
+        >
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            radius={5}
+            height={35}
+            width={35}
+          />
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            height={100}
+            width={"93%"}
+          />
+        </View>
+        <Spacer height={30} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+
+            width: "100%",
+            gap: 16,
+          }}
+        >
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            radius={5}
+            height={35}
+            width={35}
+          />
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            height={100}
+            width={"93%"}
+          />
+        </View>
+        <Spacer height={30} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+
+            width: "100%",
+            gap: 16,
+          }}
+        >
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            radius={5}
+            height={35}
+            width={35}
+          />
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            height={100}
+            width={"93%"}
+          />
+        </View>
+        <Spacer height={30} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+
+            width: "100%",
+            gap: 16,
+          }}
+        >
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            radius={5}
+            height={35}
+            width={35}
+          />
+          <Skeleton
+            backgroundColor={activeColors.secondary}
+            height={100}
+            width={"93%"}
+          />
+        </View>
       </MotiView>
     </Pressable>
   );

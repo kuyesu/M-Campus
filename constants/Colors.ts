@@ -34,6 +34,7 @@ export const colors = {
     danger: "#EF4444", //#e24848
     postBorder: "#00000017",
     purple: "#5a49d6",
+    warning: "#f59e0b",
   },
   dark: {
     // primary: "#1f2937",
@@ -52,6 +53,7 @@ export const colors = {
     danger: "#EF4444",
     postBorder: "#374151",
     purple: "#5a49d6",
+    warning: "#f59e0b",
   },
   primary: "#f3f4f6",
   secondary: "#ffffff",

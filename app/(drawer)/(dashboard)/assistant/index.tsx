@@ -548,15 +548,17 @@ export default function TabOneScreen() {
                 //   ? activeColors.secondary
                 //   : "transparent",
                 padding: !showMenu ? 10 : 0,
+                paddingHorizontal: !showMenu ? 15 : 0,
                 backgroundColor: !showMenu
                   ? theme.mode == "dark"
-                    ? "rgba(31, 41, 55, 0.9)"
+                    ? "rgba(31, 41, 55, 0.99)"
                     : "rgba(255, 255, 255, 0.8)"
                   : activeColors.primary,
-
                 boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-                backdropFilter: "blur(5px)",
+                backdropFilter: "blur(10px)",
                 position: "absolute",
+                borderBottomColor: activeColors.grayAccent,
+                borderBottomWidth: showMenu ? 0 : 1,
                 top: 0,
                 width: "100%",
                 zIndex: 999,
@@ -612,13 +614,13 @@ export default function TabOneScreen() {
                   {showMenu ? (
                     <MaterialCommunityIcons
                       name={showMenu ? "close" : "menu"}
-                      size={showMenu ? 30 : 24}
+                      size={showMenu ? 30 : 25}
                       color={activeColors.tint}
                     />
                   ) : (
                     <Feather
                       name="sidebar"
-                      size={20}
+                      size={24}
                       color={activeColors.tint}
                     />
                   )}
@@ -631,7 +633,7 @@ export default function TabOneScreen() {
                 >
                   <StyledText
                     style={{
-                      color: activeColors.gray,
+                      color: activeColors.tint,
                     }}
                     ellipsizeMode="tail"
                     numberOfLines={1}
@@ -649,7 +651,7 @@ export default function TabOneScreen() {
                   {!showMenu && (
                     <MaterialCommunityIcons
                       name="plus"
-                      size={20}
+                      size={24}
                       color={activeColors.tint}
                     />
                   )}

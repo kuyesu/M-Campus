@@ -70,6 +70,8 @@ const SplashScreen = (props: Props) => {
     ).start();
   }, [translateY]);
 
+
+
   return (
     <MainContainer style={styles.container}>
       <ImageBackground
@@ -87,7 +89,7 @@ const SplashScreen = (props: Props) => {
         <View style={styles.logoContainer}>
           <View
             style={{
-              height: "15%",
+              height: "65%",
               width: "100%",
               justifyContent: "flex-start",
               alignItems: "center",
@@ -98,7 +100,7 @@ const SplashScreen = (props: Props) => {
             <StyledText
               style={{
                 fontFamily: "H",
-                fontSize: 45,
+                fontSize: 50,
                 color: activeColors.tint,
                 textAlign: "center",
               }}
@@ -106,7 +108,7 @@ const SplashScreen = (props: Props) => {
               <StyledText
                 // bold
                 style={{
-                  fontSize: 45,
+                  fontSize: 50,
                   color: activeColors.accent,
                   fontFamily: "H",
                   textAlign: "center",
@@ -114,7 +116,7 @@ const SplashScreen = (props: Props) => {
               >
                 Mi
               </StyledText>
-              campus
+              University
             </StyledText>
 
             <View
@@ -150,6 +152,7 @@ const SplashScreen = (props: Props) => {
           </View>
         </View>
 
+        
         <View style={[styles.intro, { gap: 10 }]}>
           <StyledText
             small

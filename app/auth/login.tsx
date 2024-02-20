@@ -93,7 +93,7 @@ export default function Login() {
           imageStyle={{ resizeMode: "cover", alignSelf: "flex-end" }}
         >
           <View style={{ marginHorizontal: "7.5%", marginTop: "10%" }}>
-            <View style={{ marginTop: "60%" }}></View>
+            <View style={{ marginTop: "40%" }}></View>
 
             <StyledText
               style={{
@@ -154,7 +154,7 @@ export default function Login() {
                     borderRadius: 15,
                     paddingLeft: 20,
                     borderWidth: 2,
-                    
+
                     borderColor: activeColors.grayAccent,
                   }}
                   autoCapitalize="none"
@@ -183,7 +183,7 @@ export default function Login() {
             <View
               style={{
                 marginTop: "5%",
-
+                width: "100%",
                 flexDirection: "row",
               }}
             >
@@ -223,6 +223,26 @@ export default function Login() {
                   setSecure(!secure);
                 }}
               />
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
+              <Link href={"/auth/forgot-password"} asChild>
+                <StyledText
+                  style={{
+                    fontFamily: "E",
+                    fontSize: 16,
+                    marginTop: "5%",
+                    color: activeColors.tint,
+                  }}
+                >
+                  Forgot password?
+                </StyledText>
+              </Link>
             </View>
 
             <View className="pt-16">
@@ -274,45 +294,66 @@ export default function Login() {
               )}
             </View>
 
-            <Link href={"/auth/register"} asChild>
-              <TouchableOpacity
-                // onPress={() => router.push("/")}
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+                width: Dimensions.get("window").width,
+              }}
+            >
+              <Link
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end",
+                  width: "100%",
                 }}
+                href={"/auth/register"}
+                asChild
               >
-                <StyledText
+                <TouchableOpacity
+                  // onPress={() => router.push("/")}
                   style={{
-                    fontFamily: "E",
-                    fontSize: 16,
-                    //   marginLeft: "10%",
-                    marginTop: "8%",
-                    //   backgroundColor: `rgba(252, 219, 220, 0.3)`,
-                    //   width: "60%",
-                    lineHeight: 18,
-                    color: activeColors.tint,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                    width: "100%",
                   }}
                 >
-                  Don{"'"}t have account?
-                </StyledText>
-                <StyledText
-                  style={{
-                    fontFamily: "E",
-                    fontSize: 20,
-                    paddingLeft: 10,
-                    marginTop: "8%",
-                    //   backgroundColor: `rgba(252, 219, 220, 0.3)`,
-                    width: "50%",
-                    lineHeight: 18,
-                    fontWeight: "900",
-                    color: activeColors.tint,
-                  }}
-                >
-                  Register
-                </StyledText>
-              </TouchableOpacity>
-            </Link>
+                  <StyledText
+                    style={{
+                      fontFamily: "E",
+                      fontSize: 16,
+                      //   marginLeft: "10%",
+                      marginTop: "8%",
+                      //   backgroundColor: `rgba(252, 219, 220, 0.3)`,
+                      //   width: "60%",
+                      lineHeight: 18,
+                      color: activeColors.tint,
+                      textAlign: "right",
+                    }}
+                  >
+                    Don{"'"}t have account?
+                  </StyledText>
+                  <StyledText
+                    style={{
+                      fontFamily: "E",
+                      fontSize: 20,
+                      paddingLeft: 10,
+                      marginTop: "8%",
+                      //   backgroundColor: `rgba(252, 219, 220, 0.3)`,
+                      width: "50%",
+                      lineHeight: 18,
+                      fontWeight: "900",
+                      color: activeColors.tint,
+                    }}
+                  >
+                    Register
+                  </StyledText>
+                </TouchableOpacity>
+              </Link>
+            </View>
           </View>
         </ImageBackground>
       </MainContainer>

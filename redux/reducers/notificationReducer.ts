@@ -1,4 +1,4 @@
-import {createReducer} from '@reduxjs/toolkit';
+import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: true,
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const notificationReducer = createReducer(initialState, {
-  getNotificationRequest: state => {
+  getNotificationRequest: (state) => {
     state.isLoading = true;
   },
   getNotificationSuccess: (state, action) => {
@@ -18,7 +18,7 @@ export const notificationReducer = createReducer(initialState, {
     state.isLoading = false;
     state.error = action.payload;
   },
-  clearErrors: state => {
+  clearErrors: (state) => {
     state.error = null;
   },
 });

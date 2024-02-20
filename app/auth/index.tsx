@@ -113,30 +113,6 @@ export default function App() {
   };
   // documents and attachments
 
-
-  const SlideEmail = () => {
-    const { theme, updateTheme } = useContext(ThemeContext);
-    // @ts-ignore
-    let activeColors = colors[theme.mode];
-
-    return (
-      <View className="flex flex-col  items-center space-y-5 ">
-        <StyledTextInput
-          style={{
-            backgroundColor: activeColors.primary,
-            fontSize: 20,
-          }}
-          // onChangeText={(text) => setName(text)}
-          className=" w-full px-0"
-          bold
-          autoFocus
-          placeholder="@username"
-          placeholderTextColor={activeColors.gray}
-          cursorColor={activeColors.tint}
-        />
-      </View>
-    );
-  };
   const slides = [
     {
       key: 1,
@@ -152,7 +128,6 @@ export default function App() {
       backgroundColor: "blue",
       component: <SlidePhone />,
     },
-
   ];
   // const handleDone = () => {
   //   // setIsFirstTimeLoad(false);
